@@ -33,7 +33,7 @@ function M.pre_lasthit_enemy_creep()
 end
 
 function M.lasthit_enemy_creep()
-  algorithms.AttackUnit(env.BOT_DATA, env.LAST_HIT_ENEMY_CREEP, false)
+  algorithms.AttackUnit(env.BOT_DATA, env.LAST_HIT_ENEMY_CREEP)
 end
 
 ---------------------------------
@@ -48,7 +48,7 @@ function M.pre_deny_ally_creep()
 end
 
 function M.deny_ally_creep()
-  algorithms.AttackUnit(env.BOT_DATA, env.LAST_HIT_ALLY_CREEP, false)
+  algorithms.AttackUnit(env.BOT_DATA, env.LAST_HIT_ALLY_CREEP)
 end
 
 --------------------------------

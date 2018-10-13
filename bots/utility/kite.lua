@@ -74,7 +74,7 @@ function M.pre_attack_enemy_tower()
 end
 
 function M.attack_enemy_tower()
-  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_TOWER_DATA, false)
+  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_TOWER_DATA)
 end
 
 --------------------------------

@@ -41,7 +41,7 @@ function M.attack_enemy_creep()
                   algorithms.CompareMaxHealth,
                   nil)
 
-  algorithms.AttackUnit(env.BOT_DATA, creep, false)
+  algorithms.AttackUnit(env.BOT_DATA, creep)
 end
 
 --------------------------------
@@ -69,7 +69,7 @@ end
 function M.attack_ally_creep()
   local creep = GetTargetableAllyCreep()
 
-  algorithms.AttackUnit(env.BOT_DATA, creep, false)
+  algorithms.AttackUnit(env.BOT_DATA, creep)
 end
 
 --------------------------------
@@ -100,7 +100,7 @@ function M.pre_attack_enemy_hero()
 end
 
 function M.attack_enemy_hero()
-  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_HERO_DATA, true)
+  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_HERO_DATA)
 end
 
 ---------------------------------

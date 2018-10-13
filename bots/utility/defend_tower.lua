@@ -163,7 +163,7 @@ function M.kill_enemy_creep()
     target = GetCreepAttackingBot()
   end
 
-  algorithms.AttackUnit(env.BOT_DATA, target, false)
+  algorithms.AttackUnit(env.BOT_DATA, target)
 end
 
 ---------------------------------

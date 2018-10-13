@@ -57,7 +57,7 @@ function M.kill_enemy_creep()
                   algorithms.CompareMinHealth,
                   nil)
 
-  algorithms.AttackUnit(env.BOT_DATA, creep, false)
+  algorithms.AttackUnit(env.BOT_DATA, creep)
 end
 
 --------------------------------
@@ -73,7 +73,7 @@ function M.pre_attack_enemy_tower()
 end
 
 function M.attack_enemy_tower()
-  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_TOWER_DATA, false)
+  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_TOWER_DATA)
 end
 
 --------------------------------
