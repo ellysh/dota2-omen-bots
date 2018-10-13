@@ -43,9 +43,6 @@ function M.pre_heal_flask()
                         env.BOT_DATA.max_health)
                       <= constants.UNIT_HALF_HEALTH_LEVEL))
 
-         and not algorithms.HasModifier(
-                   env.BOT_DATA,
-                   "modifier_drow_ranger_frost_arrows_slow")
          and constants.BASE_RADIUS
              < functions.GetDistance(
                  env.FOUNTAIN_SPOT,
