@@ -187,7 +187,7 @@ function M.turn()
 
   env.BOT:Action_AttackUnit(all_units.GetUnit(target_data), true)
 
-  action_timing.SetNextActionDelay(constants.DROW_RANGER_TURN_TIME)
+  action_timing.SetNextActionDelay(constants.NEVERMORE_TURN_TIME)
 end
 
 function M.stop_attack_and_move()
