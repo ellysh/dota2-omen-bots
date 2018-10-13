@@ -10,7 +10,7 @@ local BotHeroes = {
 };
 
 function GetBotNames()
-  return {"OMA"}
+  return {"OML"}
 end
 
 local function IsHumanPlayersPicked()
