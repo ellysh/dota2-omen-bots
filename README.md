@@ -18,7 +18,7 @@ There are steps to start playing with the bot:
 2. Choose the "1v1 Solo Mid" game mode.
 3. Choose the OML bots for both sides.
 4. Start a game.
-5. Pick Drow Ranger.
+5. Pick Shadow Fiend.
 6. Wait until bots do not pick their heroes after you.
 
 You can play with OML Bots in the "All pick" mode. In this case, Shadow Shaman bot buys a courier for you. You should stop "All pick" game when any side does two kills or mid Tier 1 Tower is destroyed.
@@ -27,7 +27,7 @@ You can play with OML Bots in the "All pick" mode. In this case, Shadow Shaman b
 
 You should follow the following limitations when playing with the bot:
 
-1. Pick only Drow Ranger hero.
+1. Pick only Shadow Fiend hero.
 2. No wards.
 3. No shrines.
 4. No neutral camps or Roshan.
