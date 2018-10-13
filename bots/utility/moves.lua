@@ -105,23 +105,6 @@ end
 
 ---------------------------------
 
-function M.pre_use_silence()
-  local ability = env.BOT:GetAbilityByName("drow_ranger_wave_of_silence")
-
-  return env.ENEMY_HERO_DATA ~= nil
-         and env.ENEMY_HERO_DATA.is_visible
-         and ability:IsFullyCastable()
-         and env.ENEMY_HERO_DISTANCE <= ability:GetCastRange()
-end
-
-function M.use_silence()
-  local ability = env.BOT:GetAbilityByName("drow_ranger_wave_of_silence")
-
-  env.BOT:Action_UseAbilityOnLocation(ability, env.ENEMY_HERO_DATA.location)
-end
-
----------------------------------
-
 function M.pre_move_enemy_hero()
   return env.ENEMY_HERO_DATA ~= nil
 

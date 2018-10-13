@@ -168,20 +168,6 @@ end
 
 ---------------------------------
 
-function M.pre_use_silence()
-  return moves.pre_use_silence()
-         and env.ALLY_TOWER_DATA ~= nil
-         and algorithms.IsUnitAttackTarget(
-               env.ENEMY_HERO_DATA,
-               env.ALLY_TOWER_DATA)
-end
-
-function M.use_silence()
-  moves.use_silence()
-end
-
---------------------------------
-
 function M.pre_attack_enemy_hero()
   return moves.pre_attack_enemy_hero()
          and env.ALLY_TOWER_DATA ~= nil

@@ -9,13 +9,7 @@ item_recovery;heal_tango;heal_tango
 ;;
 upgrade_skills;upgrade;upgrade
 ;;
-attack_with_mom;use_frost_arrow;use_frost_arrow
-;use_mom;use_mom
-;attack_enemy_hero;attack_enemy_hero
-;kill_enemy_creep;kill_enemy_creep
-;;
-defend_tower;use_silence;use_silence
-;attack_enemy_hero;attack_enemy_hero
+defend_tower;attack_enemy_hero;attack_enemy_hero
 ;;stop_attack
 ;move_enemy_creep;move_enemy_creep
 ;pull_enemy_creep;pull_enemy_creep
@@ -23,8 +17,7 @@ defend_tower;use_silence;use_silence
 ;kill_enemy_creep;kill_enemy_creep
 ;;stop_attack
 ;;
-evasion;use_silence;use_silence
-;move_safe_recovery;move_safe_recovery
+evasion;move_safe_recovery;move_safe_recovery
 ;move_safe_evasion;move_safe_evasion
 ;;
 farm;lasthit_enemy_creep;lasthit_enemy_creep
@@ -40,8 +33,7 @@ kite;attack_enemy_hero;attack_enemy_hero
 ;;stop_attack
 ;move_safe;move_safe
 ;;
-push_lane;use_trueshot;use_trueshot
-;attack_enemy_creep;attack_enemy_creep
+push_lane;attack_enemy_creep;attack_enemy_creep
 ;;stop_attack
 ;kill_enemy_creep;kill_enemy_creep
 ;;stop_attack

@@ -60,48 +60,6 @@ M.OBJECTIVES = {
   },
 
   {
-    objective = "attack_with_mom",
-    module = require(GetScriptDirectory() .."/utility/attack_with_mom"),
-    moves = {
-      {
-        move = "use_frost_arrow",
-        actions = {
-          {action = "use_frost_arrow"},
-
-        },
-      },
-      {
-        move = "use_mom",
-        actions = {
-          {action = "use_mom"},
-
-        },
-      },
-      {
-        move = "attack_enemy_hero",
-        actions = {
-          {action = "attack_enemy_hero"},
-
-        },
-      },
-      {
-        move = "attack_enemy_tower",
-        actions = {
-          {action = "attack_enemy_tower"},
-
-        },
-      },
-      {
-        move = "kill_enemy_creep",
-        actions = {
-          {action = "kill_enemy_creep"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "pursuit_enemy_hero",
     module = require(GetScriptDirectory() .."/utility/pursuit_enemy_hero"),
     moves = {
@@ -127,13 +85,6 @@ M.OBJECTIVES = {
     objective = "evasion",
     module = require(GetScriptDirectory() .."/utility/evasion"),
     moves = {
-      {
-        move = "use_silence",
-        actions = {
-          {action = "use_silence"},
-
-        },
-      },
       {
         move = "move_safe_recovery",
         actions = {
@@ -222,13 +173,6 @@ M.OBJECTIVES = {
     objective = "push_lane",
     module = require(GetScriptDirectory() .."/utility/push_lane"),
     moves = {
-      {
-        move = "use_trueshot",
-        actions = {
-          {action = "use_trueshot"},
-
-        },
-      },
       {
         move = "attack_enemy_creep",
         actions = {

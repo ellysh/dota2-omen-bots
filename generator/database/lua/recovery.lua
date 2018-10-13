@@ -92,13 +92,6 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/base_recovery"),
     moves = {
       {
-        move = "use_silence",
-        actions = {
-          {action = "use_silence"},
-
-        },
-      },
-      {
         move = "deliver_items",
         actions = {
           {action = "deliver_items"},
