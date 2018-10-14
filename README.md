@@ -31,10 +31,11 @@ You should follow the following limitations when playing with the bot:
 2. No wards.
 3. No shrines.
 4. No neutral camps or Roshan.
-5. No bottle.
+5. No Bottle.
 6. No scan.
 7. No runes.
 8. Bot difficulty is Hard or above.
+9. No Infused Raindrop.
 
 ## Update
 
