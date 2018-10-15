@@ -108,7 +108,7 @@ function M.pre_buy_boots()
                    "item_magic_stick")
 
          and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_power_treads")
+                   "item_phase_boots")
 end
 
 function M.buy_boots()
