@@ -29,16 +29,16 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_ring_of_protection",
+        move = "buy_enchanted_mango",
         actions = {
-          {action = "buy_ring_of_protection"},
+          {action = "buy_enchanted_mango"},
 
         },
       },
       {
-        move = "buy_sobi_mask",
+        move = "buy_magic_stick",
         actions = {
-          {action = "buy_sobi_mask"},
+          {action = "buy_magic_stick"},
 
         },
       },
@@ -50,65 +50,30 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_gloves",
+        move = "buy_cloak",
         actions = {
-          {action = "buy_gloves"},
+          {action = "buy_cloak"},
 
         },
       },
       {
-        move = "buy_boots_of_elves",
+        move = "buy_two_blades_of_attack",
         actions = {
-          {action = "buy_boots_of_elves"},
+          {action = "buy_two_blades_of_attack"},
 
         },
       },
       {
-        move = "buy_lifesteal",
+        move = "buy_ring_of_regen",
         actions = {
-          {action = "buy_lifesteal"},
+          {action = "buy_ring_of_regen"},
 
         },
       },
       {
-        move = "buy_quarterstaff",
+        move = "buy_ring_of_health",
         actions = {
-          {action = "buy_quarterstaff"},
-
-        },
-      },
-      {
-        move = "buy_two_boots_of_elves",
-        actions = {
-          {action = "buy_two_boots_of_elves"},
-
-        },
-      },
-      {
-        move = "buy_ogre_axe",
-        actions = {
-          {action = "buy_ogre_axe"},
-
-        },
-      },
-      {
-        move = "buy_blades_of_attack",
-        actions = {
-          {action = "buy_blades_of_attack"},
-
-        },
-      },
-      {
-        move = "buy_broadsword",
-        actions = {
-          {action = "buy_broadsword"},
-
-        },
-      },
-      {
-        move = "buy_recipe_lesser_crit",
-        actions = {
-          {action = "buy_recipe_lesser_crit"},
+          {action = "buy_ring_of_health"},
 
         },
       },

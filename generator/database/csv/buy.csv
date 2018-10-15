@@ -2,21 +2,11 @@ Objective;Move;Actions
 buy_items;buy_tango;buy_tango
 ;buy_flask;buy_flask
 ;buy_tpscroll;buy_tpscroll
-;"-- Ring of Aquila";
-;buy_ring_of_protection;buy_ring_of_protection
-;buy_sobi_mask;buy_sobi_mask
-;"-- Power Treads";
+;buy_enchanted_mango;buy_enchanted_mango
+;buy_magic_stick;buy_magic_stick
 ;buy_boots;buy_boots
-;buy_gloves;buy_gloves
-;buy_boots_of_elves;buy_boots_of_elves
-;"-- Mask of Madness";
-;buy_lifesteal;buy_lifesteal
-;buy_quarterstaff;buy_quarterstaff
-;"-- Dragon Lance";
-;buy_two_boots_of_elves;buy_two_boots_of_elves
-;buy_ogre_axe;buy_ogre_axe
-;"-- Crystalys";
-;buy_blades_of_attack;buy_blades_of_attack
-;buy_broadsword;buy_broadsword
-;buy_recipe_lesser_crit;buy_recipe_lesser_crit
+;buy_cloak;buy_cloak
+;buy_two_blades_of_attack;buy_two_blades_of_attack
+;buy_ring_of_regen;buy_ring_of_regen
+;buy_ring_of_health;buy_ring_of_health
 ;deliver_items;deliver_items
