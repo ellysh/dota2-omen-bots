@@ -4,7 +4,7 @@ local constants = require(
 local M = {}
 
 function M.Print(string)
-  --print(GameTime() .. ": " ..string .. "\n")
+  print(GameTime() .. ": " ..string .. "\n")
 end
 
 M.Print("OML Bots version " .. constants.BOTS_VERSION ..

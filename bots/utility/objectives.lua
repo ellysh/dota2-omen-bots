@@ -16,6 +16,9 @@ local algorithms = require(
 local environment = require(
   GetScriptDirectory() .."/utility/environment")
 
+local game_state = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local action_timing = require(
   GetScriptDirectory() .."/utility/action_timing")
 
@@ -123,6 +126,8 @@ function M.Process()
     return end
 
   environment.UpdateVariables()
+
+  game_state.UpdateState()
 
   if CURRENT_STRATEGY == nil
      or CURRENT_OBJECTIVE == nil

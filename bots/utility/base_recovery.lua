@@ -13,6 +13,9 @@ local action_timing = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
+local game_state = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local map = require(
   GetScriptDirectory() .."/utility/map")
 
@@ -24,11 +27,22 @@ local M = {}
 ---------------------------------
 
 function M.pre_base_recovery()
+  local weights = {
+    [1] = 0.5,
+    [2] = 0.5,
+    [4] = -0.5,
+    [5] = 0.5,
+  }
+
+  return game_state.Evaluate(game_state.BOT_STATE, weights)
+
+--[[
   return algorithms.IsBotAlive()
 
          and ((env.IS_BOT_LOW_HP
                and not env.BOT_DATA.is_healing)
               or env.IS_BASE_RECOVERY)
+--]]
 end
 
 ---------------------------------
