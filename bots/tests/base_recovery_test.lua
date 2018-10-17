@@ -73,6 +73,28 @@ function test_pre_base_recovery_when_bot_dead_2_fails()
   luaunit.assertFalse(base_recovery.pre_base_recovery())
 end
 
+function test_pre_base_recovery_when_bot_dead_3_fails()
+  base_recovery.test_SetBotState({
+    [1] = 0,  -- algorithms.IsBotAlive()
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [4] = 1,  -- env.BOT_DATA.is_healing
+    [5] = 1,  -- env.IS_BASE_RECOVERY
+  })
+
+  luaunit.assertFalse(base_recovery.pre_base_recovery())
+end
+
+function test_pre_base_recovery_when_bot_dead_4_fails()
+  base_recovery.test_SetBotState({
+    [1] = 0,  -- algorithms.IsBotAlive()
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [4] = 1,  -- env.BOT_DATA.is_healing
+    [5] = 0,  -- env.IS_BASE_RECOVERY
+  })
+
+  luaunit.assertFalse(base_recovery.pre_base_recovery())
+end
+
 function test_pre_base_recovery_when_low_hp_and_healing_fails()
   base_recovery.test_SetBotState({
     [1] = 1,  -- algorithms.IsBotAlive()
