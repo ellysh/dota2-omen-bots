@@ -1,8 +1,8 @@
-# Dota 2 OML Bots 0.2 version
+# Dota 2 OMEN Bots 0.2 version
 
 *This project is still in a developing stage.*
 
-These are Objective-Moves-Learning (OML) bots for Dota 2.
+These are Objective-Moves-Evaluation (OMEN) bots for Dota 2.
 
 A current development state is available in the [`CHANGELOG.md`](CHANGELOG.md) file.
 
@@ -16,12 +16,12 @@ There are steps to start playing with the bot:
 
 1. Create a lobby.
 2. Choose the "1v1 Solo Mid" game mode.
-3. Choose the OML bots for both sides.
+3. Choose the OMEN bots for both sides.
 4. Start a game.
 5. Pick Shadow Fiend.
 6. Wait until bots do not pick their heroes after you.
 
-You can play with OML Bots in the "All pick" mode. In this case, Shadow Shaman bot buys a courier for you. You should stop "All pick" game when any side does two kills or mid Tier 1 Tower is destroyed.
+You can play with OMEN Bots in the "All pick" mode. In this case, Shadow Shaman bot buys a courier for you. You should stop "All pick" game when any side does two kills or mid Tier 1 Tower is destroyed.
 
 ## Limitations
 
@@ -52,7 +52,7 @@ Dota 2 client removes the workshop item from the hard drive when you unsubscribe
 
 ## Contacts
 
-You can ask any questions about usage of OML Bots via email petrsum@gmail.com.
+You can ask any questions about usage of OMEN Bots via email petrsum@gmail.com.
 
 ## License
 

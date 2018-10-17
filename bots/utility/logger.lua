@@ -7,7 +7,7 @@ function M.Print(string)
   print(GameTime() .. ": " ..string .. "\n")
 end
 
-M.Print("OML Bots version " .. constants.BOTS_VERSION ..
+M.Print("OMEN Bots version " .. constants.BOTS_VERSION ..
         " play in team " .. GetTeam())
 
 return M

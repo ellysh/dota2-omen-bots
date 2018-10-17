@@ -14,7 +14,7 @@ function M.PrintVersion(unit)
 
   local team = functions.ternary(GetTeam() == 2, "Radiant", "Dire")
 
-  unit:ActionImmediate_Chat("OML Bots version " ..
+  unit:ActionImmediate_Chat("OMEN Bots version " ..
     constants.BOTS_VERSION .. " play in team " .. team,
     true)
 
