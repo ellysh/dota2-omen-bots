@@ -40,18 +40,13 @@ end
 ---------------------------------
 
 function M.pre_restore_hp_on_base()
-  return algorithms.HasModifier(
-           env.BOT_DATA,
-           "modifier_fountain_aura_buff")
+  local weights = {
+    [11] = 0.165,
+    [12] = 0.5,
+    [13] = 0.5,
+  }
 
-         and (functions.GetRate(
-                env.BOT_DATA.health,
-                env.BOT_DATA.max_health)
-              < constants.UNIT_FOUNTAIN_MAX_HEALTH
-              or functions.GetRate(
-                   env.BOT_DATA.mana,
-                   env.BOT_DATA.max_mana)
-                 < constants.UNIT_FOUNTAIN_MAX_MANA)
+  return game_state.Evaluate(game_state.BOT_STATE, weights)
 end
 
 function M.restore_hp_on_base()

@@ -28,7 +28,16 @@ function M.UpdateState()
     [7] = BOOL_TO_NUMBER[env.IS_FOCUSED_BY_CREEPS],
     [8] = BOOL_TO_NUMBER[env.IS_FOCUSED_BY_ENEMY_HERO],
     [9] = BOOL_TO_NUMBER[env.IS_FOCUSED_BY_UNKNOWN_UNIT],
-    [10] = BOOL_TO_NUMBER[env.IS_FOCUSED_BY_TOWER]
+    [10] = BOOL_TO_NUMBER[env.IS_FOCUSED_BY_TOWER],
+    [11] = BOOL_TO_NUMBER[algorithms.HasModifier(
+                            env.BOT_DATA,
+                            "modifier_fountain_aura_buff")],
+    [12] = functions.GetRate(
+             env.BOT_DATA.health,
+             env.BOT_DATA.max_health),
+    [13] = functions.GetRate(
+             env.BOT_DATA.mana,
+             env.BOT_DATA.max_mana),
   }
 
   M.ENEMY_HERO_STATE = {
