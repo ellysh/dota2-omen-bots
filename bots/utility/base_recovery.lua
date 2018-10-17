@@ -28,21 +28,13 @@ local M = {}
 
 function M.pre_base_recovery()
   local weights = {
-    [1] = 0.5,
-    [2] = 0.5,
-    [4] = -0.5,
-    [5] = 0.5,
+    [1] = 0.7,
+    [2] = 0.3,
+    [4] = -0.3,
+    [5] = 0.3,
   }
 
   return game_state.Evaluate(game_state.BOT_STATE, weights)
-
---[[
-  return algorithms.IsBotAlive()
-
-         and ((env.IS_BOT_LOW_HP
-               and not env.BOT_DATA.is_healing)
-              or env.IS_BASE_RECOVERY)
---]]
 end
 
 ---------------------------------
@@ -97,6 +89,10 @@ function M.deliver_items()
   moves.deliver_items()
 end
 
----------------------------------
+-- Provide an access to local functions and variables for unit tests only
+
+function M.test_SetBotState(state)
+  game_state.BOT_STATE = state
+end
 
 return M
