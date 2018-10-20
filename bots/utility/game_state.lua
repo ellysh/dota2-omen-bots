@@ -4,6 +4,9 @@ local functions = require(
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
@@ -38,6 +41,8 @@ function M.UpdateState()
     [13] = functions.GetRate(
              env.BOT_DATA.mana,
              env.BOT_DATA.max_mana),
+    [14] = env.BOT:HasBuyback(),
+    [15] = constants.MIN_BOT_RESPAWN_TIME < env.BOT:GetRespawnTime(),
   }
 
   M.ENEMY_HERO_STATE = {

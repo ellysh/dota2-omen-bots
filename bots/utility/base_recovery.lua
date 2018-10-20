@@ -16,9 +16,6 @@ local env = require(
 local game_state = require(
   GetScriptDirectory() .."/utility/game_state")
 
-local map = require(
-  GetScriptDirectory() .."/utility/map")
-
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
