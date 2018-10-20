@@ -44,6 +44,7 @@ M.IS_BASE_RECOVERY = false
 M.LAST_AGGRO_CONTROL = 0
 M.DOES_BOT_HAVE_ADVANTAGE = false
 M.DOES_ENEMY_HERO_HAVE_ADVANTAGE = false
+M.NEARBY_TREE = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -241,6 +242,8 @@ function M.UpdateVariables()
                        < constants.UNIT_HALF_HEALTH_LEVEL
 
                        and M.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS
+
+  M.NEARBY_TREE = env.BOT_DATA.nearby_trees[1]
 end
 
 -- Provide an access to local functions for unit tests only

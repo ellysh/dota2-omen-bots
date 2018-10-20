@@ -84,39 +84,29 @@ end
 ---------------------------------
 
 function M.pre_heal_tango()
-  local tree = env.BOT_DATA.nearby_trees[1]
+  local weights_bot_state = {
+    [2] = -1,
+    [4] = -1,
+    [19] = 0.7,
+    [20] = 1
+  }
 
-  return algorithms.IsItemCastable(env.BOT_DATA, "item_tango")
-         and not env.BOT_DATA.is_healing
+  local weights_nearby_tree_state = {
+    [1] = 1,
+    [2] = 1,
+    [3] = -1
+  }
 
-         and not (env.IS_BOT_LOW_HP
-                  and algorithms.IsItemCastable(
-                        env.BOT_DATA,
-                        "item_flask"))
-
-         and 200 < (env.BOT_DATA.max_health - env.BOT_DATA.health)
-
-         and tree ~= nil
-
-         and (env.ENEMY_TOWER_DATA == nil
-              or algorithms.GetAttackRange(
-                   env.ENEMY_TOWER_DATA,
-                   env.BOT_DATA,
-                   true)
-                 < functions.GetDistance(
-                     GetTreeLocation(tree),
-                     env.ENEMY_TOWER_DATA.location))
-
-         and constants.TANGO_USAGE_FROM_HG_DISTANCE
-             < functions.GetDistance(
-                 map.GetEnemySpot("high_ground"),
-                 env.BOT_DATA.location)
+  return game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
+         and game_state.Evaluate(
+               game_state.NEARBY_TREE_STATE,
+               weights_nearby_tree_state)
 end
 
 function M.heal_tango()
   env.BOT:Action_UseAbilityOnTree(
     algorithms.GetItem(env.BOT_DATA, "item_tango"),
-    env.BOT_DATA.nearby_trees[1])
+    env.NEARBY_TREE)
 end
 
 ---------------------------------
@@ -155,6 +145,10 @@ end
 
 function M.test_SetEnemyHeroState(state)
   game_state.ENEMY_HERO_STATE = state
+end
+
+function M.test_SetNearbyTreeState(state)
+  game_state.NEARBY_TREE_STATE = state
 end
 
 return M

@@ -77,6 +77,11 @@ function M.UpdateState()
              algorithms.IsItemCastable(env.BOT_DATA, "item_faerie_fire")],
     [19] = BOOL_TO_NUMBER[
              algorithms.IsItemCastable(env.BOT_DATA, "item_tango")],
+
+    [20] = NormalizeValue(
+             env.BOT_DATA.max_health - env.BOT_DATA.health,
+             0,
+             env.BOT_DATA.max_health)
   }
 
   M.ENEMY_HERO_STATE = {
@@ -123,6 +128,24 @@ function M.UpdateState()
     [9] = env.ALLY_CREEPS_HP,
     [10] = env.ENEMY_CREEPS_HP,
   }
+
+  if env.NEARBY_TREE ~= nil then
+    M.NEARBY_TREE_STATE = {
+      [1] = BOOL_TO_NUMBER[env.NEARBY_TREE ~= nil],
+
+      [2] = NormalizeValue(
+              functions.GetDistance(
+                GetTreeLocation(env.NEARBY_TREE),
+                env.ENEMY_TOWER_DATA.location),
+              0,
+              constants.TOWER_ATTACK_RANGE
+              + constants.MOTION_BUFFER_RANGE),
+
+      [3] = BOOL_TO_NUMBER[env.ENEMY_TOWER_DATA ~= nil],
+    }
+  else
+    M.NEARBY_TREE_STATE = {}
+  end
 end
 
 function M.Evaluate(state, weights)
