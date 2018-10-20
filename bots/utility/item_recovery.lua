@@ -36,30 +36,25 @@ end
 ---------------------------------
 
 function M.pre_heal_flask()
-  return algorithms.IsItemCastable(env.BOT_DATA, "item_flask")
-         and not env.BOT_DATA.is_flask_healing
+  local weights_bot_state = {
+    [2] = 0.75,
+    [3] = -1,
+    [8] = -1,
+    [9] = -1,
+    [12] = -1,
+    [17] = 0.75,
+  }
 
-         and (env.IS_BOT_LOW_HP
-              or (420 < (env.BOT_DATA.max_health - env.BOT_DATA.health)
-                  and functions.GetRate(
-                        env.BOT_DATA.health,
-                        env.BOT_DATA.max_health)
-                      <= constants.UNIT_HALF_HEALTH_LEVEL))
+  local weights_enemy_hero_state = {
+    [1] = -1,
+    [4] = 1.37,
+    [6] = 1,
+  }
 
-         and constants.BASE_RADIUS
-             < functions.GetDistance(
-                 env.FOUNTAIN_SPOT,
-                 env.BOT_DATA.location)
-         and not env.IS_FOCUSED_BY_ENEMY_HERO
-         and not env.IS_FOCUSED_BY_UNKNOWN_UNIT
-
-         and (env.ENEMY_HERO_DATA == nil
-              or (algorithms.GetAttackRange(
-                    env.BOT_DATA,
-                    env.ENEMY_HERO_DATA,
-                    true)
-                  + constants.MAX_SAFE_INC_DISTANCE)
-                  < env.ENEMY_HERO_DISTANCE)
+  return game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
+         and game_state.Evaluate(
+               game_state.ENEMY_HERO_STATE,
+               weights_enemy_hero_state)
 end
 
 function M.heal_flask()
@@ -152,6 +147,10 @@ end
 
 function M.test_SetBotState(state)
   game_state.BOT_STATE = state
+end
+
+function M.test_SetEnemyHeroState(state)
+  game_state.ENEMY_HERO_STATE = state
 end
 
 return M

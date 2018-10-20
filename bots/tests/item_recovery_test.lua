@@ -86,4 +86,196 @@ function test_pre_item_recovery_7_fails()
   luaunit.assertFalse(item_recovery.pre_item_recovery())
 end
 
+---------------------------------
+
+function test_pre_heal_flask_1_succeed()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.4,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertTrue(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_2_succeed()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.4,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 1,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.74,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertTrue(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_3_succeed()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.1,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 1,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 1,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertTrue(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_1_fails()
+  item_recovery.test_SetBotState({
+    [2] = 0,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.4,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_2_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 1,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.4,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_3_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 1,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.4,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_4_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 1,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.4,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_5_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.4,  -- health / max_health
+    [17] = 0,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_6_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.6,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_flask())
+end
+
+function test_pre_heal_flask_7_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [3] = 0,  -- env.BOT_DATA.is_flask_healing
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [12] = 0.4,  -- health / max_health
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+  })
+
+  item_recovery.test_SetEnemyHeroState({
+    [1] = 1,  -- env.ENEMY_HERO_DATA ~= nil
+    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [6] = 1, -- true
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_flask())
+end
+
 os.exit(luaunit.LuaUnit.run())

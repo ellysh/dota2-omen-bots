@@ -65,15 +65,28 @@ function M.UpdateState()
              env.BOT:GetRespawnTime(),
              0,
              constants.MIN_BOT_RESPAWN_TIME),
-    [16] = NormalizeValue(env.FOUNTAIN_DISTANCE, 0, constants.BASE_RADIUS)
+
+    [16] = NormalizeValue(
+             env.FOUNTAIN_DISTANCE,
+             0,
+             constants.BASE_RADIUS),
+
+    [17] = BOOL_TO_NUMBER[
+             algorithms.IsItemCastable(env.BOT_DATA, "item_flask")],
   }
 
   M.ENEMY_HERO_STATE = {
     [1] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA ~= nil],
     [2] = BOOL_TO_NUMBER[env.IS_ENEMY_HERO_LOW_HP],
     [3] = BOOL_TO_NUMBER[env.DOES_TOWER_PROTECT_ENEMY],
-    [4] = env.ENEMY_HERO_DISTANCE,
+
+    [4] = NormalizeValue(
+            env.ENEMY_HERO_DISTANCE,
+            0,
+            constants.SAFE_HERO_DISTANCE),
+
     [5] = BOOL_TO_NUMBER[env.DOES_ENEMY_HERO_HAVE_ADVANTAGE],
+    [6] = BOOL_TO_NUMBER[true]
   }
 
   if env.ALLY_TOWER_DATA ~= nil then
