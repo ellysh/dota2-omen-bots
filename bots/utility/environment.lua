@@ -243,7 +243,7 @@ function M.UpdateVariables()
 
                        and M.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS
 
-  M.NEARBY_TREE = env.BOT_DATA.nearby_trees[1]
+  M.NEARBY_TREE = M.BOT_DATA.nearby_trees[1]
 end
 
 -- Provide an access to local functions for unit tests only
