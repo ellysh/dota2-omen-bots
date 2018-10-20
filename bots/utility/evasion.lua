@@ -19,6 +19,9 @@ local constants = require(
 local all_units = require(
   GetScriptDirectory() .."/utility/all_units")
 
+local game_state = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
@@ -38,18 +41,14 @@ local function GetFlaskHealingRemainingDuration()
 end
 
 function M.pre_move_safe_recovery()
-  return (env.BOT_DATA.is_flask_healing
-          and 1 < GetFlaskHealingRemainingDuration()
-          and constants.FLASK_HEALING_PER_SECOND
-              < functions.GetDelta(
-                env.BOT_DATA.max_health,
-                env.BOT_DATA.health))
+  local weights = {
+    [3] = 0.924, -- env.BOT_DATA.is_flask_healing
+    [11] = -1,  -- HasModifier("modifier_fountain_aura_buff")
+    [20] = 0.95,   -- env.BOT_DATA.max_health - env.BOT_DATA.health
+    [28] = -1,  -- IsUnitInSpot(env.BOT_DATA, env.SAFE_SPOT)
+  }
 
-         and not map.IsUnitInSpot(env.BOT_DATA, env.SAFE_SPOT)
-
-         and not algorithms.HasModifier(
-                   env.BOT_DATA,
-                   "modifier_fountain_aura_buff")
+  return game_state.Evaluate(game_state.BOT_STATE, weights)
 end
 
 function M.move_safe_recovery()
@@ -102,5 +101,9 @@ function M.move_safe_evasion()
 end
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetBotState(state)
+  game_state.BOT_STATE = state
+end
 
 return M

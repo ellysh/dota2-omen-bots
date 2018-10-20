@@ -105,6 +105,8 @@ function M.UpdateState()
 
     [27] = BOOL_TO_NUMBER[
              map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)],
+
+    [28] = BOOL_TO_NUMBER[map.IsUnitInSpot(env.BOT_DATA, env.SAFE_SPOT)],
   }
 
   M.ENEMY_HERO_STATE = {
