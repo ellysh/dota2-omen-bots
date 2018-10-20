@@ -41,7 +41,7 @@ end
 
 function M.pre_restore_hp_on_base()
   local weights = {
-    [11] = 0.15,
+    [11] = (1 - constants.UNIT_FOUNTAIN_MAX_HEALTH),
     [12] = 1,
   }
 
@@ -56,7 +56,7 @@ end
 
 function M.pre_restore_mp_on_base()
   local weights = {
-    [11] = 0.18,
+    [11] = (1 - constants.UNIT_FOUNTAIN_MAX_MANA),
     [13] = 1,
   }
 
