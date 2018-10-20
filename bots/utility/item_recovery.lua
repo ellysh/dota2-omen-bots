@@ -47,7 +47,7 @@ function M.pre_heal_flask()
 
   local weights_enemy_hero_state = {
     [1] = -1,
-    [4] = 1.37,
+    [4] = 1.6,
     [6] = 1,
   }
 

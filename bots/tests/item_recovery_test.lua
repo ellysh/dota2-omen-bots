@@ -119,7 +119,7 @@ function test_pre_heal_flask_2_succeed()
 
   item_recovery.test_SetEnemyHeroState({
     [1] = 1,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0.74,  -- env.ENEMY_HERO_DISTANCE
+    [4] = 0.63,  -- env.ENEMY_HERO_DISTANCE
     [6] = 1, -- true
   })
 
@@ -271,7 +271,7 @@ function test_pre_heal_flask_7_fails()
 
   item_recovery.test_SetEnemyHeroState({
     [1] = 1,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0.4,  -- env.ENEMY_HERO_DISTANCE
+    [4] = 0.624,  -- env.ENEMY_HERO_DISTANCE
     [6] = 1, -- true
   })
 
