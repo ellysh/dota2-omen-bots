@@ -34,6 +34,7 @@ M.ENEMY_CREEPS_HP = 0
 M.SAFE_SPOT = {}
 M.FARM_SPOT = {}
 M.FOUNTAIN_SPOT = {}
+M.FOUNTAIN_DISTANCE = 0
 M.DOES_TOWER_PROTECT_ENEMY = false
 M.IS_FOCUSED_BY_CREEPS = false
 M.IS_FOCUSED_BY_ENEMY_HERO = false
@@ -203,6 +204,10 @@ function M.UpdateVariables()
 
   M.FOUNTAIN_SPOT = map.GetAllySpot("fountain")
 
+  M.FOUNTAIN_DISTANCE = functions.GetDistance(
+                          M.FOUNTAIN_SPOT,
+                          M.BOT_DATA.location)
+
   if M.ENEMY_HERO_DATA ~= nil then
     M.DOES_TOWER_PROTECT_ENEMY =
       algorithms.DoesTowerProtectUnit(M.ENEMY_HERO_DATA)
@@ -235,10 +240,7 @@ function M.UpdateVariables()
                          M.BOT_DATA.max_health)
                        < constants.UNIT_HALF_HEALTH_LEVEL
 
-                       and functions.GetDistance(
-                             M.FOUNTAIN_SPOT,
-                             M.BOT_DATA.location)
-                           <= constants.BASE_RADIUS
+                       and M.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS
 end
 
 -- Provide an access to local functions for unit tests only

@@ -16,18 +16,21 @@ local map = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
+local game_state = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_item_recovery()
-  return algorithms.IsBotAlive()
-         and not env.BOT_DATA.is_healing
+  local weights = {
+    [1] = 0.5,
+    [4] = -0.5,
+    [16] = 0.5
+  }
 
-         and constants.BASE_RADIUS
-              < functions.GetDistance(
-                  env.FOUNTAIN_SPOT,
-                  env.BOT_DATA.location)
+  return game_state.Evaluate(game_state.BOT_STATE, weights)
 end
 
 ---------------------------------
@@ -146,5 +149,9 @@ function M.tp_base()
 end
 
 ---------------------------------
+
+function M.test_SetBotState(state)
+  game_state.BOT_STATE = state
+end
 
 return M

@@ -6,7 +6,7 @@ require("global_functions")
 local base_recovery = require("base_recovery")
 local luaunit = require("luaunit")
 
-function test_pre_base_recovery_when_low_hp_and_no_healing_succeed()
+function test_pre_base_recovery_1_succeed()
   base_recovery.test_SetBotState({
     [1] = 1,  -- algorithms.IsBotAlive()
     [2] = 1,  -- env.IS_BOT_LOW_HP
@@ -17,7 +17,7 @@ function test_pre_base_recovery_when_low_hp_and_no_healing_succeed()
   luaunit.assertTrue(base_recovery.pre_base_recovery())
 end
 
-function test_pre_base_recovery_when_base_recovery_succeed()
+function test_pre_base_recovery_2_succeed()
   base_recovery.test_SetBotState({
     [1] = 1,  -- algorithms.IsBotAlive()
     [2] = 0,  -- env.IS_BOT_LOW_HP
@@ -28,7 +28,7 @@ function test_pre_base_recovery_when_base_recovery_succeed()
   luaunit.assertTrue(base_recovery.pre_base_recovery())
 end
 
-function test_pre_base_recovery_when_low_hp_and_base_recovery_succeed()
+function test_pre_base_recovery_3_succeed()
   base_recovery.test_SetBotState({
     [1] = 1,  -- algorithms.IsBotAlive()
     [2] = 1,  -- env.IS_BOT_LOW_HP
@@ -39,7 +39,7 @@ function test_pre_base_recovery_when_low_hp_and_base_recovery_succeed()
   luaunit.assertTrue(base_recovery.pre_base_recovery())
 end
 
-function test_pre_base_recovery_when_low_hp_and_healing_and_base_recovery_succeed()
+function test_pre_base_recovery_4_succeed()
   base_recovery.test_SetBotState({
     [1] = 1,  -- algorithms.IsBotAlive()
     [2] = 1,  -- env.IS_BOT_LOW_HP
@@ -51,7 +51,7 @@ function test_pre_base_recovery_when_low_hp_and_healing_and_base_recovery_succee
 end
 
 
-function test_pre_base_recovery_when_bot_dead_1_fails()
+function test_pre_base_recovery_1_fails()
   base_recovery.test_SetBotState({
     [1] = 0,  -- algorithms.IsBotAlive()
     [2] = 1,  -- env.IS_BOT_LOW_HP
@@ -62,7 +62,7 @@ function test_pre_base_recovery_when_bot_dead_1_fails()
   luaunit.assertFalse(base_recovery.pre_base_recovery())
 end
 
-function test_pre_base_recovery_when_bot_dead_2_fails()
+function test_pre_base_recovery_2_fails()
   base_recovery.test_SetBotState({
     [1] = 0,  -- algorithms.IsBotAlive()
     [2] = 1,  -- env.IS_BOT_LOW_HP
@@ -73,7 +73,7 @@ function test_pre_base_recovery_when_bot_dead_2_fails()
   luaunit.assertFalse(base_recovery.pre_base_recovery())
 end
 
-function test_pre_base_recovery_when_bot_dead_3_fails()
+function test_pre_base_recovery_3_fails()
   base_recovery.test_SetBotState({
     [1] = 0,  -- algorithms.IsBotAlive()
     [2] = 1,  -- env.IS_BOT_LOW_HP
@@ -84,7 +84,7 @@ function test_pre_base_recovery_when_bot_dead_3_fails()
   luaunit.assertFalse(base_recovery.pre_base_recovery())
 end
 
-function test_pre_base_recovery_when_bot_dead_4_fails()
+function test_pre_base_recovery_4_fails()
   base_recovery.test_SetBotState({
     [1] = 0,  -- algorithms.IsBotAlive()
     [2] = 1,  -- env.IS_BOT_LOW_HP
@@ -95,7 +95,7 @@ function test_pre_base_recovery_when_bot_dead_4_fails()
   luaunit.assertFalse(base_recovery.pre_base_recovery())
 end
 
-function test_pre_base_recovery_when_low_hp_and_healing_fails()
+function test_pre_base_recovery_5_fails()
   base_recovery.test_SetBotState({
     [1] = 1,  -- algorithms.IsBotAlive()
     [2] = 1,  -- env.IS_BOT_LOW_HP

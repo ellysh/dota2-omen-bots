@@ -65,6 +65,7 @@ function M.UpdateState()
              env.BOT:GetRespawnTime(),
              0,
              constants.MIN_BOT_RESPAWN_TIME),
+    [16] = NormalizeValue(env.FOUNTAIN_DISTANCE, 0, constants.BASE_RADIUS)
   }
 
   M.ENEMY_HERO_STATE = {
