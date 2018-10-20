@@ -278,4 +278,61 @@ function test_pre_heal_flask_7_fails()
   luaunit.assertFalse(item_recovery.pre_heal_flask())
 end
 
+---------------------------------
+
+function test_pre_heal_faerie_fire_1_succeed()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [17] = 0,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+    [18] = 1,  -- IsItemCastable(env.BOT_DATA, "item_faerie_fire")
+    [19] = 0,  -- IsItemCastable(env.BOT_DATA, "item_tango")
+  })
+
+  luaunit.assertTrue(item_recovery.pre_heal_faerie_fire())
+end
+
+function test_pre_heal_faerie_fire_1_fails()
+  item_recovery.test_SetBotState({
+    [2] = 0,  -- env.IS_BOT_LOW_HP
+    [17] = 0,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+    [18] = 1,  -- IsItemCastable(env.BOT_DATA, "item_faerie_fire")
+    [19] = 0,  -- IsItemCastable(env.BOT_DATA, "item_tango")
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_faerie_fire())
+end
+
+function test_pre_heal_faerie_fire_2_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [17] = 0,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+    [18] = 0,  -- IsItemCastable(env.BOT_DATA, "item_faerie_fire")
+    [19] = 0,  -- IsItemCastable(env.BOT_DATA, "item_tango")
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_faerie_fire())
+end
+
+function test_pre_heal_faerie_fire_3_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [17] = 1,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+    [18] = 1,  -- IsItemCastable(env.BOT_DATA, "item_faerie_fire")
+    [19] = 0,  -- IsItemCastable(env.BOT_DATA, "item_tango")
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_faerie_fire())
+end
+
+function test_pre_heal_faerie_fire_4_fails()
+  item_recovery.test_SetBotState({
+    [2] = 1,  -- env.IS_BOT_LOW_HP
+    [17] = 0,  -- IsItemCastable(env.BOT_DATA, "item_flask")
+    [18] = 1,  -- IsItemCastable(env.BOT_DATA, "item_faerie_fire")
+    [19] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tango")
+  })
+
+  luaunit.assertFalse(item_recovery.pre_heal_faerie_fire())
+end
+
 os.exit(luaunit.LuaUnit.run())

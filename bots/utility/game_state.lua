@@ -73,6 +73,10 @@ function M.UpdateState()
 
     [17] = BOOL_TO_NUMBER[
              algorithms.IsItemCastable(env.BOT_DATA, "item_flask")],
+    [18] = BOOL_TO_NUMBER[
+             algorithms.IsItemCastable(env.BOT_DATA, "item_faerie_fire")],
+    [19] = BOOL_TO_NUMBER[
+             algorithms.IsItemCastable(env.BOT_DATA, "item_tango")],
   }
 
   M.ENEMY_HERO_STATE = {

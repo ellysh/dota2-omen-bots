@@ -66,10 +66,14 @@ end
 ----------------------------------
 
 function M.pre_heal_faerie_fire()
-  return env.IS_BOT_LOW_HP
-         and algorithms.IsItemCastable(env.BOT_DATA, "item_faerie_fire")
-         and not algorithms.IsItemCastable(env.BOT_DATA, "item_tango")
-         and not algorithms.IsItemCastable(env.BOT_DATA, "item_flask")
+  local weights = {
+    [2] = 0.5,
+    [17] = -1,
+    [18] = 0.5,
+    [19] = -1,
+  }
+
+  return game_state.Evaluate(game_state.BOT_STATE, weights)
 end
 
 function M.heal_faerie_fire()
