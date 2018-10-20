@@ -20,6 +20,23 @@ M.ALLY_TOWER_STATE = {}
 M.ENEMY_TOWER_STATE = {}
 M.CREEPS_STATE = {}
 
+local function GetAllyTowerIncomingDamage()
+  return algorithms.GetTotalIncomingDamage(env.ALLY_TOWER_DATA)
+           * functions.GetDamageMultiplier(env.ALLY_TOWER_DATA.armor)
+end
+
+local function NormalizeValue(value, min, max)
+  local result = (value - min) / (max - min)
+
+  if result < 0 then
+    return 0 end
+
+  if 1 < result then
+    return 1 end
+
+  return result
+end
+
 function M.UpdateState()
   M.BOT_STATE = {
     [1] = BOOL_TO_NUMBER[algorithms.IsBotAlive()],
@@ -41,8 +58,13 @@ function M.UpdateState()
     [13] = functions.GetRate(
              env.BOT_DATA.mana,
              env.BOT_DATA.max_mana),
-    [14] = env.BOT:HasBuyback(),
-    [15] = constants.MIN_BOT_RESPAWN_TIME < env.BOT:GetRespawnTime(),
+
+    [14] = BOOL_TO_NUMBER[env.BOT:HasBuyback()],
+
+    [15] = NormalizeValue(
+             env.BOT:GetRespawnTime(),
+             0,
+             constants.MIN_BOT_RESPAWN_TIME),
   }
 
   M.ENEMY_HERO_STATE = {
@@ -53,9 +75,18 @@ function M.UpdateState()
     [5] = BOOL_TO_NUMBER[env.DOES_ENEMY_HERO_HAVE_ADVANTAGE],
   }
 
-  M.ALLY_TOWER_STATE = {
-    [1] = BOOL_TO_NUMBER[env.ALLY_TOWER_DATA ~= nil],
-  }
+  if env.ALLY_TOWER_DATA ~= nil then
+    M.ALLY_TOWER_STATE = {
+      [1] = BOOL_TO_NUMBER[env.ALLY_TOWER_DATA ~= nil],
+      [2] = BOOL_TO_NUMBER[GetGlyphCooldown() == 0],
+      [3] = NormalizeValue(GetAllyTowerIncomingDamage(),
+              0,
+              constants.MAX_INCOMING_TOWER_DAMAGE),
+      [4] = BOOL_TO_NUMBER[algorithms.IsUnitLowHp(env.ALLY_TOWER_DATA)]
+    }
+  else
+    M.ALLY_TOWER_STATE = {}
+  end
 
   M.ENEMY_TOWER_STATE = {
     [1] = BOOL_TO_NUMBER[env.ENEMY_TOWER_DATA ~= nil],

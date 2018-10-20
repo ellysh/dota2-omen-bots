@@ -200,4 +200,10 @@ function test_pre_restore_mp_on_base_3_fails()
   luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())
 end
 
+function test_pre_restore_mp_on_base_4_fails()
+  base_recovery.test_SetBotState({})
+
+  luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())
+end
+
 os.exit(luaunit.LuaUnit.run())
