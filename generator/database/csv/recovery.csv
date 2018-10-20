@@ -13,6 +13,7 @@ item_recovery;heal_tango;heal_tango
 ;;
 base_recovery;deliver_items;deliver_items
 ;restore_hp_on_base;restore_hp_on_base
+;restore_mp_on_base;restore_mp_on_base
 ;move_base;move_base
 ;;
 evasion;move_safe_recovery;move_safe_recovery

@@ -106,6 +106,13 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "restore_mp_on_base",
+        actions = {
+          {action = "restore_mp_on_base"},
+
+        },
+      },
+      {
         move = "move_base",
         actions = {
           {action = "move_base"},

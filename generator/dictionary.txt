@@ -63,6 +63,7 @@ pursuit_enemy_hero
 push_lane
 put_item_in_inventory
 restore_hp_on_base
+restore_mp_on_base
 -- Ring of Aquila
 stop
 stop_attack
