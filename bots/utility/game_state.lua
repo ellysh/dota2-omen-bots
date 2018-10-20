@@ -10,6 +10,9 @@ local constants = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
+local map = require(
+  GetScriptDirectory() .."/utility/map")
+
 local M = {}
 
 local BOOL_TO_NUMBER = {  [true] = 1, [false] = 0 }
@@ -81,7 +84,27 @@ function M.UpdateState()
     [20] = NormalizeValue(
              env.BOT_DATA.max_health - env.BOT_DATA.health,
              0,
-             env.BOT_DATA.max_health)
+             env.BOT_DATA.max_health),
+
+    [21] = BOOL_TO_NUMBER[
+             algorithms.IsItemCastable(env.BOT_DATA, "item_tpscroll")],
+
+    [22] = BOOL_TO_NUMBER[env.BOT_DATA.gold < constants.RESERVED_GOLD],
+
+    [23] = NormalizeValue(
+             env.FOUNTAIN_DISTANCE,
+             0,
+             constants.MIN_TP_BASE_RADIUS),
+
+    [24] = BOOL_TO_NUMBER[
+             algorithms.DoesBotOrCourierHaveItem("item_faerie_fire")],
+    [25] = BOOL_TO_NUMBER[
+             algorithms.DoesBotOrCourierHaveItem("item_flask")],
+    [26] = BOOL_TO_NUMBER[
+             algorithms.DoesBotOrCourierHaveItem("item_tango")],
+
+    [27] = BOOL_TO_NUMBER[
+             map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)],
   }
 
   M.ENEMY_HERO_STATE = {
@@ -95,7 +118,7 @@ function M.UpdateState()
             constants.SAFE_HERO_DISTANCE),
 
     [5] = BOOL_TO_NUMBER[env.DOES_ENEMY_HERO_HAVE_ADVANTAGE],
-    [6] = BOOL_TO_NUMBER[true]
+    [6] = BOOL_TO_NUMBER[true],
   }
 
   if env.ALLY_TOWER_DATA ~= nil then

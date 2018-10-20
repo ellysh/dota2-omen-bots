@@ -112,21 +112,27 @@ end
 ---------------------------------
 
 function M.pre_tp_base()
-  return algorithms.IsItemCastable(env.BOT_DATA, "item_tpscroll")
-         and env.BOT_DATA.gold < constants.RESERVED_GOLD
-         and env.IS_BOT_LOW_HP
-         and constants.MIN_TP_BASE_RADIUS
-             < functions.GetDistance(env.FOUNTAIN_SPOT, env.BOT_DATA.location)
-         and (env.ENEMY_HERO_DATA == nil
-              or constants.MIN_TP_ENEMY_HERO_RADIUS
-                 < env.ENEMY_HERO_DISTANCE)
-         and not map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_faerie_fire")
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_flask")
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_tango")
+  local weights_bot_state = {
+    [2] = 0.3,
+    [21] = 0.3,
+    [22] = 0.2,
+    [23] = 0.2,
+    [24] = -1,
+    [25] = -1,
+    [26] = -1,
+    [27] = -1,
+  }
+
+  local weights_enemy_hero_state = {
+    [1] = -1,
+    [4] = 1,
+    [6] = 1,
+  }
+
+  return game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
+         and game_state.Evaluate(
+               game_state.ENEMY_HERO_STATE,
+               weights_enemy_hero_state)
 end
 
 function M.tp_base()
