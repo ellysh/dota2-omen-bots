@@ -25,10 +25,10 @@ local M = {}
 
 function M.pre_base_recovery()
   local weights = {
-    [1] = 0.7,
-    [2] = 0.3,
-    [4] = -0.3,
-    [5] = 0.3,
+    [1] = 0.7, -- algorithms.IsBotAlive
+    [2] = 0.3, -- env.IS_BOT_LOW_HP
+    [4] = -0.3, -- env.BOT_DATA.is_healing
+    [5] = 0.3, -- env.IS_BASE_RECOVERY
   }
 
   return game_state.Evaluate(game_state.BOT_STATE, weights)
@@ -38,8 +38,8 @@ end
 
 function M.pre_restore_hp_on_base()
   local weights = {
-    [11] = (1 - constants.UNIT_FOUNTAIN_MAX_HEALTH),
-    [12] = 1,
+    [11] = (1.1 - constants.UNIT_FOUNTAIN_MAX_HEALTH), -- HasModifier(modifier_fountain_aura_buff)
+    [12] = 0.9, -- GetRate(env.BOT_DATA.health, env.BOT_DATA.max_health)
   }
 
   return game_state.Evaluate(game_state.BOT_STATE, weights)
@@ -53,8 +53,8 @@ end
 
 function M.pre_restore_mp_on_base()
   local weights = {
-    [11] = (1 - constants.UNIT_FOUNTAIN_MAX_MANA),
-    [13] = 1,
+    [11] = (1.1 - constants.UNIT_FOUNTAIN_MAX_MANA), -- HasModifier(modifier_fountain_aura_buff)
+    [13] = 0.9, -- GetRate(env.BOT_DATA.mana, env.BOT_DATA.max_mana)
   }
 
   return game_state.Evaluate(game_state.BOT_STATE, weights)

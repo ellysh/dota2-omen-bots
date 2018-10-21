@@ -13,6 +13,9 @@ local env = require(
 local map = require(
   GetScriptDirectory() .."/utility/map")
 
+local logger = require(
+  GetScriptDirectory() .."/utility/logger")
+
 local M = {}
 
 local BOOL_TO_NUMBER = {  [true] = 1, [false] = 0 }
@@ -38,6 +41,19 @@ local function NormalizeValue(value, min, max)
     return 1 end
 
   return result
+end
+
+local function PrintState(name, state)
+  logger.Print(name .. " team = " .. GetTeam())
+
+  functions.DoWithKeysAndElements(
+    state,
+    function(key, value)
+      if state[key] ~= nil then
+        logger.Print(tostring(key) .. " = " .. tostring(value))
+      end
+    end)
+
 end
 
 function M.UpdateState()
@@ -117,6 +133,8 @@ function M.UpdateState()
     [31] = BOOL_TO_NUMBER[map.IsUnitInEnemyTowerAttackRange(
                             env.BOT_DATA)],
   }
+
+  PrintState("M.BOT_STATE", M.BOT_STATE)
 
   M.ENEMY_HERO_STATE = {
     [1] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA ~= nil],

@@ -153,6 +153,15 @@ function test_pre_restore_hp_on_base_3_fails()
   luaunit.assertFalse(base_recovery.pre_restore_hp_on_base())
 end
 
+function test_pre_restore_hp_on_base_4_fails()
+  base_recovery.test_SetBotState({
+    [11] = 0,  -- modifier_fountain_aura_buff
+    [12] = 1,  -- health / max_health
+  })
+
+  luaunit.assertFalse(base_recovery.pre_restore_hp_on_base())
+end
+
 ---------------------------------
 
 function test_pre_restore_mp_on_base_1_succeed()
@@ -202,6 +211,15 @@ end
 
 function test_pre_restore_mp_on_base_4_fails()
   base_recovery.test_SetBotState({})
+
+  luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())
+end
+
+function test_pre_restore_mp_on_base_4_fails()
+  base_recovery.test_SetBotState({
+    [11] = 0,  -- modifier_fountain_aura_buff
+    [13] = 1,  -- mana / max_mana
+  })
 
   luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())
 end
