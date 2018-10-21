@@ -50,12 +50,13 @@ end
 ---------------------------------
 
 function M.pre_deny_ally_creep()
-  return env.LAST_HIT_ALLY_CREEP ~= nil
-         and functions.GetRate(
-               env.LAST_HIT_ALLY_CREEP.health,
-               env.LAST_HIT_ALLY_CREEP.max_health)
-             < constants.UNIT_HALF_HEALTH_LEVEL
-         and not algorithms.DoesTowerProtectUnit(env.LAST_HIT_ALLY_CREEP)
+  local weights = {
+    [8] = 1.5, -- env.LAST_HIT_ALLY_CREEP
+    [10] = -1, -- DoesTowerProtectUnit(env.LAST_HIT_ALLY_CREEP)
+    [11] = -1, -- LAST_HIT_ALLY_CREEP.health / LAST_HIT_ALLY_CREEP.max_health
+  }
+
+  return game_state.Evaluate(game_state.CREEPS_STATE, weights)
 end
 
 function M.deny_ally_creep()

@@ -80,4 +80,46 @@ function test_pre_lasthit_enemy_creep_3_fails()
   luaunit.assertFalse(farm.pre_lasthit_enemy_creep())
 end
 
+---------------------------------
+
+function test_pre_deny_ally_creep_1_succeed()
+  farm.test_SetCreepsState({
+    [8] = 1, -- env.LAST_HIT_ALLY_CREEP
+    [10] = 0, -- DoesTowerProtectUnit(env.LAST_HIT_ALLY_CREEP)
+    [11] = 0.4, -- LAST_HIT_ALLY_CREEP.health / LAST_HIT_ALLY_CREEP.max_health
+  })
+
+  luaunit.assertTrue(farm.pre_deny_ally_creep())
+end
+
+function test_pre_deny_ally_creep_1_fails()
+  farm.test_SetCreepsState({
+    [8] = 1, -- env.LAST_HIT_ALLY_CREEP
+    [10] = 0, -- DoesTowerProtectUnit(env.LAST_HIT_ALLY_CREEP)
+    [11] = 0.6, -- LAST_HIT_ALLY_CREEP.health / LAST_HIT_ALLY_CREEP.max_health
+  })
+
+  luaunit.assertFalse(farm.pre_deny_ally_creep())
+end
+
+function test_pre_deny_ally_creep_2_fails()
+  farm.test_SetCreepsState({
+    [8] = 1, -- env.LAST_HIT_ALLY_CREEP
+    [10] = 1, -- DoesTowerProtectUnit(env.LAST_HIT_ALLY_CREEP)
+    [11] = 0.4, -- LAST_HIT_ALLY_CREEP.health / LAST_HIT_ALLY_CREEP.max_health
+  })
+
+  luaunit.assertFalse(farm.pre_deny_ally_creep())
+end
+
+function test_pre_deny_ally_creep_3_fails()
+  farm.test_SetCreepsState({
+    [8] = 0, -- env.LAST_HIT_ALLY_CREEP
+    [10] = 0, -- DoesTowerProtectUnit(env.LAST_HIT_ALLY_CREEP)
+    [11] = 0, -- LAST_HIT_ALLY_CREEP.health / LAST_HIT_ALLY_CREEP.max_health
+  })
+
+  luaunit.assertFalse(farm.pre_deny_ally_creep())
+end
+
 os.exit(luaunit.LuaUnit.run())
