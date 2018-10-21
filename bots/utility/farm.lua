@@ -16,13 +16,20 @@ local map = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
+local game_state = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_farm()
-  return algorithms.IsBotAlive()
-         and not env.IS_BOT_LOW_HP
+  local weights = {
+    [1] = 1, -- algorithms.IsBotAlive()
+    [2] = -1, -- env.IS_BOT_LOW_HP
+  }
+
+  return game_state.Evaluate(game_state.BOT_STATE, weights)
 end
 
 ---------------------------------
@@ -60,5 +67,9 @@ end
 ---------------------------------
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetBotState(state)
+  game_state.BOT_STATE = state
+end
 
 return M
