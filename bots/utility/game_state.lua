@@ -184,8 +184,8 @@ function M.UpdateState()
     [6] = BOOL_TO_NUMBER[env.PRE_LAST_HIT_ALLY_CREEP ~= nil],
     [7] = BOOL_TO_NUMBER[env.LAST_HIT_ENEMY_CREEP ~= nil],
     [8] = BOOL_TO_NUMBER[env.LAST_HIT_ALLY_CREEP ~= nil],
-    [9] = env.ALLY_CREEPS_HP,
-    [10] = env.ENEMY_CREEPS_HP,
+    [9] = BOOL_TO_NUMBER[env.PRE_LAST_HIT_ENEMY_CREEP ~= nil
+            and algorithms.DoesTowerProtectUnit(env.LAST_HIT_ENEMY_CREEP)]
   }
 
   if env.NEARBY_TREE ~= nil then

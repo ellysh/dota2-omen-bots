@@ -35,8 +35,12 @@ end
 ---------------------------------
 
 function M.pre_lasthit_enemy_creep()
-  return env.LAST_HIT_ENEMY_CREEP ~= nil
-         and not algorithms.DoesTowerProtectUnit(env.LAST_HIT_ENEMY_CREEP)
+  local weights = {
+    [7] = 1, -- env.LAST_HIT_ENEMY_CREEP
+    [9] = -1, -- DoesTowerProtectUnit(env.LAST_HIT_ENEMY_CREEP)
+  }
+
+  return game_state.Evaluate(game_state.CREEPS_STATE, weights)
 end
 
 function M.lasthit_enemy_creep()
@@ -70,6 +74,10 @@ end
 
 function M.test_SetBotState(state)
   game_state.BOT_STATE = state
+end
+
+function M.test_SetCreepsState(state)
+  game_state.CREEPS_STATE = state
 end
 
 return M
