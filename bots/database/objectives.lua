@@ -228,9 +228,23 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "move_safe_evasion",
+        move = "evade_enemy_hero",
         actions = {
-          {action = "move_safe_evasion"},
+          {action = "evade_enemy_hero"},
+
+        },
+      },
+      {
+        move = "evade_enemy_creeps",
+        actions = {
+          {action = "evade_enemy_creeps"},
+
+        },
+      },
+      {
+        move = "evade_enemy_tower",
+        actions = {
+          {action = "evade_enemy_tower"},
 
         },
       },
@@ -280,13 +294,6 @@ M.OBJECTIVES = {
         move = "swap_flask_tp",
         actions = {
           {action = "swap_flask_tp"},
-
-        },
-      },
-      {
-        move = "swap_lesser_crit_tp",
-        actions = {
-          {action = "swap_lesser_crit_tp"},
 
         },
       },
@@ -384,9 +391,23 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "move_safe_evasion",
+        move = "evade_enemy_hero",
         actions = {
-          {action = "move_safe_evasion"},
+          {action = "evade_enemy_hero"},
+
+        },
+      },
+      {
+        move = "evade_enemy_creeps",
+        actions = {
+          {action = "evade_enemy_creeps"},
+
+        },
+      },
+      {
+        move = "evade_enemy_tower",
+        actions = {
+          {action = "evade_enemy_tower"},
 
         },
       },
@@ -635,13 +656,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_lesser_crit_tp",
-        actions = {
-          {action = "swap_lesser_crit_tp"},
-
-        },
-      },
-      {
         move = "put_item_in_inventory",
         actions = {
           {action = "put_item_in_inventory"},
@@ -713,9 +727,23 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "move_safe_evasion",
+        move = "evade_enemy_hero",
         actions = {
-          {action = "move_safe_evasion"},
+          {action = "evade_enemy_hero"},
+
+        },
+      },
+      {
+        move = "evade_enemy_creeps",
+        actions = {
+          {action = "evade_enemy_creeps"},
+
+        },
+      },
+      {
+        move = "evade_enemy_tower",
+        actions = {
+          {action = "evade_enemy_tower"},
 
         },
       },
@@ -962,13 +990,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_lesser_crit_tp",
-        actions = {
-          {action = "swap_lesser_crit_tp"},
-
-        },
-      },
-      {
         move = "put_item_in_inventory",
         actions = {
           {action = "put_item_in_inventory"},
@@ -1004,9 +1025,23 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "move_safe_evasion",
+        move = "evade_enemy_hero",
         actions = {
-          {action = "move_safe_evasion"},
+          {action = "evade_enemy_hero"},
+
+        },
+      },
+      {
+        move = "evade_enemy_creeps",
+        actions = {
+          {action = "evade_enemy_creeps"},
+
+        },
+      },
+      {
+        move = "evade_enemy_tower",
+        actions = {
+          {action = "evade_enemy_tower"},
 
         },
       },

@@ -22,7 +22,6 @@ buy_starting_items
 buy_tango
 buy_tpscroll
 buy_two_blades_of_attack
--- Crystalys
 decrease_creeps_distance_aggro
 decrease_creeps_distance_base
 defend_tower
@@ -30,7 +29,9 @@ deliver_items
 deny_ally_creep
 do_buyback
 do_glyph
--- Dragon Lance
+evade_enemy_creeps
+evade_enemy_hero
+evade_enemy_tower
 evasion
 FALSE
 farm
@@ -45,18 +46,14 @@ keep_equilibrium
 kill_enemy_creep
 kite
 lasthit_enemy_creep
--- Mask of Madness
--- Morbid Mask
 move_and_block
 move_base
 move_enemy_creep
 move_enemy_hero
 move_safe
-move_safe_evasion
 move_safe_recovery
 move_start_position
 positioning
--- Power Treads
 prepare_for_match
 pull_enemy_creep
 pursuit_enemy_hero
@@ -64,14 +61,12 @@ push_lane
 put_item_in_inventory
 restore_hp_on_base
 restore_mp_on_base
--- Ring of Aquila
 stop
 stop_attack
 stop_attack_and_move
 stop_turn
 swap_flask_tp
 swap_items
-swap_lesser_crit_tp
 tp_base
 tp_mid_tower
 TRUE
@@ -79,4 +74,3 @@ turn
 turn_enemy_fountain
 upgrade
 upgrade_skills
-use_mom

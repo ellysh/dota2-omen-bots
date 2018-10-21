@@ -2,13 +2,14 @@ Objective;Move;Actions
 prepare_for_match;buy_starting_items;buy_starting_items
 ;;
 swap_items;swap_flask_tp;swap_flask_tp
-;swap_lesser_crit_tp;swap_lesser_crit_tp
 ;put_item_in_inventory;put_item_in_inventory
 ;;
 item_recovery;heal_tango;heal_tango
 ;;
 evasion;move_safe_recovery;move_safe_recovery
-;move_safe_evasion;move_safe_evasion
+;evade_enemy_hero;evade_enemy_hero
+;evade_enemy_creeps;evade_enemy_creeps
+;evade_enemy_tower;evade_enemy_tower
 ;;
 upgrade_skills;upgrade;upgrade
 ;;

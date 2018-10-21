@@ -2,7 +2,6 @@ Objective;Move;Actions
 glyph;do_glyph;do_glyph
 ;;
 swap_items;swap_flask_tp;swap_flask_tp
-;swap_lesser_crit_tp;swap_lesser_crit_tp
 ;put_item_in_inventory;put_item_in_inventory
 ;;
 item_recovery;heal_tango;heal_tango
@@ -18,7 +17,9 @@ defend_tower;attack_enemy_hero;attack_enemy_hero
 ;;stop_attack
 ;;
 evasion;move_safe_recovery;move_safe_recovery
-;move_safe_evasion;move_safe_evasion
+;evade_enemy_hero;evade_enemy_hero
+;evade_enemy_creeps;evade_enemy_creeps
+;evade_enemy_tower;evade_enemy_tower
 ;;
 farm;lasthit_enemy_creep;lasthit_enemy_creep
 ;;stop_attack

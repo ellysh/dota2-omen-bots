@@ -17,6 +17,8 @@ base_recovery;deliver_items;deliver_items
 ;move_base;move_base
 ;;
 evasion;move_safe_recovery;move_safe_recovery
-;move_safe_evasion;move_safe_evasion
+;evade_enemy_hero;evade_enemy_hero
+;evade_enemy_creeps;evade_enemy_creeps
+;evade_enemy_tower;evade_enemy_tower
 ;;
 force_stop;stop;stop_attack_and_move
