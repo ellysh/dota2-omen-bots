@@ -106,22 +106,7 @@ local function DoesUnitHaveAdvantage(unit_data, target_data)
               or algorithms.IsBiggerThan(
                    unit_data.attack_speed,
                    target_data.attack_speed,
-                   20)
-              or algorithms.IsBiggerThan(
-                   unit_data.attack_range,
-                   target_data.attack_range,
-                   100)
-
-              or algorithms.HasModifier(
-                   unit_data,
-                   "modifier_item_mask_of_madness_berserk")
-
-              or (algorithms.IsItemPresent(
-                    unit_data,
-                    "item_mask_of_madness")
-                  and not algorithms.IsItemPresent(
-                            target_data,
-                            "item_mask_of_madness")))
+                   20))
 end
 
 function M.UpdateVariables()

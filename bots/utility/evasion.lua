@@ -59,44 +59,56 @@ end
 
 ---------------------------------
 
-local function DoesPowerEnemyHeroPursuit()
-  return env.ENEMY_HERO_DATA ~= nil
+function M.pre_evade_enemy_hero()
+  local weights = {
+    [2] = 1, -- env.IS_BOT_LOW_HP
+    [8] = 0.5,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0.5,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [29] = 0.5, -- AreEnemyCreepsInRadius(CREEP_MAX_AGGRO_RADIUS)
+  }
 
-         and env.IS_BOT_LOW_HP
-
-         and algorithms.IsTargetInAttackRange(
-               env.ENEMY_HERO_DATA,
-               env.BOT_DATA,
-               true)
+  return game_state.Evaluate(game_state.BOT_STATE, weights)
 end
 
-function M.pre_move_safe_evasion()
-  return env.IS_FOCUSED_BY_CREEPS
-
-         or env.IS_BOT_LOW_HP
-
-         or DoesPowerEnemyHeroPursuit()
-
-         or env.IS_FOCUSED_BY_TOWER
-
-         or (env.IS_FOCUSED_BY_ENEMY_HERO
-             and algorithms.AreEnemyCreepsInRadius(
-                   env.BOT_DATA,
-                   constants.CREEP_MAX_AGGRO_RADIUS))
-
-         or env.IS_FOCUSED_BY_UNKNOWN_UNIT
-
-         or (env.ENEMY_HERO_DATA ~= nil
-             and env.ENEMY_HERO_DISTANCE
-                 < constants.BASE_HERO_DISTANCE)
-
-         or env.ENEMY_TOWER_DISTANCE < constants.MIN_TOWER_DISTANCE
-
-         or (map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-             and not algorithms.HasLevelForAggression(env.BOT_DATA))
+function M.evade_enemy_hero()
+  env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
 end
 
-function M.move_safe_evasion()
+---------------------------------
+
+function M.pre_evade_enemy_creeps()
+  local weights = {
+    [7] = 1,  -- env.IS_FOCUSED_BY_CREEPS
+  }
+
+  return game_state.Evaluate(game_state.BOT_STATE, weights)
+end
+
+function M.evade_enemy_creeps()
+  env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
+end
+
+---------------------------------
+
+function M.pre_evade_enemy_tower()
+  local weights_bot_state = {
+    [10] = 1.2,  -- env.IS_FOCUSED_BY_TOWER
+    [30] = -0.2, -- algorithms.HasLevelForAggression
+    [31] = 1.1, -- map.IsUnitInEnemyTowerAttackRange
+  }
+
+  local weights_enemy_tower_state = {
+    [1] = 1.99,  -- env.ENEMY_TOWER_DATA ~= nil
+    [2] = -1,  -- env.ENEMY_TOWER_DISTANCE / constants.MIN_TOWER_DISTANCE
+  }
+
+  return game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
+         or game_state.Evaluate(
+              game_state.ENEMY_TOWER_STATE,
+              weights_enemy_tower_state)
+end
+
+function M.evade_enemy_tower()
   env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
 end
 
@@ -104,6 +116,14 @@ end
 
 function M.test_SetBotState(state)
   game_state.BOT_STATE = state
+end
+
+function M.test_SetEnemyHeroState(state)
+  game_state.ENEMY_HERO_STATE = state
+end
+
+function M.test_SetEnemyTowerState(state)
+  game_state.ENEMY_TOWER_STATE = state
 end
 
 return M

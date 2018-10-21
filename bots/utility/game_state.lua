@@ -107,6 +107,15 @@ function M.UpdateState()
              map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)],
 
     [28] = BOOL_TO_NUMBER[map.IsUnitInSpot(env.BOT_DATA, env.SAFE_SPOT)],
+
+    [29] = BOOL_TO_NUMBER[algorithms.AreEnemyCreepsInRadius(
+                            env.BOT_DATA,
+                            constants.CREEP_MAX_AGGRO_RADIUS)],
+
+    [30] = BOOL_TO_NUMBER[algorithms.HasLevelForAggression(env.BOT_DATA)],
+
+    [31] = BOOL_TO_NUMBER[map.IsUnitInEnemyTowerAttackRange(
+                            env.BOT_DATA)],
   }
 
   M.ENEMY_HERO_STATE = {
@@ -136,10 +145,17 @@ function M.UpdateState()
     M.ALLY_TOWER_STATE = {}
   end
 
-  M.ENEMY_TOWER_STATE = {
-    [1] = BOOL_TO_NUMBER[env.ENEMY_TOWER_DATA ~= nil],
-    [2] = env.ENEMY_TOWER_DISTANCE,
-  }
+  if env.ENEMY_TOWER_DATA ~= nil then
+    M.ENEMY_TOWER_STATE = {
+      [1] = BOOL_TO_NUMBER[env.ENEMY_TOWER_DATA ~= nil],
+      [2] = NormalizeValue(
+              env.ENEMY_TOWER_DISTANCE,
+              0,
+              constants.MIN_TOWER_DISTANCE)
+    }
+  else
+    M.ENEMY_TOWER_STATE = {}
+  end
 
   M.CREEPS_STATE = {
     [1] = BOOL_TO_NUMBER[env.ENEMY_CREEP_FRONT_DATA ~= nil],

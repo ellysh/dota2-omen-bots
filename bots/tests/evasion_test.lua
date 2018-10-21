@@ -61,4 +61,167 @@ function test_pre_move_safe_recovery_4_fails()
   luaunit.assertFalse(evasion.pre_move_safe_recovery())
 end
 
+---------------------------------
+
+function test_pre_evade_enemy_hero_1_succeed()
+  evasion.test_SetBotState({
+    [2] = 1, -- env.IS_BOT_LOW_HP
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [29] = 0, -- AreEnemyCreepsInRadius(CREEP_MAX_AGGRO_RADIUS)
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_hero())
+end
+
+function test_pre_evade_enemy_hero_2_succeed()
+  evasion.test_SetBotState({
+    [2] = 0, -- env.IS_BOT_LOW_HP
+    [8] = 1,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [29] = 1, -- AreEnemyCreepsInRadius(CREEP_MAX_AGGRO_RADIUS)
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_hero())
+end
+
+function test_pre_evade_enemy_hero_3_succeed()
+  evasion.test_SetBotState({
+    [2] = 0, -- env.IS_BOT_LOW_HP
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 1,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [29] = 1, -- AreEnemyCreepsInRadius(CREEP_MAX_AGGRO_RADIUS)
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_hero())
+end
+
+function test_pre_evade_enemy_hero_1_fails()
+  evasion.test_SetBotState({
+    [2] = 0, -- env.IS_BOT_LOW_HP
+    [8] = 1,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [29] = 0, -- AreEnemyCreepsInRadius(CREEP_MAX_AGGRO_RADIUS)
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero())
+end
+
+function test_pre_evade_enemy_hero_2_fails()
+  evasion.test_SetBotState({
+    [2] = 0, -- env.IS_BOT_LOW_HP
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 1,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [29] = 0, -- AreEnemyCreepsInRadius(CREEP_MAX_AGGRO_RADIUS)
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero())
+end
+
+function test_pre_evade_enemy_hero_3_fails()
+  evasion.test_SetBotState({
+    [2] = 0, -- env.IS_BOT_LOW_HP
+    [8] = 0,  -- env.IS_FOCUSED_BY_ENEMY_HERO
+    [9] = 0,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
+    [29] = 1, -- AreEnemyCreepsInRadius(CREEP_MAX_AGGRO_RADIUS)
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero())
+end
+
+---------------------------------
+
+function test_pre_evade_enemy_creeps_1_succeed()
+  evasion.test_SetBotState({
+    [7] = 1,  -- env.IS_FOCUSED_BY_CREEPS
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_creeps())
+end
+
+function test_pre_evade_enemy_creeps_1_fails()
+  evasion.test_SetBotState({
+    [7] = 0,  -- env.IS_FOCUSED_BY_CREEPS
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_creeps())
+end
+
+---------------------------------
+
+function test_pre_evade_enemy_tower_1_succeed()
+  evasion.test_SetBotState({
+    [10] = 1,  -- env.IS_FOCUSED_BY_TOWER
+    [30] = 0, -- algorithms.HasLevelForAggression
+    [31] = 0, -- map.IsUnitInEnemyTowerAttackRange
+  })
+
+  evasion.test_SetEnemyTowerState({
+    [1] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [2] = 0,  -- env.ENEMY_TOWER_DISTANCE / constants.MIN_TOWER_DISTANCE
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_tower())
+end
+
+function test_pre_evade_enemy_tower_2_succeed()
+  evasion.test_SetBotState({
+    [10] = 0,  -- env.IS_FOCUSED_BY_TOWER
+    [30] = 0, -- algorithms.HasLevelForAggression
+    [31] = 1, -- map.IsUnitInEnemyTowerAttackRange
+  })
+
+  evasion.test_SetEnemyTowerState({
+    [1] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [2] = 0,  -- env.ENEMY_TOWER_DISTANCE / constants.MIN_TOWER_DISTANCE
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_tower())
+end
+
+function test_pre_evade_enemy_tower_3_succeed()
+  evasion.test_SetBotState({
+    [10] = 0,  -- env.IS_FOCUSED_BY_TOWER
+    [30] = 0, -- algorithms.HasLevelForAggression
+    [31] = 0, -- map.IsUnitInEnemyTowerAttackRange
+  })
+
+  evasion.test_SetEnemyTowerState({
+    [1] = 1,  -- env.ENEMY_TOWER_DATA ~= nil
+    [2] = 0.5,  -- env.ENEMY_TOWER_DISTANCE / constants.MIN_TOWER_DISTANCE
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_tower())
+end
+
+function test_pre_evade_enemy_tower_1_fails()
+  evasion.test_SetBotState({
+    [10] = 0,  -- env.IS_FOCUSED_BY_TOWER
+    [30] = 0, -- algorithms.HasLevelForAggression
+    [31] = 0, -- map.IsUnitInEnemyTowerAttackRange
+  })
+
+  evasion.test_SetEnemyTowerState({
+    [1] = 1,  -- env.ENEMY_TOWER_DATA ~= nil
+    [2] = 1,  -- env.ENEMY_TOWER_DISTANCE / constants.MIN_TOWER_DISTANCE
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_tower())
+end
+
+function test_pre_evade_enemy_tower_2_fails()
+  evasion.test_SetBotState({
+    [10] = 0,  -- env.IS_FOCUSED_BY_TOWER
+    [30] = 1, -- algorithms.HasLevelForAggression
+    [31] = 1, -- map.IsUnitInEnemyTowerAttackRange
+  })
+
+  evasion.test_SetEnemyTowerState({
+    [1] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [2] = 0,  -- env.ENEMY_TOWER_DISTANCE / constants.MIN_TOWER_DISTANCE
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_tower())
+end
+
 os.exit(luaunit.LuaUnit.run())
