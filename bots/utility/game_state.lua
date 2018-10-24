@@ -31,6 +31,11 @@ local function GetAllyTowerIncomingDamage()
            * functions.GetDamageMultiplier(env.ALLY_TOWER_DATA.armor)
 end
 
+local function IsAttackHeroUnderTowerSafe()
+  return env.ALLY_CREEP_FRONT_DATA ~= nil
+         and constants.TOWER_AGGRO_RADIUS < env.ENEMY_TOWER_DISTANCE
+end
+
 local function NormalizeValue(value, min, max)
   local result = (value - min) / (max - min)
 
@@ -158,6 +163,12 @@ function M.UpdateState()
                   env.BOT_DATA,
                   env.ENEMY_HERO_DATA,
                   true)],
+
+      [9] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA.is_visible],
+      [10] = BOOL_TO_NUMBER[IsAttackHeroUnderTowerSafe()],
+      [11] = BOOL_TO_NUMBER[algorithms.IsTowerDiveReasonable(
+                              env.BOT_DATA,
+                              env.ENEMY_HERO_DATA)]
     }
   else
     M.ENEMY_HERO_STATE = {}

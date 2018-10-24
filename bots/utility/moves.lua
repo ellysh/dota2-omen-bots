@@ -16,6 +16,9 @@ local env = require(
 local action_timing = require(
   GetScriptDirectory() .."/utility/action_timing")
 
+local game_state = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 --------------------------------
@@ -84,19 +87,16 @@ end
 
 ---------------------------------
 
-local function IsAttackUnderTowerSafe()
-  return env.ALLY_CREEP_FRONT_DATA ~= nil
-         and constants.TOWER_AGGRO_RADIUS < env.ENEMY_TOWER_DISTANCE
-end
-
 function M.pre_attack_enemy_hero()
-  return env.ENEMY_HERO_DATA ~= nil
-         and env.ENEMY_HERO_DATA.is_visible
-         and (not env.DOES_TOWER_PROTECT_ENEMY
-              or IsAttackUnderTowerSafe()
-              or algorithms.IsTowerDiveReasonable(
-                   env.BOT_DATA,
-                   env.ENEMY_HERO_DATA))
+  local weights = {
+    [1] = 0.5, -- env.ENEMY_HERO_DATA ~= nil
+    [9] = 0.5, -- env.ENEMY_HERO_DATA.is_visible
+    [3] = -0.2, -- env.DOES_TOWER_PROTECT_ENEMY
+    [10] = 0.2, -- IsAttackUnderTowerSafe
+    [11] = 0.2, -- algorithms.IsTowerDiveReasonable
+  }
+
+  return game_state.Evaluate(game_state.ENEMY_HERO_STATE, weights)
 end
 
 function M.attack_enemy_hero()
@@ -140,5 +140,17 @@ function M.deliver_items()
 end
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetBotState(state)
+  game_state.BOT_STATE = state
+end
+
+function M.test_SetEnemyHeroState(state)
+  game_state.ENEMY_HERO_STATE = state
+end
+
+function M.test_SetCreepsState(state)
+  game_state.CREEPS_STATE = state
+end
 
 return M

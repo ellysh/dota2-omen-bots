@@ -124,14 +124,20 @@ end
 
 function M.test_SetBotState(state)
   game_state.BOT_STATE = state
+
+  moves.test_SetBotState(state)
 end
 
 function M.test_SetEnemyHeroState(state)
   game_state.ENEMY_HERO_STATE = state
+
+  moves.test_SetEnemyHeroState(state)
 end
 
 function M.test_SetCreepsState(state)
   game_state.CREEPS_STATE = state
+
+  moves.test_SetCreepsState(state)
 end
 
 return M
