@@ -398,13 +398,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_enemy_creeps",
-        actions = {
-          {action = "evade_enemy_creeps"},
-
-        },
-      },
-      {
         move = "evade_enemy_tower",
         actions = {
           {action = "evade_enemy_tower"},
@@ -431,6 +424,20 @@ M.OBJECTIVES = {
         actions = {
           {action = "deny_ally_creep"},
           {action = "stop_attack"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "evasion",
+    module = require(GetScriptDirectory() .."/utility/evasion"),
+    moves = {
+      {
+        move = "evade_enemy_creeps",
+        actions = {
+          {action = "evade_enemy_creeps"},
 
         },
       },
@@ -734,13 +741,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_enemy_creeps",
-        actions = {
-          {action = "evade_enemy_creeps"},
-
-        },
-      },
-      {
         move = "evade_enemy_tower",
         actions = {
           {action = "evade_enemy_tower"},
@@ -767,6 +767,20 @@ M.OBJECTIVES = {
         actions = {
           {action = "deny_ally_creep"},
           {action = "stop_attack"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "evasion",
+    module = require(GetScriptDirectory() .."/utility/evasion"),
+    moves = {
+      {
+        move = "evade_enemy_creeps",
+        actions = {
+          {action = "evade_enemy_creeps"},
 
         },
       },
@@ -1032,13 +1046,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_enemy_creeps",
-        actions = {
-          {action = "evade_enemy_creeps"},
-
-        },
-      },
-      {
         move = "evade_enemy_tower",
         actions = {
           {action = "evade_enemy_tower"},
@@ -1079,6 +1086,20 @@ M.OBJECTIVES = {
         actions = {
           {action = "deny_ally_creep"},
           {action = "stop_attack"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "evasion",
+    module = require(GetScriptDirectory() .."/utility/evasion"),
+    moves = {
+      {
+        move = "evade_enemy_creeps",
+        actions = {
+          {action = "evade_enemy_creeps"},
 
         },
       },

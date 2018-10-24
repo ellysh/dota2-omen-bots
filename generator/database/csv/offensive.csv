@@ -12,13 +12,14 @@ pursuit_enemy_hero;attack_enemy_hero;attack_enemy_hero
 ;;
 evasion;move_safe_recovery;move_safe_recovery
 ;evade_enemy_hero;evade_enemy_hero
-;evade_enemy_creeps;evade_enemy_creeps
 ;evade_enemy_tower;evade_enemy_tower
 ;;
 farm;lasthit_enemy_creep;lasthit_enemy_creep
 ;;stop_attack
 ;deny_ally_creep;deny_ally_creep
 ;;stop_attack
+;;
+evasion;evade_enemy_creeps;evade_enemy_creeps
 ;;
 attack_with_better_position;attack_enemy_hero;attack_enemy_hero
 ;;
