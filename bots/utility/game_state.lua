@@ -43,19 +43,6 @@ local function NormalizeValue(value, min, max)
   return result
 end
 
-local function PrintState(name, state)
-  logger.Print(name .. " team = " .. GetTeam())
-
-  functions.DoWithKeysAndElements(
-    state,
-    function(key, value)
-      if state[key] ~= nil then
-        logger.Print(tostring(key) .. " = " .. tostring(value))
-      end
-    end)
-
-end
-
 function M.UpdateState()
   M.BOT_STATE = {
     [1] = BOOL_TO_NUMBER[algorithms.IsBotAlive()],
@@ -132,23 +119,49 @@ function M.UpdateState()
 
     [31] = BOOL_TO_NUMBER[map.IsUnitInEnemyTowerAttackRange(
                             env.BOT_DATA)],
+
+    [32] = NormalizeValue(
+             (env.BOT_DATA.incoming_damage_from_creeps
+              + env.BOT_DATA.incoming_damage_from_towers),
+             0,
+             constants.MAX_INCOMING_ATTACK_DAMAGE),
+
+    [33] = BOOL_TO_NUMBER[algorithms.IsUnitPositionBetter(
+                            env.BOT_DATA,
+                            env.ENEMY_HERO_DATA)]
   }
 
-  PrintState("M.BOT_STATE", M.BOT_STATE)
+  logger.PrintState("M.BOT_STATE", M.BOT_STATE)
 
-  M.ENEMY_HERO_STATE = {
-    [1] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA ~= nil],
-    [2] = BOOL_TO_NUMBER[env.IS_ENEMY_HERO_LOW_HP],
-    [3] = BOOL_TO_NUMBER[env.DOES_TOWER_PROTECT_ENEMY],
+  if env.ENEMY_HERO_DATA ~= nil then
+    M.ENEMY_HERO_STATE = {
+      [1] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA ~= nil],
+      [2] = BOOL_TO_NUMBER[env.IS_ENEMY_HERO_LOW_HP],
+      [3] = BOOL_TO_NUMBER[env.DOES_TOWER_PROTECT_ENEMY],
 
-    [4] = NormalizeValue(
-            env.ENEMY_HERO_DISTANCE,
-            0,
-            constants.SAFE_HERO_DISTANCE),
+      [4] = NormalizeValue(
+              env.ENEMY_HERO_DISTANCE,
+              0,
+              constants.SAFE_HERO_DISTANCE),
 
-    [5] = BOOL_TO_NUMBER[env.DOES_ENEMY_HERO_HAVE_ADVANTAGE],
-    [6] = BOOL_TO_NUMBER[true],
-  }
+      [5] = BOOL_TO_NUMBER[env.DOES_ENEMY_HERO_HAVE_ADVANTAGE],
+      [6] = BOOL_TO_NUMBER[true],
+      [7] = NormalizeValue(
+              (env.ENEMY_HERO_DATA.incoming_damage_from_creeps
+               + env.ENEMY_HERO_DATA.incoming_damage_from_towers),
+              0,
+              constants.MAX_INCOMING_ATTACK_DAMAGE),
+
+      [8] = BOOL_TO_NUMBER[
+              env.ENEMY_HERO_DISTANCE
+              < algorithms.GetAttackRange(
+                  env.BOT_DATA,
+                  env.ENEMY_HERO_DATA,
+                  true)],
+    }
+  else
+    M.ENEMY_HERO_STATE = {}
+  end
 
   if env.ALLY_TOWER_DATA ~= nil then
     M.ALLY_TOWER_STATE = {
