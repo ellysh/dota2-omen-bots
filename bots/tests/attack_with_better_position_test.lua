@@ -46,4 +46,26 @@ function test_pre_attack_with_better_position_3_fails()
     attack_with_better_position.pre_attack_with_better_position())
 end
 
+---------------------------------
+
+function test_pre_attack_enemy_hero_from_hg_1_succeed()
+  attack_with_better_position.test_SetBotState({
+    [32] = 0.5, -- bot incoming damage
+    [33] = 1, -- IsUnitPositionBetter(bot, enemy_hero)
+  })
+
+  attack_with_better_position.test_SetEnemyHeroState({
+    [8] = 1,  -- env.ENEMY_HERO_DISTANCE < bot attack range
+  })
+
+  attack_with_better_position.test_SetCreepsState({
+    [1] = 0, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
+    [2] = 0, -- env.ENEMY_CREEP_BACK_DATA ~= nil
+    [3] = 1, -- env.ALLY_CREEP_FRONT_DATA ~= nil
+  })
+
+  luaunit.assertTrue(
+    attack_with_better_position.pre_attack_enemy_hero_from_hg())
+end
+
 os.exit(luaunit.LuaUnit.run())

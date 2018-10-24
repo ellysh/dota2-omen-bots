@@ -28,24 +28,14 @@ end
 
 ---------------------------------
 
---[[
-local function IsUnitIncomingDamageMore(unit_data, target_data)
-  return (target_data.incoming_damage_from_creeps
-          + target_data.incoming_damage_from_towers)
-         < (unit_data.incoming_damage_from_creeps
-          + unit_data.incoming_damage_from_towers)
-
-end
---]]
-
 function M.pre_attack_enemy_hero_from_hg()
   local weights_bot_state = {
-    [32] = -1, -- incoming damage
+    [32] = -1, -- bot incoming damage
     [33] = 1.6, -- IsUnitPositionBetter(bot, enemy_hero)
   }
 
   local weights_enemy_hero_state = {
-    [4] = 1.6, -- env.ENEMY_HERO_DISTANCE
+    [8] = 1, -- env.ENEMY_HERO_DISTANCE < bot attack range
   }
 
   local weights_creeps_state = {
@@ -54,8 +44,8 @@ function M.pre_attack_enemy_hero_from_hg()
     [3] = 1, -- env.ALLY_CREEP_FRONT_DATA ~= nil
   }
 
-  return moves.pre_attack_enemy_hero()
-         and game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
+  return --moves.pre_attack_enemy_hero()
+         game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
          and game_state.Evaluate(
                game_state.ENEMY_HERO_STATE,
                weights_enemy_hero_state)
@@ -89,7 +79,7 @@ function M.pre_attack_enemy_hero_from_hg()
 --]]
 end
 
-function M.pre_attack_enemy_hero_from_hg()
+function M.attack_enemy_hero_from_hg()
   moves.attack_enemy_hero()
 end
 
@@ -134,6 +124,14 @@ end
 
 function M.test_SetBotState(state)
   game_state.BOT_STATE = state
+end
+
+function M.test_SetEnemyHeroState(state)
+  game_state.ENEMY_HERO_STATE = state
+end
+
+function M.test_SetCreepsState(state)
+  game_state.CREEPS_STATE = state
 end
 
 return M
