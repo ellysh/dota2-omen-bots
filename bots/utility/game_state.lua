@@ -208,6 +208,7 @@ function M.UpdateState()
     [6] = BOOL_TO_NUMBER[env.PRE_LAST_HIT_ALLY_CREEP ~= nil],
     [7] = BOOL_TO_NUMBER[env.LAST_HIT_ENEMY_CREEP ~= nil],
     [8] = BOOL_TO_NUMBER[env.LAST_HIT_ALLY_CREEP ~= nil],
+    [9] = BOOL_TO_NUMBER[true]
   }
 
   if env.LAST_HIT_ENEMY_CREEP ~= nil then

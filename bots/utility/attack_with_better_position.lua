@@ -42,41 +42,18 @@ function M.pre_attack_enemy_hero_from_hg()
     [1] = -0.5, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
     [2] = -0.5, -- env.ENEMY_CREEP_BACK_DATA ~= nil
     [3] = 1, -- env.ALLY_CREEP_FRONT_DATA ~= nil
+    [9] = 1, -- true
+
   }
 
-  return --moves.pre_attack_enemy_hero()
-         game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
+  return moves.pre_attack_enemy_hero()
+         and game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
          and game_state.Evaluate(
                game_state.ENEMY_HERO_STATE,
                weights_enemy_hero_state)
          and game_state.Evaluate(
                game_state.CREEPS_STATE,
                weights_creeps_state)
-
---[[
-  return moves.pre_attack_enemy_hero()
-         and (env.ALLY_CREEP_FRONT_DATA ~= nil
-              or (env.ENEMY_CREEP_FRONT_DATA == nil
-                  and env.ENEMY_CREEP_BACK_DATA == nil))
-
-         and env.ENEMY_HERO_DISTANCE
-             <= algorithms.GetAttackRange(
-                  env.BOT_DATA,
-                  env.ENEMY_HERO_DATA,
-                  true)
-
-         and not algorithms.AreEnemyCreepsInRadius(
-                   env.BOT_DATA,
-                   constants.MAX_MELEE_ATTACK_RANGE)
-
-         and algorithms.IsUnitPositionBetter(
-                 env.BOT_DATA,
-                 env.ENEMY_HERO_DATA)
-
-         and not IsUnitIncomingDamageMore(
-                   env.BOT_DATA,
-                   env.ENEMY_HERO_DATA)
---]]
 end
 
 function M.attack_enemy_hero_from_hg()
