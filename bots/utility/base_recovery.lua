@@ -31,7 +31,7 @@ function M.pre_base_recovery()
     [5] = 0.3, -- env.IS_BASE_RECOVERY
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return game_state.Evaluate(game_state.GAME_STATE, weights)
 end
 
 ---------------------------------
@@ -42,7 +42,7 @@ function M.pre_restore_hp_on_base()
     [12] = 0.9, -- GetRate(env.BOT_DATA.health, env.BOT_DATA.max_health)
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return game_state.Evaluate(game_state.GAME_STATE, weights)
 end
 
 function M.restore_hp_on_base()
@@ -57,7 +57,7 @@ function M.pre_restore_mp_on_base()
     [13] = 0.9, -- GetRate(env.BOT_DATA.mana, env.BOT_DATA.max_mana)
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return game_state.Evaluate(game_state.GAME_STATE, weights)
 end
 
 function M.restore_mp_on_base()
@@ -97,8 +97,8 @@ end
 
 -- Provide an access to local functions and variables for unit tests only
 
-function M.test_SetBotState(state)
-  game_state.BOT_STATE = state
+function M.test_SetGameState(state)
+  game_state.GAME_STATE = state
 end
 
 return M
