@@ -53,10 +53,10 @@ end
 
 function M.pre_heal_faerie_fire()
   local weights = {
-    [2] = 0.5, -- env.IS_BOT_LOW_HP
-    [17] = -1, -- IsItemCastable(env.BOT_DATA, "item_flask")
-    [18] = 0.5, -- IsItemCastable(env.BOT_DATA, "item_faerie_fire")
-    [19] = -1, -- IsItemCastable(env.BOT_DATA, "item_tango")
+    [gs.BOT_IS_LOW_HP] = 0.5,
+    [gs.BOT_CASTABLE_FLASK] = -1,
+    [gs.BOT_CASTABLE_FAERIE_FIRE] = 0.5,
+    [gs.BOT_CASTABLE_TANGO] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
