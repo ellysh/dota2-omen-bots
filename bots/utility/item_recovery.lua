@@ -10,7 +10,7 @@ local action_timing = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
-local game_state = require(
+local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
 local M = {}
@@ -19,36 +19,28 @@ local M = {}
 
 function M.pre_item_recovery()
   local weights = {
-    [1] = 0.5, -- algorithms.IsBotAlive()
-    [4] = -0.5, -- env.BOT_DATA.is_healing
-    [16] = 0.5 -- env.FOUNTAIN_DISTANCE
+    [gs.BOT_IS_ALIVE] = 0.5,
+    [gs.BOT_IS_HEALING] = -0.5,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 0.5
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
 
 function M.pre_heal_flask()
-  local weights_bot_state = {
-    [2] = 0.75, -- env.IS_BOT_LOW_HP
-    [3] = -1, -- env.BOT_DATA.is_flask_healing
-    [8] = -1, -- env.IS_FOCUSED_BY_ENEMY_HERO
-    [9] = -1, -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
-    [12] = -1, -- health / max_health
-    [17] = 0.75, -- IsItemCastable(env.BOT_DATA, "item_flask")
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = 0.75,
+    [gs.BOT_IS_FLASK_HEALING] = -1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = -1,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = -1,
+    [gs.BOT_HP_RATE] = -1,
+    [gs.BOT_CASTABLE_FLASK] = 0.75,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = -1,
   }
 
-  local weights_enemy_hero_state = {
-    [1] = -1, -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 1.6, -- env.ENEMY_HERO_DISTANCE
-    [6] = 1, -- true
-  }
-
-  return game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
-         and game_state.Evaluate(
-               game_state.ENEMY_HERO_STATE,
-               weights_enemy_hero_state)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.heal_flask()
@@ -67,7 +59,7 @@ function M.pre_heal_faerie_fire()
     [19] = -1, -- IsItemCastable(env.BOT_DATA, "item_tango")
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.heal_faerie_fire()
@@ -91,9 +83,9 @@ function M.pre_heal_tango()
     [3] = -1 -- env.ENEMY_TOWER_DATA ~= nil
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
-         and game_state.Evaluate(
-               game_state.NEARBY_TREE_STATE,
+  return gs.Evaluate(gs.GAME_STATE, weights_bot_state)
+         and gs.Evaluate(
+               gs.NEARBY_TREE_STATE,
                weights_nearby_tree_state)
 end
 
@@ -123,9 +115,9 @@ function M.pre_tp_base()
     [6] = 1, -- true
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
-         and game_state.Evaluate(
-               game_state.ENEMY_HERO_STATE,
+  return gs.Evaluate(gs.GAME_STATE, weights_bot_state)
+         and gs.Evaluate(
+               gs.ENEMY_HERO_STATE,
                weights_enemy_hero_state)
 end
 
@@ -139,16 +131,8 @@ end
 
 ---------------------------------
 
-function M.test_SetBotState(state)
-  game_state.BOT_STATE = state
-end
-
-function M.test_SetEnemyHeroState(state)
-  game_state.ENEMY_HERO_STATE = state
-end
-
-function M.test_SetNearbyTreeState(state)
-  game_state.NEARBY_TREE_STATE = state
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
 end
 
 return M

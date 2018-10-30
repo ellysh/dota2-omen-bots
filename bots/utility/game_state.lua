@@ -63,9 +63,10 @@ M.EH_BOT_DISTANCE = 103
 M.EH_HAS_ADVANTAGE = 104
 M.EH_INCOMING_DAMAGE = 105
 M.EH_IN_BOT_ATTACK_RANGE = 106
-M.EH_IS_VISIBLE = 107
-M.EH_CAN_BE_ATTACKED_UNDER_TOWER = 108
-M.EH_CAN_BE_FOLLOWED_UNDER_TOWER = 109
+M.BOT_IN_EH_ATTACK_RANGE = 107
+M.EH_IS_VISIBLE = 108
+M.EH_CAN_BE_ATTACKED_UNDER_TOWER = 109
+M.EH_CAN_BE_FOLLOWED_UNDER_TOWER = 110
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -220,10 +221,17 @@ function M.UpdateState()
 
     M.GAME_STATE[M.EH_IN_BOT_ATTACK_RANGE] = NUM[
                           env.ENEMY_HERO_DISTANCE
-                          < algorithms.GetAttackRange(
-                              env.BOT_DATA,
-                              env.ENEMY_HERO_DATA,
-                              true)]
+                          <= algorithms.GetAttackRange(
+                               env.BOT_DATA,
+                               env.ENEMY_HERO_DATA,
+                               true)]
+
+    M.GAME_STATE[M.BOT_IN_EH_ATTACK_RANGE] = NUM[
+                          env.ENEMY_HERO_DISTANCE
+                          <= algorithms.GetAttackRange(
+                               env.ENEMY_HERO_DATA,
+                               env.BOT_DATA,
+                               true)]
 
     M.GAME_STATE[M.EH_IS_VISIBLE] = NUM[env.ENEMY_HERO_DATA.is_visible]
 
