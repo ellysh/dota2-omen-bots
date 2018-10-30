@@ -13,7 +13,7 @@ local action_timing = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
-local game_state = require(
+local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
 local moves = require(
@@ -25,24 +25,25 @@ local M = {}
 
 function M.pre_base_recovery()
   local weights = {
-    [1] = 0.7, -- algorithms.IsBotAlive
-    [2] = 0.3, -- env.IS_BOT_LOW_HP
-    [4] = -0.3, -- env.BOT_DATA.is_healing
-    [5] = 0.3, -- env.IS_BASE_RECOVERY
+    [gs.BOT_IS_ALIVE] = 0.7,
+    [gs.BOT_IS_LOW_HP] = 0.3,
+    [gs.BOT_IS_HEALING] = -0.3,
+    [gs.BOT_IS_BASE_RECOVERY] = 0.3,
   }
 
-  return game_state.Evaluate(game_state.GAME_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
 
 function M.pre_restore_hp_on_base()
   local weights = {
-    [11] = (1.1 - constants.UNIT_FOUNTAIN_MAX_HEALTH), -- HasModifier(modifier_fountain_aura_buff)
-    [12] = 0.9, -- GetRate(env.BOT_DATA.health, env.BOT_DATA.max_health)
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] =
+      (1.1 - constants.UNIT_FOUNTAIN_MAX_HEALTH),
+    [gs.BOT_HP_RATE] = 0.9,
   }
 
-  return game_state.Evaluate(game_state.GAME_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.restore_hp_on_base()
@@ -53,11 +54,12 @@ end
 
 function M.pre_restore_mp_on_base()
   local weights = {
-    [11] = (1.1 - constants.UNIT_FOUNTAIN_MAX_MANA), -- HasModifier(modifier_fountain_aura_buff)
-    [13] = 0.9, -- GetRate(env.BOT_DATA.mana, env.BOT_DATA.max_mana)
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] =
+      (1.1 - constants.UNIT_FOUNTAIN_MAX_MANA),
+    [gs.BOT_MP_RATE] = 0.9,
   }
 
-  return game_state.Evaluate(game_state.GAME_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.restore_mp_on_base()
@@ -98,7 +100,7 @@ end
 -- Provide an access to local functions and variables for unit tests only
 
 function M.test_SetGameState(state)
-  game_state.GAME_STATE = state
+  gs.GAME_STATE = state
 end
 
 return M
