@@ -10,7 +10,7 @@ local functions = require(
 local all_units = require(
   GetScriptDirectory() .."/utility/all_units")
 
-local game_state = require(
+local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
 local constants = require(
@@ -30,13 +30,13 @@ end
 
 function M.pre_do_glyph()
   local weights = {
-    [1] = 0.4,
-    [2] = 0.4,
-    [3] = 0.2,
-    [4] = 0.17,
+    [gs.AT_PRESENT] = 0.4,
+    [gs.AT_IS_LOW_HP] = 0.17,
+    [gs.AT_INCOMING_DAMAGE] = 0.2,
+    [gs.AT_GLYPH_READY] = 0.4,
   }
 
-  return game_state.Evaluate(game_state.ALLY_TOWER_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.do_glyph()
@@ -47,8 +47,8 @@ end
 
 -- Provide an access to local functions for unit tests only
 
-function M.test_SetAllyTowerState(state)
-  game_state.ALLY_TOWER_STATE = state
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
 end
 
 return M
