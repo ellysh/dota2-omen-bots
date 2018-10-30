@@ -4,7 +4,7 @@ local env = require(
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
-local game_state = require(
+local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
 local M = {}
@@ -21,12 +21,12 @@ end
 
 function M.pre_do_buyback()
   local weights = {
-    [1] = 0.4,
-    [14] = 0.3,
-    [15] = 0.3,
+    [gs.BOT_IS_ALIVE] = 0.4,
+    [gs.BOT_HAS_BUYBACK] = 0.3,
+    [gs.BOT_RESPAWN_TIME] = 0.3,
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.do_buyback()
@@ -37,9 +37,8 @@ end
 
 -- Provide an access to local functions for unit tests only
 
-function M.test_SetBotState(state)
-  game_state.BOT_STATE = state
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
 end
-
 
 return M
