@@ -20,11 +20,7 @@ local M = {}
 
 local BOOL_TO_NUMBER = {  [true] = 1, [false] = 0 }
 
-M.BOT_STATE = {}
-M.ENEMY_HERO_STATE = {}
-M.ALLY_TOWER_STATE = {}
-M.ENEMY_TOWER_STATE = {}
-M.CREEPS_STATE = {}
+M.GAME_STATE = {}
 
 local function GetAllyTowerIncomingDamage()
   return algorithms.GetTotalIncomingDamage(env.ALLY_TOWER_DATA)
@@ -49,7 +45,7 @@ local function NormalizeValue(value, min, max)
 end
 
 function M.UpdateState()
-  M.BOT_STATE = {
+  M.GAME_STATE = {
     [1] = BOOL_TO_NUMBER[algorithms.IsBotAlive()],
     [2] = BOOL_TO_NUMBER[env.IS_BOT_LOW_HP],
     [3] = BOOL_TO_NUMBER[env.BOT_DATA.is_flask_healing],
@@ -136,111 +132,97 @@ function M.UpdateState()
                             env.ENEMY_HERO_DATA)]
   }
 
-  logger.PrintState("M.BOT_STATE", M.BOT_STATE)
+  logger.PrintState("M.GAME_STATE", M.GAME_STATE)
+
+  M.GAME_STATE[100] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA ~= nil]
 
   if env.ENEMY_HERO_DATA ~= nil then
-    M.ENEMY_HERO_STATE = {
-      [1] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA ~= nil],
-      [2] = BOOL_TO_NUMBER[env.IS_ENEMY_HERO_LOW_HP],
-      [3] = BOOL_TO_NUMBER[env.DOES_TOWER_PROTECT_ENEMY],
+    M.GAME_STATE[101] = BOOL_TO_NUMBER[env.IS_ENEMY_HERO_LOW_HP]
+    M.GAME_STATE[102] = BOOL_TO_NUMBER[env.DOES_TOWER_PROTECT_ENEMY]
 
-      [4] = NormalizeValue(
-              env.ENEMY_HERO_DISTANCE,
-              0,
-              constants.SAFE_HERO_DISTANCE),
+    M.GAME_STATE[103] = NormalizeValue(
+                          env.ENEMY_HERO_DISTANCE,
+                          0,
+                          constants.SAFE_HERO_DISTANCE)
 
-      [5] = BOOL_TO_NUMBER[env.DOES_ENEMY_HERO_HAVE_ADVANTAGE],
-      [6] = BOOL_TO_NUMBER[true],
-      [7] = NormalizeValue(
-              (env.ENEMY_HERO_DATA.incoming_damage_from_creeps
-               + env.ENEMY_HERO_DATA.incoming_damage_from_towers),
-              0,
-              constants.MAX_INCOMING_ATTACK_DAMAGE),
+    M.GAME_STATE[104] = BOOL_TO_NUMBER[
+                          env.DOES_ENEMY_HERO_HAVE_ADVANTAGE]
 
-      [8] = BOOL_TO_NUMBER[
-              env.ENEMY_HERO_DISTANCE
-              < algorithms.GetAttackRange(
-                  env.BOT_DATA,
-                  env.ENEMY_HERO_DATA,
-                  true)],
+    M.GAME_STATE[105] = NormalizeValue(
+            (env.ENEMY_HERO_DATA.incoming_damage_from_creeps
+             + env.ENEMY_HERO_DATA.incoming_damage_from_towers),
+            0,
+            constants.MAX_INCOMING_ATTACK_DAMAGE)
 
-      [9] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA.is_visible],
-      [10] = BOOL_TO_NUMBER[IsAttackHeroUnderTowerSafe()],
-      [11] = BOOL_TO_NUMBER[algorithms.IsTowerDiveReasonable(
+    M.GAME_STATE[106] = BOOL_TO_NUMBER[
+                          env.ENEMY_HERO_DISTANCE
+                          < algorithms.GetAttackRange(
                               env.BOT_DATA,
-                              env.ENEMY_HERO_DATA)]
-    }
-  else
-    M.ENEMY_HERO_STATE = {}
+                              env.ENEMY_HERO_DATA,
+                              true)]
+
+    M.GAME_STATE[107] = BOOL_TO_NUMBER[env.ENEMY_HERO_DATA.is_visible]
+    M.GAME_STATE[108] = BOOL_TO_NUMBER[IsAttackHeroUnderTowerSafe()]
+    M.GAME_STATE[109] = BOOL_TO_NUMBER[algorithms.IsTowerDiveReasonable(
+                                         env.BOT_DATA,
+                                         env.ENEMY_HERO_DATA)]
   end
+
+  M.GAME_STATE[200] = BOOL_TO_NUMBER[env.ALLY_TOWER_DATA ~= nil]
 
   if env.ALLY_TOWER_DATA ~= nil then
-    M.ALLY_TOWER_STATE = {
-      [1] = BOOL_TO_NUMBER[env.ALLY_TOWER_DATA ~= nil],
-      [2] = BOOL_TO_NUMBER[GetGlyphCooldown() == 0],
-      [3] = NormalizeValue(GetAllyTowerIncomingDamage(),
-              0,
-              constants.MAX_INCOMING_TOWER_DAMAGE),
-      [4] = BOOL_TO_NUMBER[algorithms.IsUnitLowHp(env.ALLY_TOWER_DATA)]
-    }
-  else
-    M.ALLY_TOWER_STATE = {}
+    M.GAME_STATE[201] = BOOL_TO_NUMBER[GetGlyphCooldown() == 0]
+    M.GAME_STATE[202] = NormalizeValue(GetAllyTowerIncomingDamage(),
+                          0,
+                          constants.MAX_INCOMING_TOWER_DAMAGE)
+    M.GAME_STATE[203] = BOOL_TO_NUMBER[
+                          algorithms.IsUnitLowHp(env.ALLY_TOWER_DATA)]
   end
+
+  M.GAME_STATE[300] = BOOL_TO_NUMBER[env.ENEMY_TOWER_DATA ~= nil]
 
   if env.ENEMY_TOWER_DATA ~= nil then
-    M.ENEMY_TOWER_STATE = {
-      [1] = BOOL_TO_NUMBER[env.ENEMY_TOWER_DATA ~= nil],
-      [2] = NormalizeValue(
-              env.ENEMY_TOWER_DISTANCE,
-              0,
-              constants.MIN_TOWER_DISTANCE)
-    }
-  else
-    M.ENEMY_TOWER_STATE = {}
+    M.GAME_STATE[301] = NormalizeValue(
+                          env.ENEMY_TOWER_DISTANCE,
+                          0,
+                          constants.MIN_TOWER_DISTANCE)
   end
 
-  M.CREEPS_STATE = {
-    [1] = BOOL_TO_NUMBER[env.ENEMY_CREEP_FRONT_DATA ~= nil],
-    [2] = BOOL_TO_NUMBER[env.ENEMY_CREEP_BACK_DATA ~= nil],
-    [3] = BOOL_TO_NUMBER[env.ALLY_CREEP_FRONT_DATA ~= nil],
-    [4] = BOOL_TO_NUMBER[env.ALLY_CREEP_BACK_DATA ~= nil],
-    [5] = BOOL_TO_NUMBER[env.PRE_LAST_HIT_ENEMY_CREEP ~= nil],
-    [6] = BOOL_TO_NUMBER[env.PRE_LAST_HIT_ALLY_CREEP ~= nil],
-    [7] = BOOL_TO_NUMBER[env.LAST_HIT_ENEMY_CREEP ~= nil],
-    [8] = BOOL_TO_NUMBER[env.LAST_HIT_ALLY_CREEP ~= nil],
-    [9] = BOOL_TO_NUMBER[true]
-  }
+  M.GAME_STATE[400] = BOOL_TO_NUMBER[env.ENEMY_CREEP_FRONT_DATA ~= nil]
+  M.GAME_STATE[401] = BOOL_TO_NUMBER[env.ENEMY_CREEP_BACK_DATA ~= nil]
+  M.GAME_STATE[402] = BOOL_TO_NUMBER[env.ALLY_CREEP_FRONT_DATA ~= nil]
+  M.GAME_STATE[403] = BOOL_TO_NUMBER[env.ALLY_CREEP_BACK_DATA ~= nil]
+  M.GAME_STATE[404] = BOOL_TO_NUMBER[env.PRE_LAST_HIT_ENEMY_CREEP ~= nil]
+  M.GAME_STATE[405] = BOOL_TO_NUMBER[env.PRE_LAST_HIT_ALLY_CREEP ~= nil]
+  M.GAME_STATE[406] = BOOL_TO_NUMBER[env.LAST_HIT_ENEMY_CREEP ~= nil]
+  M.GAME_STATE[407] = BOOL_TO_NUMBER[env.LAST_HIT_ALLY_CREEP ~= nil]
 
   if env.LAST_HIT_ENEMY_CREEP ~= nil then
-    M.CREEPS_STATE[9] = BOOL_TO_NUMBER[algorithms.DoesTowerProtectUnit(
+    M.GAME_STATE[408] = BOOL_TO_NUMBER[algorithms.DoesTowerProtectUnit(
                                          env.LAST_HIT_ENEMY_CREEP)]
   end
 
   if env.LAST_HIT_ALLY_CREEP ~= nil then
-    M.CREEPS_STATE[10] = BOOL_TO_NUMBER[algorithms.DoesTowerProtectUnit(
-                                          env.LAST_HIT_ALLY_CREEP)]
+    M.GAME_STATE[409] = BOOL_TO_NUMBER[algorithms.DoesTowerProtectUnit(
+                                         env.LAST_HIT_ALLY_CREEP)]
 
-    M.CREEPS_STATE[11] = functions.GetRate(
-                           env.LAST_HIT_ALLY_CREEP.health,
-                           env.LAST_HIT_ALLY_CREEP.max_health)
+    M.GAME_STATE[410] = functions.GetRate(
+                          env.LAST_HIT_ALLY_CREEP.health,
+                          env.LAST_HIT_ALLY_CREEP.max_health)
   end
 
+  M.GAME_STATE[500] = BOOL_TO_NUMBER[env.NEARBY_TREE ~= nil]
+
   if env.NEARBY_TREE ~= nil then
-    M.NEARBY_TREE_STATE = {
-      [1] = BOOL_TO_NUMBER[env.NEARBY_TREE ~= nil],
+    M.GAME_STATE[501] = NormalizeValue(
+                          functions.GetDistance(
+                            GetTreeLocation(env.NEARBY_TREE),
+                            env.ENEMY_TOWER_DATA.location),
+                          0,
+                          constants.TOWER_ATTACK_RANGE
+                          + constants.MOTION_BUFFER_RANGE)
 
-      [2] = NormalizeValue(
-              functions.GetDistance(
-                GetTreeLocation(env.NEARBY_TREE),
-                env.ENEMY_TOWER_DATA.location),
-              0,
-              constants.TOWER_ATTACK_RANGE
-              + constants.MOTION_BUFFER_RANGE),
-
-      [3] = BOOL_TO_NUMBER[env.ENEMY_TOWER_DATA ~= nil],
-    }
-  else
-    M.NEARBY_TREE_STATE = {}
+    M.GAME_STATE[502] = BOOL_TO_NUMBER[env.ENEMY_TOWER_DATA ~= nil]
   end
 end
 
