@@ -37,10 +37,12 @@ end
 --------------------------------
 
 function M.pre_attack_ally_creep()
-  local creep = GetTargetableAllyCreep()
+  local weights = {
+    [gs.AC_TARGETABLE_PRESENT] = 1,
+    [gs.AC_TARGETABLE_IS_TOWER_PROTECTED] = -1,
+  }
 
-  return creep ~= nil
-         and not algorithms.DoesTowerProtectUnit(creep)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.attack_ally_creep()

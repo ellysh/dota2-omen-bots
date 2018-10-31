@@ -49,6 +49,35 @@ end
 
 ---------------------------------
 
+function test_pre_attack_ally_creep_1_succeed()
+  moves.test_SetGameState({
+    [gs.AC_TARGETABLE_PRESENT] = 1,
+    [gs.AC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+  })
+
+  luaunit.assertTrue(moves.pre_attack_ally_creep())
+end
+
+function test_pre_attack_ally_creep_1_fails()
+  moves.test_SetGameState({
+    [gs.AC_TARGETABLE_PRESENT] = 1,
+    [gs.AC_TARGETABLE_IS_TOWER_PROTECTED] = 1,
+  })
+
+  luaunit.assertFalse(moves.pre_attack_ally_creep())
+end
+
+function test_pre_attack_ally_creep_2_fails()
+  moves.test_SetGameState({
+    [gs.AC_TARGETABLE_PRESENT] = 0,
+    [gs.AC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+  })
+
+  luaunit.assertFalse(moves.pre_attack_ally_creep())
+end
+
+---------------------------------
+
 function test_pre_attack_enemy_hero_1_succeed()
   moves.test_SetGameState({
     [gs.EH_PRESENT] = 1,
