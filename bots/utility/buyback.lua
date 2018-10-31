@@ -21,9 +21,9 @@ end
 
 function M.pre_do_buyback()
   local weights = {
-    [gs.BOT_IS_ALIVE] = 0.4,
-    [gs.BOT_HAS_BUYBACK] = 0.3,
-    [gs.BOT_RESPAWN_TIME] = 0.3,
+    [gs.BOT_IS_ALIVE] = -1,
+    [gs.BOT_HAS_BUYBACK] = 0.5,
+    [gs.BOT_RESPAWN_TIME] = 0.5,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
