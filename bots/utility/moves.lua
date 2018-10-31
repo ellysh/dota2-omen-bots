@@ -16,7 +16,7 @@ local env = require(
 local action_timing = require(
   GetScriptDirectory() .."/utility/action_timing")
 
-local game_state = require(
+local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
 local M = {}
@@ -89,14 +89,14 @@ end
 
 function M.pre_attack_enemy_hero()
   local weights = {
-    [1] = 0.5, -- env.ENEMY_HERO_DATA ~= nil
-    [9] = 0.5, -- env.ENEMY_HERO_DATA.is_visible
-    [3] = -0.2, -- env.DOES_TOWER_PROTECT_ENEMY
-    [10] = 0.2, -- IsAttackUnderTowerSafe
-    [11] = 0.2, -- algorithms.IsTowerDiveReasonable
+    [gs.EH_PRESENT] = 0.5,
+    [gs.EH_IS_VISIBLE] = 0.5,
+    [gs.EH_IS_TOWER_PROTECTED] = -0.2,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0.2,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0.2,
   }
 
-  return game_state.Evaluate(game_state.ENEMY_HERO_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.attack_enemy_hero()
@@ -141,16 +141,8 @@ end
 
 -- Provide an access to local functions for unit tests only
 
-function M.test_SetBotState(state)
-  game_state.BOT_STATE = state
-end
-
-function M.test_SetEnemyHeroState(state)
-  game_state.ENEMY_HERO_STATE = state
-end
-
-function M.test_SetCreepsState(state)
-  game_state.CREEPS_STATE = state
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
 end
 
 return M

@@ -62,7 +62,7 @@ M.EH_IS_TOWER_PROTECTED = 102
 M.EH_BOT_DISTANCE = 103
 M.EH_HAS_ADVANTAGE = 104
 M.EH_INCOMING_DAMAGE = 105
-M.EH_IN_BOT_ATTACK_RANGE = 106
+M.EH_NOT_IN_BOT_ATTACK_RANGE = 106
 M.BOT_IN_EH_ATTACK_RANGE = 107
 M.EH_IS_VISIBLE = 108
 M.EH_CAN_BE_ATTACKED_UNDER_TOWER = 109
@@ -219,12 +219,12 @@ function M.UpdateState()
             0,
             constants.MAX_INCOMING_ATTACK_DAMAGE)
 
-    M.GAME_STATE[M.EH_IN_BOT_ATTACK_RANGE] = NUM[
-                          env.ENEMY_HERO_DISTANCE
-                          <= algorithms.GetAttackRange(
-                               env.BOT_DATA,
-                               env.ENEMY_HERO_DATA,
-                               true)]
+    M.GAME_STATE[M.EH_NOT_IN_BOT_ATTACK_RANGE] = NUM[
+                          algorithms.GetAttackRange(
+                            env.BOT_DATA,
+                            env.ENEMY_HERO_DATA,
+                            true)
+                          < env.ENEMY_HERO_DISTANCE]
 
     M.GAME_STATE[M.BOT_IN_EH_ATTACK_RANGE] = NUM[
                           env.ENEMY_HERO_DISTANCE
@@ -324,8 +324,8 @@ function M.UpdateState()
   logger.PrintGameState(M.GAME_STATE)
 end
 
-function M.Evaluate(state, weights)
-  local result = 0
+function M.EvaluateFrom(start, state, weights)
+  local result = start
 
   functions.DoWithKeysAndElements(
     weights,
@@ -336,6 +336,10 @@ function M.Evaluate(state, weights)
     end)
 
   return 1 <= result
+end
+
+function M.Evaluate(state, weights)
+  return M.EvaluateFrom(0, state, weights)
 end
 
 -- Provide an access to local functions for unit tests only

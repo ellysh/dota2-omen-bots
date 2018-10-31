@@ -10,7 +10,7 @@ local env = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
-local game_state = require(
+local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
 local M = {}
@@ -19,41 +19,31 @@ local M = {}
 
 function M.pre_attack_with_better_position()
   local weights = {
-    [1] = 1, -- algorithms.IsBotAlive()
-    [2] = -1, -- env.IS_BOT_LOW_HP
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = -1,
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
 
 function M.pre_attack_enemy_hero_from_hg()
-  local weights_bot_state = {
-    [32] = -1, -- bot incoming damage
-    [33] = 1.6, -- IsUnitPositionBetter(bot, enemy_hero)
+  local weights_1 = {
+    [gs.BOT_INCOMING_DAMAGE] = -1,
+    [gs.BOT_HAS_BETTER_POSITION] = 1.6,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = -1,
   }
 
-  local weights_enemy_hero_state = {
-    [8] = 1, -- env.ENEMY_HERO_DISTANCE < bot attack range
-  }
-
-  local weights_creeps_state = {
-    [1] = -0.5, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
-    [2] = -0.5, -- env.ENEMY_CREEP_BACK_DATA ~= nil
-    [3] = 1, -- env.ALLY_CREEP_FRONT_DATA ~= nil
-    [9] = 1, -- true
-
+  local weights_2 = {
+    [gs.EC_FRONT_PRESENT] = -0.5,
+    [gs.EC_BACK_PRESENT] = -0.5,
+    [gs.AC_FRONT_PRESENT] = 1,
   }
 
   return moves.pre_attack_enemy_hero()
-         and game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
-         and game_state.Evaluate(
-               game_state.ENEMY_HERO_STATE,
-               weights_enemy_hero_state)
-         and game_state.Evaluate(
-               game_state.CREEPS_STATE,
-               weights_creeps_state)
+         and gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.EvaluateFrom(1, gs.GAME_STATE, weights_2)
 end
 
 function M.attack_enemy_hero_from_hg()
@@ -99,22 +89,10 @@ end
 
 -- Provide an access to local functions for unit tests only
 
-function M.test_SetBotState(state)
-  game_state.BOT_STATE = state
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
 
-  moves.test_SetBotState(state)
-end
-
-function M.test_SetEnemyHeroState(state)
-  game_state.ENEMY_HERO_STATE = state
-
-  moves.test_SetEnemyHeroState(state)
-end
-
-function M.test_SetCreepsState(state)
-  game_state.CREEPS_STATE = state
-
-  moves.test_SetCreepsState(state)
+  moves.test_SetGameState(state)
 end
 
 return M

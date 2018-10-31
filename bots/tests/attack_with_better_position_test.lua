@@ -4,12 +4,13 @@ pcall(require, "luacov")
 require("global_functions")
 
 local attack_with_better_position = require("attack_with_better_position")
+local gs = require("game_state")
 local luaunit = require("luaunit")
 
 function test_pre_attack_with_better_position_1_succeed()
-  attack_with_better_position.test_SetBotState({
-    [1] = 1, -- algorithms.IsBotAlive()
-    [2] = 0, -- env.IS_BOT_LOW_HP
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = 0,
   })
 
   luaunit.assertTrue(
@@ -17,9 +18,9 @@ function test_pre_attack_with_better_position_1_succeed()
 end
 
 function test_pre_attack_with_better_position_1_fails()
-  attack_with_better_position.test_SetBotState({
-    [1] = 1, -- algorithms.IsBotAlive()
-    [2] = 1, -- env.IS_BOT_LOW_HP
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = 1,
   })
 
   luaunit.assertFalse(
@@ -27,9 +28,9 @@ function test_pre_attack_with_better_position_1_fails()
 end
 
 function test_pre_attack_with_better_position_2_fails()
-  attack_with_better_position.test_SetBotState({
-    [1] = 0, -- algorithms.IsBotAlive()
-    [2] = 0, -- env.IS_BOT_LOW_HP
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 0,
+    [gs.BOT_IS_LOW_HP] = 0,
   })
 
   luaunit.assertFalse(
@@ -37,9 +38,9 @@ function test_pre_attack_with_better_position_2_fails()
 end
 
 function test_pre_attack_with_better_position_3_fails()
-  attack_with_better_position.test_SetBotState({
-    [1] = 0, -- algorithms.IsBotAlive()
-    [2] = 1, -- env.IS_BOT_LOW_HP
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 0,
+    [gs.BOT_IS_LOW_HP] = 1,
   })
 
   luaunit.assertFalse(
@@ -49,25 +50,18 @@ end
 ---------------------------------
 
 function test_pre_attack_enemy_hero_from_hg_1_succeed()
-  attack_with_better_position.test_SetBotState({
-    [32] = 0.5, -- bot incoming damage
-    [33] = 1, -- IsUnitPositionBetter(bot, enemy_hero)
-  })
-
-  attack_with_better_position.test_SetEnemyHeroState({
-    [1] = 1, -- env.ENEMY_HERO_DATA ~= nil
-    [3] = 0, -- env.DOES_TOWER_PROTECT_ENEMY
-    [8] = 1,  -- env.ENEMY_HERO_DISTANCE < bot attack range
-    [9] = 1, -- env.ENEMY_HERO_DATA.is_visible
-    [10] = 0, -- IsAttackUnderTowerSafe
-    [11] = 0, -- algorithms.IsTowerDiveReasonable
-  })
-
-  attack_with_better_position.test_SetCreepsState({
-    [1] = 0, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
-    [2] = 0, -- env.ENEMY_CREEP_BACK_DATA ~= nil
-    [3] = 1, -- env.ALLY_CREEP_FRONT_DATA ~= nil
-    [9] = 1, -- true
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_INCOMING_DAMAGE] = 0.5,
+    [gs.BOT_HAS_BETTER_POSITION] = 1,
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EC_FRONT_PRESENT] = 0,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
   })
 
   luaunit.assertTrue(
@@ -75,25 +69,18 @@ function test_pre_attack_enemy_hero_from_hg_1_succeed()
 end
 
 function test_pre_attack_enemy_hero_from_hg_2_succeed()
-  attack_with_better_position.test_SetBotState({
-    [32] = 0.5, -- bot incoming damage
-    [33] = 1, -- IsUnitPositionBetter(bot, enemy_hero)
-  })
-
-  attack_with_better_position.test_SetEnemyHeroState({
-    [1] = 1, -- env.ENEMY_HERO_DATA ~= nil
-    [3] = 0, -- env.DOES_TOWER_PROTECT_ENEMY
-    [8] = 1,  -- env.ENEMY_HERO_DISTANCE < bot attack range
-    [9] = 1, -- env.ENEMY_HERO_DATA.is_visible
-    [10] = 0, -- IsAttackUnderTowerSafe
-    [11] = 0, -- algorithms.IsTowerDiveReasonable
-  })
-
-  attack_with_better_position.test_SetCreepsState({
-    [1] = 0, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
-    [2] = 0, -- env.ENEMY_CREEP_BACK_DATA ~= nil
-    [3] = 0, -- env.ALLY_CREEP_FRONT_DATA ~= nil
-    [9] = 1, -- true
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_INCOMING_DAMAGE] = 0.5,
+    [gs.BOT_HAS_BETTER_POSITION] = 1,
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EC_FRONT_PRESENT] = 0,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
   })
 
   luaunit.assertTrue(
@@ -101,25 +88,18 @@ function test_pre_attack_enemy_hero_from_hg_2_succeed()
 end
 
 function test_pre_attack_enemy_hero_from_hg_1_fails()
-  attack_with_better_position.test_SetBotState({
-    [32] = 0.5, -- bot incoming damage
-    [33] = 1, -- IsUnitPositionBetter(bot, enemy_hero)
-  })
-
-  attack_with_better_position.test_SetEnemyHeroState({
-    [1] = 0, -- env.ENEMY_HERO_DATA ~= nil
-    [3] = 0, -- env.DOES_TOWER_PROTECT_ENEMY
-    [8] = 1,  -- env.ENEMY_HERO_DISTANCE < bot attack range
-    [9] = 1, -- env.ENEMY_HERO_DATA.is_visible
-    [10] = 0, -- IsAttackUnderTowerSafe
-    [11] = 0, -- algorithms.IsTowerDiveReasonable
-  })
-
-  attack_with_better_position.test_SetCreepsState({
-    [1] = 0, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
-    [2] = 0, -- env.ENEMY_CREEP_BACK_DATA ~= nil
-    [3] = 1, -- env.ALLY_CREEP_FRONT_DATA ~= nil
-    [9] = 1, -- true
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_INCOMING_DAMAGE] = 0.5,
+    [gs.BOT_HAS_BETTER_POSITION] = 1,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EC_FRONT_PRESENT] = 0,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
   })
 
   luaunit.assertFalse(
@@ -127,25 +107,18 @@ function test_pre_attack_enemy_hero_from_hg_1_fails()
 end
 
 function test_pre_attack_enemy_hero_from_hg_2_fails()
-  attack_with_better_position.test_SetBotState({
-    [32] = 0.5, -- bot incoming damage
-    [33] = 1, -- IsUnitPositionBetter(bot, enemy_hero)
-  })
-
-  attack_with_better_position.test_SetEnemyHeroState({
-    [1] = 1, -- env.ENEMY_HERO_DATA ~= nil
-    [3] = 0, -- env.DOES_TOWER_PROTECT_ENEMY
-    [8] = 1,  -- env.ENEMY_HERO_DISTANCE < bot attack range
-    [9] = 1, -- env.ENEMY_HERO_DATA.is_visible
-    [10] = 0, -- IsAttackUnderTowerSafe
-    [11] = 0, -- algorithms.IsTowerDiveReasonable
-  })
-
-  attack_with_better_position.test_SetCreepsState({
-    [1] = 1, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
-    [2] = 0, -- env.ENEMY_CREEP_BACK_DATA ~= nil
-    [3] = 0, -- env.ALLY_CREEP_FRONT_DATA ~= nil
-    [9] = 1, -- true
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_INCOMING_DAMAGE] = 0.5,
+    [gs.BOT_HAS_BETTER_POSITION] = 1,
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EC_FRONT_PRESENT] = 1,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
   })
 
   luaunit.assertFalse(
@@ -153,25 +126,18 @@ function test_pre_attack_enemy_hero_from_hg_2_fails()
 end
 
 function test_pre_attack_enemy_hero_from_hg_3_fails()
-  attack_with_better_position.test_SetBotState({
-    [32] = 0.5, -- bot incoming damage
-    [33] = 1, -- IsUnitPositionBetter(bot, enemy_hero)
-  })
-
-  attack_with_better_position.test_SetEnemyHeroState({
-    [1] = 1, -- env.ENEMY_HERO_DATA ~= nil
-    [3] = 0, -- env.DOES_TOWER_PROTECT_ENEMY
-    [8] = 1,  -- env.ENEMY_HERO_DISTANCE < bot attack range
-    [9] = 1, -- env.ENEMY_HERO_DATA.is_visible
-    [10] = 0, -- IsAttackUnderTowerSafe
-    [11] = 0, -- algorithms.IsTowerDiveReasonable
-  })
-
-  attack_with_better_position.test_SetCreepsState({
-    [1] = 0, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
-    [2] = 1, -- env.ENEMY_CREEP_BACK_DATA ~= nil
-    [3] = 0, -- env.ALLY_CREEP_FRONT_DATA ~= nil
-    [9] = 1, -- true
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_INCOMING_DAMAGE] = 0.5,
+    [gs.BOT_HAS_BETTER_POSITION] = 1,
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EC_FRONT_PRESENT] = 0,
+    [gs.EC_BACK_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 0,
   })
 
   luaunit.assertFalse(
@@ -179,25 +145,18 @@ function test_pre_attack_enemy_hero_from_hg_3_fails()
 end
 
 function test_pre_attack_enemy_hero_from_hg_4_fails()
-  attack_with_better_position.test_SetBotState({
-    [32] = 0.5, -- bot incoming damage
-    [33] = 0, -- IsUnitPositionBetter(bot, enemy_hero)
-  })
-
-  attack_with_better_position.test_SetEnemyHeroState({
-    [1] = 1, -- env.ENEMY_HERO_DATA ~= nil
-    [3] = 0, -- env.DOES_TOWER_PROTECT_ENEMY
-    [8] = 1,  -- env.ENEMY_HERO_DISTANCE < bot attack range
-    [9] = 1, -- env.ENEMY_HERO_DATA.is_visible
-    [10] = 0, -- IsAttackUnderTowerSafe
-    [11] = 0, -- algorithms.IsTowerDiveReasonable
-  })
-
-  attack_with_better_position.test_SetCreepsState({
-    [1] = 0, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
-    [2] = 0, -- env.ENEMY_CREEP_BACK_DATA ~= nil
-    [3] = 1, -- env.ALLY_CREEP_FRONT_DATA ~= nil
-    [9] = 1, -- true
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_INCOMING_DAMAGE] = 0.5,
+    [gs.BOT_HAS_BETTER_POSITION] = 0,
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EC_FRONT_PRESENT] = 0,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
   })
 
   luaunit.assertFalse(
@@ -205,25 +164,18 @@ function test_pre_attack_enemy_hero_from_hg_4_fails()
 end
 
 function test_pre_attack_enemy_hero_from_hg_5_fails()
-  attack_with_better_position.test_SetBotState({
-    [32] = 0.7, -- bot incoming damage
-    [33] = 1, -- IsUnitPositionBetter(bot, enemy_hero)
-  })
-
-  attack_with_better_position.test_SetEnemyHeroState({
-    [1] = 1, -- env.ENEMY_HERO_DATA ~= nil
-    [3] = 0, -- env.DOES_TOWER_PROTECT_ENEMY
-    [8] = 1,  -- env.ENEMY_HERO_DISTANCE < bot attack range
-    [9] = 1, -- env.ENEMY_HERO_DATA.is_visible
-    [10] = 0, -- IsAttackUnderTowerSafe
-    [11] = 0, -- algorithms.IsTowerDiveReasonable
-  })
-
-  attack_with_better_position.test_SetCreepsState({
-    [1] = 0, -- env.ENEMY_CREEP_FRONT_DATA ~= nil
-    [2] = 0, -- env.ENEMY_CREEP_BACK_DATA ~= nil
-    [3] = 1, -- env.ALLY_CREEP_FRONT_DATA ~= nil
-    [9] = 1, -- true
+  attack_with_better_position.test_SetGameState({
+    [gs.BOT_INCOMING_DAMAGE] = 0.7,
+    [gs.BOT_HAS_BETTER_POSITION] = 1,
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EC_FRONT_PRESENT] = 0,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
   })
 
   luaunit.assertFalse(
