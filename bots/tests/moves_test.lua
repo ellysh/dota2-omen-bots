@@ -186,4 +186,42 @@ function test_pre_attack_enemy_hero_5_fails()
   luaunit.assertFalse(moves.pre_attack_enemy_hero())
 end
 
+---------------------------------
+
+function test_pre_move_enemy_hero_1_succeed()
+  moves.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IN_PURSUIT_RANGE] = 1,
+  })
+
+  luaunit.assertTrue(moves.pre_move_enemy_hero())
+end
+
+function test_pre_move_enemy_hero_1_fails()
+  moves.test_SetGameState({
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_IN_PURSUIT_RANGE] = 1,
+  })
+
+  luaunit.assertFalse(moves.pre_move_enemy_hero())
+end
+
+function test_pre_move_enemy_hero_2_fails()
+  moves.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IN_PURSUIT_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(moves.pre_move_enemy_hero())
+end
+
+function test_pre_move_enemy_hero_3_fails()
+  moves.test_SetGameState({
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_IN_PURSUIT_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(moves.pre_move_enemy_hero())
+end
+
 os.exit(luaunit.LuaUnit.run())

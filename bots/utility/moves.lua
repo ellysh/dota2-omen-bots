@@ -80,14 +80,12 @@ end
 ---------------------------------
 
 function M.pre_move_enemy_hero()
-  return env.ENEMY_HERO_DATA ~= nil
+  local weights = {
+    [gs.EH_PRESENT] = 0.5,
+    [gs.EH_IN_PURSUIT_RANGE] = 0.5,
+  }
 
-         and env.ENEMY_HERO_DISTANCE
-             <= algorithms.GetAttackRange(
-                  env.BOT_DATA,
-                  env.ENEMY_HERO_DATA,
-                  true)
-                + constants.MAX_PURSUIT_INC_DISTANCE
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.move_enemy_hero()
