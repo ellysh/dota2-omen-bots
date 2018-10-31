@@ -18,12 +18,7 @@ local M = {}
 ---------------------------------
 
 function M.pre_attack_with_better_position()
-  local weights = {
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_IS_LOW_HP] = -1,
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  return moves.pre_attack_objective()
 end
 
 ---------------------------------

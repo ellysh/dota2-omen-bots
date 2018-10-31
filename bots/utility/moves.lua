@@ -1,11 +1,5 @@
-local map = require(
-  GetScriptDirectory() .."/utility/map")
-
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
-
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
 
 local env = require(
   GetScriptDirectory() .."/utility/environment")
@@ -17,6 +11,17 @@ local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
 local M = {}
+
+--------------------------------
+
+function M.pre_attack_objective()
+  local weights = {
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
 
 --------------------------------
 

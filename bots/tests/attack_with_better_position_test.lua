@@ -7,46 +7,6 @@ local attack_with_better_position = require("attack_with_better_position")
 local gs = require("game_state")
 local luaunit = require("luaunit")
 
-function test_pre_attack_with_better_position_1_succeed()
-  attack_with_better_position.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_IS_LOW_HP] = 0,
-  })
-
-  luaunit.assertTrue(
-    attack_with_better_position.pre_attack_with_better_position())
-end
-
-function test_pre_attack_with_better_position_1_fails()
-  attack_with_better_position.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_IS_LOW_HP] = 1,
-  })
-
-  luaunit.assertFalse(
-    attack_with_better_position.pre_attack_with_better_position())
-end
-
-function test_pre_attack_with_better_position_2_fails()
-  attack_with_better_position.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 0,
-    [gs.BOT_IS_LOW_HP] = 0,
-  })
-
-  luaunit.assertFalse(
-    attack_with_better_position.pre_attack_with_better_position())
-end
-
-function test_pre_attack_with_better_position_3_fails()
-  attack_with_better_position.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 0,
-    [gs.BOT_IS_LOW_HP] = 1,
-  })
-
-  luaunit.assertFalse(
-    attack_with_better_position.pre_attack_with_better_position())
-end
-
 ---------------------------------
 
 function test_pre_attack_enemy_hero_from_hg_1_succeed()

@@ -7,42 +7,6 @@ local farm = require("farm")
 local gs = require("game_state")
 local luaunit = require("luaunit")
 
-function test_pre_farm_1_succeed()
-  farm.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_IS_LOW_HP] = 0,
-  })
-
-  luaunit.assertTrue(farm.pre_farm())
-end
-
-function test_pre_farm_1_fails()
-  farm.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_IS_LOW_HP] = 1,
-  })
-
-  luaunit.assertFalse(farm.pre_farm())
-end
-
-function test_pre_farm_2_fails()
-  farm.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 0,
-    [gs.BOT_IS_LOW_HP] = 0,
-  })
-
-  luaunit.assertFalse(farm.pre_farm())
-end
-
-function test_pre_farm_3_fails()
-  farm.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 0,
-    [gs.BOT_IS_LOW_HP] = 1,
-  })
-
-  luaunit.assertFalse(farm.pre_farm())
-end
-
 ---------------------------------
 
 function test_pre_lasthit_enemy_creep_1_succeed()

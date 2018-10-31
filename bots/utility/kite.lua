@@ -24,8 +24,7 @@ local M = {}
 ---------------------------------
 
 function M.pre_kite()
-  return algorithms.IsBotAlive()
-         and not env.IS_BOT_LOW_HP
+  return moves.pre_attack_objective()
 end
 
 ---------------------------------
@@ -100,5 +99,11 @@ end
 ---------------------------------
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+
+  moves.test_SetGameState(state)
+end
 
 return M
