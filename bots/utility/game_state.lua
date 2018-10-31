@@ -193,10 +193,6 @@ function M.UpdateState()
               + env.BOT_DATA.incoming_damage_from_towers),
              0,
              constants.MAX_INCOMING_ATTACK_DAMAGE),
-
-    [M.BOT_HAS_BETTER_POSITION] = NUM[algorithms.IsUnitPositionBetter(
-                                        env.BOT_DATA,
-                                        env.ENEMY_HERO_DATA)]
   }
 
   M.GAME_STATE[M.EH_PRESENT] = NUM[env.ENEMY_HERO_DATA ~= nil]
@@ -243,6 +239,11 @@ function M.UpdateState()
       NUM[algorithms.IsTowerDiveReasonable(
            env.BOT_DATA,
            env.ENEMY_HERO_DATA)]
+
+    M.GAME_STATE[M.BOT_HAS_BETTER_POSITION] =
+      NUM[algorithms.IsUnitPositionBetter(
+            env.BOT_DATA,
+            env.ENEMY_HERO_DATA)]
 
     M.GAME_STATE[M.EH_HAS_BETTER_POSITION] =
       NUM[algorithms.IsUnitPositionBetter(
@@ -319,7 +320,7 @@ function M.UpdateState()
   if env.NEARBY_TREE ~= nil and env.ENEMY_TOWER_DATA ~= nil then
     M.GAME_STATE[M.TREE_ET_UNSAFE_DISTANCE] = NUM[
                  functions.GetDistance(
-                   GetTreeLocation(tree),
+                   GetTreeLocation(env.NEARBY_TREE),
                    env.ENEMY_TOWER_DATA.location)
                  <= algorithms.GetAttackRange(
                       env.ENEMY_TOWER_DATA,

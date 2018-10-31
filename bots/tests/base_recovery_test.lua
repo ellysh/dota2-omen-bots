@@ -112,7 +112,7 @@ end
 function test_pre_restore_hp_on_base_1_succeed()
   base_recovery.test_SetGameState({
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
-    [gs.BOT_HP_RATE] = 0.85,
+    [gs.BOT_HP_RATE] = 0.84,
   })
 
   luaunit.assertTrue(base_recovery.pre_restore_hp_on_base())
@@ -121,7 +121,7 @@ end
 function test_pre_restore_hp_on_base_2_succeed()
   base_recovery.test_SetGameState({
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
-    [gs.BOT_HP_RATE] = 0.9,
+    [gs.BOT_HP_RATE] = 0.5,
   })
 
   luaunit.assertTrue(base_recovery.pre_restore_hp_on_base())
@@ -129,8 +129,8 @@ end
 
 function test_pre_restore_hp_on_base_1_fails()
   base_recovery.test_SetGameState({
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
-    [gs.BOT_HP_RATE] = 0.85,
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
+    [gs.BOT_HP_RATE] = 0.86,
   })
 
   luaunit.assertFalse(base_recovery.pre_restore_hp_on_base())
@@ -139,7 +139,7 @@ end
 function test_pre_restore_hp_on_base_2_fails()
   base_recovery.test_SetGameState({
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
-    [gs.BOT_HP_RATE] = 0,
+    [gs.BOT_HP_RATE] = 0.84,
   })
 
   luaunit.assertFalse(base_recovery.pre_restore_hp_on_base())
@@ -147,8 +147,8 @@ end
 
 function test_pre_restore_hp_on_base_3_fails()
   base_recovery.test_SetGameState({
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
-    [gs.BOT_HP_RATE] = 0.5,
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
+    [gs.BOT_HP_RATE] = 0,
   })
 
   luaunit.assertFalse(base_recovery.pre_restore_hp_on_base())
@@ -168,7 +168,7 @@ end
 function test_pre_restore_mp_on_base_1_succeed()
   base_recovery.test_SetGameState({
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
-    [gs.BOT_MP_RATE] = 0.82,
+    [gs.BOT_MP_RATE] = 0.81,
   })
 
   luaunit.assertTrue(base_recovery.pre_restore_mp_on_base())
@@ -177,7 +177,7 @@ end
 function test_pre_restore_mp_on_base_2_succeed()
   base_recovery.test_SetGameState({
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
-    [gs.BOT_MP_RATE] = 0.9,
+    [gs.BOT_MP_RATE] = 0.5,
   })
 
   luaunit.assertTrue(base_recovery.pre_restore_mp_on_base())
@@ -185,8 +185,8 @@ end
 
 function test_pre_restore_mp_on_base_1_fails()
   base_recovery.test_SetGameState({
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
-    [gs.BOT_MP_RATE] = 0.85,
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
+    [gs.BOT_MP_RATE] = 0.83,
   })
 
   luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())
@@ -195,22 +195,13 @@ end
 function test_pre_restore_mp_on_base_2_fails()
   base_recovery.test_SetGameState({
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
-    [gs.BOT_MP_RATE] = 0,
+    [gs.BOT_MP_RATE] = 0.84,
   })
 
   luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())
 end
 
 function test_pre_restore_mp_on_base_3_fails()
-  base_recovery.test_SetGameState({
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
-    [gs.BOT_MP_RATE] = 0.5,
-  })
-
-  luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())
-end
-
-function test_pre_restore_mp_on_base_4_fails()
   base_recovery.test_SetGameState({})
 
   luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())

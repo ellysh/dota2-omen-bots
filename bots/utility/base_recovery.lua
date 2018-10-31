@@ -39,8 +39,8 @@ end
 function M.pre_restore_hp_on_base()
   local weights = {
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] =
-      (1.1 - constants.UNIT_FOUNTAIN_MAX_HEALTH),
-    [gs.BOT_HP_RATE] = 0.9,
+      (1 + constants.UNIT_FOUNTAIN_MAX_HEALTH),
+    [gs.BOT_HP_RATE] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -55,8 +55,8 @@ end
 function M.pre_restore_mp_on_base()
   local weights = {
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] =
-      (1.1 - constants.UNIT_FOUNTAIN_MAX_MANA),
-    [gs.BOT_MP_RATE] = 0.9,
+      (1 + constants.UNIT_FOUNTAIN_MAX_MANA),
+    [gs.BOT_MP_RATE] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
