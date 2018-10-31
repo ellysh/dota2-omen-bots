@@ -54,6 +54,7 @@ M.BOT_IN_SAFE_SPOT = 27
 M.BOT_HAS_LEVEL_FOR_AGRESSION = 28
 M.BOT_INCOMING_DAMAGE = 29
 M.BOT_HAS_BETTER_POSITION = 30
+M.BOT_STASH_FULL = 31
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -101,6 +102,9 @@ M.AC_TARGETABLE_IS_TOWER_PROTECTED = 415
 -- Tree state
 M.NO_TREE_PRESENT = 500
 M.TREE_ET_UNSAFE_DISTANCE = 501
+
+-- Courier state
+M.COURIER_ON_BASE = 600
 
 local function GetAllyTowerIncomingDamage()
   return algorithms.GetTotalIncomingDamage(env.ALLY_TOWER_DATA)
@@ -198,6 +202,8 @@ function M.UpdateState()
               + env.BOT_DATA.incoming_damage_from_towers),
              0,
              constants.MAX_INCOMING_ATTACK_DAMAGE),
+
+    [M.BOT_STASH_FULL] = NUM[0 < env.BOT_DATA.stash_value]
   }
 
   M.GAME_STATE[M.EH_PRESENT] = NUM[env.ENEMY_HERO_DATA ~= nil]
@@ -357,6 +363,13 @@ function M.UpdateState()
                       env.ENEMY_TOWER_DATA,
                       env.BOT_DATA,
                       true)]
+  end
+
+  local courier_data = algorithms.GetCourierData()
+
+  if courier_data ~= nil then
+    M.GAME_STATE[M.COURIER_ON_BASE] =
+      NUM[map.IsUnitInSpot(courier_data, map.GetAllySpot("fountain"))]
   end
 
   logger.PrintGameState(M.GAME_STATE)

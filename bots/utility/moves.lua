@@ -95,12 +95,12 @@ end
 ---------------------------------
 
 function M.pre_deliver_items()
-  local courier_data = algorithms.GetCourierData()
+  local weights = {
+    [gs.BOT_STASH_FULL] = 0.5,
+    [gs.COURIER_ON_BASE] = 0.5,
+  }
 
-  return 0 < env.BOT_DATA.stash_value
-         and map.IsUnitInSpot(
-               courier_data,
-               map.GetAllySpot("fountain"))
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.deliver_items()

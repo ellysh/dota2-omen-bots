@@ -224,4 +224,42 @@ function test_pre_move_enemy_hero_3_fails()
   luaunit.assertFalse(moves.pre_move_enemy_hero())
 end
 
+---------------------------------
+
+function test_pre_deliver_items_1_succeed()
+  moves.test_SetGameState({
+    [gs.BOT_STASH_FULL] = 1,
+    [gs.COURIER_ON_BASE] = 1,
+  })
+
+  luaunit.assertTrue(moves.pre_deliver_items())
+end
+
+function test_pre_deliver_items_1_fails()
+  moves.test_SetGameState({
+    [gs.BOT_STASH_FULL] = 0,
+    [gs.COURIER_ON_BASE] = 1,
+  })
+
+  luaunit.assertFalse(moves.pre_deliver_items())
+end
+
+function test_pre_deliver_items_2_fails()
+  moves.test_SetGameState({
+    [gs.BOT_STASH_FULL] = 1,
+    [gs.COURIER_ON_BASE] = 0,
+  })
+
+  luaunit.assertFalse(moves.pre_deliver_items())
+end
+
+function test_pre_deliver_items_3_fails()
+  moves.test_SetGameState({
+    [gs.BOT_STASH_FULL] = 0,
+    [gs.COURIER_ON_BASE] = 0,
+  })
+
+  luaunit.assertFalse(moves.pre_deliver_items())
+end
+
 os.exit(luaunit.LuaUnit.run())
