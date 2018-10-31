@@ -1,9 +1,6 @@
 local map = require(
   GetScriptDirectory() .."/utility/map")
 
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
-
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
@@ -24,43 +21,20 @@ local M = {}
 --------------------------------
 
 function M.pre_attack_enemy_creep()
-  local creep = algorithms.GetCreepWith(
-                  env.BOT_DATA,
-                  constants.SIDE["ENEMY"],
-                  algorithms.CompareMaxHealth,
-                  nil)
+  local weights = {
+    [gs.EC_TARGETABLE_PRESENT] = 0.5,
+    [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = -1,
+    [gs.AC_FRONT_PRESENT] = 0.5,
+  }
 
-  return creep ~= nil
-         and constants.UNIT_HALF_HEALTH_LEVEL
-             < functions.GetRate(creep.health, creep.max_health)
-         and env.ALLY_CREEP_FRONT_DATA ~= nil
-         and not algorithms.DoesTowerProtectUnit(creep)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.attack_enemy_creep()
-  local creep = algorithms.GetCreepWith(
-                  env.BOT_DATA,
-                  constants.SIDE["ENEMY"],
-                  algorithms.CompareMaxHealth,
-                  nil)
-
-  algorithms.AttackUnit(env.BOT_DATA, creep)
+  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_CREEP_TARGETABLE_DATA)
 end
 
 --------------------------------
-
-local function GetTargetableAllyCreep()
-  return algorithms.GetCreepWith(
-           env.BOT_DATA,
-           constants.SIDE["ALLY"],
-           algorithms.CompareMaxHealth,
-           function(unit_data)
-             return functions.GetRate(
-                      unit_data.health,
-                      unit_data.max_health)
-                    < constants.UNIT_HALF_HEALTH_LEVEL
-           end)
-end
 
 function M.pre_attack_ally_creep()
   local creep = GetTargetableAllyCreep()
@@ -70,9 +44,7 @@ function M.pre_attack_ally_creep()
 end
 
 function M.attack_ally_creep()
-  local creep = GetTargetableAllyCreep()
-
-  algorithms.AttackUnit(env.BOT_DATA, creep)
+  algorithms.AttackUnit(env.BOT_DATA, env.ALLY_CREEP_TARGETABLE_DATA)
 end
 
 --------------------------------

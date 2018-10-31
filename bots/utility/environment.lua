@@ -18,10 +18,12 @@ M.IS_BOT_LOW_HP = false
 M.IS_ENEMY_HERO_LOW_HP = false
 M.ENEMY_CREEP_FRONT_DATA = {}
 M.ENEMY_CREEP_BACK_DATA = {}
+M.ENEMY_CREEP_TARGETABLE_DATA = {}
 M.ENEMY_HERO_DATA = {}
 M.ENEMY_HERO_DISTANCE = 0
 M.ALLY_CREEP_FRONT_DATA = {}
 M.ALLY_CREEP_BACK_DATA = {}
+M.ALLY_CREEP_TARGETABLE_DATA = {}
 M.ENEMY_TOWER_DATA = {}
 M.ENEMY_TOWER_DISTANCE = 0
 M.ALLY_TOWER_DATA = {}
@@ -109,6 +111,32 @@ local function DoesUnitHaveAdvantage(unit_data, target_data)
                    20))
 end
 
+local function GetTargetableEnemyCreep()
+  return algorithms.GetCreepWith(
+           M.BOT_DATA,
+           constants.SIDE["ENEMY"],
+           algorithms.CompareMaxHealth,
+           function(unit_data)
+             return constants.UNIT_HALF_HEALTH_LEVEL
+                    < functions.GetRate(
+                        unit_data.health,
+                        unit_data.max_health)
+           end)
+end
+
+local function GetTargetableAllyCreep()
+  return algorithms.GetCreepWith(
+           M.BOT_DATA,
+           constants.SIDE["ALLY"],
+           algorithms.CompareMaxHealth,
+           function(unit_data)
+             return functions.GetRate(
+                      unit_data.health,
+                      unit_data.max_health)
+                    < constants.UNIT_HALF_HEALTH_LEVEL
+           end)
+end
+
 function M.UpdateVariables()
   M.BOT = GetBot()
 
@@ -132,6 +160,8 @@ function M.UpdateVariables()
                                algorithms.GetEnemyCreeps,
                                constants.DIRECTION["BACK"])
 
+  M.ENEMY_CREEP_TARGETABLE_DATA = GetTargetableEnemyCreep()
+
   M.ALLY_CREEP_FRONT_DATA = GetClosestCreep(
                               constants.MAX_UNIT_SEARCH_RADIUS,
                               algorithms.GetAllyCreeps,
@@ -141,6 +171,8 @@ function M.UpdateVariables()
                              constants.MAX_UNIT_SEARCH_RADIUS,
                              algorithms.GetAllyCreeps,
                              constants.DIRECTION["BACK"])
+
+  M.ALLY_CREEP_TARGETABLE_DATA = GetTargetableAllyCreep()
 
   M.ENEMY_TOWER_DATA = algorithms.GetEnemyTier1Tower(M.BOT_DATA)
 
