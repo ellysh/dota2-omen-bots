@@ -10,8 +10,8 @@ function M.Print(string)
   print(GameTime() .. ": " ..string .. "\n")
 end
 
-function M.PrintState(name, state)
-  M.Print(name .. " team = " .. GetTeam())
+function M.PrintGameState(state)
+  M.Print("GAME_STATE for team = " .. GetTeam())
 
   functions.DoWithKeysAndElements(
     state,

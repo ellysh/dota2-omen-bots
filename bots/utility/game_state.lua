@@ -321,7 +321,7 @@ function M.UpdateState()
                       true)]
   end
 
-  logger.PrintState("M.GAME_STATE", M.GAME_STATE)
+  logger.PrintGameState(M.GAME_STATE)
 end
 
 function M.Evaluate(state, weights)
