@@ -394,24 +394,18 @@ end
 
 ---------------------------------
 
---[[
-
 function test_pre_tp_base_1_succeed()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertTrue(item_recovery.pre_tp_base())
@@ -419,20 +413,16 @@ end
 
 function test_pre_tp_base_2_succeed()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 1,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 1,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_BOT_DISTANCE] = 1,
   })
 
   luaunit.assertTrue(item_recovery.pre_tp_base())
@@ -440,20 +430,16 @@ end
 
 function test_pre_tp_base_1_false()
   item_recovery.test_SetGameState({
-    [2] = 0,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
@@ -461,20 +447,16 @@ end
 
 function test_pre_tp_base_2_false()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 0,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 0,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
@@ -482,20 +464,16 @@ end
 
 function test_pre_tp_base_3_false()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 0,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 0,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
@@ -503,20 +481,16 @@ end
 
 function test_pre_tp_base_4_false()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 0,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
@@ -524,20 +498,16 @@ end
 
 function test_pre_tp_base_5_false()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 1,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 1,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
@@ -545,20 +515,16 @@ end
 
 function test_pre_tp_base_6_false()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 1,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 1,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
@@ -566,20 +532,16 @@ end
 
 function test_pre_tp_base_7_false()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 1,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
@@ -587,20 +549,16 @@ end
 
 function test_pre_tp_base_8_false()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 1,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 0,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
@@ -608,25 +566,19 @@ end
 
 function test_pre_tp_base_9_false()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [21] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 1,  -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 1,  -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = 0,  -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = 0,  -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = 0,  -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = 0,  -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-  })
-
-  item_recovery.test_SetEnemyHeroState({
-    [1] = 1,  -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 0.9,  -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_GOLD] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_HAS_FLASK] = 0,
+    [gs.BOT_HAS_FAERIE_FIRE] = 0,
+    [gs.BOT_HAS_TANGO] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_BOT_DISTANCE] = 0.9,
   })
 
   luaunit.assertFalse(item_recovery.pre_tp_base())
 end
-
---]]
 
 os.exit(luaunit.LuaUnit.run())

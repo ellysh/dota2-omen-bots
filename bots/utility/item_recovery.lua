@@ -91,27 +91,20 @@ end
 ---------------------------------
 
 function M.pre_tp_base()
-  local weights_bot_state = {
-    [2] = 0.3, -- env.IS_BOT_LOW_HP
-    [21] = 0.3, -- IsItemCastable(env.BOT_DATA, "item_tpscroll")
-    [22] = 0.2, -- env.BOT_DATA.gold < constants.RESERVED_GOLD
-    [23] = 0.2, -- env.FOUNTAIN_DISTANCE / MIN_TP_BASE_RADIUS
-    [24] = -1, -- DoesBotOrCourierHaveItem("item_faerie_fire")
-    [25] = -1, -- DoesBotOrCourierHaveItem("item_flask")
-    [26] = -1, -- DoesBotOrCourierHaveItem("item_tango")
-    [27] = -1, -- IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = 0.3,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 0.3,
+    [gs.BOT_GOLD] = 0.2,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 0.2,
+    [gs.BOT_HAS_FLASK] = -1,
+    [gs.BOT_HAS_FAERIE_FIRE] = -1,
+    [gs.BOT_HAS_TANGO] = -1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
+    [gs.EH_PRESENT] = -1,
+    [gs.EH_BOT_DISTANCE] = 1,
   }
 
-  local weights_enemy_hero_state = {
-    [1] = -1, -- env.ENEMY_HERO_DATA ~= nil
-    [4] = 1, -- env.ENEMY_HERO_DISTANCE / SAFE_HERO_DISTANCE
-    [6] = 1, -- true
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights_bot_state)
-         and gs.Evaluate(
-               gs.ENEMY_HERO_STATE,
-               weights_enemy_hero_state)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.tp_base()
