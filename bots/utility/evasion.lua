@@ -1,6 +1,3 @@
-local map = require(
-  GetScriptDirectory() .."/utility/map")
-
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
@@ -10,20 +7,8 @@ local action_timing = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
-
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
-
-local all_units = require(
-  GetScriptDirectory() .."/utility/all_units")
-
-local game_state = require(
+local gs = require(
   GetScriptDirectory() .."/utility/game_state")
-
-local moves = require(
-  GetScriptDirectory() .."/utility/moves")
 
 local M = {}
 
@@ -42,13 +27,13 @@ end
 
 function M.pre_move_safe_recovery()
   local weights = {
-    [3] = 0.924, -- env.BOT_DATA.is_flask_healing
-    [11] = -1,  -- HasModifier("modifier_fountain_aura_buff")
-    [20] = 0.95,   -- env.BOT_DATA.max_health - env.BOT_DATA.health
-    [28] = -1,  -- IsUnitInSpot(env.BOT_DATA, env.SAFE_SPOT)
+    [gs.BOT_IS_FLASK_HEALING] = 0.924,
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1,
+    [gs.BOT_HP_MAX_DELTA] = 0.95,
+    [gs.BOT_IN_SAFE_SPOT] = -1,
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.move_safe_recovery()
@@ -61,13 +46,13 @@ end
 
 function M.pre_evade_enemy_hero()
   local weights = {
-    [2] = 1, -- env.IS_BOT_LOW_HP
-    [8] = 0.5,  -- env.IS_FOCUSED_BY_ENEMY_HERO
-    [9] = 0.5,  -- env.IS_FOCUSED_BY_UNKNOWN_UNIT
-    [29] = 0.5, -- AreEnemyCreepsInRadius(CREEP_MAX_AGGRO_RADIUS)
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0.5,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0.5,
+    [gs.EC_IN_AGRO_RADIUS] = 0.5,
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.evade_enemy_hero()
@@ -78,10 +63,10 @@ end
 
 function M.pre_evade_enemy_creeps()
   local weights = {
-    [7] = 1,  -- env.IS_FOCUSED_BY_CREEPS
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 1,
   }
 
-  return game_state.Evaluate(game_state.BOT_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.evade_enemy_creeps()
@@ -91,21 +76,15 @@ end
 ---------------------------------
 
 function M.pre_evade_enemy_tower()
-  local weights_bot_state = {
-    [10] = 1.2,  -- env.IS_FOCUSED_BY_TOWER
-    [30] = -0.2, -- algorithms.HasLevelForAggression
-    [31] = 1.1, -- map.IsUnitInEnemyTowerAttackRange
+  local weights = {
+    [gs.BOT_IS_FOCUSED_BY_TOWER] = 1.2,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = -0.2,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1.1,
+    [gs.ET_PRESENT] = 1.99,
+    [gs.ET_BOT_DISTANCE] = -1,
   }
 
-  local weights_enemy_tower_state = {
-    [1] = 1.99,  -- env.ENEMY_TOWER_DATA ~= nil
-    [2] = -1,  -- env.ENEMY_TOWER_DISTANCE / constants.MIN_TOWER_DISTANCE
-  }
-
-  return game_state.Evaluate(game_state.BOT_STATE, weights_bot_state)
-         or game_state.Evaluate(
-              game_state.ENEMY_TOWER_STATE,
-              weights_enemy_tower_state)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.evade_enemy_tower()
@@ -114,16 +93,8 @@ end
 
 -- Provide an access to local functions for unit tests only
 
-function M.test_SetBotState(state)
-  game_state.BOT_STATE = state
-end
-
-function M.test_SetEnemyHeroState(state)
-  game_state.ENEMY_HERO_STATE = state
-end
-
-function M.test_SetEnemyTowerState(state)
-  game_state.ENEMY_TOWER_STATE = state
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
 end
 
 return M
