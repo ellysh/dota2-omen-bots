@@ -288,20 +288,14 @@ end
 
 ---------------------------------
 
---[[
-
 function test_pre_heal_tango_1_succeed()
   item_recovery.test_SetGameState({
-    [2] = 0,  -- env.IS_BOT_LOW_HP
-    [4] = 0,  -- env.BOT_DATA.is_healing
-    [19] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 0.31,  -- env.BOT_DATA.max_health - env.BOT_DATA.health
-  })
-
-  item_recovery.test_SetNearbyTreeState({
-    [1] = 1,  -- env.NEARBY_TREE ~= nil
-    [2] = 0,  -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
   })
 
   luaunit.assertTrue(item_recovery.pre_heal_tango())
@@ -309,16 +303,12 @@ end
 
 function test_pre_heal_tango_2_succeed()
   item_recovery.test_SetGameState({
-    [2] = 0,  -- env.IS_BOT_LOW_HP
-    [4] = 0,  -- env.BOT_DATA.is_healing
-    [19] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 0.31,  -- env.BOT_DATA.max_health - env.BOT_DATA.health
-  })
-
-  item_recovery.test_SetNearbyTreeState({
-    [1] = 1,  -- env.NEARBY_TREE ~= nil
-    [2] = 1,  -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = 1,  -- env.ENEMY_TOWER_DATA ~= nil
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = 0,
   })
 
   luaunit.assertTrue(item_recovery.pre_heal_tango())
@@ -326,16 +316,12 @@ end
 
 function test_pre_heal_tango_1_fails()
   item_recovery.test_SetGameState({
-    [2] = 0,  -- env.IS_BOT_LOW_HP
-    [4] = 0,  -- env.BOT_DATA.is_healing
-    [19] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 0.29,  -- env.BOT_DATA.max_health - env.BOT_DATA.health
-  })
-
-  item_recovery.test_SetNearbyTreeState({
-    [1] = 1,  -- env.NEARBY_TREE ~= nil
-    [2] = 0,  -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.29,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -343,16 +329,12 @@ end
 
 function test_pre_heal_tango_2_fails()
   item_recovery.test_SetGameState({
-    [2] = 1,  -- env.IS_BOT_LOW_HP
-    [4] = 0,  -- env.BOT_DATA.is_healing
-    [19] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 0.31,  -- env.BOT_DATA.max_health - env.BOT_DATA.health
-  })
-
-  item_recovery.test_SetNearbyTreeState({
-    [1] = 1,  -- env.NEARBY_TREE ~= nil
-    [2] = 0,  -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -360,16 +342,12 @@ end
 
 function test_pre_heal_tango_3_fails()
   item_recovery.test_SetGameState({
-    [2] = 0,  -- env.IS_BOT_LOW_HP
-    [4] = 1,  -- env.BOT_DATA.is_healing
-    [19] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 0.31,  -- env.BOT_DATA.max_health - env.BOT_DATA.health
-  })
-
-  item_recovery.test_SetNearbyTreeState({
-    [1] = 1,  -- env.NEARBY_TREE ~= nil
-    [2] = 0,  -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_HEALING] = 1,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -377,16 +355,12 @@ end
 
 function test_pre_heal_tango_4_fails()
   item_recovery.test_SetGameState({
-    [2] = 0,  -- env.IS_BOT_LOW_HP
-    [4] = 0,  -- env.BOT_DATA.is_healing
-    [19] = 0,  -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 0.31,  -- env.BOT_DATA.max_health - env.BOT_DATA.health
-  })
-
-  item_recovery.test_SetNearbyTreeState({
-    [1] = 1,  -- env.NEARBY_TREE ~= nil
-    [2] = 0,  -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 0,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -394,16 +368,12 @@ end
 
 function test_pre_heal_tango_5_fails()
   item_recovery.test_SetGameState({
-    [2] = 0,  -- env.IS_BOT_LOW_HP
-    [4] = 0,  -- env.BOT_DATA.is_healing
-    [19] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 0.31,  -- env.BOT_DATA.max_health - env.BOT_DATA.health
-  })
-
-  item_recovery.test_SetNearbyTreeState({
-    [1] = 1,  -- env.NEARBY_TREE ~= nil
-    [2] = 0.9,  -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = 1,  -- env.ENEMY_TOWER_DATA ~= nil
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -411,22 +381,20 @@ end
 
 function test_pre_heal_tango_6_fails()
   item_recovery.test_SetGameState({
-    [2] = 0,  -- env.IS_BOT_LOW_HP
-    [4] = 0,  -- env.BOT_DATA.is_healing
-    [19] = 1,  -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 0.31,  -- env.BOT_DATA.max_health - env.BOT_DATA.health
-  })
-
-  item_recovery.test_SetNearbyTreeState({
-    [1] = 0,  -- env.NEARBY_TREE ~= nil
-    [2] = 0,  -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = 0,  -- env.ENEMY_TOWER_DATA ~= nil
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 1,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
 end
 
 ---------------------------------
+
+--[[
 
 function test_pre_tp_base_1_succeed()
   item_recovery.test_SetGameState({

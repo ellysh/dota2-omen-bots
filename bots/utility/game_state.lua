@@ -93,8 +93,8 @@ M.AC_LAST_HIT_IS_TOWER_PROTECTED = 410
 M.AC_LAST_HIT_HP_RATE = 411
 
 -- Tree state
-M.TREE_PRESENT = 500
-M.TREE_BOT_DISTANCE = 501
+M.NO_TREE_PRESENT = 500
+M.TREE_ET_UNSAFE_DISTANCE = 501
 
 local function GetAllyTowerIncomingDamage()
   return algorithms.GetTotalIncomingDamage(env.ALLY_TOWER_DATA)
@@ -308,16 +308,17 @@ function M.UpdateState()
         env.LAST_HIT_ALLY_CREEP.max_health)
   end
 
-  M.GAME_STATE[M.TREE_PRESENT] = NUM[env.NEARBY_TREE ~= nil]
+  M.GAME_STATE[M.NO_TREE_PRESENT] = NUM[env.NEARBY_TREE == nil]
 
-  if env.NEARBY_TREE ~= nil then
-    M.GAME_STATE[M.TREE_BOT_DISTANCE] = NormalizeValue(
-                          functions.GetDistance(
-                            GetTreeLocation(env.NEARBY_TREE),
-                            env.ENEMY_TOWER_DATA.location),
-                          0,
-                          constants.TOWER_ATTACK_RANGE
-                          + constants.MOTION_BUFFER_RANGE)
+  if env.NEARBY_TREE ~= nil and env.ENEMY_TOWER_DATA ~= nil then
+    M.GAME_STATE[M.TREE_ET_UNSAFE_DISTANCE] = NUM[
+                 functions.GetDistance(
+                   GetTreeLocation(tree),
+                   env.ENEMY_TOWER_DATA.location)
+                 <= algorithms.GetAttackRange(
+                      env.ENEMY_TOWER_DATA,
+                      env.BOT_DATA,
+                      true)]
   end
 
   logger.PrintState("M.GAME_STATE", M.GAME_STATE)

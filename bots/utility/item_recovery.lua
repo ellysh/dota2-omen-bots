@@ -70,23 +70,16 @@ end
 ---------------------------------
 
 function M.pre_heal_tango()
-  local weights_bot_state = {
-    [2] = -1, -- env.IS_BOT_LOW_HP
-    [4] = -1, -- env.BOT_DATA.is_healing
-    [19] = 0.7, -- IsItemCastable(env.BOT_DATA, "item_tango")
-    [20] = 1 -- env.BOT_DATA.max_health - env.BOT_DATA.health
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = -1,
+    [gs.BOT_IS_HEALING] = -1,
+    [gs.BOT_CASTABLE_TANGO] = 0.7,
+    [gs.BOT_HP_MAX_DELTA] = 1,
+    [gs.NO_TREE_PRESENT] = -1,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = -1,
   }
 
-  local weights_nearby_tree_state = {
-    [1] = 1, -- env.NEARBY_TREE ~= nil
-    [2] = 1, -- GetDistance(tree, env.ENEMY_TOWER_DATA)
-    [3] = -1 -- env.ENEMY_TOWER_DATA ~= nil
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights_bot_state)
-         and gs.Evaluate(
-               gs.NEARBY_TREE_STATE,
-               weights_nearby_tree_state)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.heal_tango()
