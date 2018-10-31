@@ -4,6 +4,8 @@ aggro_last_hit
 attack_ally_creep
 attack_enemy_creep
 attack_enemy_hero
+attack_enemy_hero_from_hg
+attack_enemy_hero_with_incoming_damage
 attack_enemy_tower
 attack_with_better_position
 attack_with_mom

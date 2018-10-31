@@ -67,6 +67,7 @@ M.BOT_IN_EH_ATTACK_RANGE = 107
 M.EH_IS_VISIBLE = 108
 M.EH_CAN_BE_ATTACKED_UNDER_TOWER = 109
 M.EH_CAN_BE_FOLLOWED_UNDER_TOWER = 110
+M.EH_HAS_BETTER_POSITION = 111
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -242,6 +243,11 @@ function M.UpdateState()
       NUM[algorithms.IsTowerDiveReasonable(
            env.BOT_DATA,
            env.ENEMY_HERO_DATA)]
+
+    M.GAME_STATE[M.EH_HAS_BETTER_POSITION] =
+      NUM[algorithms.IsUnitPositionBetter(
+        env.ENEMY_HERO_DATA,
+        env.BOT_DATA)]
   end
 
   M.GAME_STATE[M.AT_PRESENT] = NUM[env.ALLY_TOWER_DATA ~= nil]

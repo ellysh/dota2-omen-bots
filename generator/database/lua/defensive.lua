@@ -180,9 +180,16 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/attack_with_better_position"),
     moves = {
       {
-        move = "attack_enemy_hero",
+        move = "attack_enemy_hero_from_hg",
         actions = {
-          {action = "attack_enemy_hero"},
+          {action = "attack_enemy_hero_from_hg"},
+
+        },
+      },
+      {
+        move = "attack_enemy_hero_with_incoming_damage",
+        actions = {
+          {action = "attack_enemy_hero_with_incoming_damage"},
 
         },
       },
