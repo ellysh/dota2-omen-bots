@@ -56,6 +56,7 @@ M.BOT_INCOMING_DAMAGE = 29
 M.BOT_HAS_BETTER_POSITION = 30
 M.BOT_STASH_FULL = 31
 M.BOT_MOVING = 32
+M.BOT_IN_ALLY_TOWER_RANGE = 33
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -85,6 +86,7 @@ M.AT_GLYPH_READY = 203
 M.ET_PRESENT = 300
 M.ET_BOT_DISTANCE = 301
 M.ET_ATTACK_AC = 302
+M.BOT_IN_ET_AGGRO_RADIUS = 303
 
 -- Creeps state
 M.EC_FRONT_PRESENT = 400
@@ -104,6 +106,8 @@ M.AC_TARGETABLE_PRESENT = 413
 M.EC_TARGETABLE_IS_TOWER_PROTECTED = 414
 M.AC_TARGETABLE_IS_TOWER_PROTECTED = 415
 M.EC_AGGRO_COOLDOWN = 416
+M.EAC_PRE_LAST_HIT_PRESENT = 417
+M.EC_PRE_LAST_HIT_IN_AGRO_RADIUS = 418
 
 -- Tree state
 M.NO_TREE_PRESENT = 500
@@ -193,8 +197,13 @@ function M.UpdateState()
     [M.BOT_HAS_TANGO] = NUM[
              algorithms.DoesBotOrCourierHaveItem("item_tango")],
 
-    [M.BOT_IN_ENEMY_TOWER_RANGE] = NUM[
-             map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)],
+    [M.BOT_IN_ENEMY_TOWER_RANGE] =
+      NUM[map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)],
+
+    [M.BOT_IN_ALLY_TOWER_RANGE] =
+      NUM[map.IsUnitInSpot(
+            env.BOT_DATA,
+            map.GetAllySpot("tower_tier_1_attack"))],
 
     [M.BOT_IN_SAFE_SPOT] = NUM[map.IsUnitInSpot(
                                  env.BOT_DATA,
@@ -315,6 +324,10 @@ function M.UpdateState()
       NUM[algorithms.DoesEnemyTowerAttackAllyCreep(
             env.BOT_DATA,
             env.ENEMY_TOWER_DATA)]
+
+    M.GAME_STATE[M.BOT_IN_ET_AGGRO_RADIUS] =
+      NUM[env.ENEMY_TOWER_DISTANCE <= constants.TOWER_AGGRO_RADIUS]
+
   end
 
   M.GAME_STATE[M.EC_FRONT_PRESENT] =
@@ -326,6 +339,16 @@ function M.UpdateState()
 
   M.GAME_STATE[M.EC_PRE_LAST_HIT_PRESENT] =
     NUM[env.PRE_LAST_HIT_ENEMY_CREEP ~= nil]
+
+  if env.PRE_LAST_HIT_ENEMY_CREEP ~= nil then
+    local creep_distance = functions.GetUnitDistance(
+                             env.BOT_DATA,
+                             env.PRE_LAST_HIT_ENEMY_CREEP)
+
+    M.GAME_STATE[M.EC_PRE_LAST_HIT_IN_AGRO_RADIUS] =
+      NUM[constants.CREEP_MIN_AGGRO_RADIUS < creep_distance
+          and creep_distance <= constants.CREEP_MAX_AGGRO_RADIUS]
+  end
 
   M.GAME_STATE[M.AC_PRE_LAST_HIT_PRESENT] =
     NUM[env.PRE_LAST_HIT_ALLY_CREEP ~= nil]
@@ -379,6 +402,9 @@ function M.UpdateState()
   M.GAME_STATE[M.EC_AGGRO_COOLDOWN] =
     NUM[functions.GetDelta(env.LAST_AGGRO_CONTROL, GameTime())
         < constants.CREEPS_AGGRO_COOLDOWN]
+
+  M.GAME_STATE[M.EAC_PRE_LAST_HIT_PRESENT] =
+    NUM[env.PRE_LAST_HIT_ANY_CREEP ~= nil]
 
   M.GAME_STATE[M.NO_TREE_PRESENT] = NUM[env.NEARBY_TREE == nil]
 

@@ -27,46 +27,23 @@ local M = {}
 ---------------------------------
 
 function M.pre_aggro_control()
-  return algorithms.IsBotAlive()
+  return moves.pre_attack_objective()
 end
 
 ---------------------------------
 
--- TODO: This function duplicates the positioning.lua one
-local function GetPreLastHitCreep()
-  return functions.ternary(
-          env.PRE_LAST_HIT_ENEMY_CREEP ~= nil,
-          env.PRE_LAST_HIT_ENEMY_CREEP,
-          env.PRE_LAST_HIT_ALLY_CREEP)
-end
-
 function M.pre_aggro_last_hit()
-  local last_hit_creep = GetPreLastHitCreep()
+  local weights = {
+    [gs.EC_PRE_LAST_HIT_PRESENT] = 0.3,
+    [gs.EH_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.2,
+    [gs.EC_AGGRO_COOLDOWN] = -1,
+    [gs.BOT_IN_ET_AGGRO_RADIUS] = -1,
+    [gs.EC_PRE_LAST_HIT_IN_AGRO_RADIUS] = 0.2,
+    [gs.BOT_IN_ALLY_TOWER_RANGE] = -1,
+  }
 
-  if last_hit_creep == nil then
-    return false end
-
-  local creep_distance = functions.GetUnitDistance(
-                           env.BOT_DATA,
-                           last_hit_creep)
-
-  return env.ENEMY_HERO_DATA ~= nil
-         and env.ENEMY_HERO_DATA.is_visible
-
-         and constants.CREEPS_AGGRO_COOLDOWN
-             <= functions.GetDelta(env.LAST_AGGRO_CONTROL, GameTime())
-
-         and (env.ENEMY_TOWER_DATA == nil
-              or constants.TOWER_AGGRO_RADIUS < env.ENEMY_TOWER_DISTANCE)
-
-         and not map.IsUnitInSpot(
-                   env.BOT_DATA,
-                   map.GetAllySpot("tower_tier_1_attack"))
-
-         and not algorithms.IsUnitMoving(last_hit_creep)
-
-         and (creep_distance <= constants.CREEP_MAX_AGGRO_RADIUS
-              and constants.CREEP_MIN_AGGRO_RADIUS < creep_distance)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.aggro_last_hit()
