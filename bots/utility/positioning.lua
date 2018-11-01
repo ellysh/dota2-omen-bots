@@ -198,4 +198,10 @@ end
 
 -- Provide an access to local functions for unit tests only
 
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+
+  moves.test_SetGameState(state)
+end
+
 return M
