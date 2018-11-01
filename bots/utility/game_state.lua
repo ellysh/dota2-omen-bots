@@ -250,7 +250,7 @@ function M.UpdateState()
     M.GAME_STATE[M.BOT_IS_FACING_TURN_TARGET] =
       NUM[functions.IsFacingLocation(
             env.BOT_DATA,
-            env.TURN_TARGET_DATA,
+            env.TURN_TARGET_DATA.location,
             constants.TURN_TARGET_MAX_DEGREE)]
   end
 
