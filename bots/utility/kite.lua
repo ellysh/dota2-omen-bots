@@ -19,6 +19,9 @@ local map = require(
 local action_timing = require(
   GetScriptDirectory() .."/utility/action_timing")
 
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
@@ -30,20 +33,17 @@ end
 ---------------------------------
 
 function M.pre_attack_enemy_hero()
+  local weights = {
+    [gs.BOT_ATTACK_EH] = -1,
+    [gs.EC_BACK_PRESENT] = -1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EH_IN_REAR_SPOT] = -1,
+    [gs.EC_IN_AGRO_RADIUS] = -0.5,
+    [gs.EC_AGGRO_COOLDOWN] = 0.5,
+  }
+
   return moves.pre_attack_enemy_hero()
-         and env.BOT_DATA.attack_target ~= env.ENEMY_HERO_DATA
-         and env.ALLY_CREEP_FRONT_DATA ~= nil
-         and env.ENEMY_CREEP_BACK_DATA == nil
-
-         and not map.IsUnitInSpot(
-                   env.ENEMY_HERO_DATA,
-                   map.GetEnemySpot("tower_tier_1_rear_deep"))
-
-         and (not algorithms.AreEnemyCreepsInRadius(
-                   env.BOT_DATA,
-                   constants.CREEP_MAX_AGGRO_RADIUS)
-              or functions.GetDelta(env.LAST_AGGRO_CONTROL, GameTime())
-                 < constants.CREEPS_AGGRO_COOLDOWN)
+         and gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.attack_enemy_hero()

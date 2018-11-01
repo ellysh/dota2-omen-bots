@@ -70,6 +70,8 @@ M.EH_IS_VISIBLE = 109
 M.EH_CAN_BE_ATTACKED_UNDER_TOWER = 110
 M.EH_CAN_BE_FOLLOWED_UNDER_TOWER = 111
 M.EH_HAS_BETTER_POSITION = 112
+M.BOT_ATTACK_EH = 113
+M.EH_IN_REAR_SPOT = 114
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -98,6 +100,7 @@ M.EC_TARGETABLE_PRESENT = 412
 M.AC_TARGETABLE_PRESENT = 413
 M.EC_TARGETABLE_IS_TOWER_PROTECTED = 414
 M.AC_TARGETABLE_IS_TOWER_PROTECTED = 415
+M.EC_AGGRO_COOLDOWN = 416
 
 -- Tree state
 M.NO_TREE_PRESENT = 500
@@ -268,6 +271,14 @@ function M.UpdateState()
       NUM[algorithms.IsUnitPositionBetter(
         env.ENEMY_HERO_DATA,
         env.BOT_DATA)]
+
+    M.GAME_STATE[M.BOT_ATTACK_EH] =
+      NUM[env.BOT_DATA.attack_target == env.ENEMY_HERO_DATA]
+
+    M.GAME_STATE[M.EH_IN_REAR_SPOT] =
+      NUM[map.IsUnitInSpot(
+            env.ENEMY_HERO_DATA,
+            map.GetEnemySpot("tower_tier_1_rear_deep"))]
   end
 
   M.GAME_STATE[M.AT_PRESENT] = NUM[env.ALLY_TOWER_DATA ~= nil]
@@ -351,6 +362,10 @@ function M.UpdateState()
       NUM[algorithms.DoesTowerProtectUnit(
             env.ALLY_CREEP_TARGETABLE_DATA)]
   end
+
+  M.GAME_STATE[M.EC_AGGRO_COOLDOWN] =
+    NUM[functions.GetDelta(env.LAST_AGGRO_CONTROL, GameTime())
+        < constants.CREEPS_AGGRO_COOLDOWN]
 
   M.GAME_STATE[M.NO_TREE_PRESENT] = NUM[env.NEARBY_TREE == nil]
 
