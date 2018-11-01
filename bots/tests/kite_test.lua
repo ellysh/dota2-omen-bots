@@ -294,4 +294,46 @@ function test_pre_attack_enemy_tower_6_fails()
   luaunit.assertFalse(kite.pre_attack_enemy_tower())
 end
 
+---------------------------------
+
+function test_pre_move_safe_1_succeed()
+  kite.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_ATTACK_EH] = 1,
+    [gs.BOT_MOVING] = 0,
+  })
+
+  luaunit.assertTrue(kite.pre_move_safe())
+end
+
+function test_pre_move_safe_1_fails()
+  kite.test_SetGameState({
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_ATTACK_EH] = 1,
+    [gs.BOT_MOVING] = 0,
+  })
+
+  luaunit.assertFalse(kite.pre_move_safe())
+end
+
+function test_pre_move_safe_2_fails()
+  kite.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_ATTACK_EH] = 0,
+    [gs.BOT_MOVING] = 0,
+  })
+
+  luaunit.assertFalse(kite.pre_move_safe())
+end
+
+function test_pre_move_safe_3_fails()
+  kite.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_ATTACK_EH] = 1,
+    [gs.BOT_MOVING] = 1,
+  })
+
+  luaunit.assertFalse(kite.pre_move_safe())
+end
+
 os.exit(luaunit.LuaUnit.run())

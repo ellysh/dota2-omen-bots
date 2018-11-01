@@ -83,9 +83,13 @@ end
 ---------------------------------
 
 function M.pre_move_safe()
-  return env.ENEMY_HERO_DATA ~= nil
-         and env.BOT_DATA.attack_target == env.ENEMY_HERO_DATA
-         and not algorithms.IsUnitMoving(env.BOT_DATA)
+  local weights = {
+    [gs.EH_PRESENT] = 0.5,
+    [gs.BOT_ATTACK_EH] = 0.5,
+    [gs.BOT_MOVING] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.move_safe()

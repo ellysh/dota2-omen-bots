@@ -55,6 +55,7 @@ M.BOT_HAS_LEVEL_FOR_AGRESSION = 28
 M.BOT_INCOMING_DAMAGE = 29
 M.BOT_HAS_BETTER_POSITION = 30
 M.BOT_STASH_FULL = 31
+M.BOT_MOVING = 32
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -208,7 +209,9 @@ function M.UpdateState()
              0,
              constants.MAX_INCOMING_ATTACK_DAMAGE),
 
-    [M.BOT_STASH_FULL] = NUM[0 < env.BOT_DATA.stash_value]
+    [M.BOT_STASH_FULL] = NUM[0 < env.BOT_DATA.stash_value],
+
+    [M.BOT_MOVING] = NUM[algorithms.IsUnitMoving(env.BOT_DATA)],
   }
 
   M.GAME_STATE[M.EH_PRESENT] = NUM[env.ENEMY_HERO_DATA ~= nil]
