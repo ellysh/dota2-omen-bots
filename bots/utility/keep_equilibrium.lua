@@ -35,9 +35,12 @@ end
 ---------------------------------
 
 function M.pre_attack_enemy_creep()
-  return constants.MAX_CREEPS_HP_DELTA
-           < (env.ENEMY_CREEPS_HP - env.ALLY_CREEPS_HP)
-         and moves.pre_attack_enemy_creep()
+  local weights = {
+    [gs.EC_HAVE_HP_ADVANTAGE] = 1,
+  }
+
+  return moves.pre_attack_enemy_creep()
+         and gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.attack_enemy_creep()

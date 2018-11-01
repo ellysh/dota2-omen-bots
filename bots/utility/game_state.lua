@@ -117,6 +117,8 @@ M.IS_FIRST_WAVE = 420
 M.EC_IN_MIN_BASE_DISTANCE = 421
 M.EC_IN_MAX_BASE_DISTANCE = 422
 M.AC_IN_MAX_BASE_DISTANCE = 423
+M.EC_HAVE_HP_ADVANTAGE = 424
+M.AC_HAVE_HP_ADVANTAGE = 425
 
 -- Tree state
 M.NO_TREE_PRESENT = 500
@@ -467,6 +469,14 @@ function M.UpdateState()
     NUM[algorithms.AreAllyCreepsInRadius(
           env.BOT_DATA,
           constants.MAX_BASE_CREEP_DISTANCE)]
+
+  M.GAME_STATE[M.EC_HAVE_HP_ADVANTAGE] =
+    NUM[constants.MAX_CREEPS_HP_DELTA
+        < (env.ENEMY_CREEPS_HP - env.ALLY_CREEPS_HP)]
+
+  M.GAME_STATE[M.AC_HAVE_HP_ADVANTAGE] =
+    NUM[constants.MAX_CREEPS_HP_DELTA
+        < (env.ALLY_CREEPS_HP - env.ENEMY_CREEPS_HP)]
 
   -- Tree state
 
