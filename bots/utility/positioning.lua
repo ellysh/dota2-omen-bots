@@ -43,13 +43,13 @@ end
 ---------------------------------
 
 function M.pre_tp_mid_tower()
-  local target_location = map.GetAllySpot("high_ground")
+  local weights = {
+    [gs.BOT_CASTABLE_TP_SCROLL] = 0.5,
+    [gs.BOT_IS_BASE_RECOVERY] = -1,
+    [gs.BOT_IN_MID_TP_DISTANCE] = 0.5,
+  }
 
-  return constants.MIN_TP_BASE_RADIUS
-           < functions.GetDistance(target_location, env.BOT_DATA.location)
-
-         and algorithms.IsItemCastable(env.BOT_DATA, "item_tpscroll")
-         and not env.IS_BASE_RECOVERY
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.tp_mid_tower()
