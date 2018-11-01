@@ -87,7 +87,7 @@ function M.pre_decrease_creeps_distance_base()
     [gs.AC_IN_MAX_BASE_DISTANCE] = -1,
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = -1,
     [gs.AC_FRONT_PRESENT] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
+    [gs.BOT_IN_ET_AGGRO_RADIUS] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -109,27 +109,20 @@ end
 ---------------------------------
 
 function M.pre_decrease_creeps_distance_aggro()
-  local last_hit_creep = GetPreLastHitCreep()
+  local weights = {
+    [gs.EH_IS_VISIBLE] = 0.3,
+    [gs.AC_FRONT_PRESENT] = 0.3,
+    [gs.EC_PRE_LAST_HIT_PRESENT] = 0.4,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = -1,
+    [gs.BOT_IN_ET_AGGRO_RADIUS] = -1,
+    [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = -1,
+  }
 
-  return env.ENEMY_HERO_DATA ~= nil
-         and env.ENEMY_HERO_DATA.is_visible
-         and env.ALLY_CREEP_FRONT_DATA ~= nil
-         and last_hit_creep ~= nil
-
-         and constants.LASTHIT_CREEP_DISTANCE
-               < functions.GetUnitDistance(
-                   env.BOT_DATA,
-               last_hit_creep)
-
-         and not env.IS_FOCUSED_BY_CREEPS
-
-         and not map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.decrease_creeps_distance_aggro()
-  local target_data = GetPreLastHitCreep()
-
-  env.BOT:Action_MoveDirectly(target_data.location)
+  env.BOT:Action_MoveDirectly(env.PRE_LAST_HIT_ENEMY_CREEP.location)
 end
 
 ---------------------------------
