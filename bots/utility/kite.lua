@@ -1,9 +1,3 @@
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
-
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
-
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
@@ -12,9 +6,6 @@ local env = require(
 
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
-
-local map = require(
-  GetScriptDirectory() .."/utility/map")
 
 local action_timing = require(
   GetScriptDirectory() .."/utility/action_timing")
