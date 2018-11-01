@@ -19,9 +19,6 @@ local action_timing = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
-local moves = require(
-  GetScriptDirectory() .."/utility/moves")
-
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
@@ -154,8 +151,6 @@ end
 
 function M.test_SetGameState(state)
   gs.GAME_STATE = state
-
-  moves.test_SetGameState(state)
 end
 
 return M
