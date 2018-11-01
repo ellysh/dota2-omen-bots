@@ -112,6 +112,9 @@ M.EAC_PRE_LAST_HIT_PRESENT = 417
 M.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS = 418
 M.EC_FRONT_IN_AGGRO_RADIUS = 419
 M.IS_FIRST_WAVE = 420
+M.EC_IN_MIN_BASE_DISTANCE = 421
+M.EC_IN_MAX_BASE_DISTANCE = 422
+M.AC_IN_MAX_BASE_DISTANCE = 423
 
 -- Tree state
 M.NO_TREE_PRESENT = 500
@@ -143,6 +146,8 @@ local function NormalizeValue(value, min, max)
 end
 
 function M.UpdateState()
+  -- BOT state
+
   M.GAME_STATE = {
     [M.BOT_IS_ALIVE] = NUM[algorithms.IsBotAlive()],
     [M.BOT_IS_LOW_HP] = NUM[env.IS_BOT_LOW_HP],
@@ -236,6 +241,8 @@ function M.UpdateState()
               env.BOT_DATA.location)]
   }
 
+  -- ENEMY_HERO state
+
   M.GAME_STATE[M.EH_PRESENT] = NUM[env.ENEMY_HERO_DATA ~= nil]
 
   if env.ENEMY_HERO_DATA ~= nil then
@@ -311,6 +318,8 @@ function M.UpdateState()
       NUM[env.ENEMY_HERO_DISTANCE <= constants.MIN_HERO_DISTANCE]
   end
 
+  -- ALLY_TOWER state
+
   M.GAME_STATE[M.AT_PRESENT] = NUM[env.ALLY_TOWER_DATA ~= nil]
 
   if env.ALLY_TOWER_DATA ~= nil then
@@ -324,6 +333,8 @@ function M.UpdateState()
 
     M.GAME_STATE[M.AT_GLYPH_READY] = NUM[GetGlyphCooldown() == 0]
   end
+
+  -- ENEMY_TOWER state
 
   M.GAME_STATE[M.ET_PRESENT] = NUM[env.ENEMY_TOWER_DATA ~= nil]
 
@@ -342,15 +353,21 @@ function M.UpdateState()
       NUM[env.ENEMY_TOWER_DISTANCE <= constants.TOWER_AGGRO_RADIUS]
   end
 
+  -- Creeps state
+
   M.GAME_STATE[M.EC_FRONT_PRESENT] =
     NUM[env.ENEMY_CREEP_FRONT_DATA ~= nil]
 
   if env.ENEMY_CREEP_FRONT_DATA ~= nil then
+    local ec_distance = functions.GetUnitDistance(
+                          env.BOT_DATA,
+                          env.ENEMY_CREEP_FRONT_DATA)
+
     M.GAME_STATE[M.EC_FRONT_IN_AGGRO_RADIUS] =
-      NUM[functions.GetUnitDistance(
-            env.BOT_DATA,
-            env.ENEMY_CREEP_FRONT_DATA)
-          <= constants.CREEP_MAX_AGGRO_RADIUS]
+      NUM[ec_distance <= constants.CREEP_MAX_AGGRO_RADIUS]
+
+    M.GAME_STATE[M.EC_IN_MIN_BASE_DISTANCE] =
+      NUM[ec_distance <= constants.MIN_BASE_CREEP_DISTANCE]
   end
 
   M.GAME_STATE[M.EC_BACK_PRESENT] = NUM[env.ENEMY_CREEP_BACK_DATA ~= nil]
@@ -428,6 +445,18 @@ function M.UpdateState()
 
   M.GAME_STATE[M.IS_FIRST_WAVE] = NUM[algorithms.IsFirstWave()]
 
+  M.GAME_STATE[M.EC_IN_MAX_BASE_DISTANCE] =
+    NUM[algorithms.AreEnemyCreepsInRadius(
+          env.BOT_DATA,
+          constants.MAX_BASE_CREEP_DISTANCE)]
+
+  M.GAME_STATE[M.AC_IN_MAX_BASE_DISTANCE] =
+    NUM[algorithms.AreAllyCreepsInRadius(
+          env.BOT_DATA,
+          constants.MAX_BASE_CREEP_DISTANCE)]
+
+  -- Tree state
+
   M.GAME_STATE[M.NO_TREE_PRESENT] = NUM[env.NEARBY_TREE == nil]
 
   if env.NEARBY_TREE ~= nil and env.ENEMY_TOWER_DATA ~= nil then
@@ -440,6 +469,8 @@ function M.UpdateState()
                       env.BOT_DATA,
                       true)]
   end
+
+  -- Courier state
 
   local courier_data = algorithms.GetCourierData()
 

@@ -64,43 +64,15 @@ end
 
 ---------------------------------
 
-local function GetBaseCreepDistance()
-  return functions.ternary(
-          (env.ENEMY_HERO_DATA ~= nil
-           and functions.GetUnitDistance(
-                 env.BOT_DATA,
-                 env.ENEMY_HERO_DATA)
-               < constants.SAFE_HERO_DISTANCE)
-          or algorithms.HasLevelForAggression(env.BOT_DATA),
-          constants.BASE_CREEP_DISTANCE,
-          constants.BASE_CREEP_DISTANCE_NO_ENEMY_HERO)
-end
-
 function M.pre_increase_creeps_distance()
   local weights = {
     [gs.EAC_PRE_LAST_HIT_PRESENT] = -1,
-    [gs.AC_FRONT_PRESENT] = 0.5,
-    [gs.EH_HAS_BETTER_POSITION] = 0.5,
-    [gs.EC_FRONT_PRESENT] = 0.1,
+    [gs.AC_FRONT_PRESENT] = 0.6,
+    [gs.EH_HAS_BETTER_POSITION] = 0.4,
+    [gs.EC_IN_MIN_BASE_DISTANCE] = 0.4,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
---[[
-  local last_hit_creep = GetPreLastHitCreep()
-
-  return last_hit_creep == nil
-         and env.ALLY_CREEP_FRONT_DATA ~= nil
-         and ((env.ENEMY_HERO_DATA ~= nil
-               and algorithms.IsUnitPositionBetter(
-                     env.ENEMY_HERO_DATA,
-                     env.BOT_DATA))
-
-              or (env.ENEMY_CREEP_FRONT_DATA ~= nil
-                  and functions.GetUnitDistance(
-                        env.BOT_DATA,
-                        env.ENEMY_CREEP_FRONT_DATA)
-                      < GetBaseCreepDistance()))
---]]
 end
 
 function M.increase_creeps_distance()
@@ -108,13 +80,6 @@ function M.increase_creeps_distance()
 end
 
 ---------------------------------
-
-local function GetClosestCreep()
-  return functions.ternary(
-          env.ENEMY_CREEP_FRONT_DATA ~= nil,
-          env.ENEMY_CREEP_FRONT_DATA,
-          env.ALLY_CREEP_FRONT_DATA)
-end
 
 function M.pre_decrease_creeps_distance_base()
   local base_creep_distance = GetBaseCreepDistance()
@@ -132,6 +97,13 @@ function M.pre_decrease_creeps_distance_base()
          and not map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
 
          and env.ALLY_CREEP_FRONT_DATA ~= nil
+end
+
+local function GetClosestCreep()
+  return functions.ternary(
+          env.ENEMY_CREEP_FRONT_DATA ~= nil,
+          env.ENEMY_CREEP_FRONT_DATA,
+          env.ALLY_CREEP_FRONT_DATA)
 end
 
 function M.decrease_creeps_distance_base()

@@ -128,4 +128,83 @@ function test_pre_tp_mid_tower_3_fails()
   luaunit.assertFalse(positioning.pre_tp_mid_tower())
 end
 
+---------------------------------
+
+function test_pre_increase_creeps_distance_1_succeed()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EH_HAS_BETTER_POSITION] = 1,
+    [gs.EC_IN_MIN_BASE_DISTANCE] = 0,
+  })
+
+  luaunit.assertTrue(positioning.pre_increase_creeps_distance())
+end
+
+function test_pre_increase_creeps_distance_2_succeed()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EH_HAS_BETTER_POSITION] = 0,
+    [gs.EC_IN_MIN_BASE_DISTANCE] = 1,
+  })
+
+  luaunit.assertTrue(positioning.pre_increase_creeps_distance())
+end
+
+function test_pre_increase_creeps_distance_3_succeed()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EH_HAS_BETTER_POSITION] = 1,
+    [gs.EC_IN_MIN_BASE_DISTANCE] = 1,
+  })
+
+  luaunit.assertTrue(positioning.pre_increase_creeps_distance())
+end
+
+function test_pre_increase_creeps_distance_1_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.EH_HAS_BETTER_POSITION] = 1,
+    [gs.EC_IN_MIN_BASE_DISTANCE] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance())
+end
+
+function test_pre_increase_creeps_distance_2_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EH_HAS_BETTER_POSITION] = 0,
+    [gs.EC_IN_MIN_BASE_DISTANCE] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance())
+end
+
+function test_pre_increase_creeps_distance_3_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EH_HAS_BETTER_POSITION] = 1,
+    [gs.EC_IN_MIN_BASE_DISTANCE] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance())
+end
+
+function test_pre_increase_creeps_distance_4_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EH_HAS_BETTER_POSITION] = 0,
+    [gs.EC_IN_MIN_BASE_DISTANCE] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance())
+end
+
 os.exit(luaunit.LuaUnit.run())
