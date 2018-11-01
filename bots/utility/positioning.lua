@@ -19,17 +19,25 @@ local action_timing = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
+local moves = require(
+  GetScriptDirectory() .."/utility/moves")
+
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_positioning()
-  return algorithms.IsBotAlive()
-         and (not algorithms.IsFirstWave()
-              or (env.ALLY_CREEP_BACK_DATA == nil
-                  and env.ALLY_CREEP_FRONT_DATA ~= nil))
+  local weights = {
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.IS_FIRST_WAVE] = -0.5,
+    [gs.AC_BACK_PRESENT] = -1,
+    [gs.AC_FRONT_PRESENT] = 0.5,
+  }
 
-         and algorithms.IsBotAlive()
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
