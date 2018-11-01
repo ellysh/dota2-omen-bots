@@ -237,7 +237,7 @@ function M.UpdateState()
       NUM[map.IsUnitInSpot(env.BOT_DATA, map.GetEnemySpot("river"))],
 
     [M.BOT_IN_MID_TP_DISTANCE] =
-      NUM[constants.MIN_TP_BASE_RADIUS
+      NUM[constants.MIN_TP_SPOT_RADIUS
           < functions.GetDistance(
               map.GetAllySpot("high_ground"),
               env.BOT_DATA.location)],
