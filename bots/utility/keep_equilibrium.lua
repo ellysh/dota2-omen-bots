@@ -13,23 +13,23 @@ local env = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_keep_equilibrium()
-  return algorithms.IsBotAlive()
-         and not env.IS_BOT_LOW_HP
-         and not algorithms.HasLevelForAggression(env.BOT_DATA)
-         and env.ENEMY_CREEP_BACK_DATA == nil
+  local weights = {
+    [gs.EC_BACK_PRESENT] = -1,
+    [gs.EC_PRE_LAST_HIT_PRESENT] = -1,
+    [gs.AC_PRE_LAST_HIT_PRESENT] = -1,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = -1,
+  }
 
-         and env.PRE_LAST_HIT_ENEMY_CREEP == nil
-         and env.PRE_LAST_HIT_ALLY_CREEP == nil
-
-         and not algorithms.IsTargetInAttackRange(
-                   env.ENEMY_HERO_DATA,
-                   env.BOT_DATA,
-                   true)
+  return moves.pre_attack_objective()
+         and gs.EvaluateFrom(1, gs.GAME_STATE, weights)
 end
 
 ---------------------------------
@@ -65,5 +65,9 @@ end
 ---------------------------------
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+end
 
 return M

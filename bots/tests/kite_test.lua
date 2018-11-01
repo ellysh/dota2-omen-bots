@@ -19,7 +19,7 @@ function test_pre_attack_enemy_hero_1_succeed()
     [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
-    -- pre_attack_enemy_hero
+    -- moves.pre_attack_enemy_hero
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IS_TOWER_PROTECTED] = 0,
@@ -40,7 +40,7 @@ function test_pre_attack_enemy_hero_2_succeed()
     [gs.EC_IN_AGGRO_RADIUS] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 1,
 
-    -- pre_attack_enemy_hero
+    -- moves.pre_attack_enemy_hero
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IS_TOWER_PROTECTED] = 0,
@@ -61,7 +61,7 @@ function test_pre_attack_enemy_hero_1_fails()
     [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
-    -- pre_attack_enemy_hero
+    -- moves.pre_attack_enemy_hero
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IS_TOWER_PROTECTED] = 0,
@@ -82,7 +82,7 @@ function test_pre_attack_enemy_hero_2_fails()
     [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
-    -- pre_attack_enemy_hero
+    -- moves.pre_attack_enemy_hero
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IS_TOWER_PROTECTED] = 0,
@@ -103,7 +103,7 @@ function test_pre_attack_enemy_hero_3_fails()
     [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
-    -- pre_attack_enemy_hero
+    -- moves.pre_attack_enemy_hero
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IS_TOWER_PROTECTED] = 0,
@@ -124,7 +124,7 @@ function test_pre_attack_enemy_hero_4_fails()
     [gs.EC_IN_AGGRO_RADIUS] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
-    -- pre_attack_enemy_hero
+    -- moves.pre_attack_enemy_hero
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IS_TOWER_PROTECTED] = 0,
@@ -145,7 +145,7 @@ function test_pre_attack_enemy_hero_5_fails()
     [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
-    -- pre_attack_enemy_hero
+    -- moves.pre_attack_enemy_hero
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IS_TOWER_PROTECTED] = 1,
