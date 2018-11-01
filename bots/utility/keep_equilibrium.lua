@@ -1,15 +1,3 @@
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
-
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
-
-local algorithms = require(
-  GetScriptDirectory() .."/utility/algorithms")
-
-local env = require(
-  GetScriptDirectory() .."/utility/environment")
-
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
@@ -50,9 +38,12 @@ end
 --------------------------------
 
 function M.pre_attack_ally_creep()
-  return constants.MAX_CREEPS_HP_DELTA
-           < (env.ALLY_CREEPS_HP - env.ENEMY_CREEPS_HP)
-         and moves.pre_attack_ally_creep()
+  local weights = {
+    [gs.AC_HAVE_HP_ADVANTAGE] = 1,
+  }
+
+  return moves.pre_attack_ally_creep()
+         and gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.attack_ally_creep()

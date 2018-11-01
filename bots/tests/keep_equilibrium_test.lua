@@ -165,4 +165,45 @@ function test_pre_attack_enemy_creep_2_fails()
   luaunit.assertFalse(keep_equilibrium.pre_attack_enemy_creep())
 end
 
+---------------------------------
+
+function test_pre_attack_ally_creep_1_succeed()
+  keep_equilibrium.test_SetGameState({
+    -- pre_attack_enemy_creep
+    [gs.AC_HAVE_HP_ADVANTAGE] = 1,
+
+    -- moves.pre_attack_ally_creep
+    [gs.AC_TARGETABLE_PRESENT] = 1,
+    [gs.AC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+  })
+
+  luaunit.assertTrue(keep_equilibrium.pre_attack_ally_creep())
+end
+
+function test_pre_attack_ally_creep_1_fails()
+  keep_equilibrium.test_SetGameState({
+    -- pre_attack_enemy_creep
+    [gs.AC_HAVE_HP_ADVANTAGE] = 0,
+
+    -- moves.pre_attack_ally_creep
+    [gs.AC_TARGETABLE_PRESENT] = 1,
+    [gs.AC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+  })
+
+  luaunit.assertFalse(keep_equilibrium.pre_attack_ally_creep())
+end
+
+function test_pre_attack_ally_creep_2_fails()
+  keep_equilibrium.test_SetGameState({
+    -- pre_attack_enemy_creep
+    [gs.AC_HAVE_HP_ADVANTAGE] = 1,
+
+    -- moves.pre_attack_ally_creep
+    [gs.AC_TARGETABLE_PRESENT] = 1,
+    [gs.AC_TARGETABLE_IS_TOWER_PROTECTED] = 1,
+  })
+
+  luaunit.assertFalse(keep_equilibrium.pre_attack_ally_creep())
+end
+
 os.exit(luaunit.LuaUnit.run())
