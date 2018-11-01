@@ -53,23 +53,21 @@ end
 --------------------------------
 
 function M.pre_attack_enemy_tower()
-  return env.ENEMY_TOWER_DATA ~= nil
-         and env.ALLY_CREEP_FRONT_DATA ~= nil
-         and algorithms.HasLevelForAggression(env.BOT_DATA)
-         and algorithms.DoesEnemyTowerAttackAllyCreep(
-               env.BOT_DATA,
-               env.ENEMY_TOWER_DATA)
+  local weights_1 = {
+    [gs.ET_PRESENT] = 0.3,
+    [gs.AC_FRONT_PRESENT] = 0.3,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0.2,
+    [gs.ET_ATTACK_AC] = 0.2,
+  }
 
-         and not env.IS_FOCUSED_BY_TOWER
+  local weights_2 = {
+    [gs.EH_PRESENT] = -0.5,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = -1,
+    [gs.BOT_HP_RATE] = 1,
+  }
 
-         and (env.ENEMY_HERO_DATA == nil
-
-              or (constants.MIN_HERO_DISTANCE < env.ENEMY_HERO_DISTANCE
-
-                  and constants.UNIT_HALF_HEALTH_LEVEL
-                      <= functions.GetRate(
-                           env.BOT_DATA.health,
-                           env.BOT_DATA.max_health)))
+  return gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.EvaluateFrom(1, gs.GAME_STATE, weights_2)
 end
 
 function M.attack_enemy_tower()

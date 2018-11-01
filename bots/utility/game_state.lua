@@ -72,6 +72,7 @@ M.EH_CAN_BE_FOLLOWED_UNDER_TOWER = 111
 M.EH_HAS_BETTER_POSITION = 112
 M.BOT_ATTACK_EH = 113
 M.EH_IN_REAR_SPOT = 114
+M.BOT_IN_EH_MIN_DISTANCE = 115
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -82,6 +83,7 @@ M.AT_GLYPH_READY = 203
 -- ENEMY_TOWER state
 M.ET_PRESENT = 300
 M.ET_BOT_DISTANCE = 301
+M.ET_ATTACK_AC = 302
 
 -- Creeps state
 M.EC_FRONT_PRESENT = 400
@@ -279,6 +281,9 @@ function M.UpdateState()
       NUM[map.IsUnitInSpot(
             env.ENEMY_HERO_DATA,
             map.GetEnemySpot("tower_tier_1_rear_deep"))]
+
+    M.GAME_STATE[M.BOT_IN_EH_MIN_DISTANCE] =
+      NUM[env.ENEMY_HERO_DISTANCE <= constants.MIN_HERO_DISTANCE]
   end
 
   M.GAME_STATE[M.AT_PRESENT] = NUM[env.ALLY_TOWER_DATA ~= nil]
@@ -302,6 +307,11 @@ function M.UpdateState()
                                         env.ENEMY_TOWER_DISTANCE,
                                         0,
                                         constants.MIN_TOWER_DISTANCE)
+
+    M.GAME_STATE[M.ET_ATTACK_AC] =
+      NUM[algorithms.DoesEnemyTowerAttackAllyCreep(
+            env.BOT_DATA,
+            env.ENEMY_TOWER_DATA)]
   end
 
   M.GAME_STATE[M.EC_FRONT_PRESENT] =

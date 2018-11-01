@@ -156,4 +156,142 @@ function test_pre_attack_enemy_hero_5_fails()
   luaunit.assertFalse(kite.pre_attack_enemy_hero())
 end
 
+---------------------------------
+
+function test_pre_attack_enemy_tower_1_succeed()
+  kite.test_SetGameState({
+    -- weights_1
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.ET_ATTACK_AC] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0,
+  })
+
+  luaunit.assertTrue(kite.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_2_succeed()
+  kite.test_SetGameState({
+    -- weights_1
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.ET_ATTACK_AC] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0.6,
+  })
+
+  luaunit.assertTrue(kite.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_1_fails()
+  kite.test_SetGameState({
+    -- weights_1
+    [gs.ET_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.ET_ATTACK_AC] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0,
+  })
+
+  luaunit.assertFalse(kite.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_2_fails()
+  kite.test_SetGameState({
+    -- weights_1
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.ET_ATTACK_AC] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0,
+  })
+
+  luaunit.assertFalse(kite.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_3_fails()
+  kite.test_SetGameState({
+    -- weights_1
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
+    [gs.ET_ATTACK_AC] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0,
+  })
+
+  luaunit.assertFalse(kite.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_4_fails()
+  kite.test_SetGameState({
+    -- weights_1
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.ET_ATTACK_AC] = 0,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0,
+  })
+
+  luaunit.assertFalse(kite.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_5_fails()
+  kite.test_SetGameState({
+    -- weights_1
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.ET_ATTACK_AC] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_HP_RATE] = 1,
+  })
+
+  luaunit.assertFalse(kite.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_6_fails()
+  kite.test_SetGameState({
+    -- weights_1
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.ET_ATTACK_AC] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0.4,
+  })
+
+  luaunit.assertFalse(kite.pre_attack_enemy_tower())
+end
+
 os.exit(luaunit.LuaUnit.run())
