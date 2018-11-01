@@ -82,21 +82,15 @@ end
 ---------------------------------
 
 function M.pre_decrease_creeps_distance_base()
-  local base_creep_distance = GetBaseCreepDistance()
+  local weights = {
+    [gs.EC_IN_MAX_BASE_DISTANCE] = -1,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = -1,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = -1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
+  }
 
-  return not algorithms.AreEnemyCreepsInRadius(
-                env.BOT_DATA,
-                base_creep_distance)
-
-         and not algorithms.AreAllyCreepsInRadius(
-                  env.BOT_DATA,
-                  base_creep_distance)
-
-         and not env.IS_FOCUSED_BY_CREEPS
-
-         and not map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-
-         and env.ALLY_CREEP_FRONT_DATA ~= nil
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 local function GetClosestCreep()

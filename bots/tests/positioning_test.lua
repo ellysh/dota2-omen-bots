@@ -207,4 +207,78 @@ function test_pre_increase_creeps_distance_4_fails()
   luaunit.assertFalse(positioning.pre_increase_creeps_distance())
 end
 
+---------------------------------
+
+function test_pre_decrease_creeps_distance_base_1_succeed()
+  positioning.test_SetGameState({
+    [gs.EC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+  })
+
+  luaunit.assertTrue(positioning.pre_decrease_creeps_distance_base())
+end
+
+function test_pre_decrease_creeps_distance_base_1_fails()
+  positioning.test_SetGameState({
+    [gs.EC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_decrease_creeps_distance_base())
+end
+
+function test_pre_decrease_creeps_distance_base_2_fails()
+  positioning.test_SetGameState({
+    [gs.EC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_decrease_creeps_distance_base())
+end
+
+function test_pre_decrease_creeps_distance_base_3_fails()
+  positioning.test_SetGameState({
+    [gs.EC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_decrease_creeps_distance_base())
+end
+
+function test_pre_decrease_creeps_distance_base_4_fails()
+  positioning.test_SetGameState({
+    [gs.EC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_decrease_creeps_distance_base())
+end
+
+function test_pre_decrease_creeps_distance_base_5_fails()
+  positioning.test_SetGameState({
+    [gs.EC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_decrease_creeps_distance_base())
+end
+
 os.exit(luaunit.LuaUnit.run())
