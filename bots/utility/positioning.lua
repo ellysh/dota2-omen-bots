@@ -128,34 +128,18 @@ end
 ---------------------------------
 
 function M.pre_turn()
-  local last_hit_creep = GetPreLastHitCreep()
-  local enemy_hero = env.ENEMY_HERO_DATA
-  local target_data = functions.ternary(
-                        last_hit_creep ~= nil,
-                        last_hit_creep,
-                        enemy_hero)
+  local weights = {
+    [gs.AC_FRONT_PRESENT] = 0.5,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
+    [gs.TURN_TARGET_PRESENT] = 0.5,
+    [gs.BOT_IS_FACING_TURN_TARGET] = -1,
+  }
 
-  return target_data ~= nil
-
-         and env.ALLY_CREEP_FRONT_DATA ~= nil
-
-         and not functions.IsFacingLocation(
-                   env.BOT_DATA,
-                   target_data.location,
-                   constants.TURN_TARGET_MAX_DEGREE)
-
-         and not map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.turn()
-  local last_hit_creep = GetPreLastHitCreep()
-  local enemy_hero = env.ENEMY_HERO_DATA
-  local target_data = functions.ternary(
-                        last_hit_creep ~= nil,
-                        last_hit_creep,
-                        enemy_hero)
-
-  env.BOT:Action_AttackUnit(all_units.GetUnit(target_data), true)
+  env.BOT:Action_AttackUnit(all_units.GetUnit(env.TURN_TARGET_DATA), true)
 
   action_timing.SetNextActionDelay(constants.NEVERMORE_TURN_TIME)
 end

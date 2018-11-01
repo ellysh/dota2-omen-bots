@@ -48,6 +48,7 @@ M.LAST_AGGRO_CONTROL = 0
 M.DOES_BOT_HAVE_ADVANTAGE = false
 M.DOES_ENEMY_HERO_HAVE_ADVANTAGE = false
 M.NEARBY_TREE = {}
+M.TURN_TARGET_DATA = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -267,6 +268,12 @@ function M.UpdateVariables()
                        and M.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS
 
   M.NEARBY_TREE = M.BOT_DATA.nearby_trees[1]
+
+  M.TURN_TARGET_DATA = functions.ternary(
+                         M.PRE_LAST_HIT_ANY_CREEP ~= nil,
+                         M.PRE_LAST_HIT_ANY_CREEP,
+                         M.ENEMY_HERO_DATA)
+
 end
 
 -- Provide an access to local functions for unit tests only

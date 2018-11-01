@@ -59,6 +59,8 @@ M.BOT_MOVING = 32
 M.BOT_IN_ALLY_TOWER_RANGE = 33
 M.BOT_IN_RIVER = 34
 M.BOT_IN_MID_TP_DISTANCE = 35
+M.TURN_TARGET_PRESENT = 36
+M.BOT_IS_FACING_TURN_TARGET = 37
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -238,8 +240,19 @@ function M.UpdateState()
       NUM[constants.MIN_TP_BASE_RADIUS
           < functions.GetDistance(
               map.GetAllySpot("high_ground"),
-              env.BOT_DATA.location)]
+              env.BOT_DATA.location)],
+
+    [M.TURN_TARGET_PRESENT] =
+      NUM[env.TURN_TARGET_DATA ~= nil]
   }
+
+  if env.TURN_TARGET_DATA ~= nil then
+    M.GAME_STATE[M.BOT_IS_FACING_TURN_TARGET] =
+      NUM[functions.IsFacingLocation(
+            env.BOT_DATA,
+            env.TURN_TARGET_DATA,
+            constants.TURN_TARGET_MAX_DEGREE)]
+  end
 
   -- ENEMY_HERO state
 

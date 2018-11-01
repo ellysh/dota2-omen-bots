@@ -374,4 +374,61 @@ function test_pre_decrease_creeps_distance_aggro_6_fails()
   luaunit.assertFalse(positioning.pre_decrease_creeps_distance_aggro())
 end
 
+---------------------------------
+
+function test_pre_turn_1_succeed()
+  positioning.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.TURN_TARGET_PRESENT] = 1,
+    [gs.BOT_IS_FACING_TURN_TARGET] = 0,
+  })
+
+  luaunit.assertTrue(positioning.pre_turn())
+end
+
+function test_pre_turn_1_fails()
+  positioning.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.TURN_TARGET_PRESENT] = 0,
+    [gs.BOT_IS_FACING_TURN_TARGET] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_turn())
+end
+
+function test_pre_turn_2_fails()
+  positioning.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.TURN_TARGET_PRESENT] = 1,
+    [gs.BOT_IS_FACING_TURN_TARGET] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_turn())
+end
+
+function test_pre_turn_3_fails()
+  positioning.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
+    [gs.TURN_TARGET_PRESENT] = 1,
+    [gs.BOT_IS_FACING_TURN_TARGET] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_turn())
+end
+
+function test_pre_turn_4_fails()
+  positioning.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.TURN_TARGET_PRESENT] = 1,
+    [gs.BOT_IS_FACING_TURN_TARGET] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_turn())
+end
+
 os.exit(luaunit.LuaUnit.run())
