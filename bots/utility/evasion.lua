@@ -49,7 +49,7 @@ function M.pre_evade_enemy_hero()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0.5,
     [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0.5,
-    [gs.EC_IN_AGRO_RADIUS] = 0.5,
+    [gs.EC_IN_AGGRO_RADIUS] = 0.5,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

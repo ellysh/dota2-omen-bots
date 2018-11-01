@@ -29,7 +29,7 @@ function M.pre_attack_enemy_hero()
     [gs.EC_BACK_PRESENT] = -1,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = -1,
-    [gs.EC_IN_AGRO_RADIUS] = -0.5,
+    [gs.EC_IN_AGGRO_RADIUS] = -0.5,
     [gs.EC_AGGRO_COOLDOWN] = 0.5,
   }
 

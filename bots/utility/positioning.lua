@@ -64,13 +64,6 @@ end
 
 ---------------------------------
 
-local function GetPreLastHitCreep()
-  return functions.ternary(
-          env.PRE_LAST_HIT_ENEMY_CREEP ~= nil,
-          env.PRE_LAST_HIT_ENEMY_CREEP,
-          env.PRE_LAST_HIT_ALLY_CREEP)
-end
-
 local function GetBaseCreepDistance()
   return functions.ternary(
           (env.ENEMY_HERO_DATA ~= nil
@@ -84,6 +77,15 @@ local function GetBaseCreepDistance()
 end
 
 function M.pre_increase_creeps_distance()
+  local weights = {
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = -1,
+    [gs.AC_FRONT_PRESENT] = 0.5,
+    [gs.EH_HAS_BETTER_POSITION] = 0.5,
+    [gs.EC_FRONT_PRESENT] = 0.1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+--[[
   local last_hit_creep = GetPreLastHitCreep()
 
   return last_hit_creep == nil
@@ -98,6 +100,7 @@ function M.pre_increase_creeps_distance()
                         env.BOT_DATA,
                         env.ENEMY_CREEP_FRONT_DATA)
                       < GetBaseCreepDistance()))
+--]]
 end
 
 function M.increase_creeps_distance()

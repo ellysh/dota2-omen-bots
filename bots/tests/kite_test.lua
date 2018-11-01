@@ -16,7 +16,7 @@ function test_pre_attack_enemy_hero_1_succeed()
     [gs.EC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = 0,
-    [gs.EC_IN_AGRO_RADIUS] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
     -- pre_attack_enemy_hero
@@ -37,7 +37,7 @@ function test_pre_attack_enemy_hero_2_succeed()
     [gs.EC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = 0,
-    [gs.EC_IN_AGRO_RADIUS] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 1,
 
     -- pre_attack_enemy_hero
@@ -58,7 +58,7 @@ function test_pre_attack_enemy_hero_1_fails()
     [gs.EC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = 0,
-    [gs.EC_IN_AGRO_RADIUS] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
     -- pre_attack_enemy_hero
@@ -79,7 +79,7 @@ function test_pre_attack_enemy_hero_2_fails()
     [gs.EC_BACK_PRESENT] = 1,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = 0,
-    [gs.EC_IN_AGRO_RADIUS] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
     -- pre_attack_enemy_hero
@@ -100,7 +100,7 @@ function test_pre_attack_enemy_hero_3_fails()
     [gs.EC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = 1,
-    [gs.EC_IN_AGRO_RADIUS] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
     -- pre_attack_enemy_hero
@@ -121,7 +121,7 @@ function test_pre_attack_enemy_hero_4_fails()
     [gs.EC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = 0,
-    [gs.EC_IN_AGRO_RADIUS] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
     -- pre_attack_enemy_hero
@@ -142,7 +142,7 @@ function test_pre_attack_enemy_hero_5_fails()
     [gs.EC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = 0,
-    [gs.EC_IN_AGRO_RADIUS] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
 
     -- pre_attack_enemy_hero
