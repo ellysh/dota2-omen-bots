@@ -121,4 +121,118 @@ function test_pre_aggro_last_hit_7_fails()
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
 end
 
+---------------------------------
+
+function test_pre_aggro_hg_1_succeed()
+  aggro_control.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EC_FRONT_PRESENT] = 1,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.BOT_IN_RIVER] = 1,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertTrue(aggro_control.pre_aggro_hg())
+end
+
+function test_pre_aggro_hg_1_fails()
+  aggro_control.test_SetGameState({
+    [gs.EH_PRESENT] = 0,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EC_FRONT_PRESENT] = 1,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.BOT_IN_RIVER] = 1,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertFalse(aggro_control.pre_aggro_hg())
+end
+
+function test_pre_aggro_hg_2_fails()
+  aggro_control.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 0,
+    [gs.EC_FRONT_PRESENT] = 1,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.BOT_IN_RIVER] = 1,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertFalse(aggro_control.pre_aggro_hg())
+end
+
+function test_pre_aggro_hg_3_fails()
+  aggro_control.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EC_FRONT_PRESENT] = 0,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.BOT_IN_RIVER] = 1,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertFalse(aggro_control.pre_aggro_hg())
+end
+
+function test_pre_aggro_hg_4_fails()
+  aggro_control.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EC_FRONT_PRESENT] = 1,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.BOT_IN_RIVER] = 0,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertFalse(aggro_control.pre_aggro_hg())
+end
+
+function test_pre_aggro_hg_5_fails()
+  aggro_control.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EC_FRONT_PRESENT] = 1,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.BOT_IN_RIVER] = 1,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 0,
+  })
+
+  luaunit.assertFalse(aggro_control.pre_aggro_hg())
+end
+
+function test_pre_aggro_hg_6_fails()
+  aggro_control.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EC_FRONT_PRESENT] = 1,
+    [gs.EC_BACK_PRESENT] = 1,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.BOT_IN_RIVER] = 1,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertFalse(aggro_control.pre_aggro_hg())
+end
+
+function test_pre_aggro_hg_7_fails()
+  aggro_control.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EC_FRONT_PRESENT] = 1,
+    [gs.EC_BACK_PRESENT] = 0,
+    [gs.EC_AGGRO_COOLDOWN] = 1,
+    [gs.BOT_IN_RIVER] = 1,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertFalse(aggro_control.pre_aggro_hg())
+end
+
 os.exit(luaunit.LuaUnit.run())

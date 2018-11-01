@@ -55,22 +55,17 @@ end
 ---------------------------------
 
 function M.pre_aggro_hg()
-  return env.ENEMY_HERO_DATA ~= nil
-         and env.ENEMY_CREEP_FRONT_DATA ~= nil
-         and env.ENEMY_CREEP_BACK_DATA == nil
-         and env.ENEMY_HERO_DATA.is_visible
+  local weights = {
+    [gs.EH_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
+    [gs.EC_FRONT_PRESENT] = 0.2,
+    [gs.EC_BACK_PRESENT] = -1,
+    [gs.EC_AGGRO_COOLDOWN] = -1,
+    [gs.BOT_IN_RIVER] = 0.1,
+    [gs.EC_FRONT_IN_AGRO_RADIUS] = 0.1,
+  }
 
-         and constants.CREEPS_AGGRO_COOLDOWN
-             <= functions.GetDelta(env.LAST_AGGRO_CONTROL, GameTime())
-
-         and map.IsUnitInSpot(
-                   env.BOT_DATA,
-                   map.GetEnemySpot("river"))
-
-         and functions.GetUnitDistance(
-               env.BOT_DATA,
-               env.ENEMY_CREEP_FRONT_DATA)
-             <= constants.CREEP_MAX_AGGRO_RADIUS
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.aggro_hg()

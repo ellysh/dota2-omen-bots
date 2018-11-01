@@ -57,6 +57,7 @@ M.BOT_HAS_BETTER_POSITION = 30
 M.BOT_STASH_FULL = 31
 M.BOT_MOVING = 32
 M.BOT_IN_ALLY_TOWER_RANGE = 33
+M.BOT_IN_RIVER = 34
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -108,6 +109,7 @@ M.AC_TARGETABLE_IS_TOWER_PROTECTED = 415
 M.EC_AGGRO_COOLDOWN = 416
 M.EAC_PRE_LAST_HIT_PRESENT = 417
 M.EC_PRE_LAST_HIT_IN_AGRO_RADIUS = 418
+M.EC_FRONT_IN_AGRO_RADIUS = 419
 
 -- Tree state
 M.NO_TREE_PRESENT = 500
@@ -221,6 +223,9 @@ function M.UpdateState()
     [M.BOT_STASH_FULL] = NUM[0 < env.BOT_DATA.stash_value],
 
     [M.BOT_MOVING] = NUM[algorithms.IsUnitMoving(env.BOT_DATA)],
+
+    [M.BOT_IN_RIVER] =
+      NUM[map.IsUnitInSpot(env.BOT_DATA, map.GetEnemySpot("river"))],
   }
 
   M.GAME_STATE[M.EH_PRESENT] = NUM[env.ENEMY_HERO_DATA ~= nil]
@@ -327,11 +332,18 @@ function M.UpdateState()
 
     M.GAME_STATE[M.BOT_IN_ET_AGGRO_RADIUS] =
       NUM[env.ENEMY_TOWER_DISTANCE <= constants.TOWER_AGGRO_RADIUS]
-
   end
 
   M.GAME_STATE[M.EC_FRONT_PRESENT] =
     NUM[env.ENEMY_CREEP_FRONT_DATA ~= nil]
+
+  if env.ENEMY_CREEP_FRONT_DATA ~= nil then
+    M.GAME_STATE[M.EC_FRONT_IN_AGRO_RADIUS] =
+      NUM[functions.GetUnitDistance(
+            env.BOT_DATA,
+            env.ENEMY_CREEP_FRONT_DATA)
+          <= constants.CREEP_MAX_AGGRO_RADIUS]
+  end
 
   M.GAME_STATE[M.EC_BACK_PRESENT] = NUM[env.ENEMY_CREEP_BACK_DATA ~= nil]
   M.GAME_STATE[M.AC_FRONT_PRESENT] = NUM[env.ALLY_CREEP_FRONT_DATA ~= nil]
