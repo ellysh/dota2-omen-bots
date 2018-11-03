@@ -1,11 +1,5 @@
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
-
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
-
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
 
 local env = require(
   GetScriptDirectory() .."/utility/environment")
@@ -15,9 +9,6 @@ local map = require(
 
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
-
-local all_units = require(
-  GetScriptDirectory() .."/utility/all_units")
 
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
@@ -66,7 +57,7 @@ function M.pre_move_enemy_hero()
 end
 
 function M.move_enemy_hero()
-  if IsUnitLastSeenOnStairs(env.ENEMY_HERO_DATA) then
+  if algorithms.IsUnitLastSeenOnStairs(env.ENEMY_HERO_DATA) then
     env.BOT:Action_MoveDirectly(map.GetEnemySpot("high_ground"))
   else
     moves.move_enemy_hero()

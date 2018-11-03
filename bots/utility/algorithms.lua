@@ -683,6 +683,14 @@ function M.IsUnitPositionBetter(unit_data, target_data)
          < GetHeightLevel(target_data.location)
 end
 
+function M.IsUnitLastSeenOnStairs(unit_data)
+  local enemy_high_ground = map.GetEnemySpot("high_ground")
+
+  return not unit_data.is_visible
+         and map.IsUnitInSpot(unit_data, enemy_high_ground)
+         and not IsLocationVisible(enemy_high_ground)
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_UpdateUnitList = all_units.UpdateUnitList

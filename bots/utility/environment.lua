@@ -152,21 +152,13 @@ end
 
 ---------------------------------
 
-local function IsUnitLastSeenOnStairs(unit_data)
-  local enemy_high_ground = map.GetEnemySpot("high_ground")
-
-  return not unit_data.is_visible
-         and map.IsUnitInSpot(unit_data, enemy_high_ground)
-         and not IsLocationVisible(enemy_high_ground)
-end
-
 local function IsLastSeenLocationValid(unit_data)
   return unit_data.is_visible
 
          or constants.LAST_SEEN_LOCATION_MIN_DISTANCE
              < functions.GetUnitDistance(unit_data, M.BOT_DATA)
 
-         or IsUnitLastSeenOnStairs(unit_data)
+         or algorithms.IsUnitLastSeenOnStairs(unit_data)
 end
 
 local LAST_ENEMY_HERO_DEATHS = 0
