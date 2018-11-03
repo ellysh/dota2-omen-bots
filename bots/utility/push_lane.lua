@@ -13,15 +13,21 @@ local env = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_push_lane()
-  return algorithms.IsBotAlive()
-         and not env.IS_BOT_LOW_HP
-         and env.ENEMY_CREEP_BACK_DATA == nil
-         and algorithms.HasLevelForAggression(env.BOT_DATA)
+  local weights = {
+    [gs.EC_BACK_PRESENT] = -1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+  }
+
+  return moves.pre_attack_objective()
+         and gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
@@ -85,5 +91,9 @@ end
 ---------------------------------
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+end
 
 return M
