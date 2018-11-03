@@ -521,14 +521,11 @@ function M.UpdateState()
   M.GAME_STATE[M.NO_TREE_PRESENT] = NUM[env.NEARBY_TREE == nil]
 
   if env.NEARBY_TREE ~= nil and env.ENEMY_TOWER_DATA ~= nil then
-    M.GAME_STATE[M.TREE_ET_UNSAFE_DISTANCE] = NUM[
-                 functions.GetDistance(
-                   GetTreeLocation(env.NEARBY_TREE),
-                   env.ENEMY_TOWER_DATA.location)
-                 <= algorithms.GetAttackRange(
-                      env.ENEMY_TOWER_DATA,
-                      env.BOT_DATA,
-                      true)]
+    M.GAME_STATE[M.TREE_ET_UNSAFE_DISTANCE] =
+      NUM[functions.GetDistance(
+            GetTreeLocation(env.NEARBY_TREE),
+            env.ENEMY_TOWER_DATA.location)
+          <= constants.TANGO_USAGE_FROM_ET_DISTANCE]
   end
 
   -- Courier state
