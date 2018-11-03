@@ -70,8 +70,7 @@ end
 ---------------------------------
 
 function M.pre_heal_tango()
-  local weights = {
-    [gs.BOT_IS_LOW_HP] = -1,
+  local weights_1 = {
     [gs.BOT_IS_HEALING] = -1,
     [gs.BOT_CASTABLE_TANGO] = 0.7,
     [gs.BOT_HP_MAX_DELTA] = 1,
@@ -79,7 +78,13 @@ function M.pre_heal_tango()
     [gs.TREE_ET_UNSAFE_DISTANCE] = -1,
   }
 
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  local weights_2 = {
+    [gs.BOT_IS_LOW_HP] = -1,
+    [gs.BOT_CASTABLE_FLASK] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.EvaluateFrom(2, gs.GAME_STATE, weights_2)
 end
 
 function M.heal_tango()

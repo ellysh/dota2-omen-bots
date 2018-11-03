@@ -290,12 +290,16 @@ end
 
 function test_pre_heal_tango_1_succeed()
   item_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
+    -- weights_1
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_CASTABLE_TANGO] = 1,
     [gs.BOT_HP_MAX_DELTA] = 0.31,
     [gs.NO_TREE_PRESENT] = 0,
     [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
   })
 
   luaunit.assertTrue(item_recovery.pre_heal_tango())
@@ -303,12 +307,50 @@ end
 
 function test_pre_heal_tango_2_succeed()
   item_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
+    -- weights_1
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_CASTABLE_TANGO] = 1,
     [gs.BOT_HP_MAX_DELTA] = 0.31,
     [gs.NO_TREE_PRESENT] = 0,
     [gs.TREE_ET_UNSAFE_DISTANCE] = 0,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
+  })
+
+  luaunit.assertTrue(item_recovery.pre_heal_tango())
+end
+
+function test_pre_heal_tango_3_succeed()
+  item_recovery.test_SetGameState({
+    -- weights_1
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FLASK] = 0,
+  })
+
+  luaunit.assertTrue(item_recovery.pre_heal_tango())
+end
+
+function test_pre_heal_tango_4_succeed()
+  item_recovery.test_SetGameState({
+    -- weights_1
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_CASTABLE_TANGO] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.31,
+    [gs.NO_TREE_PRESENT] = 0,
+    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 1,
   })
 
   luaunit.assertTrue(item_recovery.pre_heal_tango())
@@ -316,12 +358,16 @@ end
 
 function test_pre_heal_tango_1_fails()
   item_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
+    -- weights_1
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_CASTABLE_TANGO] = 1,
     [gs.BOT_HP_MAX_DELTA] = 0.29,
     [gs.NO_TREE_PRESENT] = 0,
     [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -329,12 +375,16 @@ end
 
 function test_pre_heal_tango_2_fails()
   item_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
+    -- weights_1
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_CASTABLE_TANGO] = 1,
     [gs.BOT_HP_MAX_DELTA] = 0.31,
     [gs.NO_TREE_PRESENT] = 0,
     [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FLASK] = 1,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -342,12 +392,16 @@ end
 
 function test_pre_heal_tango_3_fails()
   item_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
+    -- weights_1
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_CASTABLE_TANGO] = 1,
     [gs.BOT_HP_MAX_DELTA] = 0.31,
     [gs.NO_TREE_PRESENT] = 0,
     [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -355,12 +409,16 @@ end
 
 function test_pre_heal_tango_4_fails()
   item_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
+    -- weights_1
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_CASTABLE_TANGO] = 0,
     [gs.BOT_HP_MAX_DELTA] = 0.31,
     [gs.NO_TREE_PRESENT] = 0,
     [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -368,12 +426,16 @@ end
 
 function test_pre_heal_tango_5_fails()
   item_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
+    -- weights_1
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_CASTABLE_TANGO] = 1,
     [gs.BOT_HP_MAX_DELTA] = 0.31,
     [gs.NO_TREE_PRESENT] = 0,
     [gs.TREE_ET_UNSAFE_DISTANCE] = 1,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
@@ -381,12 +443,16 @@ end
 
 function test_pre_heal_tango_6_fails()
   item_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
+    -- weights_1
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_CASTABLE_TANGO] = 1,
     [gs.BOT_HP_MAX_DELTA] = 0.31,
     [gs.NO_TREE_PRESENT] = 1,
     [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
+
+    -- weights_2
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
   })
 
   luaunit.assertFalse(item_recovery.pre_heal_tango())
