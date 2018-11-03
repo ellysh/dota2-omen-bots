@@ -62,6 +62,7 @@ M.BOT_IN_MID_TP_DISTANCE = 35
 M.TURN_TARGET_PRESENT = 36
 M.BOT_IS_FACING_TURN_TARGET = 37
 M.BOT_IN_BODY_BLOCK_SPOT = 38
+M.BOT_IS_FACING_ENEMY_FOUNTAIN = 39
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -249,7 +250,13 @@ function M.UpdateState()
       NUM[env.TURN_TARGET_DATA ~= nil],
 
     [M.BOT_IN_BODY_BLOCK_SPOT] =
-      NUM[map.IsUnitInSpot(env.BOT_DATA, env.BODY_BLOCK_SPOT)]
+      NUM[map.IsUnitInSpot(env.BOT_DATA, env.BODY_BLOCK_SPOT)],
+
+    [M.BOT_IS_FACING_ENEMY_FOUNTAIN] =
+      NUM[functions.IsFacingLocation(
+            env.BOT_DATA,
+            map.GetEnemySpot("high_ground"),
+            30)],
   }
 
   if env.TURN_TARGET_DATA ~= nil then

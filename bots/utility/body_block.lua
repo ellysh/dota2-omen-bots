@@ -53,21 +53,14 @@ end
 ---------------------------------
 
 function M.pre_turn_enemy_fountain()
-  return env.ALLY_CREEP_FRONT_DATA == nil
+  local weights = {
+    [gs.AC_FRONT_PRESENT] = -1,
+    [gs.BOT_IN_BODY_BLOCK_SPOT] = 1,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = -1,
+    [gs.BOT_IS_FACING_ENEMY_FOUNTAIN] = -1,
+  }
 
-         and map.IsUnitInSpot(
-               env.BOT_DATA,
-               GetBodyBlockSpot())
-
-         and not functions.IsFacingLocation(
-                   env.BOT_DATA,
-                   map.GetEnemySpot("high_ground"),
-                   30)
-
-         and not algorithms.IsTargetInAttackRange(
-                   env.ENEMY_HERO_DATA,
-                   env.BOT_DATA,
-                   true)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.turn_enemy_fountain()
