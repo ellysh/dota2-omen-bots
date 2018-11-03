@@ -10,6 +10,9 @@ local algorithms = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local all_units = require(
+  GetScriptDirectory() .."/utility/all_units")
+
 local M = {}
 
 M.BOT = {}
@@ -147,6 +150,57 @@ local function GetBodyBlockSpot()
            map.GetAllySpot("second_body_block"))
 end
 
+---------------------------------
+
+local function IsUnitLastSeenOnStairs(unit_data)
+  local enemy_high_ground = map.GetEnemySpot("high_ground")
+
+  return not unit_data.is_visible
+         and map.IsUnitInSpot(unit_data, enemy_high_ground)
+         and not IsLocationVisible(enemy_high_ground)
+end
+
+local function IsLastSeenLocationValid(unit_data)
+  return unit_data.is_visible
+
+         or constants.LAST_SEEN_LOCATION_MIN_DISTANCE
+             < functions.GetUnitDistance(unit_data, M.BOT_DATA)
+
+         or IsUnitLastSeenOnStairs(unit_data)
+end
+
+local LAST_ENEMY_HERO_DEATHS = 0
+
+local function IsHeroDiedRecently(unit_data)
+  local deaths = GetHeroDeaths(unit_data.player_id)
+
+  if LAST_ENEMY_HERO_DEATHS < deaths then
+    LAST_ENEMY_HERO_DEATHS = deaths
+    return true
+  else
+    return false
+  end
+end
+
+local function IsUnitTpOut(unit_data)
+  -- TODO: Store a name of the current casting ability in the UNIT_LIST
+  -- and check it here for TP out.
+
+  return not unit_data.is_visible
+         and unit_data.is_channeling
+end
+
+local function InvalidateEnemyHeroData()
+  if not IsLastSeenLocationValid(M.ENEMY_HERO_DATA)
+     or IsHeroDiedRecently(M.ENEMY_HERO_DATA)
+     or IsUnitTpOut(M.ENEMY_HERO_DATA) then
+
+    all_units.InvalidateUnit(M.ENEMY_HERO_DATA)
+  end
+end
+
+---------------------------------
+
 function M.UpdateVariables()
   M.BOT = GetBot()
 
@@ -248,6 +302,8 @@ function M.UpdateVariables()
     M.ENEMY_HERO_DISTANCE = functions.GetUnitDistance(
                               M.BOT_DATA,
                               M.ENEMY_HERO_DATA)
+
+    InvalidateEnemyHeroData()
   end
 
   M.DOES_BOT_HAVE_ADVANTAGE = DoesUnitHaveAdvantage(
