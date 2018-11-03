@@ -48,26 +48,20 @@ end
 --------------------------------
 
 function M.pre_kill_enemy_creep()
-  local creep = algorithms.GetCreepWith(
-                  env.BOT_DATA,
-                  constants.SIDE["ENEMY"],
-                  algorithms.CompareMinHealth,
-                  nil)
+  local weights = {
+    [gs.EC_MIN_HP_TARGETABLE_PRESENT] = 0.5,
+    [gs.EH_PRESENT] = -1,
+    [gs.AC_FRONT_PRESENT] = 0.5,
+    [gs.EC_MIN_HP_TARGETABLE_IS_TOWER_PROTECTED] = -1,
+  }
 
-  return creep ~= nil
-         and env.ENEMY_HERO_DATA == nil
-         and env.ALLY_CREEP_FRONT_DATA ~= nil
-         and not algorithms.DoesTowerProtectUnit(creep)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.kill_enemy_creep()
-  local creep = algorithms.GetCreepWith(
-                  env.BOT_DATA,
-                  constants.SIDE["ENEMY"],
-                  algorithms.CompareMinHealth,
-                  nil)
-
-  algorithms.AttackUnit(env.BOT_DATA, creep)
+  algorithms.AttackUnit(
+    env.BOT_DATA,
+    env.ENEMY_CREEP_MIN_HP_TARGETABLE_DATA)
 end
 
 --------------------------------

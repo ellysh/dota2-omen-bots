@@ -48,7 +48,7 @@ end
 function test_pre_attack_enemy_creep_1_succeed()
   moves.test_SetGameState({
     [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 1,
-    [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+    [gs.EC_MAX_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
   })
 
@@ -58,7 +58,7 @@ end
 function test_pre_attack_enemy_creep_1_fails()
   moves.test_SetGameState({
     [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 0,
-    [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+    [gs.EC_MAX_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
   })
 
@@ -68,7 +68,7 @@ end
 function test_pre_attack_enemy_creep_2_fails()
   moves.test_SetGameState({
     [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 1,
-    [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 1,
+    [gs.EC_MAX_HP_TARGETABLE_IS_TOWER_PROTECTED] = 1,
     [gs.AC_FRONT_PRESENT] = 1,
   })
 
@@ -78,7 +78,7 @@ end
 function test_pre_attack_enemy_creep_4_fails()
   moves.test_SetGameState({
     [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 1,
-    [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+    [gs.EC_MAX_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 0,
   })
 

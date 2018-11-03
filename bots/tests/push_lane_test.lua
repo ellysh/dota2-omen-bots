@@ -74,7 +74,7 @@ function test_pre_attack_enemy_creep_1_succeed()
 
     -- moves.pre_attack_enemy_creep
     [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 1,
-    [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+    [gs.EC_MAX_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
   })
 
@@ -88,7 +88,7 @@ function test_pre_attack_enemy_creep_1_fails()
 
     -- moves.pre_attack_enemy_creep
     [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 1,
-    [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+    [gs.EC_MAX_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
   })
 
@@ -102,11 +102,68 @@ function test_pre_attack_enemy_creep_2_fails()
 
     -- moves.pre_attack_enemy_creep
     [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 0,
-    [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+    [gs.EC_MAX_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
   })
 
   luaunit.assertFalse(push_lane.pre_attack_enemy_creep())
+end
+
+---------------------------------
+
+function test_pre_kill_enemy_creep_1_succeed()
+  push_lane.test_SetGameState({
+    [gs.EC_MIN_HP_TARGETABLE_PRESENT] = 1,
+    [gs.EH_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_MIN_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+  })
+
+  luaunit.assertTrue(push_lane.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_1_fails()
+  push_lane.test_SetGameState({
+    [gs.EC_MIN_HP_TARGETABLE_PRESENT] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_MIN_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+  })
+
+  luaunit.assertFalse(push_lane.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_2_fails()
+  push_lane.test_SetGameState({
+    [gs.EC_MIN_HP_TARGETABLE_PRESENT] = 1,
+    [gs.EH_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.EC_MIN_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+  })
+
+  luaunit.assertFalse(push_lane.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_3_fails()
+  push_lane.test_SetGameState({
+    [gs.EC_MIN_HP_TARGETABLE_PRESENT] = 1,
+    [gs.EH_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_MIN_HP_TARGETABLE_IS_TOWER_PROTECTED] = 0,
+  })
+
+  luaunit.assertFalse(push_lane.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_4_fails()
+  push_lane.test_SetGameState({
+    [gs.EC_MIN_HP_TARGETABLE_PRESENT] = 1,
+    [gs.EH_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_MIN_HP_TARGETABLE_IS_TOWER_PROTECTED] = 1,
+  })
+
+  luaunit.assertFalse(push_lane.pre_kill_enemy_creep())
 end
 
 os.exit(luaunit.LuaUnit.run())

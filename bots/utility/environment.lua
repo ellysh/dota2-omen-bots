@@ -22,6 +22,7 @@ M.IS_ENEMY_HERO_LOW_HP = false
 M.ENEMY_CREEP_FRONT_DATA = {}
 M.ENEMY_CREEP_BACK_DATA = {}
 M.ENEMY_CREEP_MAX_HP_TARGETABLE_DATA = {}
+M.ENEMY_CREEP_MIN_HP_TARGETABLE_DATA = {}
 M.ENEMY_HERO_DATA = {}
 M.ENEMY_HERO_DISTANCE = 0
 M.ALLY_CREEP_FRONT_DATA = {}
@@ -217,6 +218,13 @@ function M.UpdateVariables()
                                constants.DIRECTION["BACK"])
 
   M.ENEMY_CREEP_MAX_HP_TARGETABLE_DATA = GetTargetableMaxHpEnemyCreep()
+
+  M.ENEMY_CREEP_MIN_HP_TARGETABLE_DATA =
+    algorithms.GetCreepWith(
+      env.BOT_DATA,
+      constants.SIDE["ENEMY"],
+      algorithms.CompareMinHealth,
+      nil)
 
   M.ALLY_CREEP_FRONT_DATA = GetClosestCreep(
                               constants.MAX_UNIT_SEARCH_RADIUS,
