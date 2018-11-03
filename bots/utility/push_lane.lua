@@ -33,8 +33,12 @@ end
 ---------------------------------
 
 function M.pre_attack_enemy_creep()
+  local weights = {
+    [gs.EH_PRESENT] = 1,
+  }
+
   return moves.pre_attack_enemy_creep()
-         and env.ENEMY_HERO_DATA ~= nil
+         and gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.attack_enemy_creep()
