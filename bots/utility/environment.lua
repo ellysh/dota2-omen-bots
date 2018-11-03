@@ -49,6 +49,7 @@ M.DOES_BOT_HAVE_ADVANTAGE = false
 M.DOES_ENEMY_HERO_HAVE_ADVANTAGE = false
 M.NEARBY_TREE = {}
 M.TURN_TARGET_DATA = {}
+M.BODY_BLOCK_SPOT = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -137,6 +138,13 @@ local function GetTargetableAllyCreep()
                       unit_data.max_health)
                     < constants.UNIT_HALF_HEALTH_LEVEL
            end)
+end
+
+local function GetBodyBlockSpot()
+  return functions.ternary(
+           algorithms.IsFirstWave(),
+           map.GetAllySpot("first_body_block"),
+           map.GetAllySpot("second_body_block"))
 end
 
 function M.UpdateVariables()
@@ -274,6 +282,7 @@ function M.UpdateVariables()
                          M.PRE_LAST_HIT_ANY_CREEP,
                          M.ENEMY_HERO_DATA)
 
+  M.BODY_BLOCK_SPOT = GetBodyBlockSpot()
 end
 
 -- Provide an access to local functions for unit tests only

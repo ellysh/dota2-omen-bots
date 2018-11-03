@@ -19,33 +19,33 @@ local map = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
+local moves = require(
+  GetScriptDirectory() .."/utility/moves")
+
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_body_block()
-  return algorithms.IsBotAlive()
+  return moves.pre_attack_objective()
 end
 
 ---------------------------------
 
-local function GetBodyBlockSpot()
-  return functions.ternary(
-           algorithms.IsFirstWave(),
-           map.GetAllySpot("first_body_block"),
-           map.GetAllySpot("second_body_block"))
-end
-
 function M.pre_move_start_position()
-  return env.ALLY_CREEP_FRONT_DATA == nil
+  local weights = {
+    [gs.AC_FRONT_PRESENT] = -1,
+    [gs.BOT_IN_BODY_BLOCK_SPOT] = -1,
+  }
 
-         and not map.IsUnitInSpot(
-                   env.BOT_DATA,
-                   GetBodyBlockSpot())
+  return gs.EvaluateFrom(1, gs.GAME_STATE, weights)
 end
 
 function M.move_start_position()
-  env.BOT:Action_MoveDirectly(GetBodyBlockSpot())
+  env.BOT:Action_MoveDirectly(env.BODY_BLOCK_SPOT)
 
   action_timing.SetNextActionDelay(0.1)
 end
@@ -173,5 +173,9 @@ end
 ---------------------------------
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+end
 
 return M

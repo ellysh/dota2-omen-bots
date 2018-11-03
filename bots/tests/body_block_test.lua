@@ -4,6 +4,45 @@ pcall(require, "luacov")
 require("global_functions")
 
 local body_block = require("body_block")
+local gs = require("game_state")
 local luaunit = require("luaunit")
+
+---------------------------------
+
+function test_pre_move_start_position_1_succeed()
+  body_block.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.BOT_IN_BODY_BLOCK_SPOT] = 0,
+  })
+
+  luaunit.assertTrue(body_block.pre_move_start_position())
+end
+
+function test_pre_move_start_position_1_fails()
+  body_block.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_BODY_BLOCK_SPOT] = 0,
+  })
+
+  luaunit.assertFalse(body_block.pre_move_start_position())
+end
+
+function test_pre_move_start_position_2_fails()
+  body_block.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.BOT_IN_BODY_BLOCK_SPOT] = 1,
+  })
+
+  luaunit.assertFalse(body_block.pre_move_start_position())
+end
+
+function test_pre_move_start_position_3_fails()
+  body_block.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IN_BODY_BLOCK_SPOT] = 1,
+  })
+
+  luaunit.assertFalse(body_block.pre_move_start_position())
+end
 
 os.exit(luaunit.LuaUnit.run())
