@@ -21,7 +21,7 @@ M.IS_BOT_LOW_HP = false
 M.IS_ENEMY_HERO_LOW_HP = false
 M.ENEMY_CREEP_FRONT_DATA = {}
 M.ENEMY_CREEP_BACK_DATA = {}
-M.ENEMY_CREEP_TARGETABLE_DATA = {}
+M.ENEMY_CREEP_MAX_HP_TARGETABLE_DATA = {}
 M.ENEMY_HERO_DATA = {}
 M.ENEMY_HERO_DISTANCE = 0
 M.ALLY_CREEP_FRONT_DATA = {}
@@ -117,7 +117,7 @@ local function DoesUnitHaveAdvantage(unit_data, target_data)
                    20))
 end
 
-local function GetTargetableEnemyCreep()
+local function GetTargetableMaxHpEnemyCreep()
   return algorithms.GetCreepWith(
            M.BOT_DATA,
            constants.SIDE["ENEMY"],
@@ -216,7 +216,7 @@ function M.UpdateVariables()
                                algorithms.GetEnemyCreeps,
                                constants.DIRECTION["BACK"])
 
-  M.ENEMY_CREEP_TARGETABLE_DATA = GetTargetableEnemyCreep()
+  M.ENEMY_CREEP_MAX_HP_TARGETABLE_DATA = GetTargetableMaxHpEnemyCreep()
 
   M.ALLY_CREEP_FRONT_DATA = GetClosestCreep(
                               constants.MAX_UNIT_SEARCH_RADIUS,

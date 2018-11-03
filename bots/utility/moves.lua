@@ -27,7 +27,7 @@ end
 
 function M.pre_attack_enemy_creep()
   local weights = {
-    [gs.EC_TARGETABLE_PRESENT] = 0.5,
+    [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 0.5,
     [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = -1,
     [gs.AC_FRONT_PRESENT] = 0.5,
   }

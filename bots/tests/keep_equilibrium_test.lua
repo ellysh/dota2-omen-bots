@@ -129,7 +129,7 @@ function test_pre_attack_enemy_creep_1_succeed()
     [gs.EC_HAVE_HP_ADVANTAGE] = 1,
 
     -- moves.pre_attack_enemy_creep
-    [gs.EC_TARGETABLE_PRESENT] = 1,
+    [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 1,
     [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
   })
@@ -143,7 +143,7 @@ function test_pre_attack_enemy_creep_1_fails()
     [gs.EC_HAVE_HP_ADVANTAGE] = 0,
 
     -- moves.pre_attack_enemy_creep
-    [gs.EC_TARGETABLE_PRESENT] = 1,
+    [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 1,
     [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
   })
@@ -157,7 +157,7 @@ function test_pre_attack_enemy_creep_2_fails()
     [gs.EC_HAVE_HP_ADVANTAGE] = 1,
 
     -- moves.pre_attack_enemy_creep
-    [gs.EC_TARGETABLE_PRESENT] = 1,
+    [gs.EC_MAX_HP_TARGETABLE_PRESENT] = 1,
     [gs.EC_TARGETABLE_IS_TOWER_PROTECTED] = 0,
     [gs.AC_FRONT_PRESENT] = 0,
   })
