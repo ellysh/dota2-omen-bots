@@ -74,6 +74,18 @@ end
 
 ---------------------------------
 
+function M.pre_move_and_block()
+  local weights = {
+    [gs.BOT_IN_BODY_BLOCK_FOUNTAIN_DISTANCE] = 0.5,
+    [gs.AC_IN_MELEE_ATTACK_RANGE] = 0.5,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = -1,
+    [gs.EC_IN_BOT_ATTACK_RANGE] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
 local function CompareMinHgDistance(t, a, b)
   local high_ground_spot = map.GetAllySpot("high_ground")
 
@@ -89,36 +101,6 @@ local function GetFirstMovingCreep()
   return functions.GetElementWith(
            creeps,
            CompareMinHgDistance)
-end
-
-local function IsAllowableFountainDistance()
-  local max_distance = functions.ternary(
-                         GetTeam() == TEAM_RADIANT,
-                         constants.BODY_BLOCK_FOUNTAIN_RADIANT_DISTANCE,
-                         constants.BODY_BLOCK_FOUNTAIN_DIRE_DISTANCE)
-
-  return functions.GetDistance(env.FOUNTAIN_SPOT, env.BOT_DATA.location)
-         <= max_distance
-end
-
-function M.pre_move_and_block()
-  return algorithms.AreAllyCreepsInRadius(
-           env.BOT_DATA,
-           constants.MAX_MELEE_ATTACK_RANGE,
-           constants.DIRECTION["BACK"])
-
-         and IsAllowableFountainDistance()
-
-         and not algorithms.AreEnemyCreepsInRadius(
-                   env.BOT_DATA,
-                   env.BOT_DATA.attack_range)
-
-         and not map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)
-
-         and not algorithms.IsTargetInAttackRange(
-                   env.ENEMY_HERO_DATA,
-                   env.BOT_DATA,
-                   true)
 end
 
 function M.move_and_block()

@@ -63,6 +63,7 @@ M.TURN_TARGET_PRESENT = 36
 M.BOT_IS_FACING_TURN_TARGET = 37
 M.BOT_IN_BODY_BLOCK_SPOT = 38
 M.BOT_IS_FACING_ENEMY_FOUNTAIN = 39
+M.BOT_IN_BODY_BLOCK_FOUNTAIN_DISTANCE = 40
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -121,6 +122,8 @@ M.EC_IN_MAX_BASE_DISTANCE = 422
 M.AC_IN_MAX_BASE_DISTANCE = 423
 M.EC_HAVE_HP_ADVANTAGE = 424
 M.AC_HAVE_HP_ADVANTAGE = 425
+M.EC_IN_BOT_ATTACK_RANGE = 426
+M.AC_IN_MELEE_ATTACK_RANGE = 427
 
 -- Tree state
 M.NO_TREE_PRESENT = 500
@@ -137,6 +140,16 @@ end
 local function IsAttackHeroUnderTowerSafe()
   return env.ALLY_CREEP_FRONT_DATA ~= nil
          and constants.TOWER_AGGRO_RADIUS < env.ENEMY_TOWER_DISTANCE
+end
+
+local function IsBodyBlockFountainDistance()
+  local max_distance = functions.ternary(
+                         GetTeam() == TEAM_RADIANT,
+                         constants.BODY_BLOCK_FOUNTAIN_RADIANT_DISTANCE,
+                         constants.BODY_BLOCK_FOUNTAIN_DIRE_DISTANCE)
+
+  return functions.GetDistance(env.FOUNTAIN_SPOT, env.BOT_DATA.location)
+         <= max_distance
 end
 
 local function NormalizeValue(value, min, max)
@@ -257,6 +270,9 @@ function M.UpdateState()
             env.BOT_DATA,
             map.GetEnemySpot("high_ground"),
             30)],
+
+    [M.BOT_IN_BODY_BLOCK_FOUNTAIN_DISTANCE] =
+      NUM[IsBodyBlockFountainDistance()]
   }
 
   if env.TURN_TARGET_DATA ~= nil then
@@ -488,6 +504,17 @@ function M.UpdateState()
   M.GAME_STATE[M.AC_HAVE_HP_ADVANTAGE] =
     NUM[constants.MAX_CREEPS_HP_DELTA
         < (env.ALLY_CREEPS_HP - env.ENEMY_CREEPS_HP)]
+
+  M.GAME_STATE[M.EC_IN_BOT_ATTACK_RANGE] =
+    NUM[algorithms.AreEnemyCreepsInRadius(
+          env.BOT_DATA,
+          env.BOT_DATA.attack_range)]
+
+  M.GAME_STATE[M.AC_IN_MELEE_ATTACK_RANGE] =
+    NUM[algorithms.AreAllyCreepsInRadius(
+          env.BOT_DATA,
+          constants.MAX_MELEE_ATTACK_RANGE,
+          constants.DIRECTION["BACK"])]
 
   -- Tree state
 
