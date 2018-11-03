@@ -19,34 +19,30 @@ local moves = require(
 local all_units = require(
   GetScriptDirectory() .."/utility/all_units")
 
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_pursuit_enemy_hero()
-  return env.ENEMY_HERO_DATA ~= nil
-         and not env.IS_BOT_LOW_HP
-         and algorithms.HasLevelForAggression(env.BOT_DATA)
-         and algorithms.IsBotAlive()
-         and algorithms.IsItemCastable(env.BOT_DATA, "item_flask")
+  local weights_1 = {
+    [gs.EH_PRESENT] = 0.3,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0.3,
+    [gs.BOT_CASTABLE_FLASK] = 0.4,
+    [gs.EH_IN_REAR_SPOT] = -1,
+  }
 
-         and (env.IS_ENEMY_HERO_LOW_HP
+  local weights_2 = {
+    [gs.EH_IS_LOW_HP] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = -0.5,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 1.5,
+  }
 
-              or (env.ENEMY_HERO_DATA.is_flask_healing
-
-                  and algorithms.IsBiggerThan(
-                        env.BOT_DATA.health,
-                        env.ENEMY_HERO_DATA.health,
-                        100)))
-
-         and (not env.DOES_TOWER_PROTECT_ENEMY
-              or algorithms.IsTowerDiveReasonable(
-                   env.BOT_DATA,
-                   env.ENEMY_HERO_DATA))
-
-         and not map.IsUnitInSpot(
-                   env.ENEMY_HERO_DATA,
-                   map.GetEnemySpot("tower_tier_1_rear_deep"))
+  return moves.pre_attack_objective()
+         and gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.Evaluate(gs.GAME_STATE, weights_2)
 end
 
 ---------------------------------
@@ -78,5 +74,11 @@ function M.move_enemy_hero()
 end
 
 ---------------------------------
+
+-- Provide an access to local functions for unit tests only
+
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+end
 
 return M
