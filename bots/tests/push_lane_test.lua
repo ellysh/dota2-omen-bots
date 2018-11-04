@@ -166,4 +166,61 @@ function test_pre_kill_enemy_creep_4_fails()
   luaunit.assertFalse(push_lane.pre_kill_enemy_creep())
 end
 
+---------------------------------
+
+function test_pre_attack_enemy_tower_1_succeed()
+  push_lane.test_SetGameState({
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
+    [gs.ET_ATTACK_AC] = 1,
+  })
+
+  luaunit.assertTrue(push_lane.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_1_fails()
+  push_lane.test_SetGameState({
+    [gs.ET_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
+    [gs.ET_ATTACK_AC] = 1,
+  })
+
+  luaunit.assertFalse(push_lane.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_2_fails()
+  push_lane.test_SetGameState({
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
+    [gs.ET_ATTACK_AC] = 1,
+  })
+
+  luaunit.assertFalse(push_lane.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_3_fails()
+  push_lane.test_SetGameState({
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
+    [gs.ET_ATTACK_AC] = 0,
+  })
+
+  luaunit.assertFalse(push_lane.pre_attack_enemy_tower())
+end
+
+function test_pre_attack_enemy_tower_4_fails()
+  push_lane.test_SetGameState({
+    [gs.ET_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.BOT_IS_FOCUSED_BY_TOWER] = 1,
+    [gs.ET_ATTACK_AC] = 1,
+  })
+
+  luaunit.assertFalse(push_lane.pre_attack_enemy_tower())
+end
+
 os.exit(luaunit.LuaUnit.run())
