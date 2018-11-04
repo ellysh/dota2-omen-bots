@@ -22,39 +22,21 @@ local action_timing = require(
 local all_units = require(
   GetScriptDirectory() .."/utility/all_units")
 
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_defend_tower()
-  return algorithms.IsBotAlive()
-         and not env.IS_BOT_LOW_HP
+  return moves.pre_attack_objective()
 end
 
 ---------------------------------
 
-local function GetCreepAttackingTower()
-  if env.ALLY_TOWER_DATA == nil then
-    return nil end
-
-  local creeps = algorithms.GetEnemyCreeps(
-                   env.BOT_DATA,
-                   constants.MAX_UNIT_SEARCH_RADIUS)
-
-  return functions.GetElementWith(
-    creeps,
-    algorithms.CompareMaxDamage,
-    function(unit_data)
-      return algorithms.IsUnitAttackTarget(
-               unit_data,
-               env.ALLY_TOWER_DATA)
-    end)
-end
-
 function M.pre_pull_enemy_creep()
-  local creep = GetCreepAttackingTower()
-
-  return creep ~= nil
+  return env.ENEMY_CREEP_ATTACKING_TOWER ~= nil
          and env.ENEMY_HERO_DATA ~= nil
          and env.ENEMY_HERO_DATA.is_visible
          and env.ALLY_CREEP_FRONT_DATA == nil
@@ -76,9 +58,7 @@ end
 ---------------------------------
 
 function M.pre_move_enemy_creep()
-  local creep = GetCreepAttackingTower()
-
-  return creep ~= nil
+  return env.ENEMY_CREEP_ATTACKING_TOWER ~= nil
          and env.ALLY_CREEP_FRONT_DATA == nil
          and algorithms.HasLevelForAggression(env.BOT_DATA)
          and constants.MAX_CREEPS_HP_PULL < env.ENEMY_CREEPS_HP
@@ -88,9 +68,7 @@ function M.pre_move_enemy_creep()
 end
 
 function M.move_enemy_creep()
-  local creep = GetCreepAttackingTower()
-
-  env.BOT:Action_MoveDirectly(creep.location)
+  env.BOT:Action_MoveDirectly(env.ENEMY_CREEP_ATTACKING_TOWER.location)
 
   action_timing.SetNextActionDelay(0.4)
 end
@@ -98,15 +76,13 @@ end
 ---------------------------------
 
 function M.pre_move_safe()
-  local agressive_creep = GetCreepAttackingTower()
-
   local closest_enemy_creep = functions.ternary(
                               env.ENEMY_CREEP_FRONT_DATA ~= nil,
                               env.ENEMY_CREEP_FRONT_DATA,
                               env.ENEMY_CREEP_BACK_DATA)
 
 
-  return agressive_creep == nil
+  return env.ENEMY_CREEP_ATTACKING_TOWER == nil
          and env.ALLY_CREEP_FRONT_DATA == nil
          and constants.MAX_CREEPS_HP_PULL < env.ENEMY_CREEPS_HP
          and (closest_enemy_creep ~= nil
@@ -146,7 +122,7 @@ local function GetCreepAttackingBot()
 end
 
 function M.pre_kill_enemy_creep()
-  local target = GetCreepAttackingTower()
+  local target = env.ENEMY_CREEP_ATTACKING_TOWER
 
   if target == nil then
     target = GetCreepAttackingBot()
@@ -157,7 +133,7 @@ function M.pre_kill_enemy_creep()
 end
 
 function M.kill_enemy_creep()
-  local target = GetCreepAttackingTower()
+  local target = env.ENEMY_CREEP_ATTACKING_TOWER
 
   if target == nil then
     target = GetCreepAttackingBot()
