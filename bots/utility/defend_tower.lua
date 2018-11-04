@@ -39,10 +39,11 @@ function M.pre_pull_enemy_creep()
   local weights = {
     [gs.EC_ATTACKING_TOWER_PRESENT] = 0.3,
     [gs.EH_IS_VISIBLE] = 0.3,
-    [gs.AC_FRONT_PRESENT] = 0.2,
-    [gs.EC_ATTACKING_TOWER_IN_AGGRO_RADIUS] = 0.1,
+    [gs.AC_FRONT_PRESENT] = -1,
+    [gs.EC_ATTACKING_TOWER_IN_AGGRO_RADIUS] = 0.2,
     [gs.EC_AGGRO_COOLDOWN] = -1,
     [gs.EC_HAVE_HP_ADVANTAGE] = 0.1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0.1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -57,13 +58,17 @@ end
 ---------------------------------
 
 function M.pre_move_enemy_creep()
-  return env.ENEMY_CREEP_ATTACKING_TOWER ~= nil
-         and env.ALLY_CREEP_FRONT_DATA == nil
-         and algorithms.HasLevelForAggression(env.BOT_DATA)
-         and constants.MAX_CREEPS_HP_PULL < env.ENEMY_CREEPS_HP
+  local weights = {
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
+    [gs.AC_FRONT_PRESENT] = -1,
+    [gs.EC_ATTACKING_TOWER_IN_AGGRO_RADIUS] = -1,
+    [gs.EC_AGGRO_COOLDOWN] = -1,
+    [gs.EC_HAVE_HP_ADVANTAGE] = 0.2,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0.2,
+  }
 
-         and constants.CREEP_MAX_AGGRO_RADIUS
-             < functions.GetUnitDistance(env.BOT_DATA, creep)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.move_enemy_creep()
