@@ -221,7 +221,7 @@ function M.UpdateVariables()
 
   M.ENEMY_CREEP_MIN_HP_TARGETABLE_DATA =
     algorithms.GetCreepWith(
-      env.BOT_DATA,
+      M.BOT_DATA,
       constants.SIDE["ENEMY"],
       algorithms.CompareMinHealth,
       nil)
