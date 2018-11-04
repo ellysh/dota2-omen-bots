@@ -122,11 +122,12 @@ end
 ---------------------------------
 
 function M.pre_attack_enemy_hero()
+  local weights = {
+    [gs.EH_ATTACK_AT] = 1,
+  }
+
   return moves.pre_attack_enemy_hero()
-         and env.ALLY_TOWER_DATA ~= nil
-         and algorithms.IsUnitAttackTarget(
-               env.ENEMY_HERO_DATA,
-               env.ALLY_TOWER_DATA)
+         and gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.attack_enemy_hero()

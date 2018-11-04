@@ -416,4 +416,54 @@ function test_pre_kill_enemy_creep_4_fails()
   luaunit.assertFalse(defend_tower.pre_kill_enemy_creep())
 end
 
+---------------------------------
+
+function test_pre_attack_enemy_hero_1_succeed()
+  defend_tower.test_SetGameState({
+    -- pre_attack_enemy_hero
+    [gs.EH_ATTACK_AT] = 1,
+
+    -- moves.pre_attack_enemy_hero
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+  })
+
+  luaunit.assertTrue(defend_tower.pre_attack_enemy_hero())
+end
+
+function test_pre_attack_enemy_hero_1_fails()
+  defend_tower.test_SetGameState({
+    -- pre_attack_enemy_hero
+    [gs.EH_ATTACK_AT] = 0,
+
+    -- moves.pre_attack_enemy_hero
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+  })
+
+  luaunit.assertFalse(defend_tower.pre_attack_enemy_hero())
+end
+
+function test_pre_attack_enemy_hero_2_fails()
+  defend_tower.test_SetGameState({
+    -- pre_attack_enemy_hero
+    [gs.EH_ATTACK_AT] = 1,
+
+    -- moves.pre_attack_enemy_hero
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 0,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+  })
+
+  luaunit.assertFalse(defend_tower.pre_attack_enemy_hero())
+end
+
 os.exit(luaunit.LuaUnit.run())

@@ -89,6 +89,7 @@ M.AT_PRESENT = 200
 M.AT_IS_LOW_HP = 201
 M.AT_INCOMING_DAMAGE = 202
 M.AT_GLYPH_READY = 203
+M.EH_ATTACK_AT = 204
 
 -- ENEMY_TOWER state
 M.ET_PRESENT = 300
@@ -385,6 +386,13 @@ function M.UpdateState()
                      constants.MAX_INCOMING_TOWER_DAMAGE)
 
     M.GAME_STATE[M.AT_GLYPH_READY] = NUM[GetGlyphCooldown() == 0]
+
+    if env.ENEMY_HERO_DATA ~= nil then
+      M.GAME_STATE[M.EH_ATTACK_AT] =
+        NUM[algorithms.IsUnitAttackTarget(
+              env.ENEMY_HERO_DATA,
+              env.ALLY_TOWER_DATA)]
+    end
   end
 
   -- ENEMY_TOWER state
