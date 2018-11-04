@@ -56,6 +56,9 @@ M.DOES_ENEMY_HERO_HAVE_ADVANTAGE = false
 M.NEARBY_TREE = {}
 M.TURN_TARGET_DATA = {}
 M.BODY_BLOCK_SPOT = {}
+M.NEAR_SHADOWRAZE_ABILITY = {}
+M.MEDIUM_SHADOWRAZE_ABILITY = {}
+M.FAR_SHADOWRAZE_ABILITY = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -382,6 +385,15 @@ function M.UpdateVariables()
                                     M.ALLY_TOWER_DATA)
 
   M.ENEMY_CREEP_ATTACKING_BOT = GetCreepAttackingBot(M.BOT_DATA)
+
+  M.NEAR_SHADOWRAZE_ABILITY =
+    M.BOT:GetAbilityByName("nevermore_shadowraze1")
+
+  M.MEDIUM_SHADOWRAZE_ABILITY =
+    M.BOT:GetAbilityByName("nevermore_shadowraze2")
+
+  M.FAR_SHADOWRAZE_ABILITY =
+    M.BOT:GetAbilityByName("nevermore_shadowraze3")
 end
 
 -- Provide an access to local functions for unit tests only

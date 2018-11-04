@@ -7,6 +7,8 @@ local moves = require("moves")
 local gs = require("game_state")
 local luaunit = require("luaunit")
 
+---------------------------------
+
 function test_pre_attack_objective_1_succeed()
   moves.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
