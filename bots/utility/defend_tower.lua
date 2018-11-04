@@ -36,17 +36,16 @@ end
 ---------------------------------
 
 function M.pre_pull_enemy_creep()
-  return env.ENEMY_CREEP_ATTACKING_TOWER ~= nil
-         and env.ENEMY_HERO_DATA ~= nil
-         and env.ENEMY_HERO_DATA.is_visible
-         and env.ALLY_CREEP_FRONT_DATA == nil
-         and constants.MAX_CREEPS_HP_PULL < env.ENEMY_CREEPS_HP
+  local weights = {
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
+    [gs.AC_FRONT_PRESENT] = 0.2,
+    [gs.EC_ATTACKING_TOWER_IN_AGGRO_RADIUS] = 0.1,
+    [gs.EC_AGGRO_COOLDOWN] = -1,
+    [gs.EC_HAVE_HP_ADVANTAGE] = 0.1,
+  }
 
-         and functions.GetUnitDistance(env.BOT_DATA, creep)
-             <= constants.CREEP_MAX_AGGRO_RADIUS
-
-         and constants.CREEPS_AGGRO_COOLDOWN
-             <= functions.GetDelta(env.LAST_AGGRO_CONTROL, GameTime())
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.pull_enemy_creep()
@@ -165,5 +164,9 @@ end
 --------------------------------
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+end
 
 return M
