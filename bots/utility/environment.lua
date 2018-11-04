@@ -24,6 +24,7 @@ M.ENEMY_CREEP_BACK_DATA = {}
 M.ENEMY_CREEP_MAX_HP_TARGETABLE_DATA = {}
 M.ENEMY_CREEP_MIN_HP_TARGETABLE_DATA = {}
 M.ENEMY_CREEP_ATTACKING_TOWER = {}
+M.ENEMY_CREEP_ATTACKING_BOT = {}
 M.ENEMY_HERO_DATA = {}
 M.ENEMY_HERO_DISTANCE = 0
 M.ALLY_CREEP_FRONT_DATA = {}
@@ -167,6 +168,24 @@ local function GetCreepAttackingTower(tower_data)
       return algorithms.IsUnitAttackTarget(
                unit_data,
                tower_data)
+    end)
+end
+
+local function GetCreepAttackingBot(bot_data)
+  if bot_data == nil then
+    return nil end
+
+  local creeps = algorithms.GetEnemyCreeps(
+                   bot_data,
+                   constants.MAX_UNIT_TARGET_RADIUS)
+
+  return functions.GetElementWith(
+    creeps,
+    algorithms.CompareMaxDamage,
+    function(unit_data)
+      return algorithms.IsUnitAttackTarget(
+               unit_data,
+               bot_data)
     end)
 end
 
@@ -359,7 +378,10 @@ function M.UpdateVariables()
 
   M.BODY_BLOCK_SPOT = GetBodyBlockSpot()
 
-  M.ENEMY_CREEP_ATTACKING_TOWER = GetCreepAttackingTower(M.ALLY_TOWER_DATA)
+  M.ENEMY_CREEP_ATTACKING_TOWER = GetCreepAttackingTower(
+                                    M.ALLY_TOWER_DATA)
+
+  M.ENEMY_CREEP_ATTACKING_BOT = GetCreepAttackingBot(M.BOT_DATA)
 end
 
 -- Provide an access to local functions for unit tests only

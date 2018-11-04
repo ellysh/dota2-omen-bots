@@ -80,22 +80,16 @@ end
 ---------------------------------
 
 function M.pre_move_safe()
-  local closest_enemy_creep = functions.ternary(
-                              env.ENEMY_CREEP_FRONT_DATA ~= nil,
-                              env.ENEMY_CREEP_FRONT_DATA,
-                              env.ENEMY_CREEP_BACK_DATA)
-
-
   return env.ENEMY_CREEP_ATTACKING_TOWER == nil
          and env.ALLY_CREEP_FRONT_DATA == nil
          and constants.MAX_CREEPS_HP_PULL < env.ENEMY_CREEPS_HP
-         and (closest_enemy_creep ~= nil
+         and (env.ENEMY_CREEP_ATTACKING_BOT ~= nil
 
                and (map.IsUnitBetweenEnemyTowers(
-                      closest_enemy_creep)
+                      env.ENEMY_CREEP_ATTACKING_BOT)
 
                     or map.IsUnitInEnemyTowerAttackRange(
-                        closest_enemy_creep)))
+                        env.ENEMY_CREEP_ATTACKING_BOT)))
 end
 
 function M.move_safe()
@@ -106,42 +100,17 @@ end
 
 ---------------------------------
 
-local function GetCreepAttackingBot()
-  local creeps = algorithms.GetEnemyCreeps(
-                   env.BOT_DATA,
-                   constants.MAX_UNIT_TARGET_RADIUS)
-
-  return functions.GetElementWith(
-    creeps,
-    algorithms.CompareMaxDamage,
-    function(unit_data)
-      return algorithms.IsUnitAttackTarget(
-               unit_data,
-               env.BOT_DATA)
-             and functions.GetUnitDistance(
-                   unit_data,
-                   env.ALLY_TOWER_DATA)
-                 <= constants.MIN_CREEP_DISTANCE
-    end)
-end
-
 function M.pre_kill_enemy_creep()
-  local target = env.ENEMY_CREEP_ATTACKING_TOWER
-
-  if target == nil then
-    target = GetCreepAttackingBot()
-  end
-
-  return target ~= nil
+  return (env.ENEMY_CREEP_ATTACKING_TOWER ~= nil
+          or env.ENEMY_CREEP_ATTACKING_BOT ~= nil)
          and env.ALLY_CREEP_FRONT_DATA == nil
 end
 
 function M.kill_enemy_creep()
-  local target = env.ENEMY_CREEP_ATTACKING_TOWER
-
-  if target == nil then
-    target = GetCreepAttackingBot()
-  end
+  local target = functions.ternary(
+                   env.ENEMY_CREEP_ATTACKING_TOWER ~= nil,
+                   env.ENEMY_CREEP_ATTACKING_TOWER,
+                   env.ENEMY_CREEP_ATTACKING_BOT)
 
   algorithms.AttackUnit(env.BOT_DATA, target)
 end
