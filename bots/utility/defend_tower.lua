@@ -80,16 +80,16 @@ end
 ---------------------------------
 
 function M.pre_move_safe()
-  return env.ENEMY_CREEP_ATTACKING_TOWER == nil
-         and env.ALLY_CREEP_FRONT_DATA == nil
-         and constants.MAX_CREEPS_HP_PULL < env.ENEMY_CREEPS_HP
-         and (env.ENEMY_CREEP_ATTACKING_BOT ~= nil
+  local weights = {
+    [gs.EC_ATTACKING_TOWER_PRESENT] = -1,
+    [gs.AC_FRONT_PRESENT] = -1,
+    [gs.EC_HAVE_HP_ADVANTAGE] = 0.4,
+    [gs.EC_ATTACKING_BOT_PRESENT] = 0.4,
+    [gs.EC_ATTACKING_BOT_BETWEEN_AT] = 0.2,
+    [gs.EC_ATTACKING_BOT_IN_AT_ATTACK_RANGE] = 0.2,
+  }
 
-               and (map.IsUnitBetweenEnemyTowers(
-                      env.ENEMY_CREEP_ATTACKING_BOT)
-
-                    or map.IsUnitInEnemyTowerAttackRange(
-                        env.ENEMY_CREEP_ATTACKING_BOT)))
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.move_safe()
