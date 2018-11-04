@@ -101,9 +101,13 @@ end
 ---------------------------------
 
 function M.pre_kill_enemy_creep()
-  return (env.ENEMY_CREEP_ATTACKING_TOWER ~= nil
-          or env.ENEMY_CREEP_ATTACKING_BOT ~= nil)
-         and env.ALLY_CREEP_FRONT_DATA == nil
+  local weights = {
+    [gs.AC_FRONT_PRESENT] = 0.8,
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 0.2,
+    [gs.EC_ATTACKING_BOT_PRESENT] = 0.2,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.kill_enemy_creep()

@@ -354,4 +354,66 @@ function test_pre_move_safe_6_fails()
   luaunit.assertFalse(defend_tower.pre_move_safe())
 end
 
+---------------------------------
+
+function test_pre_kill_enemy_creep_1_succeed()
+  defend_tower.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 1,
+    [gs.EC_ATTACKING_BOT_PRESENT] = 0,
+  })
+
+  luaunit.assertTrue(defend_tower.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_2_succeed()
+  defend_tower.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 0,
+    [gs.EC_ATTACKING_BOT_PRESENT] = 1,
+  })
+
+  luaunit.assertTrue(defend_tower.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_1_fails()
+  defend_tower.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 0,
+    [gs.EC_ATTACKING_BOT_PRESENT] = 0,
+  })
+
+  luaunit.assertFalse(defend_tower.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_2_fails()
+  defend_tower.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 1,
+    [gs.EC_ATTACKING_BOT_PRESENT] = 1,
+  })
+
+  luaunit.assertFalse(defend_tower.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_3_fails()
+  defend_tower.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 1,
+    [gs.EC_ATTACKING_BOT_PRESENT] = 0,
+  })
+
+  luaunit.assertFalse(defend_tower.pre_kill_enemy_creep())
+end
+
+function test_pre_kill_enemy_creep_4_fails()
+  defend_tower.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.EC_ATTACKING_TOWER_PRESENT] = 0,
+    [gs.EC_ATTACKING_BOT_PRESENT] = 1,
+  })
+
+  luaunit.assertFalse(defend_tower.pre_kill_enemy_creep())
+end
+
 os.exit(luaunit.LuaUnit.run())
