@@ -1,3 +1,6 @@
+* version 0.3
+  - Apply the evaluation function to most predicates of objectives and moves.
+
 * version 0.2
   - Implement the skill build.
   - Implement the item build.
