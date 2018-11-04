@@ -36,7 +36,9 @@ function M.pre_attack_enemy_creep()
 end
 
 function M.attack_enemy_creep()
-  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_CREEP_TARGETABLE_DATA)
+  algorithms.AttackUnit(
+    env.BOT_DATA,
+    env.ENEMY_CREEP_MAX_HP_TARGETABLE_DATA)
 end
 
 --------------------------------
