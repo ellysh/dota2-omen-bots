@@ -37,6 +37,7 @@ evade_enemy_tower
 evasion
 FALSE
 farm
+far_shadowraze
 force_stop
 glyph
 heal_faerie_fire
@@ -48,6 +49,7 @@ keep_equilibrium
 kill_enemy_creep
 kite
 lasthit_enemy_creep
+medium_shadowraze
 move_and_block
 move_base
 move_enemy_creep
@@ -55,6 +57,8 @@ move_enemy_hero
 move_safe
 move_safe_recovery
 move_start_position
+near_shadowraze
+nuke_enemy_hero
 positioning
 prepare_for_match
 pull_enemy_creep
