@@ -303,7 +303,7 @@ function M.UpdateState()
 
     [M.BOT_IS_LOW_MP] = NUM[algorithms.IsUnitLowMp(env.BOT_DATA)],
 
-    [M.M.BOT_CASTABLE_ENCHANTED_MANGO] =
+    [M.BOT_CASTABLE_ENCHANTED_MANGO] =
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
             "item_enchanted_mango")],
