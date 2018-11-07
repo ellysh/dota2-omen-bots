@@ -31,7 +31,7 @@ end
 function M.pre_use_enchanted_mango()
   local weights = {
     [gs.BOT_IS_LOW_MP] = 0.5,
-    [gs.BOT_CASTABLE_FLASK] = 0.5,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 0.5,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
