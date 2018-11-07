@@ -4,7 +4,7 @@ prepare_for_match;buy_starting_items;buy_starting_items
 swap_items;swap_flask_tp;swap_flask_tp
 ;put_item_in_inventory;put_item_in_inventory
 ;;
-item_recovery;heal_tango;heal_tango
+item_hp_recovery;heal_tango;heal_tango
 ;;
 evasion;move_safe_recovery;move_safe_recovery
 ;evade_enemy_hero;evade_enemy_hero
