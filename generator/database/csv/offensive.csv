@@ -4,6 +4,8 @@ swap_items;swap_flask_tp;swap_flask_tp
 ;;
 item_hp_recovery;heal_tango;heal_tango
 ;;
+item_mp_recovery;use_enchanted_mango;use_enchanted_mango
+;;
 upgrade_skills;upgrade;upgrade
 ;;
 pursuit_enemy_hero;attack_enemy_hero;attack_enemy_hero

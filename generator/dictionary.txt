@@ -45,6 +45,7 @@ heal_flask
 heal_tango
 increase_creeps_distance
 item_hp_recovery
+item_mp_recovery
 keep_equilibrium
 kill_enemy_creep
 kite
@@ -80,3 +81,4 @@ turn
 turn_enemy_fountain
 upgrade
 upgrade_skills
+use_enchanted_mango

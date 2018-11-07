@@ -322,6 +322,20 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "item_mp_recovery",
+    module = require(GetScriptDirectory() .."/utility/item_mp_recovery"),
+    moves = {
+      {
+        move = "use_enchanted_mango",
+        actions = {
+          {action = "use_enchanted_mango"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "upgrade_skills",
     module = require(GetScriptDirectory() .."/utility/upgrade_skills"),
     moves = {
@@ -730,6 +744,20 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "item_mp_recovery",
+    module = require(GetScriptDirectory() .."/utility/item_mp_recovery"),
+    moves = {
+      {
+        move = "use_enchanted_mango",
+        actions = {
+          {action = "use_enchanted_mango"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "upgrade_skills",
     module = require(GetScriptDirectory() .."/utility/upgrade_skills"),
     moves = {
@@ -1107,6 +1135,20 @@ M.OBJECTIVES = {
         move = "heal_tango",
         actions = {
           {action = "heal_tango"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "item_mp_recovery",
+    module = require(GetScriptDirectory() .."/utility/item_mp_recovery"),
+    moves = {
+      {
+        move = "use_enchanted_mango",
+        actions = {
+          {action = "use_enchanted_mango"},
 
         },
       },

@@ -67,6 +67,8 @@ M.BOT_IN_BODY_BLOCK_FOUNTAIN_DISTANCE = 40
 M.BOT_CASTABLE_NEAR_SHADOWRAZE = 41
 M.BOT_CASTABLE_MEDIUM_SHADOWRAZE = 42
 M.BOT_CASTABLE_FAR_SHADOWRAZE = 43
+M.BOT_IS_LOW_MP = 44
+M.BOT_CASTABLE_ENCHANTED_MANGO = 45
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -298,6 +300,13 @@ function M.UpdateState()
 
     [M.BOT_CASTABLE_FAR_SHADOWRAZE] =
       NUM[env.FAR_SHADOWRAZE_ABILITY:IsFullyCastable()],
+
+    [M.BOT_IS_LOW_MP] = NUM[algorithms.IsUnitLowMp(env.BOT_DATA)],
+
+    [M.M.BOT_CASTABLE_ENCHANTED_MANGO] =
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_enchanted_mango")],
   }
 
   if env.TURN_TARGET_DATA ~= nil then

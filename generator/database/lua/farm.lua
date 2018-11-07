@@ -53,6 +53,20 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "item_mp_recovery",
+    module = require(GetScriptDirectory() .."/utility/item_mp_recovery"),
+    moves = {
+      {
+        move = "use_enchanted_mango",
+        actions = {
+          {action = "use_enchanted_mango"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "evasion",
     module = require(GetScriptDirectory() .."/utility/evasion"),
     moves = {
