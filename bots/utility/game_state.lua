@@ -102,7 +102,7 @@ M.EH_ATTACK_AT = 204
 
 -- ENEMY_TOWER state
 M.ET_PRESENT = 300
-M.ET_BOT_DISTANCE = 301
+M.BOT_IN_ET_MIN_DISTANCE = 301
 M.ET_ATTACK_AC = 302
 M.BOT_IN_ET_AGGRO_RADIUS = 303
 
@@ -446,10 +446,8 @@ function M.UpdateState()
   M.GAME_STATE[M.ET_PRESENT] = NUM[env.ENEMY_TOWER_DATA ~= nil]
 
   if env.ENEMY_TOWER_DATA ~= nil then
-    M.GAME_STATE[M.ET_BOT_DISTANCE] = NormalizeValue(
-                                        env.ENEMY_TOWER_DISTANCE,
-                                        0,
-                                        constants.MIN_TOWER_DISTANCE)
+    M.GAME_STATE[M.BOT_IN_ET_MIN_DISTANCE] =
+      NUM[env.ENEMY_TOWER_DISTANCE <= constants.MIN_TOWER_DISTANCE]
 
     M.GAME_STATE[M.ET_ATTACK_AC] =
       NUM[algorithms.DoesEnemyTowerAttackAllyCreep(

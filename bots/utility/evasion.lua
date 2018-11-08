@@ -76,15 +76,18 @@ end
 ---------------------------------
 
 function M.pre_evade_enemy_tower()
-  local weights = {
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 1.2,
-    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = -0.2,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1.1,
-    [gs.ET_PRESENT] = 1.99,
-    [gs.ET_BOT_DISTANCE] = -1,
+  local weights_1 = {
+    [gs.BOT_IS_FOCUSED_BY_TOWER] = 1,
+    [gs.BOT_IN_ET_MIN_DISTANCE] = 1,
   }
 
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  local weights_2 = {
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = -1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights_1)
+         or gs.Evaluate(gs.GAME_STATE, weights_2)
 end
 
 function M.evade_enemy_tower()

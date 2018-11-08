@@ -152,11 +152,13 @@ end
 
 function test_pre_evade_enemy_tower_1_succeed()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 1,
+    [gs.BOT_IN_ET_MIN_DISTANCE] = 0,
+
+    -- weights_2
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
-    [gs.ET_PRESENT] = 0,
-    [gs.ET_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertTrue(evasion.pre_evade_enemy_tower())
@@ -164,11 +166,13 @@ end
 
 function test_pre_evade_enemy_tower_2_succeed()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
+    [gs.BOT_IN_ET_MIN_DISTANCE] = 1,
+
+    -- weights_2
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
-    [gs.ET_PRESENT] = 0,
-    [gs.ET_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
   luaunit.assertTrue(evasion.pre_evade_enemy_tower())
@@ -176,11 +180,13 @@ end
 
 function test_pre_evade_enemy_tower_3_succeed()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
+    [gs.BOT_IN_ET_MIN_DISTANCE] = 0,
+
+    -- weights_2
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
-    [gs.ET_PRESENT] = 1,
-    [gs.ET_BOT_DISTANCE] = 0.5,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
   })
 
   luaunit.assertTrue(evasion.pre_evade_enemy_tower())
@@ -188,11 +194,13 @@ end
 
 function test_pre_evade_enemy_tower_1_fails()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
+    [gs.BOT_IN_ET_MIN_DISTANCE] = 0,
+
+    -- weights_2
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
-    [gs.ET_PRESENT] = 1,
-    [gs.ET_BOT_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(evasion.pre_evade_enemy_tower())
@@ -200,11 +208,13 @@ end
 
 function test_pre_evade_enemy_tower_2_fails()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
+    [gs.BOT_IN_ET_MIN_DISTANCE] = 0,
+
+    -- weights_2
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
-    [gs.ET_PRESENT] = 0,
-    [gs.ET_BOT_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_evade_enemy_tower())

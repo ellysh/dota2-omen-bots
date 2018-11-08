@@ -50,7 +50,7 @@ end
 function test_pre_use_enchanted_mango_1_succeed()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_MP] = 1,
-    [gs.BOT_CASTABLE_FLASK] = 1,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 1,
   })
 
   luaunit.assertTrue(item_mp_recovery.pre_use_enchanted_mango())
@@ -59,7 +59,7 @@ end
 function test_pre_use_enchanted_mango_1_fails()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_MP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 1,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 1,
   })
 
   luaunit.assertFalse(item_mp_recovery.pre_use_enchanted_mango())
@@ -68,7 +68,7 @@ end
 function test_pre_use_enchanted_mango_2_fails()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_MP] = 1,
-    [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 0,
   })
 
   luaunit.assertFalse(item_mp_recovery.pre_use_enchanted_mango())
@@ -77,7 +77,7 @@ end
 function test_pre_use_enchanted_mango_3_fails()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_MP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 0,
   })
 
   luaunit.assertFalse(item_mp_recovery.pre_use_enchanted_mango())
