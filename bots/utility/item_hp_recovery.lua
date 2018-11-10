@@ -56,6 +56,7 @@ function M.pre_heal_magic_stick()
     [gs.BOT_IS_LOW_HP] = 0.6,
     [gs.BOT_IN_EH_MIN_DISTANCE] = 0.1,
     [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0.1,
+    [gs.EH_IS_CASTING] = 0.1,
     [gs.BOT_CASTABLE_MAGIC_STICK] = 0.3,
     [gs.BOT_CASTABLE_MAGIC_WAND] = 0.3,
   }

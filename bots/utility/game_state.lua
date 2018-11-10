@@ -94,6 +94,7 @@ M.EH_IN_NEAR_SHADOWRAZE_RANGE = 117
 M.EH_IN_MEDIUM_SHADOWRAZE_RANGE = 118
 M.EH_IN_FAR_SHADOWRAZE_RANGE = 119
 M.BOT_IS_FACING_EH = 120
+M.EH_IS_CASTING = 121
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -428,6 +429,8 @@ function M.UpdateState()
             env.BOT_DATA,
             env.ENEMY_HERO_DATA.location,
             constants.TURN_TARGET_MAX_DEGREE)]
+
+    M.GAME_STATE[M.EH_IS_CASTING] = NUM[env.ENEMY_HERO_DATA.is_casting]
   end
 
   -- ALLY_TOWER state
