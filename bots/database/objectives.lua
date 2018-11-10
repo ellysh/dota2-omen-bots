@@ -346,6 +346,13 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "use_magic_stick",
+        actions = {
+          {action = "use_magic_stick"},
+
+        },
+      },
     },
   },
 
@@ -775,6 +782,13 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "use_magic_stick",
+        actions = {
+          {action = "use_magic_stick"},
+
+        },
+      },
     },
   },
 
@@ -1177,6 +1191,13 @@ M.OBJECTIVES = {
         move = "use_enchanted_mango",
         actions = {
           {action = "use_enchanted_mango"},
+
+        },
+      },
+      {
+        move = "use_magic_stick",
+        actions = {
+          {action = "use_magic_stick"},
 
         },
       },

@@ -83,3 +83,4 @@ turn_enemy_fountain
 upgrade
 upgrade_skills
 use_enchanted_mango
+use_magic_stick

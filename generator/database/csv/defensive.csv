@@ -8,6 +8,7 @@ item_hp_recovery;heal_tango;heal_tango
 ;heal_magic_stick;heal_magic_stick
 ;;
 item_mp_recovery;use_enchanted_mango;use_enchanted_mango
+;use_magic_stick;use_magic_stick
 ;;
 upgrade_skills;upgrade;upgrade
 ;;

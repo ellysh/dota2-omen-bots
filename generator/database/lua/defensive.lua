@@ -70,6 +70,13 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "use_magic_stick",
+        actions = {
+          {action = "use_magic_stick"},
+
+        },
+      },
     },
   },
 
