@@ -78,6 +78,13 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "heal_magic_stick",
+        actions = {
+          {action = "heal_magic_stick"},
+
+        },
+      },
+      {
         move = "tp_base",
         actions = {
           {action = "tp_base"},

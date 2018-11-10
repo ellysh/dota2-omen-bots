@@ -172,6 +172,13 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "heal_magic_stick",
+        actions = {
+          {action = "heal_magic_stick"},
+
+        },
+      },
+      {
         move = "tp_base",
         actions = {
           {action = "tp_base"},
@@ -315,6 +322,13 @@ M.OBJECTIVES = {
         move = "heal_tango",
         actions = {
           {action = "heal_tango"},
+
+        },
+      },
+      {
+        move = "heal_magic_stick",
+        actions = {
+          {action = "heal_magic_stick"},
 
         },
       },
@@ -740,6 +754,13 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "heal_magic_stick",
+        actions = {
+          {action = "heal_magic_stick"},
+
+        },
+      },
     },
   },
 
@@ -1135,6 +1156,13 @@ M.OBJECTIVES = {
         move = "heal_tango",
         actions = {
           {action = "heal_tango"},
+
+        },
+      },
+      {
+        move = "heal_magic_stick",
+        actions = {
+          {action = "heal_magic_stick"},
 
         },
       },

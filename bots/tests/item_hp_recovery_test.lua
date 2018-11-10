@@ -7,6 +7,8 @@ local item_hp_recovery = require("item_hp_recovery")
 local gs = require("game_state")
 local luaunit = require("luaunit")
 
+---------------------------------
+
 function test_pre_item_hp_recovery_1_succeed()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
@@ -645,6 +647,128 @@ function test_pre_tp_base_9_false()
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
+end
+
+---------------------------------
+
+function test_pre_heal_magic_stick_1_succeed()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 1,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 0,
+  })
+
+  luaunit.assertTrue(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_2_succeed()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 1,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 0,
+  })
+
+  luaunit.assertTrue(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_3_succeed()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 1,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 0,
+  })
+
+  luaunit.assertTrue(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_4_succeed()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 0,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 1,
+  })
+
+  luaunit.assertTrue(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_1_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 1,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 0,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_2_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 1,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 0,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_3_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 0,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 0,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_4_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 0,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 0,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_5_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 1,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 0,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_heal_magic_stick())
+end
+
+function test_pre_heal_magic_stick_5_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_CASTABLE_MAGIC_STICK] = 1,
+    [gs.BOT_CASTABLE_MAGIC_WAND] = 1,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_heal_magic_stick())
 end
 
 os.exit(luaunit.LuaUnit.run())

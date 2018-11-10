@@ -42,6 +42,7 @@ force_stop
 glyph
 heal_faerie_fire
 heal_flask
+heal_magic_stick
 heal_tango
 increase_creeps_distance
 item_hp_recovery

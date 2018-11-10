@@ -9,6 +9,7 @@ swap_items;swap_flask_tp;swap_flask_tp
 item_hp_recovery;heal_tango;heal_tango
 ;heal_flask;heal_flask
 ;heal_faerie_fire;heal_faerie_fire
+;heal_magic_stick;heal_magic_stick
 ;tp_base;tp_base
 ;;
 base_recovery;deliver_items;deliver_items

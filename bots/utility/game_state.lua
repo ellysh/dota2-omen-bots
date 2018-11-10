@@ -69,6 +69,8 @@ M.BOT_CASTABLE_MEDIUM_SHADOWRAZE = 42
 M.BOT_CASTABLE_FAR_SHADOWRAZE = 43
 M.BOT_IS_LOW_MP = 44
 M.BOT_CASTABLE_ENCHANTED_MANGO = 45
+M.BOT_CASTABLE_MAGIC_STICK = 46
+M.BOT_CASTABLE_MAGIC_WAND = 47
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -307,6 +309,16 @@ function M.UpdateState()
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
             "item_enchanted_mango")],
+
+    [M.BOT_CASTABLE_MAGIC_STICK] =
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_magic_stick")],
+
+    [M.BOT_CASTABLE_MAGIC_WAND] =
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_magic_wand")],
   }
 
   if env.TURN_TARGET_DATA ~= nil then
