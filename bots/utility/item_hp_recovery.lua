@@ -54,8 +54,7 @@ end
 function M.pre_heal_magic_stick()
   local weights = {
     [gs.BOT_IS_LOW_HP] = 0.6,
-    [gs.BOT_IN_EH_MIN_DISTANCE] = 0.1,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0.1,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = 0.1,
     [gs.EH_IS_CASTING] = 0.1,
     [gs.BOT_CASTABLE_MAGIC_STICK] = 0.3,
     [gs.BOT_CASTABLE_MAGIC_WAND] = 0.3,
@@ -65,7 +64,7 @@ function M.pre_heal_magic_stick()
 end
 
 function M.heal_magic_stick()
-  if gs.BOT_CASTABLE_MAGIC_STICK then
+  if gs.GAME_STATE[gs.BOT_CASTABLE_MAGIC_STICK] then
     env.BOT:Action_UseAbility(
       algorithms.GetItem(env.BOT_DATA, "item_magic_stick"))
   else
