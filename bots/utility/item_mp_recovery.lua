@@ -46,13 +46,18 @@ end
 ----------------------------------
 
 function M.pre_use_magic_stick()
-  local weights = {
+  local weights_1 = {
     [gs.BOT_IS_LOW_MP] = 0.5,
     [gs.BOT_CASTABLE_MAGIC_STICK] = 0.5,
     [gs.BOT_CASTABLE_MAGIC_WAND] = 0.5,
   }
 
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  local weights_2 = {
+    [gs.BOT_HP_MAX_DELTA] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.EvaluateFrom(0.7, gs.GAME_STATE, weights_2)
 end
 
 function M.use_magic_stick()
