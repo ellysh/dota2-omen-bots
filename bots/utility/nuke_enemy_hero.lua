@@ -28,21 +28,21 @@ end
 
 function M.pre_turn()
   local weights_1 = {
-    [gs.EH_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0.3,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0.4,
     [gs.BOT_IS_FACING_EH] = -1,
   }
 
   local weights_2 = {
-    [gs.EH_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0.3,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0.4,
     [gs.BOT_IS_FACING_EH] = -1,
   }
 
   local weights_3 = {
-    [gs.EH_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0.3,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0.4,
     [gs.BOT_IS_FACING_EH] = -1,
@@ -67,7 +67,7 @@ end
 
 function M.pre_near_shadowraze()
   local weights = {
-    [gs.EH_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0.3,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0.2,
     [gs.BOT_IS_FACING_EH] = 0.2,
@@ -84,7 +84,7 @@ end
 
 function M.pre_medium_shadowraze()
   local weights = {
-    [gs.EH_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0.3,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0.2,
     [gs.BOT_IS_FACING_EH] = 0.2,
@@ -101,7 +101,7 @@ end
 
 function M.pre_far_shadowraze()
   local weights = {
-    [gs.EH_PRESENT] = 0.3,
+    [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0.3,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0.2,
     [gs.BOT_IS_FACING_EH] = 0.2,
