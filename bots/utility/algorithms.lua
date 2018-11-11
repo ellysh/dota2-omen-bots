@@ -474,9 +474,16 @@ function M.IsCourierUnit(unit_data)
 end
 
 function M.IsAliveFrontUnit(unit_data)
-  return constants.UNIT_HALF_HEALTH_LEVEL
-         < functions.GetRate(unit_data.health, unit_data.max_health)
-         or not map.IsUnitInEnemyTowerAttackRange(unit_data)
+  return (constants.UNIT_HALF_HEALTH_LEVEL
+          < functions.GetRate(unit_data.health, unit_data.max_health)
+          or not map.IsUnitInEnemyTowerAttackRange(unit_data)
+          or M.AreAllyCreepsInRadius(
+               unit_data,
+               constants.MIN_BASE_CREEP_DISTANCE))
+
+         and not map.IsUnitInSpot(
+                   unit_data,
+                   map.GetEnemySpot("tower_tier_1_rear_deep"))
 end
 
 function M.AreAllyCreepsInRadius(unit_data, radius, direction)
