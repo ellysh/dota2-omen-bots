@@ -1,3 +1,6 @@
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
@@ -17,12 +20,17 @@ end
 
 ---------------------------------
 
+local function IsBotOnBase()
+  return env.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS
+end
+
 function M.pre_swap_flask_tp()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
   local tp_slot = env.BOT:FindItemSlot("item_tpscroll")
 
   return env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_BACKPACK
          and env.BOT:GetItemSlotType(tp_slot) == ITEM_SLOT_TYPE_MAIN
+         and not IsBotOnBase()
 end
 
 function M.swap_flask_tp()
@@ -42,6 +50,7 @@ function M.pre_swap_enchanted_mango_tp()
 
   return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_BACKPACK
          and env.BOT:GetItemSlotType(tp_slot) == ITEM_SLOT_TYPE_MAIN
+         and not IsBotOnBase()
 end
 
 function M.swap_enchanted_mango_tp()
@@ -61,7 +70,7 @@ function M.pre_swap_tp_flask()
 
   return env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_MAIN
          and env.BOT:GetItemSlotType(tp_slot) == ITEM_SLOT_TYPE_BACKPACK
-         and env.IS_BASE_RECOVERY
+         and IsBotOnBase()
 end
 
 function M.swap_tp_flask()
@@ -81,7 +90,7 @@ function M.pre_swap_tp_enchanted_mango()
 
   return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_MAIN
          and env.BOT:GetItemSlotType(tp_slot) == ITEM_SLOT_TYPE_BACKPACK
-         and env.IS_BASE_RECOVERY
+         and IsBotOnBase()
 end
 
 function M.swap_tp_enchanted_mango()

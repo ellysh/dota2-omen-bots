@@ -3,6 +3,8 @@ prepare_for_match;buy_starting_items;buy_starting_items
 ;;
 swap_items;swap_flask_tp;swap_flask_tp
 ;swap_enchanted_mango_tp;swap_enchanted_mango_tp
+;swap_tp_enchanted_mango;swap_tp_enchanted_mango
+;swap_tp_flask;swap_tp_flask
 ;put_item_in_inventory;put_item_in_inventory
 ;;
 item_hp_recovery;heal_tango;heal_tango
