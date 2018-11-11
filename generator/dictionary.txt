@@ -77,6 +77,8 @@ stop_turn
 swap_enchanted_mango_tp
 swap_flask_tp
 swap_items
+swap_tp_enchanted_mango
+swap_tp_flask
 tp_base
 tp_mid_tower
 TRUE

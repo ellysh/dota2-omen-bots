@@ -55,6 +55,45 @@ end
 
 ---------------------------------
 
+function M.pre_swap_tp_flask()
+  local flask_slot = env.BOT:FindItemSlot("item_flask")
+  local tp_slot = env.BOT:FindItemSlot("item_tpscroll")
+
+  return env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_MAIN
+         and env.BOT:GetItemSlotType(tp_slot) == ITEM_SLOT_TYPE_BACKPACK
+         and env.IS_BASE_RECOVERY
+end
+
+function M.swap_tp_flask()
+  local flask_slot = env.BOT:FindItemSlot("item_flask")
+  local tp_slot = env.BOT:FindItemSlot("item_tpscroll")
+
+  env.BOT:ActionImmediate_SwapItems(flask_slot, tp_slot)
+
+  action_timing.SetNextActionDelay(0.05)
+end
+
+---------------------------------
+
+function M.pre_swap_tp_enchanted_mango()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local tp_slot = env.BOT:FindItemSlot("item_tpscroll")
+
+  return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_MAIN
+         and env.BOT:GetItemSlotType(tp_slot) == ITEM_SLOT_TYPE_BACKPACK
+         and env.IS_BASE_RECOVERY
+end
+
+function M.swap_tp_enchanted_mango()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local tp_slot = env.BOT:FindItemSlot("item_tpscroll")
+
+  env.BOT:ActionImmediate_SwapItems(mango_slot, tp_slot)
+
+  action_timing.SetNextActionDelay(0.05)
+end
+---------------------------------
+
 local function GetFullSlotInBackpack(unit_data)
   for i = 6, 8 do
     if nil ~= env.BOT:GetItemInSlot(i) then
