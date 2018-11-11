@@ -223,4 +223,118 @@ function test_pre_attack_enemy_tower_4_fails()
   luaunit.assertFalse(push_lane.pre_attack_enemy_tower())
 end
 
+---------------------------------
+
+function test_pre_destroy_enemy_tower_1_succeed()
+  push_lane.test_SetGameState({
+    -- weights_1
+    [gs.ET_IS_LOW_HP] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.ET_IS_VISIBLE] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0.5,
+  })
+
+  luaunit.assertTrue(push_lane.pre_destroy_enemy_tower())
+end
+
+function test_pre_destroy_enemy_tower_2_succeed()
+  push_lane.test_SetGameState({
+    -- weights_1
+    [gs.ET_IS_LOW_HP] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.ET_IS_VISIBLE] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0.51,
+  })
+
+  luaunit.assertTrue(push_lane.pre_destroy_enemy_tower())
+end
+
+function test_pre_destroy_enemy_tower_1_fails()
+  push_lane.test_SetGameState({
+    -- weights_1
+    [gs.ET_IS_LOW_HP] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.ET_IS_VISIBLE] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0.5,
+  })
+
+  luaunit.assertFalse(push_lane.pre_destroy_enemy_tower())
+end
+
+function test_pre_destroy_enemy_tower_2_fails()
+  push_lane.test_SetGameState({
+    -- weights_1
+    [gs.ET_IS_LOW_HP] = 1,
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.ET_IS_VISIBLE] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0.5,
+  })
+
+  luaunit.assertFalse(push_lane.pre_destroy_enemy_tower())
+end
+
+function test_pre_destroy_enemy_tower_3_fails()
+  push_lane.test_SetGameState({
+    -- weights_1
+    [gs.ET_IS_LOW_HP] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.ET_IS_VISIBLE] = 0,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0.5,
+  })
+
+  luaunit.assertFalse(push_lane.pre_destroy_enemy_tower())
+end
+
+function test_pre_destroy_enemy_tower_4_fails()
+  push_lane.test_SetGameState({
+    -- weights_1
+    [gs.ET_IS_LOW_HP] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.ET_IS_VISIBLE] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 1,
+    [gs.BOT_HP_RATE] = 1,
+  })
+
+  luaunit.assertFalse(push_lane.pre_destroy_enemy_tower())
+end
+
+function test_pre_destroy_enemy_tower_5_fails()
+  push_lane.test_SetGameState({
+    -- weights_1
+    [gs.ET_IS_LOW_HP] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.ET_IS_VISIBLE] = 1,
+
+    -- weights_2
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = 0,
+    [gs.BOT_HP_RATE] = 0.49,
+  })
+
+  luaunit.assertFalse(push_lane.pre_destroy_enemy_tower())
+end
+
 os.exit(luaunit.LuaUnit.run())
