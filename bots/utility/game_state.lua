@@ -441,7 +441,7 @@ function M.UpdateState()
 
   if env.ALLY_TOWER_DATA ~= nil then
     M.GAME_STATE[M.AT_IS_LOW_HP] =
-      NUM[algorithms.IsUnitLowHp(env.ALLY_TOWER_DATA)]
+      NUM[env.ALLY_TOWER_DATA.health <= constants.TOWER_LOW_HEALTH]
 
     M.GAME_STATE[M.AT_INCOMING_DAMAGE] =
       NormalizeValue(GetAllyTowerIncomingDamage(),
@@ -475,7 +475,7 @@ function M.UpdateState()
       NUM[env.ENEMY_TOWER_DISTANCE <= constants.TOWER_AGGRO_RADIUS]
 
     M.GAME_STATE[M.ET_IS_LOW_HP] =
-      NUM[algorithms.IsUnitLowHp(env.ENEMY_TOWER_DATA)]
+      NUM[env.ENEMY_TOWER_DATA.health <= constants.TOWER_LOW_HEALTH]
 
     -- The tower is always visible even in fog of war
     M.GAME_STATE[M.ET_IS_VISIBLE] =
