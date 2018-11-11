@@ -230,14 +230,23 @@ function M.UpdateState()
                                   0,
                                   constants.BASE_RADIUS),
 
-    [M.BOT_CASTABLE_FLASK] = NUM[
-             algorithms.IsItemCastable(env.BOT_DATA, "item_flask")],
-    [M.BOT_CASTABLE_FAERIE_FIRE] = NUM[
-             algorithms.IsItemCastable(env.BOT_DATA, "item_faerie_fire")],
-    [M.BOT_CASTABLE_TANGO] = NUM[
-             algorithms.IsItemCastable(env.BOT_DATA, "item_tango")],
-    [M.BOT_CASTABLE_TP_SCROLL] = NUM[
-             algorithms.IsItemCastable(env.BOT_DATA, "item_tpscroll")],
+    [M.BOT_CASTABLE_FLASK] =
+      NUM[algorithms.IsItemCastable(env.BOT_DATA, "item_flask", false)],
+
+    [M.BOT_CASTABLE_FAERIE_FIRE] =
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_faerie_fire",
+            false)],
+
+    [M.BOT_CASTABLE_TANGO] =
+      NUM[algorithms.IsItemCastable(env.BOT_DATA, "item_tango", false)],
+
+    [M.BOT_CASTABLE_TP_SCROLL] =
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_tpscroll",
+            false)],
 
     [M.BOT_GOLD] = NUM[env.BOT_DATA.gold < constants.RESERVED_GOLD],
 
@@ -311,17 +320,20 @@ function M.UpdateState()
     [M.BOT_CASTABLE_ENCHANTED_MANGO] =
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
-            "item_enchanted_mango")],
+            "item_enchanted_mango",
+            false)],
 
     [M.BOT_CASTABLE_MAGIC_STICK] =
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
-            "item_magic_stick")],
+            "item_magic_stick",
+            true)],
 
     [M.BOT_CASTABLE_MAGIC_WAND] =
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
-            "item_magic_wand")],
+            "item_magic_wand",
+            true)],
   }
 
   if env.TURN_TARGET_DATA ~= nil then

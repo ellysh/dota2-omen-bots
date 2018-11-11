@@ -450,10 +450,14 @@ function M.GetFarmSpot(unit_data, enemy_units)
            end)
 end
 
-function M.IsItemCastable(unit_data, item_name)
+function M.IsItemCastable(unit_data, item_name, check_charges)
+  local item = M.GetItem(unit_data, item_name)
+
   return M.IsItemPresent(unit_data, item_name)
          and M.IsItemInInventory(unit_data, item_name)
-         and M.GetItem(unit_data, item_name):IsFullyCastable()
+         and item:IsFullyCastable()
+         and (not check_charges
+              or 0 < item:GetCurrentCharges())
 end
 
 function M.IsRangedUnit(unit_data)
