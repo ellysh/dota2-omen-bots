@@ -302,7 +302,7 @@ local function GetUnitType(unit)
 end
 
 function M.GetUnitData(unit)
-  if unit:IsNull() then
+  if unit == nil or unit:IsNull() then
     return nil
   else
     return UNIT_LIST[unit:GetTeam()][GetUnitType(unit)][tostring(unit)]

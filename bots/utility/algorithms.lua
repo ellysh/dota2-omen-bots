@@ -240,9 +240,10 @@ function M.DoesBotOrCourierHaveItem(item_name)
   local bot_data = M.GetBotData()
 
   return M.IsItemPresent(bot_data, item_name)
-         or M.IsItemPresent(
-              courier_data,
-              item_name)
+         or (courier_data ~= nil
+             and M.IsItemPresent(
+                   courier_data,
+                   item_name))
 end
 
 function M.IsFocusedByEnemyHero(unit_data)
