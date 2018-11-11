@@ -108,6 +108,8 @@ M.ET_PRESENT = 300
 M.BOT_IN_ET_MIN_DISTANCE = 301
 M.ET_ATTACK_AC = 302
 M.BOT_IN_ET_AGGRO_RADIUS = 303
+M.ET_IS_LOW_HP = 304
+M.ET_IS_VISIBLE = 305
 
 -- Creeps state
 M.EC_FRONT_PRESENT = 400
@@ -471,6 +473,13 @@ function M.UpdateState()
 
     M.GAME_STATE[M.BOT_IN_ET_AGGRO_RADIUS] =
       NUM[env.ENEMY_TOWER_DISTANCE <= constants.TOWER_AGGRO_RADIUS]
+
+    M.GAME_STATE[M.ET_IS_LOW_HP] =
+      NUM[algorithms.IsUnitLowHp(env.ENEMY_TOWER_DATA)]
+
+    -- The tower is always visible even in fog of war
+    M.GAME_STATE[M.ET_IS_VISIBLE] =
+      NUM[IsLocationVisible(env.ENEMY_TOWER_DATA.location)]
   end
 
   -- Creeps state

@@ -41,7 +41,8 @@ kite;attack_enemy_hero;attack_enemy_hero
 ;;stop_attack
 ;move_safe;move_safe
 ;;
-push_lane;attack_enemy_creep;attack_enemy_creep
+push_lane;destroy_enemy_tower;destroy_enemy_tower
+;attack_enemy_creep;attack_enemy_creep
 ;;stop_attack
 ;kill_enemy_creep;kill_enemy_creep
 ;;stop_attack

@@ -266,6 +266,13 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/push_lane"),
     moves = {
       {
+        move = "destroy_enemy_tower",
+        actions = {
+          {action = "destroy_enemy_tower"},
+
+        },
+      },
+      {
         move = "attack_enemy_creep",
         actions = {
           {action = "attack_enemy_creep"},

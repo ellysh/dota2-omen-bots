@@ -29,6 +29,7 @@ decrease_creeps_distance_base
 defend_tower
 deliver_items
 deny_ally_creep
+destroy_enemy_tower
 do_buyback
 do_glyph
 evade_enemy_creeps

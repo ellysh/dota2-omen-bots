@@ -77,6 +77,29 @@ end
 
 --------------------------------
 
+function M.pre_destroy_enemy_tower()
+  local weights_1 = {
+    [gs.ET_IS_LOW_HP] = 0.4,
+    [gs.AC_FRONT_PRESENT] = 0.3,
+    [gs.ET_IS_VISIBLE] = 0.3,
+  }
+
+  local weights_2 = {
+    [gs.EH_PRESENT] = -0.5,
+    [gs.BOT_IN_EH_MIN_DISTANCE] = -1,
+    [gs.BOT_HP_RATE] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.EvaluateFrom(1, gs.GAME_STATE, weights_2)
+end
+
+function M.destroy_enemy_tower()
+  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_TOWER_DATA)
+end
+
+--------------------------------
+
 function M.stop_attack()
   moves.stop_attack()
 end
