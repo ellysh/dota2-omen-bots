@@ -1,5 +1,6 @@
 Objective;Move;Actions
 swap_items;swap_flask_tp;swap_flask_tp
+;swap_enchanted_mango_tp;swap_enchanted_mango_tp
 ;put_item_in_inventory;put_item_in_inventory
 ;;
 item_hp_recovery;heal_tango;heal_tango

@@ -73,6 +73,7 @@ stop
 stop_attack
 stop_attack_and_move
 stop_turn
+swap_enchanted_mango_tp
 swap_flask_tp
 swap_items
 tp_base

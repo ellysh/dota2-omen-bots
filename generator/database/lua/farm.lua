@@ -29,6 +29,13 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "swap_enchanted_mango_tp",
+        actions = {
+          {action = "swap_enchanted_mango_tp"},
+
+        },
+      },
+      {
         move = "put_item_in_inventory",
         actions = {
           {action = "put_item_in_inventory"},

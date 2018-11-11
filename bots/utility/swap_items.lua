@@ -36,6 +36,25 @@ end
 
 ---------------------------------
 
+function M.pre_swap_enchanted_mango_tp()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local tp_slot = env.BOT:FindItemSlot("item_tpscroll")
+
+  return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_BACKPACK
+         and env.BOT:GetItemSlotType(tp_slot) == ITEM_SLOT_TYPE_MAIN
+end
+
+function M.swap_enchanted_mango_tp()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local tp_slot = env.BOT:FindItemSlot("item_tpscroll")
+
+  env.BOT:ActionImmediate_SwapItems(mango_slot, tp_slot)
+
+  action_timing.SetNextActionDelay(0.05)
+end
+
+---------------------------------
+
 local function GetFullSlotInBackpack(unit_data)
   for i = 6, 8 do
     if nil ~= env.BOT:GetItemInSlot(i) then
