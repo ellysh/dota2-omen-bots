@@ -26,6 +26,8 @@ farm;lasthit_enemy_creep;lasthit_enemy_creep
 ;deny_ally_creep;deny_ally_creep
 ;;stop_attack
 ;;
+push_lane;destroy_enemy_tower;destroy_enemy_tower
+;;
 evasion;evade_enemy_creeps;evade_enemy_creeps
 ;;
 nuke_enemy_hero;turn;turn
@@ -43,8 +45,7 @@ kite;attack_enemy_hero;attack_enemy_hero
 ;;stop_attack
 ;move_safe;move_safe
 ;;
-push_lane;destroy_enemy_tower;destroy_enemy_tower
-;attack_enemy_creep;attack_enemy_creep
+push_lane;attack_enemy_creep;attack_enemy_creep
 ;;stop_attack
 ;kill_enemy_creep;kill_enemy_creep
 ;;stop_attack

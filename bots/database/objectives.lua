@@ -943,6 +943,20 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "push_lane",
+    module = require(GetScriptDirectory() .."/utility/push_lane"),
+    moves = {
+      {
+        move = "destroy_enemy_tower",
+        actions = {
+          {action = "destroy_enemy_tower"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "evasion",
     module = require(GetScriptDirectory() .."/utility/evasion"),
     moves = {
@@ -1047,13 +1061,6 @@ M.OBJECTIVES = {
     objective = "push_lane",
     module = require(GetScriptDirectory() .."/utility/push_lane"),
     moves = {
-      {
-        move = "destroy_enemy_tower",
-        actions = {
-          {action = "destroy_enemy_tower"},
-
-        },
-      },
       {
         move = "attack_enemy_creep",
         actions = {
