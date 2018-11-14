@@ -20,86 +20,68 @@ local M = {}
 
 ---------------------------------
 
-function M.pre_nuke_enemy_hero()
+function M.pre_cancel_nuke_enemy_hero()
   return moves.pre_attack_objective()
 end
 
 ---------------------------------
 
-function M.pre_turn()
+function M.pre_cancel_near_shadowraze()
   local weights_1 = {
     [gs.EH_IS_VISIBLE] = 0.3,
-    [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0.3,
-    [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0.4,
-    [gs.BOT_IS_FACING_EH] = -1,
+    [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0.3,
+    [gs.BOT_IS_FACING_EH] = 0.4,
   }
 
   local weights_2 = {
-    [gs.EH_IS_VISIBLE] = 0.3,
-    [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0.3,
-    [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0.4,
-    [gs.BOT_IS_FACING_EH] = -1,
+    [gs.BOT_IS_CASTING_NEAR_SHADOWRAZE] = 1,
   }
 
-  local weights_3 = {
-    [gs.EH_IS_VISIBLE] = 0.3,
-    [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0.3,
-    [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0.4,
-    [gs.BOT_IS_FACING_EH] = -1,
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights_1)
-         or gs.Evaluate(gs.GAME_STATE, weights_2)
-         or gs.Evaluate(gs.GAME_STATE, weights_3)
+  return not gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.Evaluate(gs.GAME_STATE, weights_2)
 end
 
-function M.turn()
-  env.BOT:Action_AttackUnit(all_units.GetUnit(env.ENEMY_HERO_DATA), true)
-
-  action_timing.SetNextActionDelay(constants.NEVERMORE_TURN_TIME)
-end
-
-function M.stop_attack_and_move()
+function M.cancel_near_shadowraze()
   env.BOT:Action_ClearActions(true)
 end
 
 ---------------------------------
 
-function M.pre_near_shadowraze()
-  local weights = {
+function M.pre_cancel_medium_shadowraze()
+  local weights_1 = {
     [gs.EH_IS_VISIBLE] = 0.3,
-    [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0.3,
-    [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0.2,
-    [gs.BOT_IS_FACING_EH] = 0.2,
+    [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0.3,
+    [gs.BOT_IS_FACING_EH] = 0.4,
   }
 
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  local weights_2 = {
+    [gs.BOT_IS_CASTING_MEDIUM_SHADOWRAZE] = 1,
+  }
+
+  return not gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.Evaluate(gs.GAME_STATE, weights_2)
 end
 
-function M.near_shadowraze()
-  env.BOT:Action_UseAbility(env.NEAR_SHADOWRAZE_ABILITY)
+function M.cancel_medium_shadowraze()
+  env.BOT:Action_ClearActions(true)
 end
 
 ---------------------------------
 
-function M.pre_medium_shadowraze()
-  local weights = {
+function M.pre_cancel_far_shadowraze()
+  local weights_1 = {
     [gs.EH_IS_VISIBLE] = 0.3,
-    [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0.3,
-    [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0.2,
-    [gs.BOT_IS_FACING_EH] = 0.2,
+    [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0.3,
+    [gs.BOT_IS_FACING_EH] = 0.4,
   }
 
-  return gs.Evaluate(gs.GAME_STATE, weights)
-end
+  local weights_2 = {
+    [gs.BOT_IS_CASTING_FAR_SHADOWRAZE] = 1,
+  }
 
-function M.medium_shadowraze()
-  env.BOT:Action_UseAbility(env.MEDIUM_SHADOWRAZE_ABILITY)
-end
+  return not gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.Evaluate(gs.GAME_STATE, weights_2)
 
----------------------------------
-
-function M.pre_far_shadowraze()
   local weights = {
     [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0.3,
@@ -110,8 +92,8 @@ function M.pre_far_shadowraze()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
-function M.far_shadowraze()
-  env.BOT:Action_UseAbility(env.FAR_SHADOWRAZE_ABILITY)
+function M.cancel_far_shadowraze()
+  env.BOT:Action_ClearActions(true)
 end
 
 -- Provide an access to local functions for unit tests only
