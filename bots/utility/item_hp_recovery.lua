@@ -53,7 +53,7 @@ end
 
 function M.pre_heal_magic_stick()
   local weights = {
-    [gs.BOT_IS_LOW_HP] = 0.6,
+    [gs.BOT_IS_LOW_HP] = 0.61,
     [gs.BOT_IN_EH_ATTACK_RANGE] = 0.1,
     [gs.EH_IS_CASTING] = 0.1,
     [gs.BOT_CASTABLE_MAGIC_STICK] = 0.3,

@@ -81,15 +81,6 @@ function M.pre_cancel_far_shadowraze()
 
   return not gs.Evaluate(gs.GAME_STATE, weights_1)
          and gs.Evaluate(gs.GAME_STATE, weights_2)
-
-  local weights = {
-    [gs.EH_IS_VISIBLE] = 0.3,
-    [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0.3,
-    [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0.2,
-    [gs.BOT_IS_FACING_EH] = 0.2,
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.cancel_far_shadowraze()
