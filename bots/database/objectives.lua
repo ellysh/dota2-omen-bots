@@ -301,6 +301,34 @@ M.OBJECTIVES = {
     strategy = "defensive",
     objectives = {
   {
+    objective = "cancel_nuke_enemy_hero",
+    module = require(GetScriptDirectory() .."/utility/cancel_nuke_enemy_hero"),
+    moves = {
+      {
+        move = "cancel_near_shadowraze",
+        actions = {
+          {action = "cancel_near_shadowraze"},
+
+        },
+      },
+      {
+        move = "cancel_medium_shadowraze",
+        actions = {
+          {action = "cancel_medium_shadowraze"},
+
+        },
+      },
+      {
+        move = "cancel_far_shadowraze",
+        actions = {
+          {action = "cancel_far_shadowraze"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "glyph",
     module = require(GetScriptDirectory() .."/utility/glyph"),
     moves = {
@@ -772,6 +800,34 @@ M.OBJECTIVES = {
     strategy = "offensive",
     objectives = {
   {
+    objective = "cancel_nuke_enemy_hero",
+    module = require(GetScriptDirectory() .."/utility/cancel_nuke_enemy_hero"),
+    moves = {
+      {
+        move = "cancel_near_shadowraze",
+        actions = {
+          {action = "cancel_near_shadowraze"},
+
+        },
+      },
+      {
+        move = "cancel_medium_shadowraze",
+        actions = {
+          {action = "cancel_medium_shadowraze"},
+
+        },
+      },
+      {
+        move = "cancel_far_shadowraze",
+        actions = {
+          {action = "cancel_far_shadowraze"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "swap_items",
     module = require(GetScriptDirectory() .."/utility/swap_items"),
     moves = {
@@ -1204,6 +1260,34 @@ M.OBJECTIVES = {
   {
     strategy = "farm",
     objectives = {
+  {
+    objective = "cancel_nuke_enemy_hero",
+    module = require(GetScriptDirectory() .."/utility/cancel_nuke_enemy_hero"),
+    moves = {
+      {
+        move = "cancel_near_shadowraze",
+        actions = {
+          {action = "cancel_near_shadowraze"},
+
+        },
+      },
+      {
+        move = "cancel_medium_shadowraze",
+        actions = {
+          {action = "cancel_medium_shadowraze"},
+
+        },
+      },
+      {
+        move = "cancel_far_shadowraze",
+        actions = {
+          {action = "cancel_far_shadowraze"},
+
+        },
+      },
+    },
+  },
+
   {
     objective = "prepare_for_match",
     module = require(GetScriptDirectory() .."/utility/prepare_for_match"),

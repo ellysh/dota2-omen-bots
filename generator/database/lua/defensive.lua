@@ -4,6 +4,34 @@ local M = {}
 M.OBJECTIVES = {
 
   {
+    objective = "cancel_nuke_enemy_hero",
+    module = require(GetScriptDirectory() .."/utility/cancel_nuke_enemy_hero"),
+    moves = {
+      {
+        move = "cancel_near_shadowraze",
+        actions = {
+          {action = "cancel_near_shadowraze"},
+
+        },
+      },
+      {
+        move = "cancel_medium_shadowraze",
+        actions = {
+          {action = "cancel_medium_shadowraze"},
+
+        },
+      },
+      {
+        move = "cancel_far_shadowraze",
+        actions = {
+          {action = "cancel_far_shadowraze"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "glyph",
     module = require(GetScriptDirectory() .."/utility/glyph"),
     moves = {

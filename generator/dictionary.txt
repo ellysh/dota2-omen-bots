@@ -24,6 +24,10 @@ buy_starting_items
 buy_tango
 buy_tpscroll
 buy_two_blades_of_attack
+cancel_far_shadowraze
+cancel_medium_shadowraze
+cancel_near_shadowraze
+cancel_nuke_enemy_hero
 decrease_creeps_distance_aggro
 decrease_creeps_distance_base
 defend_tower

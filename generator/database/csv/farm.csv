@@ -1,4 +1,8 @@
 Objective;Move;Actions
+cancel_nuke_enemy_hero;cancel_near_shadowraze;cancel_near_shadowraze
+;cancel_medium_shadowraze;cancel_medium_shadowraze
+;cancel_far_shadowraze;cancel_far_shadowraze
+;;
 prepare_for_match;buy_starting_items;buy_starting_items
 ;;
 swap_items;swap_flask_tp;swap_flask_tp
