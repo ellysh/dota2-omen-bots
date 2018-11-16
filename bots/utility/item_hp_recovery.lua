@@ -19,9 +19,10 @@ local M = {}
 
 function M.pre_item_hp_recovery()
   local weights = {
-    [gs.BOT_IS_ALIVE] = 0.5,
-    [gs.BOT_IS_HEALING] = -0.5,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0.5
+    [gs.BOT_IS_ALIVE] = 0.6,
+    [gs.BOT_IS_HEALING] = -0.4,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 0.4,
+    [gs.BOT_IS_CASTING] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

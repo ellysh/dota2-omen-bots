@@ -1,15 +1,18 @@
+local moves = require(
+  GetScriptDirectory() .."/utility/moves")
+
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
-local algorithms = require(
-  GetScriptDirectory() .."/utility/algorithms")
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
 
 local M = {}
 
 ---------------------------------
 
 function M.pre_force_stop()
-  return algorithms.IsBotAlive()
+  return moves.pre_interrupt_cast_objective()
 end
 
 ---------------------------------

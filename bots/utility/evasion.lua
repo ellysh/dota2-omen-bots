@@ -1,8 +1,8 @@
-local algorithms = require(
-  GetScriptDirectory() .."/utility/algorithms")
-
 local action_timing = require(
   GetScriptDirectory() .."/utility/action_timing")
+
+local moves = require(
+  GetScriptDirectory() .."/utility/moves")
 
 local env = require(
   GetScriptDirectory() .."/utility/environment")
@@ -15,7 +15,7 @@ local M = {}
 ---------------------------------
 
 function M.pre_evasion()
-  return algorithms.IsBotAlive()
+  return moves.pre_interrupt_cast_objective()
 end
 
 ---------------------------------

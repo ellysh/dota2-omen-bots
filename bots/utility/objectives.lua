@@ -120,9 +120,7 @@ local CURRENT_MOVE = nil
 local ACTION_INDEX = 1
 
 function M.Process()
-  if IsActionTimingDelay()
-     or (algorithms.IsBotAlive() and
-         algorithms.GetBotData().is_casting) then
+  if IsActionTimingDelay() then
     return end
 
   environment.UpdateVariables()

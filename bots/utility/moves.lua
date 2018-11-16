@@ -14,10 +14,22 @@ local M = {}
 
 --------------------------------
 
+function M.pre_interrupt_cast_objective()
+  local weights = {
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_CASTING] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+--------------------------------
+
 function M.pre_attack_objective()
   local weights = {
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_LOW_HP] = -1,
+    [gs.BOT_IS_CASTING] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

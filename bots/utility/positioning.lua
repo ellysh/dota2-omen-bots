@@ -32,6 +32,7 @@ function M.pre_positioning()
     [gs.IS_FIRST_WAVE] = -0.5,
     [gs.AC_BACK_PRESENT] = -1,
     [gs.AC_FRONT_PRESENT] = 0.5,
+    [gs.BOT_IS_CASTING] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

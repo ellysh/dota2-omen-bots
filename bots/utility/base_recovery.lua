@@ -29,6 +29,7 @@ function M.pre_base_recovery()
     [gs.BOT_IS_LOW_HP] = 0.3,
     [gs.BOT_IS_HEALING] = -0.3,
     [gs.BOT_IS_BASE_RECOVERY] = 0.3,
+    [gs.BOT_IS_CASTING] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

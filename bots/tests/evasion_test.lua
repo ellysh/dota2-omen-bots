@@ -7,6 +7,8 @@ local evasion = require("evasion")
 local gs = require("game_state")
 local luaunit = require("luaunit")
 
+---------------------------------
+
 function test_pre_move_safe_recovery_1_succeed()
   evasion.test_SetGameState({
     [gs.BOT_IS_FLASK_HEALING] = 1,

@@ -13,6 +13,7 @@ function test_pre_base_recovery_1_succeed()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_IS_BASE_RECOVERY] = 0,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertTrue(base_recovery.pre_base_recovery())
@@ -24,6 +25,7 @@ function test_pre_base_recovery_2_succeed()
     [gs.BOT_IS_LOW_HP] = 0,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_IS_BASE_RECOVERY] = 1,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertTrue(base_recovery.pre_base_recovery())
@@ -35,6 +37,7 @@ function test_pre_base_recovery_3_succeed()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_IS_BASE_RECOVERY] = 1,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertTrue(base_recovery.pre_base_recovery())
@@ -46,6 +49,7 @@ function test_pre_base_recovery_4_succeed()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_IS_BASE_RECOVERY] = 1,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertTrue(base_recovery.pre_base_recovery())
@@ -58,6 +62,7 @@ function test_pre_base_recovery_1_fails()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_IS_BASE_RECOVERY] = 0,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(base_recovery.pre_base_recovery())
@@ -69,6 +74,7 @@ function test_pre_base_recovery_2_fails()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_IS_BASE_RECOVERY] = 1,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(base_recovery.pre_base_recovery())
@@ -80,6 +86,7 @@ function test_pre_base_recovery_3_fails()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_IS_BASE_RECOVERY] = 1,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(base_recovery.pre_base_recovery())
@@ -91,6 +98,7 @@ function test_pre_base_recovery_4_fails()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_IS_BASE_RECOVERY] = 0,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(base_recovery.pre_base_recovery())
@@ -102,6 +110,19 @@ function test_pre_base_recovery_5_fails()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_IS_BASE_RECOVERY] = 0,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertFalse(base_recovery.pre_base_recovery())
+end
+
+function test_pre_base_recovery_6_fails()
+  base_recovery.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_IS_BASE_RECOVERY] = 0,
+    [gs.BOT_IS_CASTING] = 1,
   })
 
   luaunit.assertFalse(base_recovery.pre_base_recovery())

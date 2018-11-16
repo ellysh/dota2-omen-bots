@@ -14,6 +14,7 @@ function test_pre_item_hp_recovery_1_succeed()
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertTrue(item_hp_recovery.pre_item_hp_recovery())
@@ -24,6 +25,7 @@ function test_pre_item_hp_recovery_1_fails()
     [gs.BOT_IS_ALIVE] = 0,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
@@ -34,6 +36,7 @@ function test_pre_item_hp_recovery_2_fails()
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
@@ -44,6 +47,7 @@ function test_pre_item_hp_recovery_3_fails()
     [gs.BOT_IS_ALIVE] = 0,
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
@@ -54,6 +58,7 @@ function test_pre_item_hp_recovery_4_fails()
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
@@ -64,6 +69,7 @@ function test_pre_item_hp_recovery_5_fails()
     [gs.BOT_IS_ALIVE] = 0,
     [gs.BOT_IS_HEALING] = 0,
     [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
@@ -74,6 +80,7 @@ function test_pre_item_hp_recovery_6_fails()
     [gs.BOT_IS_ALIVE] = 0,
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_IS_CASTING] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
@@ -84,6 +91,18 @@ function test_pre_item_hp_recovery_7_fails()
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_HEALING] = 1,
     [gs.BOT_FOUNTAIN_DISTANCE] = 0.5,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
+end
+
+function test_pre_item_hp_recovery_8_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_HEALING] = 0,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_IS_CASTING] = 1,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())

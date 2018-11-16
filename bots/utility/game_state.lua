@@ -74,6 +74,7 @@ M.BOT_CASTABLE_MAGIC_WAND = 47
 M.BOT_IS_CASTING_NEAR_SHADOWRAZE = 48
 M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE = 49
 M.BOT_IS_CASTING_FAR_SHADOWRAZE = 50
+M.BOT_IS_CASTING = 51
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -339,13 +340,15 @@ function M.UpdateState()
             true)],
 
     [M.BOT_IS_CASTING_NEAR_SHADOWRAZE] =
-      NUM[env.BOT_DATA. anim_activity == ACTIVITY_CAST_ABILITY_1],
+      NUM[env.BOT_DATA.anim_activity == ACTIVITY_CAST_ABILITY_1],
 
     [M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE] =
-      NUM[env.BOT_DATA. anim_activity == ACTIVITY_CAST_ABILITY_2],
+      NUM[env.BOT_DATA.anim_activity == ACTIVITY_CAST_ABILITY_2],
 
     [M.BOT_IS_CASTING_FAR_SHADOWRAZE] =
-      NUM[env.BOT_DATA. anim_activity == ACTIVITY_CAST_ABILITY_3],
+      NUM[env.BOT_DATA.anim_activity == ACTIVITY_CAST_ABILITY_3],
+
+    [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting]
   }
 
   if env.TURN_TARGET_DATA ~= nil then
