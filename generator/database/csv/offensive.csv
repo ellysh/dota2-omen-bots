@@ -1,7 +1,7 @@
 Objective;Move;Actions
-cancel_nuke_enemy_hero;cancel_near_shadowraze;cancel_near_shadowraze
-;cancel_medium_shadowraze;cancel_medium_shadowraze
-;cancel_far_shadowraze;cancel_far_shadowraze
+cancel_nuke_enemy_hero;cancel_near_shadowraze;stop_attack_and_move
+;cancel_medium_shadowraze;stop_attack_and_move
+;cancel_far_shadowraze;stop_attack_and_move
 ;;
 swap_items;swap_flask_tp;swap_flask_tp
 ;swap_enchanted_mango_tp;swap_enchanted_mango_tp

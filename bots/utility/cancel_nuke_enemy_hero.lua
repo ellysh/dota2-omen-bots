@@ -41,10 +41,6 @@ function M.pre_cancel_near_shadowraze()
          and gs.Evaluate(gs.GAME_STATE, weights_2)
 end
 
-function M.cancel_near_shadowraze()
-  env.BOT:Action_ClearActions(true)
-end
-
 ---------------------------------
 
 function M.pre_cancel_medium_shadowraze()
@@ -60,10 +56,6 @@ function M.pre_cancel_medium_shadowraze()
 
   return not gs.Evaluate(gs.GAME_STATE, weights_1)
          and gs.Evaluate(gs.GAME_STATE, weights_2)
-end
-
-function M.cancel_medium_shadowraze()
-  env.BOT:Action_ClearActions(true)
 end
 
 ---------------------------------
@@ -83,7 +75,7 @@ function M.pre_cancel_far_shadowraze()
          and gs.Evaluate(gs.GAME_STATE, weights_2)
 end
 
-function M.cancel_far_shadowraze()
+function M.stop_attack_and_move()
   env.BOT:Action_ClearActions(true)
 end
 

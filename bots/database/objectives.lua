@@ -307,21 +307,21 @@ M.OBJECTIVES = {
       {
         move = "cancel_near_shadowraze",
         actions = {
-          {action = "cancel_near_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
       {
         move = "cancel_medium_shadowraze",
         actions = {
-          {action = "cancel_medium_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
       {
         move = "cancel_far_shadowraze",
         actions = {
-          {action = "cancel_far_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
@@ -806,21 +806,21 @@ M.OBJECTIVES = {
       {
         move = "cancel_near_shadowraze",
         actions = {
-          {action = "cancel_near_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
       {
         move = "cancel_medium_shadowraze",
         actions = {
-          {action = "cancel_medium_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
       {
         move = "cancel_far_shadowraze",
         actions = {
-          {action = "cancel_far_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
@@ -1267,21 +1267,21 @@ M.OBJECTIVES = {
       {
         move = "cancel_near_shadowraze",
         actions = {
-          {action = "cancel_near_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
       {
         move = "cancel_medium_shadowraze",
         actions = {
-          {action = "cancel_medium_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
       {
         move = "cancel_far_shadowraze",
         actions = {
-          {action = "cancel_far_shadowraze"},
+          {action = "stop_attack_and_move"},
 
         },
       },
