@@ -99,6 +99,9 @@ M.EH_IN_MEDIUM_SHADOWRAZE_RANGE = 118
 M.EH_IN_FAR_SHADOWRAZE_RANGE = 119
 M.BOT_IS_FACING_EH = 120
 M.EH_IS_CASTING = 121
+M.EH_IS_CASTING_NEAR_SHADOWRAZE = 122
+M.EH_IS_CASTING_MEDIUM_SHADOWRAZE = 123
+M.EH_IS_CASTING_FAR_SHADOWRAZE = 124
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -460,6 +463,20 @@ function M.UpdateState()
             constants.TURN_TARGET_MAX_DEGREE)]
 
     M.GAME_STATE[M.EH_IS_CASTING] = NUM[env.ENEMY_HERO_DATA.is_casting]
+
+    if env.ENEMY_HERO_DATA.active_ability ~= nil then
+      M.GAME_STATE[M.EH_IS_CASTING_NEAR_SHADOWRAZE] =
+        NUM[env.ENEMY_HERO_DATA.active_ability:GetName()
+            == "nevermore_shadowraze1"]
+
+      M.GAME_STATE[M.EH_IS_CASTING_MEDIUM_SHADOWRAZE] =
+        NUM[env.ENEMY_HERO_DATA.active_ability:GetName()
+            == "nevermore_shadowraze2"]
+
+      M.GAME_STATE[M.EH_IS_CASTING_FAR_SHADOWRAZE] =
+        NUM[env.ENEMY_HERO_DATA.active_ability:GetName()
+            == "nevermore_shadowraze3"]
+    end
   end
 
   -- ALLY_TOWER state
