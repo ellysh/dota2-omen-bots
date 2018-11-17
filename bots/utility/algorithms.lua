@@ -691,7 +691,7 @@ function M.GetEnemyTier1Tower(unit_data)
 end
 
 function M.HasLevelForAggression(unit_data)
-  return constants.MIN_HERO_LEVEL_FOR_AGRESSION <= unit_data.level
+  return constants.MIN_HERO_LEVEL_FOR_AGGRESSION <= unit_data.level
 end
 
 function M.IsUnitPositionBetter(unit_data, target_data)
