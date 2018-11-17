@@ -38,7 +38,14 @@ do_buyback
 do_glyph
 evade_enemy_creeps
 evade_enemy_hero
+evade_enemy_nukes
 evade_enemy_tower
+evade_far_shadowraze_back
+evade_far_shadowraze_front
+evade_medium_shadowraze_back
+evade_medium_shadowraze_front
+evade_near_shadowraze_back
+evade_near_shadowraze_front
 evasion
 FALSE
 farm
@@ -58,9 +65,11 @@ kite
 lasthit_enemy_creep
 medium_shadowraze
 move_and_block
+move_back
 move_base
 move_enemy_creep
 move_enemy_hero
+move_front
 move_safe
 move_safe_recovery
 move_start_position

@@ -329,6 +329,55 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "evade_enemy_nukes",
+    module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
+    moves = {
+      {
+        move = "evade_near_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_medium_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_far_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_near_shadowraze_front",
+        actions = {
+          {action = "move_front"},
+
+        },
+      },
+      {
+        move = "evade_medium_shadowraze_front",
+        actions = {
+          {action = "move_front"},
+
+        },
+      },
+      {
+        move = "evade_far_shadowraze_front",
+        actions = {
+          {action = "move_front"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "glyph",
     module = require(GetScriptDirectory() .."/utility/glyph"),
     moves = {
@@ -828,6 +877,55 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "evade_enemy_nukes",
+    module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
+    moves = {
+      {
+        move = "evade_near_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_medium_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_far_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_near_shadowraze_front",
+        actions = {
+          {action = "move_front"},
+
+        },
+      },
+      {
+        move = "evade_medium_shadowraze_front",
+        actions = {
+          {action = "move_front"},
+
+        },
+      },
+      {
+        move = "evade_far_shadowraze_front",
+        actions = {
+          {action = "move_front"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "swap_items",
     module = require(GetScriptDirectory() .."/utility/swap_items"),
     moves = {
@@ -1282,6 +1380,55 @@ M.OBJECTIVES = {
         move = "cancel_far_shadowraze",
         actions = {
           {action = "stop_attack_and_move"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "evade_enemy_nukes",
+    module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
+    moves = {
+      {
+        move = "evade_near_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_medium_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_far_shadowraze_back",
+        actions = {
+          {action = "move_back"},
+
+        },
+      },
+      {
+        move = "evade_near_shadowraze_front",
+        actions = {
+          {action = "move_front"},
+
+        },
+      },
+      {
+        move = "evade_medium_shadowraze_front",
+        actions = {
+          {action = "move_front"},
+
+        },
+      },
+      {
+        move = "evade_far_shadowraze_front",
+        actions = {
+          {action = "move_front"},
 
         },
       },

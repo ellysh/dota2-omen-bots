@@ -3,6 +3,13 @@ cancel_nuke_enemy_hero;cancel_near_shadowraze;stop_attack_and_move
 ;cancel_medium_shadowraze;stop_attack_and_move
 ;cancel_far_shadowraze;stop_attack_and_move
 ;;
+evade_enemy_nukes;evade_near_shadowraze_back;move_back
+;evade_medium_shadowraze_back;move_back
+;evade_far_shadowraze_back;move_back
+;evade_near_shadowraze_front;move_front
+;evade_medium_shadowraze_front;move_front
+;evade_far_shadowraze_front;move_front
+;;
 glyph;do_glyph;do_glyph
 ;;
 swap_items;swap_flask_tp;swap_flask_tp

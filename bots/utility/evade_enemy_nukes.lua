@@ -17,7 +17,7 @@ local M = {}
 
 ---------------------------------
 
-function M.evade_enemy_nukes()
+function M.pre_evade_enemy_nukes()
   return moves.pre_interrupt_cast_objective()
 end
 
@@ -78,7 +78,7 @@ end
 
 ---------------------------------
 
-function M.pre_evade_medium_shadowraze_back()
+function M.pre_evade_medium_shadowraze_front()
   local weights = {
     [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 0.3,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0.3,
@@ -90,7 +90,7 @@ end
 
 ---------------------------------
 
-function M.pre_evade_far_shadowraze_back()
+function M.pre_evade_far_shadowraze_front()
   local weights = {
     [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 0.3,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0.3,
