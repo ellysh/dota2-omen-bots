@@ -9,6 +9,35 @@ local luaunit = require("luaunit")
 
 ---------------------------------
 
+function test_pre_cancel_nuke_enemy_hero_1_succeed()
+  cancel_nuke_enemy_hero.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_CASTING] = 1,
+  })
+
+  luaunit.assertTrue(cancel_nuke_enemy_hero.pre_cancel_nuke_enemy_hero())
+end
+
+function test_pre_cancel_nuke_enemy_hero_1_fails()
+  cancel_nuke_enemy_hero.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 0,
+    [gs.BOT_IS_CASTING] = 1,
+  })
+
+  luaunit.assertFalse(cancel_nuke_enemy_hero.pre_cancel_nuke_enemy_hero())
+end
+
+function test_pre_cancel_nuke_enemy_hero_2_fails()
+  cancel_nuke_enemy_hero.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertFalse(cancel_nuke_enemy_hero.pre_cancel_nuke_enemy_hero())
+end
+
+---------------------------------
+
 function test_pre_cancel_near_shadowraze_1_succeed()
   cancel_nuke_enemy_hero.test_SetGameState({
     -- weights_1

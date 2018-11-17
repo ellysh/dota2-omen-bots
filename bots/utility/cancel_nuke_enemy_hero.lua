@@ -21,7 +21,12 @@ local M = {}
 ---------------------------------
 
 function M.pre_cancel_nuke_enemy_hero()
-  return moves.pre_attack_objective()
+  local weights = {
+    [gs.BOT_IS_ALIVE] = 0.5,
+    [gs.BOT_IS_CASTING] = 0.5,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
