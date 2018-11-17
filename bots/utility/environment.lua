@@ -59,6 +59,7 @@ M.BODY_BLOCK_SPOT = {}
 M.NEAR_SHADOWRAZE_ABILITY = {}
 M.MEDIUM_SHADOWRAZE_ABILITY = {}
 M.FAR_SHADOWRAZE_ABILITY = {}
+M.SHADOWRAZE_EVADE_DISTANCE = 0
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -394,6 +395,9 @@ function M.UpdateVariables()
 
   M.FAR_SHADOWRAZE_ABILITY =
     M.BOT:GetAbilityByName("nevermore_shadowraze3")
+
+  M.SHADOWRAZE_EVADE_DISTANCE =
+    M.BOT_DATA.speed * constants.NEVERMORE_SHADOWRAZE_CAST_TIME
 end
 
 -- Provide an access to local functions for unit tests only
