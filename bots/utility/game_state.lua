@@ -340,13 +340,13 @@ function M.UpdateState()
             true)],
 
     [M.BOT_IS_CASTING_NEAR_SHADOWRAZE] =
-      NUM[env.BOT_DATA.anim_activity == ACTIVITY_CAST_ABILITY_1],
+      NUM[env.NEAR_SHADOWRAZE_ABILITY:IsInAbilityPhase()],
 
     [M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE] =
-      NUM[env.BOT_DATA.anim_activity == ACTIVITY_CAST_ABILITY_2],
+      NUM[env.MEDIUM_SHADOWRAZE_ABILITY:IsInAbilityPhase()],
 
     [M.BOT_IS_CASTING_FAR_SHADOWRAZE] =
-      NUM[env.BOT_DATA.anim_activity == ACTIVITY_CAST_ABILITY_3],
+      NUM[env.FAR_SHADOWRAZE_ABILITY:IsInAbilityPhase()],
 
     [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting]
   }

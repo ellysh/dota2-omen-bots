@@ -77,6 +77,7 @@ local function AddUnit(unit, unit_type, team)
     seconds_per_attack = unit:GetSecondsPerAttack(),
     anim_activity = unit:GetAnimActivity(),
     anim_cycle = unit:GetAnimCycle(),
+    active_ability = unit:GetCurrentActiveAbility(),
     team = unit:GetTeam(),
     items = GetItems(unit),
     incoming_projectiles = unit:GetIncomingTrackingProjectiles(),
