@@ -45,7 +45,6 @@ evade_far_shadowraze_front
 evade_medium_shadowraze_back
 evade_medium_shadowraze_front
 evade_near_shadowraze_back
-evade_near_shadowraze_front
 evasion
 FALSE
 farm

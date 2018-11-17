@@ -57,13 +57,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_near_shadowraze_front",
-        actions = {
-          {action = "move_front"},
-
-        },
-      },
-      {
         move = "evade_medium_shadowraze_front",
         actions = {
           {action = "move_front"},

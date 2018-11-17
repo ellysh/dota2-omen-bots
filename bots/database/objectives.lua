@@ -354,13 +354,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_near_shadowraze_front",
-        actions = {
-          {action = "move_front"},
-
-        },
-      },
-      {
         move = "evade_medium_shadowraze_front",
         actions = {
           {action = "move_front"},
@@ -902,13 +895,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_near_shadowraze_front",
-        actions = {
-          {action = "move_front"},
-
-        },
-      },
-      {
         move = "evade_medium_shadowraze_front",
         actions = {
           {action = "move_front"},
@@ -1408,13 +1394,6 @@ M.OBJECTIVES = {
         move = "evade_far_shadowraze_back",
         actions = {
           {action = "move_back"},
-
-        },
-      },
-      {
-        move = "evade_near_shadowraze_front",
-        actions = {
-          {action = "move_front"},
 
         },
       },
