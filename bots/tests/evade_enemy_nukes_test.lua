@@ -3,223 +3,163 @@ package.path = package.path .. ";../utility/?.lua"
 pcall(require, "luacov")
 require("global_functions")
 
-local evasion = require("evasion")
+local evade_enemy_nukes = require("evade_enemy_nukes")
 local gs = require("game_state")
 local luaunit = require("luaunit")
 
 ---------------------------------
 
-function test_pre_move_safe_recovery_1_succeed()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
-    [gs.BOT_HP_MAX_DELTA] = 0.09,
-    [gs.BOT_IN_SAFE_SPOT] = 0,
+function test_pre_evade_near_shadowraze_back_1_succeed()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_NEAR_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_NEAR_SHADOWRAZE_BACK] = 1,
   })
 
-  luaunit.assertTrue(evasion.pre_move_safe_recovery())
+  luaunit.assertTrue(evade_enemy_nukes.pre_evade_near_shadowraze_back())
 end
 
-function test_pre_move_safe_recovery_1_fails()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
-    [gs.BOT_HP_MAX_DELTA] = 0.07,
-    [gs.BOT_IN_SAFE_SPOT] = 0,
+function test_pre_evade_near_shadowraze_back_1_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_NEAR_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_NEAR_SHADOWRAZE_BACK] = 0,
   })
 
-  luaunit.assertFalse(evasion.pre_move_safe_recovery())
+  luaunit.assertFalse(evade_enemy_nukes.pre_evade_near_shadowraze_back())
 end
 
-function test_pre_move_safe_recovery_2_fails()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
-    [gs.BOT_HP_MAX_DELTA] = 1,
-    [gs.BOT_IN_SAFE_SPOT] = 0,
+function test_pre_evade_near_shadowraze_back_2_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_NEAR_SHADOWRAZE] = 0,
+    [gs.BOT_CAN_EVADE_NEAR_SHADOWRAZE_BACK] = 1,
   })
 
-  luaunit.assertFalse(evasion.pre_move_safe_recovery())
-end
-
-function test_pre_move_safe_recovery_3_fails()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.1,
-    [gs.BOT_IN_SAFE_SPOT] = 0,
-  })
-
-  luaunit.assertFalse(evasion.pre_move_safe_recovery())
-end
-
-function test_pre_move_safe_recovery_4_fails()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
-    [gs.BOT_HP_MAX_DELTA] = 0.1,
-    [gs.BOT_IN_SAFE_SPOT] = 1,
-  })
-
-  luaunit.assertFalse(evasion.pre_move_safe_recovery())
+  luaunit.assertFalse(evade_enemy_nukes.pre_evade_near_shadowraze_back())
 end
 
 ---------------------------------
 
-function test_pre_evade_enemy_hero_1_succeed()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.EC_IN_AGGRO_RADIUS] = 0,
+function test_pre_evade_medium_shadowraze_back_1_succeed()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_BACK] = 1,
   })
 
-  luaunit.assertTrue(evasion.pre_evade_enemy_hero())
+  luaunit.assertTrue(evade_enemy_nukes.pre_evade_medium_shadowraze_back())
 end
 
-function test_pre_evade_enemy_hero_2_succeed()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.EC_IN_AGGRO_RADIUS] = 1,
+function test_pre_evade_medium_shadowraze_back_1_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_BACK] = 0,
   })
 
-  luaunit.assertTrue(evasion.pre_evade_enemy_hero())
+  luaunit.assertFalse(
+    evade_enemy_nukes.pre_evade_medium_shadowraze_back())
 end
 
-function test_pre_evade_enemy_hero_3_succeed()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 1,
-    [gs.EC_IN_AGGRO_RADIUS] = 1,
+function test_pre_evade_medium_shadowraze_back_2_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 0,
+    [gs.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_BACK] = 1,
   })
 
-  luaunit.assertTrue(evasion.pre_evade_enemy_hero())
-end
-
-function test_pre_evade_enemy_hero_1_fails()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.EC_IN_AGGRO_RADIUS] = 0,
-  })
-
-  luaunit.assertFalse(evasion.pre_evade_enemy_hero())
-end
-
-function test_pre_evade_enemy_hero_2_fails()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 1,
-    [gs.EC_IN_AGGRO_RADIUS] = 0,
-  })
-
-  luaunit.assertFalse(evasion.pre_evade_enemy_hero())
-end
-
-function test_pre_evade_enemy_hero_3_fails()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.EC_IN_AGGRO_RADIUS] = 1,
-  })
-
-  luaunit.assertFalse(evasion.pre_evade_enemy_hero())
+  luaunit.assertFalse(
+    evade_enemy_nukes.pre_evade_medium_shadowraze_back())
 end
 
 ---------------------------------
 
-function test_pre_evade_enemy_creeps_1_succeed()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 1,
+function test_pre_evade_far_shadowraze_back_1_succeed()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_FAR_SHADOWRAZE_BACK] = 1,
   })
 
-  luaunit.assertTrue(evasion.pre_evade_enemy_creeps())
+  luaunit.assertTrue(evade_enemy_nukes.pre_evade_far_shadowraze_back())
 end
 
-function test_pre_evade_enemy_creeps_1_fails()
-  evasion.test_SetGameState({
-    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+function test_pre_evade_far_shadowraze_back_1_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_FAR_SHADOWRAZE_BACK] = 0,
   })
 
-  luaunit.assertFalse(evasion.pre_evade_enemy_creeps())
+  luaunit.assertFalse(
+    evade_enemy_nukes.pre_evade_far_shadowraze_back())
+end
+
+function test_pre_evade_far_shadowraze_back_2_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 0,
+    [gs.BOT_CAN_EVADE_FAR_SHADOWRAZE_BACK] = 1,
+  })
+
+  luaunit.assertFalse(
+    evade_enemy_nukes.pre_evade_far_shadowraze_back())
 end
 
 ---------------------------------
 
-function test_pre_evade_enemy_tower_1_succeed()
-  evasion.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 1,
-    [gs.BOT_IN_ET_MIN_DISTANCE] = 0,
-
-    -- weights_2
-    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+function test_pre_evade_medium_shadowraze_front_1_succeed()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_FRONT] = 1,
   })
 
-  luaunit.assertTrue(evasion.pre_evade_enemy_tower())
+  luaunit.assertTrue(
+    evade_enemy_nukes.pre_evade_medium_shadowraze_front())
 end
 
-function test_pre_evade_enemy_tower_2_succeed()
-  evasion.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_IN_ET_MIN_DISTANCE] = 1,
-
-    -- weights_2
-    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+function test_pre_evade_medium_shadowraze_front_1_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_FRONT] = 0,
   })
 
-  luaunit.assertTrue(evasion.pre_evade_enemy_tower())
+  luaunit.assertFalse(
+    evade_enemy_nukes.pre_evade_medium_shadowraze_front())
 end
 
-function test_pre_evade_enemy_tower_3_succeed()
-  evasion.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_IN_ET_MIN_DISTANCE] = 0,
-
-    -- weights_2
-    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
+function test_pre_evade_medium_shadowraze_front_2_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 0,
+    [gs.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_FRONT] = 1,
   })
 
-  luaunit.assertTrue(evasion.pre_evade_enemy_tower())
+  luaunit.assertFalse(
+    evade_enemy_nukes.pre_evade_medium_shadowraze_front())
 end
 
-function test_pre_evade_enemy_tower_1_fails()
-  evasion.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_IN_ET_MIN_DISTANCE] = 0,
+---------------------------------
 
-    -- weights_2
-    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+function test_pre_evade_far_shadowraze_front_1_succeed()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_FAR_SHADOWRAZE_FRONT] = 1,
   })
 
-  luaunit.assertFalse(evasion.pre_evade_enemy_tower())
+  luaunit.assertTrue(
+    evade_enemy_nukes.pre_evade_far_shadowraze_front())
 end
 
-function test_pre_evade_enemy_tower_2_fails()
-  evasion.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_IN_ET_MIN_DISTANCE] = 0,
-
-    -- weights_2
-    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
+function test_pre_evade_far_shadowraze_front_1_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 1,
+    [gs.BOT_CAN_EVADE_FAR_SHADOWRAZE_FRONT] = 0,
   })
 
-  luaunit.assertFalse(evasion.pre_evade_enemy_tower())
+  luaunit.assertFalse(
+    evade_enemy_nukes.pre_evade_far_shadowraze_front())
+end
+
+function test_pre_evade_far_shadowraze_front_2_fails()
+  evade_enemy_nukes.test_SetGameState({
+    [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 0,
+    [gs.BOT_CAN_EVADE_FAR_SHADOWRAZE_FRONT] = 1,
+  })
+
+  luaunit.assertFalse(
+    evade_enemy_nukes.pre_evade_far_shadowraze_front())
 end
 
 os.exit(luaunit.LuaUnit.run())
