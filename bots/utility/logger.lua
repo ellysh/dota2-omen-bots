@@ -7,10 +7,11 @@ local functions = require(
 local M = {}
 
 function M.Print(string)
-  --print(GameTime() .. ": " ..string)
+  print(GameTime() .. ": " ..string)
 end
 
 function M.PrintGameState(state)
+--[[
   M.Print("GAME_STATE for team = " .. GetTeam())
 
   functions.DoWithKeysAndElements(
@@ -20,6 +21,7 @@ function M.PrintGameState(state)
         M.Print(tostring(key) .. " = " .. tostring(value))
       end
     end)
+--]]
 end
 
 M.Print("OMEN Bots version " .. constants.BOTS_VERSION ..
