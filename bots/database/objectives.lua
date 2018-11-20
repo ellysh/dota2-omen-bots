@@ -60,9 +60,16 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_two_blades_of_attack",
+        move = "buy_boots_of_elves",
         actions = {
-          {action = "buy_two_blades_of_attack"},
+          {action = "buy_boots_of_elves"},
+
+        },
+      },
+      {
+        move = "buy_blades_of_attack",
+        actions = {
+          {action = "buy_blades_of_attack"},
 
         },
       },

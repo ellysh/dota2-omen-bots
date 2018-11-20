@@ -12,7 +12,9 @@ attack_with_mom
 base_recovery
 body_block
 buyback
+buy_blades_of_attack
 buy_boots
+buy_boots_of_elves
 buy_cloak
 buy_enchanted_mango
 buy_flask
@@ -23,7 +25,6 @@ buy_ring_of_regen
 buy_starting_items
 buy_tango
 buy_tpscroll
-buy_two_blades_of_attack
 cancel_far_shadowraze
 cancel_medium_shadowraze
 cancel_near_shadowraze

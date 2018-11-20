@@ -108,7 +108,7 @@ function M.pre_buy_boots()
                    "item_magic_stick")
 
          and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_phase_boots")
+                   "item_power_treads")
 end
 
 function M.buy_boots()
@@ -132,19 +132,27 @@ end
 
 ---------------------------------
 
-function M.pre_buy_two_blades_of_attack()
-  return algorithms.DoesBotOrCourierHaveItem("item_cloak")
-         and (2 * GetItemCost("item_blades_of_attack"))
-              <= env.BOT_DATA.gold
+function M.pre_buy_blades_of_attack()
+  return pre_buy_item("item_blades_of_attack")
+         and algorithms.DoesBotOrCourierHaveItem("item_boots_of_elves")
          and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_blades_of_attack")
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_phase_boots")
+                   "item_power_treads")
 end
 
-function M.buy_two_blades_of_attack()
+function M.buy_blades_of_attack()
   algorithms.BuyItem("item_blades_of_attack")
-  algorithms.BuyItem("item_blades_of_attack")
+end
+
+---------------------------------
+
+function M.pre_buy_boots_of_elves()
+  return pre_buy_item("item_boots_of_elves")
+         and algorithms.DoesBotOrCourierHaveItem("item_cloak")
+         and not algorithms.DoesBotOrCourierHaveItem("item_power_treads")
+end
+
+function M.buy_boots_of_elves()
+  algorithms.BuyItem("item_boots_of_elves")
 end
 
 ---------------------------------
