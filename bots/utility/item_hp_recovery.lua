@@ -36,9 +36,11 @@ function M.pre_heal_flask()
     [gs.BOT_IS_FLASK_HEALING] = -1,
     [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = -1,
     [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = -1,
+    [gs.BOT_IS_FOCUSED_BY_TOWER] = -1,
     [gs.BOT_HP_RATE] = -1,
     [gs.BOT_CASTABLE_FLASK] = 0.75,
     [gs.BOT_IN_EH_ATTACK_RANGE] = -1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
