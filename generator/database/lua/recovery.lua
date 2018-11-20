@@ -42,34 +42,6 @@ M.OBJECTIVES = {
 
         },
       },
-      {
-        move = "swap_tp_enchanted_mango",
-        actions = {
-          {action = "swap_tp_enchanted_mango"},
-
-        },
-      },
-      {
-        move = "swap_tp_flask",
-        actions = {
-          {action = "swap_tp_flask"},
-
-        },
-      },
-      {
-        move = "swap_flask_tp",
-        actions = {
-          {action = "swap_flask_tp"},
-
-        },
-      },
-      {
-        move = "swap_enchanted_mango_tp",
-        actions = {
-          {action = "swap_enchanted_mango_tp"},
-
-        },
-      },
     },
   },
 

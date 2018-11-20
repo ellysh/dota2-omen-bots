@@ -92,34 +92,6 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/swap_items"),
     moves = {
       {
-        move = "swap_flask_tp",
-        actions = {
-          {action = "swap_flask_tp"},
-
-        },
-      },
-      {
-        move = "swap_enchanted_mango_tp",
-        actions = {
-          {action = "swap_enchanted_mango_tp"},
-
-        },
-      },
-      {
-        move = "swap_tp_enchanted_mango",
-        actions = {
-          {action = "swap_tp_enchanted_mango"},
-
-        },
-      },
-      {
-        move = "swap_tp_flask",
-        actions = {
-          {action = "swap_tp_flask"},
-
-        },
-      },
-      {
         move = "put_item_in_inventory",
         actions = {
           {action = "put_item_in_inventory"},
