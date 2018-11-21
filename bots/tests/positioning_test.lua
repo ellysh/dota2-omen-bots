@@ -310,6 +310,7 @@ function test_pre_decrease_creeps_distance_aggro_1_succeed()
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertTrue(positioning.pre_decrease_creeps_distance_aggro())
@@ -323,6 +324,7 @@ function test_pre_decrease_creeps_distance_aggro_1_fails()
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(positioning.pre_decrease_creeps_distance_aggro())
@@ -336,6 +338,7 @@ function test_pre_decrease_creeps_distance_aggro_2_fails()
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(positioning.pre_decrease_creeps_distance_aggro())
@@ -349,6 +352,7 @@ function test_pre_decrease_creeps_distance_aggro_3_fails()
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(positioning.pre_decrease_creeps_distance_aggro())
@@ -362,6 +366,7 @@ function test_pre_decrease_creeps_distance_aggro_4_fails()
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 1,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(positioning.pre_decrease_creeps_distance_aggro())
@@ -375,6 +380,7 @@ function test_pre_decrease_creeps_distance_aggro_5_fails()
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 1,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(positioning.pre_decrease_creeps_distance_aggro())
@@ -388,6 +394,21 @@ function test_pre_decrease_creeps_distance_aggro_6_fails()
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_decrease_creeps_distance_aggro())
+end
+
+function test_pre_decrease_creeps_distance_aggro_7_fails()
+  positioning.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+    [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
+    [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(positioning.pre_decrease_creeps_distance_aggro())

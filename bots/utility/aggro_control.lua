@@ -51,8 +51,8 @@ function M.pre_aggro_hg()
     [gs.EC_BACK_PRESENT] = -1,
     [gs.EC_AGGRO_COOLDOWN] = -1,
     [gs.BOT_IN_RIVER] = 0.2,
-    [gs.EC_FRONT_IN_AGGRO_RADIUS] = 0.1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 0.1,
+    [gs.EC_FRONT_IN_AGGRO_RADIUS] = 0.11,
+    [gs.AC_IN_MAX_BASE_DISTANCE] = 0.11,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
