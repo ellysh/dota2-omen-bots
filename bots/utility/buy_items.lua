@@ -160,7 +160,7 @@ end
 function M.pre_buy_ring_of_regen()
   return pre_buy_item("item_ring_of_regen")
 
-         and algorithms.DoesBotOrCourierHaveItem("item_phase_boots")
+         and algorithms.DoesBotOrCourierHaveItem("item_power_treads")
 
          and not algorithms.DoesBotOrCourierHaveItem(
                    "item_hood_of_defiance")
