@@ -70,8 +70,7 @@ local function GetClosestCreep(radius, get_function, direction)
     creeps,
     algorithms.CompareMinUnitDistance,
     function(unit_data)
-      return not algorithms.IsUnitLowHp(unit_data)
-             and algorithms.IsAttackTargetable(unit_data)
+      return algorithms.IsAttackTargetable(unit_data)
              and not algorithms.IsCourierUnit(unit_data)
              and (direction == constants.DIRECTION["ANY"]
                   or (direction == constants.DIRECTION["FRONT"]
