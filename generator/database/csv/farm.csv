@@ -12,6 +12,8 @@ evade_enemy_nukes;evade_near_shadowraze_back;move_back
 prepare_for_match;buy_starting_items;buy_starting_items
 ;;
 swap_items;put_item_in_inventory;put_item_in_inventory
+;swap_flask_wraith_band;swap_flask_wraith_band
+;swap_mango_wraith_band;swap_mango_wraith_band
 ;;
 item_hp_recovery;heal_tango;heal_tango
 ;heal_magic_stick;heal_magic_stick
