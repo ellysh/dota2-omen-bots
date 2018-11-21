@@ -56,6 +56,7 @@ end
 
 function M.pre_defensive()
   return DoesCreepMeet()
+         and algorithms.HasLevelForAggression(env.BOT_DATA)
          and not env.IS_ENEMY_HERO_LOW_HP
          and ((env.DOES_ENEMY_HERO_HAVE_ADVANTAGE
                and not env.DOES_BOT_HAVE_ADVANTAGE)
@@ -71,6 +72,7 @@ end
 
 function M.pre_offensive()
   return DoesCreepMeet()
+         and algorithms.HasLevelForAggression(env.BOT_DATA)
          and (env.ENEMY_HERO_DATA == nil
               or env.IS_ENEMY_HERO_LOW_HP
 
