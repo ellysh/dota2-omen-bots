@@ -270,6 +270,7 @@ function test_pre_heal_flask_7_fails()
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
 end
 
+--[[
 function test_pre_heal_flask_8_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
@@ -301,6 +302,7 @@ function test_pre_heal_flask_9_fails()
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
 end
+--]]
 
 ---------------------------------
 
