@@ -159,6 +159,7 @@ M.EC_ATTACKING_TOWER_IN_AGGRO_RADIUS = 431
 M.EC_ATTACKING_BOT_PRESENT = 432
 M.EC_ATTACKING_BOT_BETWEEN_AT = 433
 M.EC_ATTACKING_BOT_IN_AT_ATTACK_RANGE = 434
+M.EC_IN_MELEE_ATTACK_RANGE = 435
 
 -- Tree state
 M.NO_TREE_PRESENT = 500
@@ -703,6 +704,11 @@ function M.UpdateState()
       NUM[map.IsUnitInEnemyTowerAttackRange(
             env.ENEMY_CREEP_ATTACKING_BOT)]
   end
+
+  M.GAME_STATE[M.EC_IN_MELEE_ATTACK_RANGE] =
+    NUM[algorithms.AreEnemyCreepsInRadius(
+          env.BOT_DATA,
+          constants.MAX_MELEE_ATTACK_RANGE)]
 
   -- Tree state
 

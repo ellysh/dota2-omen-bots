@@ -64,6 +64,7 @@ end
 function M.pre_evade_enemy_creeps()
   local weights = {
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 1,
+    [gs.EC_IN_MELEE_ATTACK_RANGE] = 1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

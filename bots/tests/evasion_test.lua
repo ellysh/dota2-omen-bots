@@ -137,6 +137,16 @@ end
 function test_pre_evade_enemy_creeps_1_succeed()
   evasion.test_SetGameState({
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 1,
+    [gs.EC_IN_MELEE_ATTACK_RANGE] = 0,
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_creeps())
+end
+
+function test_pre_evade_enemy_creeps_2_succeed()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+    [gs.EC_IN_MELEE_ATTACK_RANGE] = 1,
   })
 
   luaunit.assertTrue(evasion.pre_evade_enemy_creeps())
@@ -145,6 +155,7 @@ end
 function test_pre_evade_enemy_creeps_1_fails()
   evasion.test_SetGameState({
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 0,
+    [gs.EC_IN_MELEE_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_evade_enemy_creeps())
