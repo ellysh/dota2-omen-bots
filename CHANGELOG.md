@@ -1,3 +1,12 @@
+* version 0.5
+  - Adapt the bot for the 7.20 patch.
+  - Change an item build according to the 7.20 patch.
+  - Fix the bug with casting near razes.
+  - Fix the bug with aggring enemy creeps when turning to the enemy hero.
+  - Fix bugs with positioning.
+  - Add moves for evading enemy shadowraze skills.
+  - Add moves for canceling shadowraze skills when the enemy hero leaves its target area.
+
 * version 0.4
   - Add moves to use the shadowraze skill.
   - Add moves to recover MP with mango and sticks.
