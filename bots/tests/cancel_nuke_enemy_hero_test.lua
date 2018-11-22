@@ -43,7 +43,7 @@ function test_pre_cancel_near_shadowraze_1_succeed()
     -- weights_1
     [gs.EH_IS_VISIBLE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
 
     -- weights_2
     [gs.BOT_IS_CASTING_NEAR_SHADOWRAZE] = 1,
@@ -57,7 +57,7 @@ function test_pre_cancel_near_shadowraze_2_succeed()
     -- weights_1
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
 
     -- weights_2
     [gs.BOT_IS_CASTING_NEAR_SHADOWRAZE] = 1,
@@ -71,7 +71,7 @@ function test_pre_cancel_near_shadowraze_3_succeed()
     -- weights_1
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_IS_CASTING_NEAR_SHADOWRAZE] = 1,
@@ -85,7 +85,7 @@ function test_pre_cancel_near_shadowraze_1_fails()
     -- weights_1
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
 
     -- weights_2
     [gs.BOT_IS_CASTING_NEAR_SHADOWRAZE] = 1,
@@ -99,7 +99,7 @@ function test_pre_cancel_near_shadowraze_2_fails()
     -- weights_1
     [gs.EH_IS_VISIBLE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
 
     -- weights_2
     [gs.BOT_IS_CASTING_NEAR_SHADOWRAZE] = 0,

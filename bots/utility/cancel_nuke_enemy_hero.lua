@@ -35,7 +35,7 @@ function M.pre_cancel_near_shadowraze()
   local weights_1 = {
     [gs.EH_IS_VISIBLE] = 0.3,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0.3,
-    [gs.BOT_IS_FACING_EH] = 0.4,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0.4,
   }
 
   local weights_2 = {

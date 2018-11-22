@@ -15,11 +15,12 @@ function test_pre_turn_1_succeed()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -35,11 +36,12 @@ function test_pre_turn_2_succeed()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -55,11 +57,12 @@ function test_pre_turn_3_succeed()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 1,
@@ -75,11 +78,12 @@ function test_pre_turn_1_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -95,11 +99,12 @@ function test_pre_turn_2_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -115,11 +120,12 @@ function test_pre_turn_3_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -135,11 +141,12 @@ function test_pre_turn_4_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -155,11 +162,12 @@ function test_pre_turn_5_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -175,11 +183,12 @@ function test_pre_turn_6_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 1,
@@ -195,11 +204,12 @@ function test_pre_turn_7_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 0,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -215,11 +225,12 @@ function test_pre_turn_8_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
+    [gs.BOT_IS_FACING_EH] = 1,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
@@ -235,15 +246,37 @@ function test_pre_turn_9_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
 
     -- weights_2
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH] = 1,
 
     -- weights_3
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 1,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 1,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_turn())
+end
+
+function test_pre_turn_10_fails()
+  nuke_enemy_hero.test_SetGameState({
+    -- weights_1
+    [gs.EH_IS_VISIBLE] = 0,
+    [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
+    [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
+
+    -- weights_2
+    [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
+    [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
+    [gs.BOT_IS_FACING_EH] = 0,
+
+    -- weights_3
+    [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
+    [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn())
@@ -256,7 +289,7 @@ function test_pre_near_shadowraze_1_succeed()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
   })
 
   luaunit.assertTrue(nuke_enemy_hero.pre_near_shadowraze())
@@ -267,7 +300,7 @@ function test_pre_near_shadowraze_1_fails()
     [gs.EH_IS_VISIBLE] = 0,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_near_shadowraze())
@@ -278,7 +311,7 @@ function test_pre_near_shadowraze_2_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_near_shadowraze())
@@ -289,7 +322,7 @@ function test_pre_near_shadowraze_3_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
-    [gs.BOT_IS_FACING_EH] = 1,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_near_shadowraze())
@@ -300,7 +333,7 @@ function test_pre_near_shadowraze_4_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
-    [gs.BOT_IS_FACING_EH] = 0,
+    [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_near_shadowraze())
