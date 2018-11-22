@@ -21,6 +21,12 @@ item_hp_recovery;heal_tango;heal_tango
 item_mp_recovery;use_enchanted_mango;use_enchanted_mango
 ;use_magic_stick;use_magic_stick
 ;;
+nuke_enemy_hero;turn;turn
+;;stop_attack_and_move
+;near_shadowraze;near_shadowraze
+;medium_shadowraze;medium_shadowraze
+;far_shadowraze;far_shadowraze
+;;
 evasion;move_safe_recovery;move_safe_recovery
 ;evade_enemy_hero;evade_enemy_hero
 ;evade_enemy_tower;evade_enemy_tower
@@ -33,12 +39,6 @@ farm;lasthit_enemy_creep;lasthit_enemy_creep
 ;;stop_attack
 ;;
 evasion;evade_enemy_creeps;evade_enemy_creeps
-;;
-nuke_enemy_hero;turn;turn
-;;stop_attack_and_move
-;near_shadowraze;near_shadowraze
-;medium_shadowraze;medium_shadowraze
-;far_shadowraze;far_shadowraze
 ;;
 attack_with_better_position;attack_enemy_hero_from_hg;attack_enemy_hero_from_hg
 ;attack_enemy_hero_with_incoming_damage;attack_enemy_hero_with_incoming_damage

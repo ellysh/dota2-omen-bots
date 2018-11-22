@@ -158,6 +158,42 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "nuke_enemy_hero",
+    module = require(GetScriptDirectory() .."/utility/nuke_enemy_hero"),
+    moves = {
+      {
+        move = "turn",
+        actions = {
+          {action = "turn"},
+          {action = "stop_attack_and_move"},
+
+        },
+      },
+      {
+        move = "near_shadowraze",
+        actions = {
+          {action = "near_shadowraze"},
+
+        },
+      },
+      {
+        move = "medium_shadowraze",
+        actions = {
+          {action = "medium_shadowraze"},
+
+        },
+      },
+      {
+        move = "far_shadowraze",
+        actions = {
+          {action = "far_shadowraze"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "pursuit_enemy_hero",
     module = require(GetScriptDirectory() .."/utility/pursuit_enemy_hero"),
     moves = {
@@ -252,42 +288,6 @@ M.OBJECTIVES = {
         move = "evade_enemy_creeps",
         actions = {
           {action = "evade_enemy_creeps"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "nuke_enemy_hero",
-    module = require(GetScriptDirectory() .."/utility/nuke_enemy_hero"),
-    moves = {
-      {
-        move = "turn",
-        actions = {
-          {action = "turn"},
-          {action = "stop_attack_and_move"},
-
-        },
-      },
-      {
-        move = "near_shadowraze",
-        actions = {
-          {action = "near_shadowraze"},
-
-        },
-      },
-      {
-        move = "medium_shadowraze",
-        actions = {
-          {action = "medium_shadowraze"},
-
-        },
-      },
-      {
-        move = "far_shadowraze",
-        actions = {
-          {action = "far_shadowraze"},
 
         },
       },

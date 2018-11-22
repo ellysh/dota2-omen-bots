@@ -23,6 +23,12 @@ item_mp_recovery;use_enchanted_mango;use_enchanted_mango
 ;;
 upgrade_skills;upgrade;upgrade
 ;;
+nuke_enemy_hero;turn;turn
+;;stop_attack_and_move
+;near_shadowraze;near_shadowraze
+;medium_shadowraze;medium_shadowraze
+;far_shadowraze;far_shadowraze
+;;
 defend_tower;attack_enemy_hero;attack_enemy_hero
 ;;stop_attack
 ;move_enemy_creep;move_enemy_creep
@@ -41,12 +47,6 @@ farm;lasthit_enemy_creep;lasthit_enemy_creep
 ;;stop_attack
 ;;
 evasion;evade_enemy_creeps;evade_enemy_creeps
-;;
-nuke_enemy_hero;turn;turn
-;;stop_attack_and_move
-;near_shadowraze;near_shadowraze
-;medium_shadowraze;medium_shadowraze
-;far_shadowraze;far_shadowraze
 ;;
 attack_with_better_position;attack_enemy_hero_from_hg;attack_enemy_hero_from_hg
 ;attack_enemy_hero_with_incoming_damage;attack_enemy_hero_with_incoming_damage
