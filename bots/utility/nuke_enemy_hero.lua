@@ -54,7 +54,7 @@ function M.pre_turn()
 end
 
 function M.turn()
-  env.BOT:Action_AttackUnit(all_units.GetUnit(env.ENEMY_HERO_DATA), true)
+  env.BOT:Action_MoveDirectly(env.ENEMY_HERO_DATA.location)
 
   action_timing.SetNextActionDelay(constants.NEVERMORE_TURN_TIME)
 end
