@@ -13,6 +13,9 @@ local env = require(
 local map = require(
   GetScriptDirectory() .."/utility/map")
 
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
+
 local logger = require(
   GetScriptDirectory() .."/utility/logger")
 
@@ -652,7 +655,7 @@ function M.UpdateState()
   end
 
   M.GAME_STATE[M.EC_AGGRO_COOLDOWN] =
-    NUM[functions.GetDelta(env.LAST_AGGRO_CONTROL, GameTime())
+    NUM[functions.GetDelta(hist.LAST_AGGRO_CONTROL, GameTime())
         < constants.CREEPS_AGGRO_COOLDOWN]
 
   M.GAME_STATE[M.EAC_PRE_LAST_HIT_PRESENT] =

@@ -10,6 +10,9 @@ local algorithms = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
+
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
@@ -52,7 +55,7 @@ end
 function M.pull_enemy_creep()
   env.BOT:Action_AttackUnit(all_units.GetUnit(env.ENEMY_HERO_DATA), true)
 
-  env.LAST_AGGRO_CONTROL = GameTime()
+  hist.LAST_AGGRO_CONTROL = GameTime()
 end
 
 ---------------------------------
