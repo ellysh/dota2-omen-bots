@@ -29,6 +29,7 @@ cancel_far_shadowraze
 cancel_medium_shadowraze
 cancel_near_shadowraze
 cancel_nuke_enemy_hero
+cancel_turn
 decrease_creeps_distance_aggro
 decrease_creeps_distance_base
 defend_tower

@@ -322,6 +322,20 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "cancel_turn",
+    module = require(GetScriptDirectory() .."/utility/cancel_turn"),
+    moves = {
+      {
+        move = "stop_attack_and_move",
+        actions = {
+          {action = "stop_attack_and_move"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "evade_enemy_nukes",
     module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
     moves = {
@@ -738,7 +752,6 @@ M.OBJECTIVES = {
         move = "turn",
         actions = {
           {action = "turn"},
-          {action = "stop_attack_and_move"},
 
         },
       },
@@ -839,6 +852,20 @@ M.OBJECTIVES = {
       },
       {
         move = "cancel_far_shadowraze",
+        actions = {
+          {action = "stop_attack_and_move"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "cancel_turn",
+    module = require(GetScriptDirectory() .."/utility/cancel_turn"),
+    moves = {
+      {
+        move = "stop_attack_and_move",
         actions = {
           {action = "stop_attack_and_move"},
 
@@ -1249,7 +1276,6 @@ M.OBJECTIVES = {
         move = "turn",
         actions = {
           {action = "turn"},
-          {action = "stop_attack_and_move"},
 
         },
       },
@@ -1327,6 +1353,20 @@ M.OBJECTIVES = {
       },
       {
         move = "cancel_far_shadowraze",
+        actions = {
+          {action = "stop_attack_and_move"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "cancel_turn",
+    module = require(GetScriptDirectory() .."/utility/cancel_turn"),
+    moves = {
+      {
+        move = "stop_attack_and_move",
         actions = {
           {action = "stop_attack_and_move"},
 
@@ -1685,7 +1725,6 @@ M.OBJECTIVES = {
         move = "turn",
         actions = {
           {action = "turn"},
-          {action = "stop_attack_and_move"},
 
         },
       },
