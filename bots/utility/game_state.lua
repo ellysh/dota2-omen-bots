@@ -365,10 +365,13 @@ function M.UpdateState()
 
     [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting],
 
-    [M.BOT_IS_MOVE_TURNING] = NUM[hist.CURRENT_MOVE == "turn"],
-
     [M.BOT_HAS_ANIM_TURN] = NUM[env.BOT_DATA.anim_activity == ACTIVITY_FLAIL]
   }
+
+  if hist.CURRENT_MOVE ~= nil then
+    M.GAME_STATE[M.BOT_IS_MOVE_TURNING] =
+      NUM[hist.CURRENT_MOVE.move == "turn"]
+  end
 
   if env.TURN_TARGET_DATA ~= nil then
     M.GAME_STATE[M.BOT_IS_FACING_TURN_TARGET] =
