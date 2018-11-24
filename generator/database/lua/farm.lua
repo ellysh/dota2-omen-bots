@@ -4,34 +4,6 @@ local M = {}
 M.OBJECTIVES = {
 
   {
-    objective = "cancel_nuke_enemy_hero",
-    module = require(GetScriptDirectory() .."/utility/cancel_nuke_enemy_hero"),
-    moves = {
-      {
-        move = "cancel_near_shadowraze",
-        actions = {
-          {action = "stop_attack_and_move"},
-
-        },
-      },
-      {
-        move = "cancel_medium_shadowraze",
-        actions = {
-          {action = "stop_attack_and_move"},
-
-        },
-      },
-      {
-        move = "cancel_far_shadowraze",
-        actions = {
-          {action = "stop_attack_and_move"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "cancel_current_move",
     module = require(GetScriptDirectory() .."/utility/cancel_current_move"),
     moves = {

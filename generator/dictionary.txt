@@ -26,10 +26,6 @@ buy_starting_items
 buy_tango
 buy_tpscroll
 cancel_current_move
-cancel_far_shadowraze
-cancel_medium_shadowraze
-cancel_near_shadowraze
-cancel_nuke_enemy_hero
 decrease_creeps_distance_aggro
 decrease_creeps_distance_base
 defend_tower
