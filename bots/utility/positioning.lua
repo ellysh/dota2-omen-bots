@@ -139,12 +139,6 @@ end
 
 function M.turn()
   env.BOT:Action_MoveDirectly(env.TURN_TARGET_DATA.location)
-
-  action_timing.SetNextActionDelay(constants.NEVERMORE_TURN_TIME)
-end
-
-function M.stop_attack_and_move()
-  env.BOT:Action_ClearActions(true)
 end
 
 ---------------------------------

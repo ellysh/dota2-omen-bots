@@ -165,7 +165,6 @@ M.OBJECTIVES = {
         move = "turn",
         actions = {
           {action = "turn"},
-          {action = "stop_attack_and_move"},
 
         },
       },

@@ -24,7 +24,6 @@ item_mp_recovery;use_enchanted_mango;use_enchanted_mango
 upgrade_skills;upgrade;upgrade
 ;;
 nuke_enemy_hero;turn;turn
-;;stop_attack_and_move
 ;near_shadowraze;near_shadowraze
 ;medium_shadowraze;medium_shadowraze
 ;far_shadowraze;far_shadowraze
