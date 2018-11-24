@@ -7,9 +7,12 @@ local M = {}
 
 function M.pre_cancel_current_move()
   local objective = hist.CURRENT_OBJECTIVE
+  local move = hist.CURRENT_MOVE
 
-  return not objective.module["pre_" .. objective.objective]()
-         or not objective.module["pre_" .. hist.CURRENT_MOVE.move]()
+  return objective ~= nil
+         and move ~= nil
+         and (not objective.module["pre_" .. objective.objective]()
+              or not objective.module["pre_" .. move.move]())
 end
 
 ---------------------------------
