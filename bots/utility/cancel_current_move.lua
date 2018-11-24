@@ -6,8 +6,8 @@ local M = {}
 ---------------------------------
 
 function M.pre_cancel_current_move()
-  local objective = hist.CURRENT_OBJECTIVE
-  local move = hist.CURRENT_MOVE
+  local objective = hist.LAST_OBJECTIVE
+  local move = hist.LAST_MOVE
 
   return objective ~= nil
          and move ~= nil

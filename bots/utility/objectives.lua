@@ -117,6 +117,11 @@ local function IsObjectiveActual(objective)
   return FindMoveToExecute(objective) ~= nil
 end
 
+local CURRENT_STRATEGY = nil
+local CURRENT_OBJECTIVE = nil
+local CURRENT_MOVE = nil
+local ACTION_INDEX = 1
+
 function M.Process()
   if IsActionTimingDelay() then
     return end
@@ -125,27 +130,31 @@ function M.Process()
 
   game_state.UpdateState()
 
-  if hist.CURRENT_STRATEGY == nil
-     or hist.CURRENT_OBJECTIVE == nil
-     or hist.CURRENT_MOVE == nil
-     or not IsObjectiveActual(hist.CURRENT_OBJECTIVE) then
+  if CURRENT_STRATEGY == nil
+     or CURRENT_OBJECTIVE == nil
+     or CURRENT_MOVE == nil
+     or not IsObjectiveActual(CURRENT_OBJECTIVE) then
 
-    hist.CURRENT_STRATEGY, hist.CURRENT_OBJECTIVE, hist.CURRENT_MOVE =
+    CURRENT_STRATEGY, CURRENT_OBJECTIVE, CURRENT_MOVE =
       ChooseStrategyObjectiveMove()
   end
 
-  if hist.CURRENT_OBJECTIVE ~= nil
-     and hist.CURRENT_MOVE ~= nil then
+  hist.LAST_STRATEGY = CURRENT_STRATEGY
+  hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
+  hist.LAST_MOVE = CURRENT_MOVE
+
+  if CURRENT_OBJECTIVE ~= nil
+     and CURRENT_MOVE ~= nil then
 
     logger.Print("team = " .. GetTeam() ..
-      " current_strategy = " .. hist.CURRENT_STRATEGY.strategy ..
-      " current_objective = " .. hist.CURRENT_OBJECTIVE.objective ..
-      " current_move = " .. hist.CURRENT_MOVE.move)
+      " current_strategy = " .. CURRENT_STRATEGY.strategy ..
+      " current_objective = " .. CURRENT_OBJECTIVE.objective ..
+      " current_move = " .. CURRENT_MOVE.move)
 
-    hist.CURRENT_MOVE, hist.ACTION_INDEX = ExecuteAction(
-                                   hist.CURRENT_OBJECTIVE,
-                                   hist.CURRENT_MOVE,
-                                   hist.ACTION_INDEX)
+    CURRENT_MOVE, ACTION_INDEX = ExecuteAction(
+                                   CURRENT_OBJECTIVE,
+                                   CURRENT_MOVE,
+                                   ACTION_INDEX)
   end
 end
 

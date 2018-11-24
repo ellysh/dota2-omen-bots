@@ -365,9 +365,9 @@ function M.UpdateState()
     [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting],
   }
 
-  if hist.CURRENT_MOVE ~= nil then
+  if hist.LAST_MOVE ~= nil then
     M.GAME_STATE[M.BOT_IS_MOVE_TURNING] =
-      NUM[hist.CURRENT_MOVE.move == "turn"]
+      NUM[hist.LAST_MOVE.move == "turn"]
   end
 
   if env.TURN_TARGET_DATA ~= nil then
