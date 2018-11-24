@@ -16,6 +16,9 @@ local algorithms = require(
 local environment = require(
   GetScriptDirectory() .."/utility/environment")
 
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
+
 local game_state = require(
   GetScriptDirectory() .."/utility/game_state")
 
@@ -114,11 +117,6 @@ local function IsObjectiveActual(objective)
   return FindMoveToExecute(objective) ~= nil
 end
 
-local CURRENT_STRATEGY = nil
-local CURRENT_OBJECTIVE = nil
-local CURRENT_MOVE = nil
-local ACTION_INDEX = 1
-
 function M.Process()
   if IsActionTimingDelay() then
     return end
@@ -127,27 +125,27 @@ function M.Process()
 
   game_state.UpdateState()
 
-  if CURRENT_STRATEGY == nil
-     or CURRENT_OBJECTIVE == nil
-     or CURRENT_MOVE == nil
-     or not IsObjectiveActual(CURRENT_OBJECTIVE) then
+  if hist.CURRENT_STRATEGY == nil
+     or hist.CURRENT_OBJECTIVE == nil
+     or hist.CURRENT_MOVE == nil
+     or not IsObjectiveActual(hist.CURRENT_OBJECTIVE) then
 
-    CURRENT_STRATEGY, CURRENT_OBJECTIVE, CURRENT_MOVE =
+    hist.CURRENT_STRATEGY, hist.CURRENT_OBJECTIVE, hist.CURRENT_MOVE =
       ChooseStrategyObjectiveMove()
   end
 
-  if CURRENT_OBJECTIVE ~= nil
-     and CURRENT_MOVE ~= nil then
+  if hist.CURRENT_OBJECTIVE ~= nil
+     and hist.CURRENT_MOVE ~= nil then
 
     logger.Print("team = " .. GetTeam() ..
-      " current_strategy = " .. CURRENT_STRATEGY.strategy ..
-      " current_objective = " .. CURRENT_OBJECTIVE.objective ..
-      " current_move = " .. CURRENT_MOVE.move)
+      " current_strategy = " .. hist.CURRENT_STRATEGY.strategy ..
+      " current_objective = " .. hist.CURRENT_OBJECTIVE.objective ..
+      " current_move = " .. hist.CURRENT_MOVE.move)
 
-    CURRENT_MOVE, ACTION_INDEX = ExecuteAction(
-                                   CURRENT_OBJECTIVE,
-                                   CURRENT_MOVE,
-                                   ACTION_INDEX)
+    hist.CURRENT_MOVE, hist.ACTION_INDEX = ExecuteAction(
+                                   hist.CURRENT_OBJECTIVE,
+                                   hist.CURRENT_MOVE,
+                                   hist.ACTION_INDEX)
   end
 end
 
