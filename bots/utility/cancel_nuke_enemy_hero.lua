@@ -1,17 +1,5 @@
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
-
 local env = require(
   GetScriptDirectory() .."/utility/environment")
-
-local moves = require(
-  GetScriptDirectory() .."/utility/moves")
-
-local action_timing = require(
-  GetScriptDirectory() .."/utility/action_timing")
-
-local all_units = require(
-  GetScriptDirectory() .."/utility/all_units")
 
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
@@ -88,8 +76,6 @@ end
 
 function M.test_SetGameState(state)
   gs.GAME_STATE = state
-
-  moves.test_SetGameState(state)
 end
 
 return M
