@@ -367,7 +367,7 @@ function M.UpdateState()
 
     [M.BOT_IS_MOVE_TURNING] = NUM[hist.CURRENT_MOVE == "turn"],
 
-    [M.BOT_HAS_ANIM_TURN] = NUM[aenv.BOT_DATA.nim_activity == ACTIVITY_FLAIL]
+    [M.BOT_HAS_ANIM_TURN] = NUM[env.BOT_DATA.anim_activity == ACTIVITY_FLAIL]
   }
 
   if env.TURN_TARGET_DATA ~= nil then
