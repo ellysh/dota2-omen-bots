@@ -32,7 +32,6 @@ function M.pre_turn()
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0.3,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0.4,
     [gs.BOT_IS_FACING_EH_MELEE_RANGE] = -1,
-    [gs.BOT_IS_MOVE_TURNING] = -1,
   }
 
   local weights_2 = {
@@ -40,7 +39,6 @@ function M.pre_turn()
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0.3,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0.4,
     [gs.BOT_IS_FACING_EH] = -1,
-    [gs.BOT_IS_MOVE_TURNING] = -1,
   }
 
   local weights_3 = {
@@ -48,7 +46,6 @@ function M.pre_turn()
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0.3,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0.4,
     [gs.BOT_IS_FACING_EH] = -1,
-    [gs.BOT_IS_MOVE_TURNING] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights_1)

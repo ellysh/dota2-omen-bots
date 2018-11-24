@@ -132,7 +132,6 @@ function M.pre_turn()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
     [gs.TURN_TARGET_PRESENT] = 0.5,
     [gs.BOT_IS_FACING_TURN_TARGET] = -1,
-    [gs.BOT_IS_MOVE_TURNING] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
