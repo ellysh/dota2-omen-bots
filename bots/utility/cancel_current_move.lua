@@ -1,29 +1,21 @@
-local env = require(
-  GetScriptDirectory() .."/utility/environment")
-
-local gs = require(
-  GetScriptDirectory() .."/utility/game_state")
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
 
 local M = {}
 
 ---------------------------------
 
-function M.pre_cancel_turn()
-  local weights = {
-    [gs.BOT_IS_ALIVE] = 1,
-  }
+function M.pre_cancel_current_move()
+  local objective = hist.CURRENT_OBJECTIVE
 
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  return not objective.module["pre_" .. objective.objective]()
+         or not objective.module["pre_" .. hist.CURRENT_MOVE.move]()
 end
 
 ---------------------------------
 
 function M.pre_stop_attack_and_move()
-  local weights = {
-    [gs.BOT_IS_MOVE_TURNING] = 1,
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  return true
 end
 
 ---------------------------------

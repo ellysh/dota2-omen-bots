@@ -3,7 +3,7 @@ cancel_nuke_enemy_hero;cancel_near_shadowraze;stop_attack_and_move
 ;cancel_medium_shadowraze;stop_attack_and_move
 ;cancel_far_shadowraze;stop_attack_and_move
 ;;
-cancel_turn;stop_attack_and_move;stop_attack_and_move
+cancel_current_move;stop_attack_and_move;stop_attack_and_move
 ;;
 evade_enemy_nukes;evade_near_shadowraze_back;move_back
 ;evade_medium_shadowraze_back;move_back

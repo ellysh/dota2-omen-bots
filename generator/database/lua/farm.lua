@@ -32,8 +32,8 @@ M.OBJECTIVES = {
   },
 
   {
-    objective = "cancel_turn",
-    module = require(GetScriptDirectory() .."/utility/cancel_turn"),
+    objective = "cancel_current_move",
+    module = require(GetScriptDirectory() .."/utility/cancel_current_move"),
     moves = {
       {
         move = "stop_attack_and_move",
