@@ -79,7 +79,6 @@ M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE = 49
 M.BOT_IS_CASTING_FAR_SHADOWRAZE = 50
 M.BOT_IS_CASTING = 51
 M.BOT_IS_MOVE_TURNING = 52
-M.BOT_HAS_ANIM_TURN = 53
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -364,8 +363,6 @@ function M.UpdateState()
       NUM[env.FAR_SHADOWRAZE_ABILITY:IsInAbilityPhase()],
 
     [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting],
-
-    [M.BOT_HAS_ANIM_TURN] = NUM[env.BOT_DATA.anim_activity == ACTIVITY_FLAIL]
   }
 
   if hist.CURRENT_MOVE ~= nil then
