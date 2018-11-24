@@ -480,7 +480,8 @@ function M.UpdateState()
 
     M.GAME_STATE[M.EH_IS_CASTING] = NUM[env.ENEMY_HERO_DATA.is_casting]
 
-    if env.ENEMY_HERO_DATA.active_ability ~= nil then
+    if env.ENEMY_HERO_DATA.active_ability ~= nil
+       and not env.ENEMY_HERO_DATA.handle:IsNull() then
       M.GAME_STATE[M.EH_IS_CASTING_NEAR_SHADOWRAZE] =
         NUM[env.ENEMY_HERO_DATA.active_ability:GetName()
             == "nevermore_shadowraze1"]
