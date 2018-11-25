@@ -1,3 +1,6 @@
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local hist = require(
   GetScriptDirectory() .."/utility/history")
 
@@ -8,13 +11,23 @@ local M = {}
 
 ---------------------------------
 
+local function IsCancelable(move)
+  local uncancelable = {
+    "cancel_current_move",
+    "tp_base",
+    "tp_mid_tower",
+  }
+
+  return not functions.IsElementInList(uncancelable, move, false)
+end
+
 function M.pre_cancel_current_move()
   local objective = hist.LAST_OBJECTIVE
   local move = hist.LAST_MOVE
 
   return objective ~= nil
          and move ~= nil
-         and objective.objective ~= "cancel_current_move"
+         and IsCancelable(move.move)
          and not objective.module["pre_" .. move.move]()
 end
 
