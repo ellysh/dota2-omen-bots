@@ -1,6 +1,9 @@
 local hist = require(
   GetScriptDirectory() .."/utility/history")
 
+local env = require(
+  GetScriptDirectory() .."/utility/environment")
+
 local M = {}
 
 ---------------------------------
@@ -11,8 +14,8 @@ function M.pre_cancel_current_move()
 
   return objective ~= nil
          and move ~= nil
-         and (not objective.module["pre_" .. objective.objective]()
-              or not objective.module["pre_" .. move.move]())
+         and objective.objective ~= "cancel_current_move"
+         and not objective.module["pre_" .. move.move]()
 end
 
 ---------------------------------

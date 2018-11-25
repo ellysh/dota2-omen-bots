@@ -13,7 +13,7 @@ local logger = require(
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
-local environment = require(
+local env = require(
   GetScriptDirectory() .."/utility/environment")
 
 local hist = require(
@@ -126,7 +126,7 @@ function M.Process()
   if IsActionTimingDelay() then
     return end
 
-  environment.UpdateVariables()
+  env.UpdateVariables()
 
   game_state.UpdateState()
 
@@ -139,12 +139,12 @@ function M.Process()
       ChooseStrategyObjectiveMove()
   end
 
-  hist.LAST_STRATEGY = CURRENT_STRATEGY
-  hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
-  hist.LAST_MOVE = CURRENT_MOVE
-
   if CURRENT_OBJECTIVE ~= nil
      and CURRENT_MOVE ~= nil then
+
+    hist.LAST_STRATEGY = CURRENT_STRATEGY
+    hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
+    hist.LAST_MOVE = CURRENT_MOVE
 
     logger.Print("team = " .. GetTeam() ..
       " current_strategy = " .. CURRENT_STRATEGY.strategy ..
