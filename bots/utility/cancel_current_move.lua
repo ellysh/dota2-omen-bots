@@ -12,13 +12,14 @@ local M = {}
 ---------------------------------
 
 local function IsCancelable(move)
-  local uncancelable = {
-    "cancel_current_move",
-    "tp_base",
-    "tp_mid_tower",
+  local cancelable = {
+    "turn",
+    "near_shadowraze",
+    "medium_shadowraze",
+    "far_shadowraze",
   }
 
-  return not functions.IsElementInList(uncancelable, move, false)
+  return functions.IsElementInList(cancelable, move, false)
 end
 
 function M.pre_cancel_current_move()
