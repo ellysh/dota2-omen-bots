@@ -208,7 +208,7 @@ function M.AttackUnit(bot_data, unit_data)
     attack_point = attack_point + constants.NEVERMORE_TURN_TIME
   end
 
-  action_timing.SetNextActionDelay(attack_point)
+  --action_timing.SetNextActionDelay(attack_point)
 end
 
 function M.BuyItem(item_name)

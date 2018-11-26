@@ -308,6 +308,27 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "manage_attack_anim",
+    module = require(GetScriptDirectory() .."/utility/manage_attack_anim"),
+    moves = {
+      {
+        move = "cancel_attack",
+        actions = {
+          {action = "cancel_attack"},
+
+        },
+      },
+      {
+        move = "wait_attack",
+        actions = {
+          {action = "wait_attack"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "evade_enemy_nukes",
     module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
     moves = {
@@ -819,6 +840,27 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "manage_attack_anim",
+    module = require(GetScriptDirectory() .."/utility/manage_attack_anim"),
+    moves = {
+      {
+        move = "cancel_attack",
+        actions = {
+          {action = "cancel_attack"},
+
+        },
+      },
+      {
+        move = "wait_attack",
+        actions = {
+          {action = "wait_attack"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "evade_enemy_nukes",
     module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
     moves = {
@@ -1285,6 +1327,27 @@ M.OBJECTIVES = {
         move = "stop_attack_and_move",
         actions = {
           {action = "stop_attack_and_move"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "manage_attack_anim",
+    module = require(GetScriptDirectory() .."/utility/manage_attack_anim"),
+    moves = {
+      {
+        move = "cancel_attack",
+        actions = {
+          {action = "cancel_attack"},
+
+        },
+      },
+      {
+        move = "wait_attack",
+        actions = {
+          {action = "wait_attack"},
 
         },
       },

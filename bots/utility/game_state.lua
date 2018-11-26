@@ -79,6 +79,8 @@ M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE = 49
 M.BOT_IS_CASTING_FAR_SHADOWRAZE = 50
 M.BOT_IS_CASTING = 51
 M.BOT_IS_MOVE_TURNING = 52
+M.BOT_IS_ATTACKING = 53
+M.BOT_DOES_BACKSWING = 54
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -363,6 +365,14 @@ function M.UpdateState()
       NUM[env.FAR_SHADOWRAZE_ABILITY:IsInAbilityPhase()],
 
     [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting],
+
+    [M.BOT_IS_ATTACKING] =
+      NUM[algorithms.IsUnitAttack(env.BOT_DATA)
+          and not algorithms.IsAttackDone(env.BOT_DATA)],
+
+    [M.BOT_DOES_BACKSWING] =
+      NUM[algorithms.IsUnitAttack(env.BOT_DATA)
+          and algorithms.IsAttackDone(env.BOT_DATA)],
   }
 
   if hist.LAST_MOVE ~= nil then
