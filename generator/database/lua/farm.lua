@@ -249,7 +249,6 @@ M.OBJECTIVES = {
         move = "lasthit_enemy_creep",
         actions = {
           {action = "lasthit_enemy_creep"},
-          {action = "stop_attack"},
 
         },
       },
@@ -257,7 +256,6 @@ M.OBJECTIVES = {
         move = "deny_ally_creep",
         actions = {
           {action = "deny_ally_creep"},
-          {action = "stop_attack"},
 
         },
       },
@@ -307,7 +305,6 @@ M.OBJECTIVES = {
         move = "attack_enemy_hero",
         actions = {
           {action = "attack_enemy_hero"},
-          {action = "stop_attack"},
 
         },
       },
@@ -315,7 +312,6 @@ M.OBJECTIVES = {
         move = "attack_enemy_tower",
         actions = {
           {action = "attack_enemy_tower"},
-          {action = "stop_attack"},
 
         },
       },
@@ -402,7 +398,6 @@ M.OBJECTIVES = {
         move = "attack_enemy_creep",
         actions = {
           {action = "attack_enemy_creep"},
-          {action = "stop_attack"},
 
         },
       },
@@ -410,7 +405,6 @@ M.OBJECTIVES = {
         move = "attack_ally_creep",
         actions = {
           {action = "attack_ally_creep"},
-          {action = "stop_attack"},
 
         },
       },

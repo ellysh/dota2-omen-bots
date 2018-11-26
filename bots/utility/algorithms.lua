@@ -197,18 +197,6 @@ function M.AttackUnit(bot_data, unit_data)
   local unit = all_units.GetUnit(unit_data)
 
   bot:Action_AttackUnit(unit, true)
-
-  local attack_point = constants.NEVERMORE_ATTACK_POINT
-                         * bot_data.seconds_per_attack
-
-  if not functions.IsFacingLocation(
-           bot_data,
-           unit_data.location,
-           constants.TURN_TARGET_MAX_DEGREE) then
-    attack_point = attack_point + constants.NEVERMORE_TURN_TIME
-  end
-
-  --action_timing.SetNextActionDelay(attack_point)
 end
 
 function M.BuyItem(item_name)

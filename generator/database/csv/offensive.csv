@@ -28,7 +28,6 @@ nuke_enemy_hero;turn;turn
 ;far_shadowraze;far_shadowraze
 ;;
 pursuit_enemy_hero;attack_enemy_hero;attack_enemy_hero
-;;stop_attack
 ;move_enemy_hero;move_enemy_hero
 ;;
 evasion;move_safe_recovery;move_safe_recovery
@@ -36,9 +35,7 @@ evasion;move_safe_recovery;move_safe_recovery
 ;evade_enemy_tower;evade_enemy_tower
 ;;
 farm;lasthit_enemy_creep;lasthit_enemy_creep
-;;stop_attack
 ;deny_ally_creep;deny_ally_creep
-;;stop_attack
 ;;
 push_lane;destroy_enemy_tower;destroy_enemy_tower
 ;;
@@ -48,15 +45,11 @@ attack_with_better_position;attack_enemy_hero_from_hg;attack_enemy_hero_from_hg
 ;attack_enemy_hero_with_incoming_damage;attack_enemy_hero_with_incoming_damage
 ;;
 kite;attack_enemy_hero;attack_enemy_hero
-;;stop_attack
 ;attack_enemy_tower;attack_enemy_tower
-;;stop_attack
 ;move_safe;move_safe
 ;;
 push_lane;attack_enemy_creep;attack_enemy_creep
-;;stop_attack
 ;kill_enemy_creep;kill_enemy_creep
-;;stop_attack
 ;attack_enemy_tower;attack_enemy_tower
 ;;
 aggro_control;aggro_last_hit;aggro_last_hit

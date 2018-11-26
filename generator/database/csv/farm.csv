@@ -34,9 +34,7 @@ evasion;move_safe_recovery;move_safe_recovery
 upgrade_skills;upgrade;upgrade
 ;;
 farm;lasthit_enemy_creep;lasthit_enemy_creep
-;;stop_attack
 ;deny_ally_creep;deny_ally_creep
-;;stop_attack
 ;;
 evasion;evade_enemy_creeps;evade_enemy_creeps
 ;;
@@ -44,9 +42,7 @@ attack_with_better_position;attack_enemy_hero_from_hg;attack_enemy_hero_from_hg
 ;attack_enemy_hero_with_incoming_damage;attack_enemy_hero_with_incoming_damage
 ;;
 kite;attack_enemy_hero;attack_enemy_hero
-;;stop_attack
 ;attack_enemy_tower;attack_enemy_tower
-;;stop_attack
 ;move_safe;move_safe
 ;;
 aggro_control;aggro_last_hit;aggro_last_hit
@@ -61,9 +57,7 @@ positioning;tp_mid_tower;tp_mid_tower
 ;turn;turn
 ;;
 keep_equilibrium;attack_enemy_creep;attack_enemy_creep
-;;stop_attack
 ;attack_ally_creep;attack_ally_creep
-;;stop_attack
 ;;
 body_block;move_and_block;move_and_block
 ;;stop_attack_and_move

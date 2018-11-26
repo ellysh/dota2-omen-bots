@@ -51,12 +51,6 @@ end
 
 --------------------------------
 
-function M.stop_attack()
-  moves.stop_attack()
-end
-
----------------------------------
-
 -- Provide an access to local functions for unit tests only
 
 function M.test_SetGameState(state)

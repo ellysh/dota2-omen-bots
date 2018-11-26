@@ -46,10 +46,6 @@ function M.attack_enemy_hero()
   moves.attack_enemy_hero()
 end
 
-function M.stop_attack()
-  moves.stop_attack()
-end
-
 ---------------------------------
 
 function M.pre_move_enemy_hero()

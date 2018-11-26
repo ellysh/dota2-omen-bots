@@ -67,12 +67,6 @@ end
 
 --------------------------------
 
-function M.stop_attack()
-  moves.stop_attack()
-end
-
----------------------------------
-
 function M.pre_move_safe()
   local weights = {
     [gs.EH_PRESENT] = 0.5,
