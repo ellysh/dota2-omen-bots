@@ -1,3 +1,6 @@
+local moves = require(
+  GetScriptDirectory() .."/utility/moves")
+
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
@@ -9,12 +12,7 @@ local M = {}
 ---------------------------------
 
 function M.pre_manage_attack_anim()
-  local weights = {
-    [gs.BOT_IS_ATTACKING] = 1,
-    [gs.BOT_DOES_BACKSWING] = 1,
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  return moves.pre_interrupt_cast_objective()
 end
 
 ---------------------------------
