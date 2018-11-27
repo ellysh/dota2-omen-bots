@@ -22,9 +22,11 @@ item_mp_recovery;use_enchanted_mango;use_enchanted_mango
 ;;
 upgrade_skills;upgrade;upgrade
 ;;
-nuke_enemy_hero;turn;turn
+nuke_enemy_hero;turn_near_shadowraze;turn
 ;near_shadowraze;near_shadowraze
+;turn_medium_shadowraze;turn
 ;medium_shadowraze;medium_shadowraze
+;turn_far_shadowraze;turn
 ;far_shadowraze;far_shadowraze
 ;;
 pursuit_enemy_hero;attack_enemy_hero;attack_enemy_hero

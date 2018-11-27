@@ -20,6 +20,9 @@ local function IsCancelable(move)
     "decrease_creeps_distance_aggro",
     "increase_creeps_distance",
     "decrease_creeps_distance_base",
+    "turn_near_shadowraze",
+    "turn_medium_shadowraze",
+    "turn_far_shadowraze",
   }
 
   return functions.IsElementInList(cancelable, move, false)

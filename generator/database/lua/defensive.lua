@@ -183,7 +183,7 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/nuke_enemy_hero"),
     moves = {
       {
-        move = "turn",
+        move = "turn_near_shadowraze",
         actions = {
           {action = "turn"},
 
@@ -197,9 +197,23 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "turn_medium_shadowraze",
+        actions = {
+          {action = "turn"},
+
+        },
+      },
+      {
         move = "medium_shadowraze",
         actions = {
           {action = "medium_shadowraze"},
+
+        },
+      },
+      {
+        move = "turn_far_shadowraze",
+        actions = {
+          {action = "turn"},
 
         },
       },

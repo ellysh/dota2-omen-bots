@@ -94,6 +94,9 @@ tp_mid_tower
 TRUE
 turn
 turn_enemy_fountain
+turn_far_shadowraze
+turn_medium_shadowraze
+turn_near_shadowraze
 upgrade
 upgrade_skills
 use_enchanted_mango

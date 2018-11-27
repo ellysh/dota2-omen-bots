@@ -19,6 +19,9 @@ xdotool key 'Return'
 xdotool type 'dota_create_item item_greater_crit'
 xdotool key 'Return'
 
+xdotool type 'dota_create_item item_hood_of_defiance'
+xdotool key 'Return'
+
 xdotool type 'dota_hero_level 15'
 xdotool key 'Return'
 
@@ -29,22 +32,19 @@ xdotool key 'Return'
 
 # Give items, gold and level to the bot
 
-#xdotool type 'dota_bot_give_item item_boots'
-#xdotool key 'Return'
-#
-#xdotool type 'dota_bot_give_item item_gloves'
-#xdotool key 'Return'
-#
-#xdotool type 'dota_bot_give_item item_boots_of_elves'
-#xdotool key 'Return'
-#
-#xdotool type 'dota_bot_give_item item_mask_of_madness'
-#xdotool key 'Return'
-#
-#xdotool type 'dota_bot_give_item item_ring_of_basilius'
-#xdotool key 'Return'
-
 xdotool type 'dota_bot_give_level 1'
+xdotool key 'Return'
+
+xdotool type 'dota_bot_give_item item_enchanted_mango'
+xdotool key 'Return'
+
+xdotool type 'dota_bot_give_item item_enchanted_mango'
+xdotool key 'Return'
+
+xdotool type 'dota_bot_give_item item_enchanted_mango'
+xdotool key 'Return'
+
+xdotool type 'dota_bot_give_item item_enchanted_mango'
 xdotool key 'Return'
 
 #xdotool type 'dota_bot_give_gold 1200'

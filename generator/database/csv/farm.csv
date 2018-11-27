@@ -22,9 +22,11 @@ item_hp_recovery;heal_tango;heal_tango
 item_mp_recovery;use_enchanted_mango;use_enchanted_mango
 ;use_magic_stick;use_magic_stick
 ;;
-nuke_enemy_hero;turn;turn
+nuke_enemy_hero;turn_near_shadowraze;turn
 ;near_shadowraze;near_shadowraze
+;turn_medium_shadowraze;turn
 ;medium_shadowraze;medium_shadowraze
+;turn_far_shadowraze;turn
 ;far_shadowraze;far_shadowraze
 ;;
 evasion;move_safe_recovery;move_safe_recovery
