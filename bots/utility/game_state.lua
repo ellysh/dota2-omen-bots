@@ -81,6 +81,7 @@ M.BOT_IS_CASTING = 51
 M.BOT_IS_MOVE_TURNING = 52
 M.BOT_IS_ATTACKING = 53
 M.BOT_DOES_BACKSWING = 54
+M.BOT_IS_MOVING_BASE = 55
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -378,6 +379,9 @@ function M.UpdateState()
   if hist.LAST_MOVE ~= nil then
     M.GAME_STATE[M.BOT_IS_MOVE_TURNING] =
       NUM[hist.LAST_MOVE.move == "turn"]
+
+    M.GAME_STATE[M.BOT_IS_MOVING_BASE] =
+      NUM[hist.LAST_MOVE.move == "move_base"]
   end
 
   if env.TURN_TARGET_DATA ~= nil then

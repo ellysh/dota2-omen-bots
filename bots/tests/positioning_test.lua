@@ -112,6 +112,7 @@ function test_pre_tp_mid_tower_1_succeed()
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_IS_BASE_RECOVERY] = 0,
     [gs.BOT_IN_MID_TP_DISTANCE] = 1,
+    [gs.BOT_IS_MOVING_BASE] = 0,
   })
 
   luaunit.assertTrue(positioning.pre_tp_mid_tower())
@@ -122,6 +123,7 @@ function test_pre_tp_mid_tower_1_fails()
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_IS_BASE_RECOVERY] = 1,
     [gs.BOT_IN_MID_TP_DISTANCE] = 1,
+    [gs.BOT_IS_MOVING_BASE] = 0,
   })
 
   luaunit.assertFalse(positioning.pre_tp_mid_tower())
@@ -132,6 +134,7 @@ function test_pre_tp_mid_tower_2_fails()
     [gs.BOT_CASTABLE_TP_SCROLL] = 0,
     [gs.BOT_IS_BASE_RECOVERY] = 0,
     [gs.BOT_IN_MID_TP_DISTANCE] = 1,
+    [gs.BOT_IS_MOVING_BASE] = 0,
   })
 
   luaunit.assertFalse(positioning.pre_tp_mid_tower())
@@ -142,6 +145,18 @@ function test_pre_tp_mid_tower_3_fails()
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_IS_BASE_RECOVERY] = 0,
     [gs.BOT_IN_MID_TP_DISTANCE] = 0,
+    [gs.BOT_IS_MOVING_BASE] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_tp_mid_tower())
+end
+
+function test_pre_tp_mid_tower_4_fails()
+  positioning.test_SetGameState({
+    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
+    [gs.BOT_IS_BASE_RECOVERY] = 0,
+    [gs.BOT_IN_MID_TP_DISTANCE] = 1,
+    [gs.BOT_IS_MOVING_BASE] = 1,
   })
 
   luaunit.assertFalse(positioning.pre_tp_mid_tower())

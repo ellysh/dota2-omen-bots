@@ -45,6 +45,7 @@ function M.pre_tp_mid_tower()
     [gs.BOT_CASTABLE_TP_SCROLL] = 0.5,
     [gs.BOT_IS_BASE_RECOVERY] = -1,
     [gs.BOT_IN_MID_TP_DISTANCE] = 0.5,
+    [gs.BOT_IS_MOVING_BASE] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
