@@ -1,6 +1,5 @@
 Objective;Move;Actions
-buy_items;buy_tango;buy_tango
-;buy_flask;buy_flask
+buy_items;buy_flask;buy_flask
 ;buy_tpscroll;buy_tpscroll
 ;buy_enchanted_mango;buy_enchanted_mango
 ;buy_magic_stick;buy_magic_stick
