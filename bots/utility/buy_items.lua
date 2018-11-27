@@ -70,6 +70,7 @@ end
 
 function M.pre_buy_enchanted_mango()
   return pre_buy_item("item_enchanted_mango")
+         and algorithms.DoesBotOrCourierHaveItem("item_flask")
 end
 
 function M.buy_enchanted_mango()
