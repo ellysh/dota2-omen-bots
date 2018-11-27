@@ -17,6 +17,9 @@ local function IsCancelable(move)
     "near_shadowraze",
     "medium_shadowraze",
     "far_shadowraze",
+    "decrease_creeps_distance_aggro",
+    "increase_creeps_distance",
+    "decrease_creeps_distance_base",
   }
 
   return functions.IsElementInList(cancelable, move, false)
