@@ -87,6 +87,7 @@ function M.pre_attack_enemy_hero()
     [gs.EH_IS_TOWER_PROTECTED] = -0.2,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0.2,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0.2,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
