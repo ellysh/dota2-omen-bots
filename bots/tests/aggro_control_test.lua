@@ -18,7 +18,7 @@ function test_pre_aggro_last_hit_1_succeed()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertTrue(aggro_control.pre_aggro_last_hit())
@@ -33,7 +33,7 @@ function test_pre_aggro_last_hit_1_fails()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
@@ -48,7 +48,7 @@ function test_pre_aggro_last_hit_2_fails()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
@@ -63,7 +63,7 @@ function test_pre_aggro_last_hit_3_fails()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
@@ -78,7 +78,7 @@ function test_pre_aggro_last_hit_4_fails()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
@@ -93,7 +93,7 @@ function test_pre_aggro_last_hit_5_fails()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
@@ -108,7 +108,7 @@ function test_pre_aggro_last_hit_6_fails()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 1,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
@@ -123,7 +123,7 @@ function test_pre_aggro_last_hit_7_fails()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
@@ -138,7 +138,7 @@ function test_pre_aggro_last_hit_8_fails()
     [gs.BOT_IN_ET_AGGRO_RADIUS] = 0,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 1,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_last_hit())
@@ -155,7 +155,7 @@ function test_pre_aggro_hg_1_succeed()
     [gs.EC_AGGRO_COOLDOWN] = 0,
     [gs.BOT_IN_RIVER] = 1,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertTrue(aggro_control.pre_aggro_hg())
@@ -170,7 +170,7 @@ function test_pre_aggro_hg_1_fails()
     [gs.EC_AGGRO_COOLDOWN] = 0,
     [gs.BOT_IN_RIVER] = 1,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_hg())
@@ -185,7 +185,7 @@ function test_pre_aggro_hg_2_fails()
     [gs.EC_AGGRO_COOLDOWN] = 0,
     [gs.BOT_IN_RIVER] = 1,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_hg())
@@ -200,7 +200,7 @@ function test_pre_aggro_hg_3_fails()
     [gs.EC_AGGRO_COOLDOWN] = 0,
     [gs.BOT_IN_RIVER] = 1,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_hg())
@@ -215,7 +215,7 @@ function test_pre_aggro_hg_4_fails()
     [gs.EC_AGGRO_COOLDOWN] = 0,
     [gs.BOT_IN_RIVER] = 0,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_hg())
@@ -230,7 +230,7 @@ function test_pre_aggro_hg_5_fails()
     [gs.EC_AGGRO_COOLDOWN] = 0,
     [gs.BOT_IN_RIVER] = 1,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 0,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_hg())
@@ -245,7 +245,7 @@ function test_pre_aggro_hg_6_fails()
     [gs.EC_AGGRO_COOLDOWN] = 0,
     [gs.BOT_IN_RIVER] = 1,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_hg())
@@ -260,7 +260,7 @@ function test_pre_aggro_hg_7_fails()
     [gs.EC_AGGRO_COOLDOWN] = 1,
     [gs.BOT_IN_RIVER] = 1,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 1,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_hg())
@@ -275,7 +275,7 @@ function test_pre_aggro_hg_8_fails()
     [gs.EC_AGGRO_COOLDOWN] = 0,
     [gs.BOT_IN_RIVER] = 1,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 0,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 0,
   })
 
   luaunit.assertFalse(aggro_control.pre_aggro_hg())

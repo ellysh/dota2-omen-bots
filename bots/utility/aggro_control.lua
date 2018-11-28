@@ -31,7 +31,7 @@ function M.pre_aggro_last_hit()
     [gs.EC_AGGRO_COOLDOWN] = -1,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = -1,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = 0.2,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 0.2,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 0.2,
     [gs.BOT_IN_ALLY_TOWER_RANGE] = -1,
   }
 
@@ -55,7 +55,7 @@ function M.pre_aggro_hg()
     [gs.EC_AGGRO_COOLDOWN] = -1,
     [gs.BOT_IN_RIVER] = 0.2,
     [gs.EC_FRONT_IN_AGGRO_RADIUS] = 0.11,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 0.11,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 0.11,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

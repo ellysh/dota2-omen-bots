@@ -83,7 +83,7 @@ end
 function M.pre_decrease_creeps_distance_base()
   local weights = {
     [gs.EC_IN_MAX_BASE_DISTANCE] = -1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = -1,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = -1,
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = -1,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = -1,
@@ -115,7 +115,7 @@ function M.pre_decrease_creeps_distance_aggro()
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = -1,
     [gs.BOT_IN_ET_AGGRO_RADIUS] = -1,
     [gs.EC_PRE_LAST_HIT_IN_AGGRO_RADIUS] = -1,
-    [gs.AC_IN_MAX_BASE_DISTANCE] = 0.2,
+    [gs.AC_FRONT_IN_MAX_BASE_DISTANCE] = 0.2,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
