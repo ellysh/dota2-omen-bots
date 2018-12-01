@@ -101,6 +101,7 @@ local function AddUnit(unit, unit_type, team)
     incoming_damage_from_heroes = 0,
     incoming_damage_from_towers = 0,
     player_id = unit:GetPlayerID(),
+    is_hero = (unit_type == UNIT_TYPE["HERO"]),
     -- attack_target
     -- last_attack_time
   }

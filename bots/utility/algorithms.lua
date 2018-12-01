@@ -363,6 +363,12 @@ local function IsTargetNearSpot(unit_data, enemy_units, spot)
                                    true)
                                  + constants.MAX_SAFE_INC_DISTANCE
 
+                              or (target_data.is_hero
+                                  and functions.IsUnitBetweenLocations(
+                                        target_data,
+                                        unit_data.location,
+                                        spot))
+
                               or map.IsUnitInSpot(target_data, spot)
                        end)
 

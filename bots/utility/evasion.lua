@@ -71,6 +71,9 @@ function M.pre_evade_enemy_creeps()
 end
 
 function M.evade_enemy_creeps()
+  print("M.evade_enemy_creeps() - safe_spot = " ..
+    env.SAFE_SPOT.x .. ", " .. env.SAFE_SPOT.y)
+
   env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
 end
 
