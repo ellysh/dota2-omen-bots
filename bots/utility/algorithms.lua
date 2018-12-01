@@ -405,12 +405,17 @@ end
 
 local SAFE_SPOTS = {
   map.GetAllySpot("high_ground_safe"),
-  map.GetAllySpot("forest_bot"),
-  map.GetAllySpot("forest_top"),
-  map.GetAllySpot("forest_back_bot"),
-  map.GetAllySpot("forest_back_top"),
-  map.GetAllySpot("forest_deep_bot"),
-  map.GetAllySpot("forest_deep_top"),
+  map.GetAllySpot("forest_top_1"),
+  map.GetAllySpot("forest_top_2"),
+  map.GetAllySpot("forest_top_3"),
+  map.GetAllySpot("forest_top_4"),
+  map.GetAllySpot("forest_top_5"),
+  map.GetAllySpot("forest_bot_1"),
+  map.GetAllySpot("forest_bot_2"),
+  map.GetAllySpot("forest_bot_3"),
+  map.GetAllySpot("forest_bot_4"),
+  map.GetAllySpot("forest_bot_5"),
+  map.GetAllySpot("forest_bot_6"),
   map.GetAllySpot("fountain"),
 }
 
@@ -433,10 +438,17 @@ local FARM_SPOTS = {
   map.GetAllySpot("forest_farm_bot"),
   map.GetAllySpot("forest_farm_top"),
   map.GetAllySpot("high_ground_safe"),
-  map.GetAllySpot("forest_bot"),
-  map.GetAllySpot("forest_top"),
-  map.GetAllySpot("forest_back_bot"),
-  map.GetAllySpot("forest_back_top"),
+  map.GetAllySpot("forest_top_1"),
+  map.GetAllySpot("forest_top_2"),
+  map.GetAllySpot("forest_top_3"),
+  map.GetAllySpot("forest_top_4"),
+  map.GetAllySpot("forest_top_5"),
+  map.GetAllySpot("forest_bot_1"),
+  map.GetAllySpot("forest_bot_2"),
+  map.GetAllySpot("forest_bot_3"),
+  map.GetAllySpot("forest_bot_4"),
+  map.GetAllySpot("forest_bot_5"),
+  map.GetAllySpot("forest_bot_6"),
 }
 
 function M.GetFarmSpot(unit_data, enemy_units)
