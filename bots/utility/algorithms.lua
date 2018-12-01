@@ -415,12 +415,14 @@ local SAFE_SPOTS = {
 }
 
 function M.GetSafeSpot(unit_data, enemy_units)
-  return functions.GetElementWith(
-           SAFE_SPOTS,
-           M.CompareMinDistance,
-           function(spot)
-             return IsSpotSafe(spot, unit_data, enemy_units)
-           end)
+  local spot = functions.GetElementWith(
+                 SAFE_SPOTS,
+                 M.CompareMinDistance,
+                 function(spot)
+                   return IsSpotSafe(spot, unit_data, enemy_units)
+                 end)
+
+  return functions.ternary(spot ~= nil, spot, SAFE_SPOTS[#SAFE_SPOTS])
 end
 
 local FARM_SPOTS = {
@@ -438,12 +440,14 @@ local FARM_SPOTS = {
 }
 
 function M.GetFarmSpot(unit_data, enemy_units)
-  return functions.GetElementWith(
-           FARM_SPOTS,
-           M.CompareMinDistance,
-           function(spot)
-             return IsSpotSafe(spot, unit_data, enemy_units)
-           end)
+  local spot = functions.GetElementWith(
+                 FARM_SPOTS,
+                 M.CompareMinDistance,
+                 function(spot)
+                   return IsSpotSafe(spot, unit_data, enemy_units)
+                 end)
+
+  return functions.ternary(spot ~= nil, spot, FARM_SPOTS[#FARM_SPOTS])
 end
 
 function M.IsItemCastable(unit_data, item_name, check_charges)
