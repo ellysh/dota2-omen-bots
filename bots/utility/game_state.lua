@@ -208,6 +208,17 @@ local function NormalizeValue(value, min, max)
   return result
 end
 
+local function IsMoveTurning(move)
+  local turn_list = {
+    "turn",
+    "turn_near_shadowraze",
+    "turn_medium_shadowraze",
+    "turn_far_shadowraze",
+  }
+
+  return functions.IsElementInList(turn_list, move, false)
+end
+
 function M.UpdateState()
   -- BOT state
 
@@ -378,7 +389,7 @@ function M.UpdateState()
 
   if hist.LAST_MOVE ~= nil then
     M.GAME_STATE[M.BOT_IS_MOVE_TURNING] =
-      NUM[hist.LAST_MOVE.move == "turn"]
+      NUM[IsMoveTurning(hist.LAST_MOVE.move)]
 
     M.GAME_STATE[M.BOT_IS_MOVING_BASE] =
       NUM[hist.LAST_MOVE.move == "move_base"]
