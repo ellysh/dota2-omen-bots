@@ -15,7 +15,7 @@ function test_pre_turn_near_shadowraze_1_succeed()
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertTrue(nuke_enemy_hero.pre_turn_near_shadowraze())
@@ -27,7 +27,7 @@ function test_pre_turn_near_shadowraze_1_fails()
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_near_shadowraze())
@@ -39,7 +39,7 @@ function test_pre_turn_near_shadowraze_2_fails()
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 0,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_near_shadowraze())
@@ -51,7 +51,7 @@ function test_pre_turn_near_shadowraze_3_fails()
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 0,
     [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_near_shadowraze())
@@ -63,7 +63,7 @@ function test_pre_turn_near_shadowraze_4_fails()
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 1,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_near_shadowraze())
@@ -75,7 +75,7 @@ function test_pre_turn_near_shadowraze_5_fails()
     [gs.BOT_CASTABLE_NEAR_SHADOWRAZE] = 1,
     [gs.EH_IN_NEAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH_MELEE_RANGE] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 1,
+    [gs.BOT_IS_TURNING] = 1,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_near_shadowraze())
@@ -89,7 +89,7 @@ function test_pre_turn_medium_shadowraze_1_succeed()
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertTrue(nuke_enemy_hero.pre_turn_medium_shadowraze())
@@ -101,7 +101,7 @@ function test_pre_turn_medium_shadowraze_1_fails()
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_medium_shadowraze())
@@ -113,7 +113,7 @@ function test_pre_turn_medium_shadowraze_2_fails()
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 0,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_medium_shadowraze())
@@ -125,7 +125,7 @@ function test_pre_turn_medium_shadowraze_3_fails()
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 0,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_medium_shadowraze())
@@ -137,7 +137,7 @@ function test_pre_turn_medium_shadowraze_4_fails()
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 1,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_medium_shadowraze())
@@ -149,7 +149,7 @@ function test_pre_turn_medium_shadowraze_5_fails()
     [gs.BOT_CASTABLE_MEDIUM_SHADOWRAZE] = 1,
     [gs.EH_IN_MEDIUM_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 1,
+    [gs.BOT_IS_TURNING] = 1,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_medium_shadowraze())
@@ -163,7 +163,7 @@ function test_pre_turn_far_shadowraze_1_succeed()
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 1,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertTrue(nuke_enemy_hero.pre_turn_far_shadowraze())
@@ -175,7 +175,7 @@ function test_pre_turn_far_shadowraze_1_fails()
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 1,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_far_shadowraze())
@@ -187,7 +187,7 @@ function test_pre_turn_far_shadowraze_2_fails()
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 0,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_far_shadowraze())
@@ -199,7 +199,7 @@ function test_pre_turn_far_shadowraze_3_fails()
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 1,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 0,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_far_shadowraze())
@@ -211,7 +211,7 @@ function test_pre_turn_far_shadowraze_4_fails()
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 1,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 1,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_far_shadowraze())
@@ -223,7 +223,7 @@ function test_pre_turn_far_shadowraze_5_fails()
     [gs.BOT_CASTABLE_FAR_SHADOWRAZE] = 1,
     [gs.EH_IN_FAR_SHADOWRAZE_RANGE] = 1,
     [gs.BOT_IS_FACING_EH] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 1,
+    [gs.BOT_IS_TURNING] = 1,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_turn_far_shadowraze())

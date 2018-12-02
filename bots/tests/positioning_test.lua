@@ -437,7 +437,7 @@ function test_pre_turn_1_succeed()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.TURN_TARGET_PRESENT] = 1,
     [gs.BOT_IS_FACING_TURN_TARGET] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertTrue(positioning.pre_turn())
@@ -449,7 +449,7 @@ function test_pre_turn_1_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.TURN_TARGET_PRESENT] = 0,
     [gs.BOT_IS_FACING_TURN_TARGET] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(positioning.pre_turn())
@@ -461,7 +461,7 @@ function test_pre_turn_2_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.TURN_TARGET_PRESENT] = 1,
     [gs.BOT_IS_FACING_TURN_TARGET] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(positioning.pre_turn())
@@ -473,7 +473,7 @@ function test_pre_turn_3_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
     [gs.TURN_TARGET_PRESENT] = 1,
     [gs.BOT_IS_FACING_TURN_TARGET] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(positioning.pre_turn())
@@ -485,7 +485,7 @@ function test_pre_turn_4_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.TURN_TARGET_PRESENT] = 1,
     [gs.BOT_IS_FACING_TURN_TARGET] = 1,
-    [gs.BOT_IS_MOVE_TURNING] = 0,
+    [gs.BOT_IS_TURNING] = 0,
   })
 
   luaunit.assertFalse(positioning.pre_turn())
@@ -497,7 +497,7 @@ function test_pre_turn_5_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.TURN_TARGET_PRESENT] = 1,
     [gs.BOT_IS_FACING_TURN_TARGET] = 0,
-    [gs.BOT_IS_MOVE_TURNING] = 1,
+    [gs.BOT_IS_TURNING] = 1,
   })
 
   luaunit.assertFalse(positioning.pre_turn())
