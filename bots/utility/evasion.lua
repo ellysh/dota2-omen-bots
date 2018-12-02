@@ -37,9 +37,7 @@ function M.pre_move_safe_recovery()
 end
 
 function M.move_safe_recovery()
-  env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
-
-  action_timing.SetNextActionDelay(0.1)
+  env.BOT:Action_MovePath(env.SAFE_SPOT_WAYPOINTS)
 end
 
 ---------------------------------

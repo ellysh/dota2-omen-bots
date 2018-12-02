@@ -74,18 +74,7 @@ function M.pre_move_base()
 end
 
 function M.move_base()
-  env.BOT:Action_MoveDirectly(env.FOUNTAIN_SPOT)
-
-  if functions.GetDistance(env.FOUNTAIN_SPOT, env.BOT_DATA.location)
-     < constants.BASE_RADIUS
-     and not algorithms.HasModifier(
-               env.BOT_DATA,
-               "modifier_fountain_aura_buff") then
-
-    action_timing.SetNextActionDelay(1.5)
-  else
-    action_timing.SetNextActionDelay(0.2)
-  end
+  env.BOT:Action_MovePath(env.FOUNTAIN_SPOT_WAYPOINTS)
 end
 
 ---------------------------------
