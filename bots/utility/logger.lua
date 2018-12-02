@@ -24,7 +24,7 @@ function M.PrintGameState(state)
 --]]
 end
 
-M.Print("OMEN Bots version " .. constants.BOTS_VERSION ..
-        " play in team " .. GetTeam())
+print("OMEN Bots version " .. constants.BOTS_VERSION ..
+      " play in team " .. GetTeam())
 
 return M
