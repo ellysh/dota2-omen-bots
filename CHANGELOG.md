@@ -1,3 +1,10 @@
+* version 0.6
+  - Fix a bug with cyclic turning to the enemy hero for casting a shadowraze.
+  - Rework the algorithm for canceling the backswing attack animation.
+  - Change order of buying the flask and mango. The flask always comes first.
+  - Make the bot behavior less aggressive for avoiding enemy shadowrazes.
+  - Add extra safe spots between ally tier 1 and tier 2 towers.
+
 * version 0.5
   - Adapt the bot for the 7.20 patch.
   - Change an item build according to the 7.20 patch.
