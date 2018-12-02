@@ -210,23 +210,23 @@ local function NormalizeValue(value, min, max)
 end
 
 local function IsTurning(move)
-  local turn_list = {
+  local list = {
     "turn",
     "turn_near_shadowraze",
     "turn_medium_shadowraze",
     "turn_far_shadowraze",
   }
 
-  return functions.IsElementInList(turn_list, move, false)
+  return functions.IsElementInList(list, move, false)
 end
 
 local function IsMovingWaypoints(move)
-  local turn_list = {
+  local list = {
     "move_safe_recovery",
     "move_base",
   }
 
-  return functions.IsElementInList(turn_list, move, false)
+  return functions.IsElementInList(list, move, false)
 end
 
 function M.UpdateState()

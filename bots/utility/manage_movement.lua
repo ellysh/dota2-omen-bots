@@ -18,6 +18,9 @@ end
 ---------------------------------
 
 function M.pre_cancel_movement()
+  -- TODO: Check here if waypoint move to fountain is still actual.
+  -- For example the bot did not use the flask
+
   local weights = {
     [gs.BOT_IS_MOVING_WAYPOINTS] = 1,
     [gs.BOT_MOVING] = -1,
