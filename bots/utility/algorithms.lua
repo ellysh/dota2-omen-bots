@@ -449,12 +449,12 @@ function M.GetSpotWaypoints(unit_data, spot, enemy_units)
     return {spot}
   end
 
-  if IsSpotSafe(WAYPOINTS_TOP[1], unit_data, enemy_units) then
-    return functions.TableConcat(WAYPOINTS_TOP, {spot})
-  end
-
   if IsSpotSafe(WAYPOINTS_BOT[1], unit_data, enemy_units) then
     return functions.TableConcat(WAYPOINTS_BOT, {spot})
+  end
+
+  if IsSpotSafe(WAYPOINTS_TOP[1], unit_data, enemy_units) then
+    return functions.TableConcat(WAYPOINTS_TOP, {spot})
   end
 
   return {spot}
