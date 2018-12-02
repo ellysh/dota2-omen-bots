@@ -209,12 +209,21 @@ local function NormalizeValue(value, min, max)
   return result
 end
 
-local function IsMoveTurning(move)
+local function IsTurning(move)
   local turn_list = {
     "turn",
     "turn_near_shadowraze",
     "turn_medium_shadowraze",
     "turn_far_shadowraze",
+  }
+
+  return functions.IsElementInList(turn_list, move, false)
+end
+
+local function IsMovingWaypoints(move)
+  local turn_list = {
+    "move_safe_recovery",
+    "move_base",
   }
 
   return functions.IsElementInList(turn_list, move, false)
@@ -390,10 +399,13 @@ function M.UpdateState()
 
   if hist.LAST_MOVE ~= nil then
     M.GAME_STATE[M.BOT_IS_TURNING] =
-      NUM[IsMoveTurning(hist.LAST_MOVE.move)]
+      NUM[IsTurning(hist.LAST_MOVE.move)]
 
     M.GAME_STATE[M.BOT_IS_MOVING_BASE] =
       NUM[hist.LAST_MOVE.move == "move_base"]
+
+    M.GAME_STATE[M.BOT_IS_MOVING_WAYPOINTS] =
+      NUM[IsMovingWaypoints(hist.LAST_MOVE.move)]
   end
 
   if env.TURN_TARGET_DATA ~= nil then

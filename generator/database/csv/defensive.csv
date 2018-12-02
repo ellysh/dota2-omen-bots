@@ -4,6 +4,9 @@ cancel_current_move;stop_attack_and_move;stop_attack_and_move
 manage_attack_anim;cancel_attack;cancel_attack
 ;wait_attack;wait_attack
 ;;
+manage_movement;cancel_movement;cancel_movement
+;wait_movement;wait_movement
+;;
 evade_enemy_nukes;evade_near_shadowraze_back;move_back
 ;evade_medium_shadowraze_back;move_back
 ;evade_far_shadowraze_back;move_back

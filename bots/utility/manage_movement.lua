@@ -11,15 +11,16 @@ local M = {}
 
 ---------------------------------
 
-function M.pre_manage_attack_anim()
+function M.pre_manage_movement()
   return moves.pre_interrupt_cast_objective()
 end
 
 ---------------------------------
 
-function M.pre_cancel_attack()
+function M.pre_cancel_movement()
   local weights = {
-    [gs.BOT_DOES_BACKSWING] = 1,
+    [gs.BOT_IS_MOVING_WAYPOINTS] = 1,
+    [gs.BOT_MOVING] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -27,21 +28,22 @@ end
 
 ---------------------------------
 
-function M.cancel_attack()
+function M.cancel_movement()
   env.BOT:Action_ClearActions(true)
 end
 
 ---------------------------------
 
-function M.pre_wait_attack()
+function M.pre_wait_movement()
   local weights = {
-    [gs.BOT_IS_ATTACKING] = 1,
+    [gs.BOT_IS_MOVING_WAYPOINTS] = 0.5,
+    [gs.BOT_MOVING] = 0.5,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
-function M.wait_attack()
+function M.wait_movement()
 end
 
 ---------------------------------

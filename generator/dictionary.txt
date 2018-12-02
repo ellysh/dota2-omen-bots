@@ -27,6 +27,7 @@ buy_tango
 buy_tpscroll
 cancel_attack
 cancel_current_move
+cancel_movement
 decrease_creeps_distance_aggro
 decrease_creeps_distance_base
 defend_tower
@@ -62,6 +63,7 @@ kill_enemy_creep
 kite
 lasthit_enemy_creep
 manage_attack_anim
+manage_movement
 medium_shadowraze
 move_and_block
 move_back
@@ -102,3 +104,4 @@ upgrade_skills
 use_enchanted_mango
 use_magic_stick
 wait_attack
+wait_movement
