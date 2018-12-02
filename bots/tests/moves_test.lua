@@ -168,6 +168,7 @@ function test_pre_attack_enemy_hero_1_succeed()
     [gs.EH_IS_TOWER_PROTECTED] = 0,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertTrue(moves.pre_attack_enemy_hero())
@@ -180,6 +181,7 @@ function test_pre_attack_enemy_hero_2_succeed()
     [gs.EH_IS_TOWER_PROTECTED] = 1,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 1,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertTrue(moves.pre_attack_enemy_hero())
@@ -192,6 +194,7 @@ function test_pre_attack_enemy_hero_3_succeed()
     [gs.EH_IS_TOWER_PROTECTED] = 1,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 1,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertTrue(moves.pre_attack_enemy_hero())
@@ -204,6 +207,7 @@ function test_pre_attack_enemy_hero_4_succeed()
     [gs.EH_IS_TOWER_PROTECTED] = 1,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 1,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 1,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertTrue(moves.pre_attack_enemy_hero())
@@ -216,6 +220,7 @@ function test_pre_attack_enemy_hero_1_fails()
     [gs.EH_IS_TOWER_PROTECTED] = 1,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertFalse(moves.pre_attack_enemy_hero())
@@ -228,6 +233,7 @@ function test_pre_attack_enemy_hero_2_fails()
     [gs.EH_IS_TOWER_PROTECTED] = 0,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertFalse(moves.pre_attack_enemy_hero())
@@ -240,6 +246,7 @@ function test_pre_attack_enemy_hero_3_fails()
     [gs.EH_IS_TOWER_PROTECTED] = 0,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertFalse(moves.pre_attack_enemy_hero())
@@ -252,6 +259,7 @@ function test_pre_attack_enemy_hero_4_fails()
     [gs.EH_IS_TOWER_PROTECTED] = 0,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 1,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertFalse(moves.pre_attack_enemy_hero())
@@ -264,6 +272,20 @@ function test_pre_attack_enemy_hero_5_fails()
     [gs.EH_IS_TOWER_PROTECTED] = 0,
     [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 1,
     [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 1,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(moves.pre_attack_enemy_hero())
+end
+
+function test_pre_attack_enemy_hero_6_fails()
+  moves.test_SetGameState({
+    [gs.EH_PRESENT] = 1,
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.EH_IS_TOWER_PROTECTED] = 0,
+    [gs.EH_CAN_BE_ATTACKED_UNDER_TOWER] = 0,
+    [gs.EH_CAN_BE_FOLLOWED_UNDER_TOWER] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 1,
   })
 
   luaunit.assertFalse(moves.pre_attack_enemy_hero())
