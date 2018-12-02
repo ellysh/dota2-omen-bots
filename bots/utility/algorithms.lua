@@ -349,7 +349,7 @@ function M.IsFocusedByTower(unit_data)
   return 0 < unit_data.incoming_damage_from_towers
 end
 
-local function IsTargetNearSpot(unit_data, enemy_units, spot)
+local function IsEnemyNearSpot(unit_data, enemy_units, spot)
   local enemy_unit = functions.GetElementWith(
                        enemy_units,
                        nil,
@@ -363,7 +363,9 @@ local function IsTargetNearSpot(unit_data, enemy_units, spot)
                                    true)
                                  + constants.MAX_SAFE_INC_DISTANCE
 
-                              or (target_data.is_hero
+                              or ((target_data.is_hero
+                                   or target_data.is_tower)
+
                                   and functions.IsUnitBetweenLocations(
                                         target_data,
                                         unit_data.location,
@@ -395,7 +397,7 @@ function M.IsFrontUnit(bot_data, unit_data)
 end
 
 local function IsSpotSafe(spot, unit_data, enemy_units)
-  return not IsTargetNearSpot(unit_data, enemy_units, spot)
+  return not IsEnemyNearSpot(unit_data, enemy_units, spot)
 
          and not (map.IsUnitInSpot(unit_data, spot)
                   and (M.IsFocusedByEnemyHero(unit_data)
@@ -428,6 +430,34 @@ function M.GetSafeSpot(unit_data, enemy_units)
                  end)
 
   return functions.ternary(spot ~= nil, spot, SAFE_SPOTS[#SAFE_SPOTS])
+end
+
+local WAYPOINTS_TOP = {
+  map.GetAllySpot("forest_enemy_top_1"),
+  map.GetAllySpot("forest_enemy_top_2"),
+  map.GetAllySpot("river_top_1"),
+  map.GetAllySpot("river_top_2"),
+}
+
+local WAYPOINTS_BOT = {
+  map.GetAllySpot("forest_enemy_bot_1"),
+  map.GetAllySpot("forest_enemy_bot_2"),
+}
+
+function M.GetSpotWaypoints(unit_data, spot, enemy_units)
+  if IsSpotSafe(spot, unit_data, enemy_units) then
+    return {spot}
+  end
+
+  if IsSpotSafe(WAYPOINTS_TOP[1], unit_data, enemy_units) then
+    return functions.TableConcat(WAYPOINTS_TOP, {spot})
+  end
+
+  if IsSpotSafe(WAYPOINTS_BOT[1], unit_data, enemy_units) then
+    return functions.TableConcat(WAYPOINTS_BOT, {spot})
+  end
+
+  return {spot}
 end
 
 local FARM_SPOTS = {

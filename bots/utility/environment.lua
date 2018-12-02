@@ -41,8 +41,10 @@ M.LAST_HIT_ALLY_CREEP = {}
 M.ALLY_CREEPS_HP = 0
 M.ENEMY_CREEPS_HP = 0
 M.SAFE_SPOT = {}
+M.SAFE_SPOT_WAYPOINTS = {}
 M.FARM_SPOT = {}
 M.FOUNTAIN_SPOT = {}
+M.FOUNTAIN_SPOT_WAYPOINTS = {}
 M.FOUNTAIN_DISTANCE = 0
 M.DOES_TOWER_PROTECT_ENEMY = false
 M.IS_FOCUSED_BY_CREEPS = false
@@ -322,15 +324,32 @@ function M.UpdateVariables()
   M.SAFE_SPOT = algorithms.GetSafeSpot(M.BOT_DATA,
                                        {M.ENEMY_HERO_DATA,
                                         M.ENEMY_CREEP_FRONT_DATA,
-                                        M.ENEMY_CREEP_BACK_DATA})
+                                        M.ENEMY_CREEP_BACK_DATA,
+                                        M.ENEMY_TOWER_DATA})
+
+  M.SAFE_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
+                                       M.BOT_DATA,
+                                       M.SAFE_SPOT,
+                                       {M.ENEMY_HERO_DATA,
+                                        M.ENEMY_CREEP_FRONT_DATA,
+                                        M.ENEMY_CREEP_BACK_DATA,
+                                        M.ENEMY_TOWER_DATA})
 
   M.FARM_SPOT = algorithms.GetFarmSpot(M.BOT_DATA,
                                        {M.ENEMY_HERO_DATA,
                                         M.ENEMY_CREEP_FRONT_DATA,
-                                        M.ENEMY_CREEP_BACK_DATA})
+                                        M.ENEMY_CREEP_BACK_DATA,
+                                        M.ENEMY_TOWER_DATA})
 
   M.FOUNTAIN_SPOT = map.GetAllySpot("fountain")
 
+  M.FOUNTAIN_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
+                                       M.BOT_DATA,
+                                       M.FOUNTAIN_SPOT,
+                                       {M.ENEMY_HERO_DATA,
+                                        M.ENEMY_CREEP_FRONT_DATA,
+                                        M.ENEMY_CREEP_BACK_DATA,
+                                        M.ENEMY_TOWER_DATA})
   M.FOUNTAIN_DISTANCE = functions.GetDistance(
                           M.FOUNTAIN_SPOT,
                           M.BOT_DATA.location)

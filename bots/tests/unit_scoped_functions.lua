@@ -219,6 +219,12 @@ function Unit:IsBuilding()
   return UNIT_IS_BUILDING
 end
 
+UNIT_IS_TOWER = true
+
+function Unit:IsTower()
+  return UNIT_IS_TOWER
+end
+
 function Unit:GetOffensivePower()
   return self.offensive_power
 end
