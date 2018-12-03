@@ -117,15 +117,6 @@ local function IsObjectiveActual(objective)
   return FindMoveToExecute(objective) ~= nil
 end
 
-local function IsConsiderableMove(move)
-  local list = {
-    "wait_movement",
-    "wait_attack",
-  }
-
-  return not functions.IsElementInList(list, move, false)
-end
-
 local CURRENT_STRATEGY = nil
 local CURRENT_OBJECTIVE = nil
 local CURRENT_MOVE = nil
@@ -151,11 +142,9 @@ function M.Process()
   if CURRENT_OBJECTIVE ~= nil
      and CURRENT_MOVE ~= nil then
 
-    if IsConsiderableMove(CURRENT_MOVE) then
-      hist.LAST_STRATEGY = CURRENT_STRATEGY
-      hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
-      hist.LAST_MOVE = CURRENT_MOVE
-    end
+    hist.LAST_STRATEGY = CURRENT_STRATEGY
+    hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
+    hist.LAST_MOVE = CURRENT_MOVE
 
     logger.Print("team = " .. GetTeam() ..
       " current_strategy = " .. CURRENT_STRATEGY.strategy ..
