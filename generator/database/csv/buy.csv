@@ -1,12 +1,12 @@
-Objective;Move;Actions
-buy_items;buy_flask;buy_flask
-;buy_tpscroll;buy_tpscroll
-;buy_enchanted_mango;buy_enchanted_mango
-;buy_magic_stick;buy_magic_stick
-;buy_boots;buy_boots
-;buy_cloak;buy_cloak
-;buy_boots_of_elves;buy_boots_of_elves
-;buy_blades_of_attack;buy_blades_of_attack
-;buy_ring_of_regen;buy_ring_of_regen
-;buy_ring_of_health;buy_ring_of_health
-;deliver_items;deliver_items
+Objective;Move;Actions;"Wait Condition";"Cancel Condition"
+buy_items;buy_flask;buy_flask;;
+;buy_tpscroll;buy_tpscroll;;
+;buy_enchanted_mango;buy_enchanted_mango;;
+;buy_magic_stick;buy_magic_stick;;
+;buy_boots;buy_boots;;
+;buy_cloak;buy_cloak;;
+;buy_boots_of_elves;buy_boots_of_elves;;
+;buy_blades_of_attack;buy_blades_of_attack;;
+;buy_ring_of_regen;buy_ring_of_regen;;
+;buy_ring_of_health;buy_ring_of_health;;
+;deliver_items;deliver_items;;

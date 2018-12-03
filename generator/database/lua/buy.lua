@@ -9,6 +9,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "buy_flask",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_flask"},
 
@@ -16,6 +18,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_tpscroll",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_tpscroll"},
 
@@ -23,6 +27,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_enchanted_mango",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_enchanted_mango"},
 
@@ -30,6 +36,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_magic_stick",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_magic_stick"},
 
@@ -37,6 +45,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_boots",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_boots"},
 
@@ -44,6 +54,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_cloak",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_cloak"},
 
@@ -51,6 +63,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_boots_of_elves",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_boots_of_elves"},
 
@@ -58,6 +72,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_blades_of_attack",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_blades_of_attack"},
 
@@ -65,6 +81,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_ring_of_regen",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_ring_of_regen"},
 
@@ -72,6 +90,8 @@ M.OBJECTIVES = {
       },
       {
         move = "buy_ring_of_health",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "buy_ring_of_health"},
 
@@ -79,6 +99,8 @@ M.OBJECTIVES = {
       },
       {
         move = "deliver_items",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "deliver_items"},
 

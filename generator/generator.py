@@ -42,6 +42,8 @@ def print_objective(line):
 def print_move(line):
   move = t.MOVE_HEADER
   move = move.replace('<' + str(1) + '>', get_value(line, 1))
+  move = move.replace('<' + str(3) + '>', get_value(line, 3))
+  move = move.replace('<' + str(4) + '>', get_value(line, 4))
   sys.stdout.write(move)
   return
 

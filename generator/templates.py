@@ -41,6 +41,8 @@ OBJECTIVE_FOOTER = """
 MOVE_HEADER = """
       {
         move = "<1>",
+        wait_condition = "<3>",
+        cancel_condition = "<4>",
         actions = {
 """
 

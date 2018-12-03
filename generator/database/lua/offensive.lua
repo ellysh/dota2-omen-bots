@@ -9,6 +9,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "stop_attack_and_move",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "stop_attack_and_move"},
 
@@ -23,6 +25,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "cancel_attack",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "cancel_attack"},
 
@@ -30,6 +34,8 @@ M.OBJECTIVES = {
       },
       {
         move = "wait_attack",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "wait_attack"},
 
@@ -44,6 +50,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "cancel_movement",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "cancel_movement"},
 
@@ -51,6 +59,8 @@ M.OBJECTIVES = {
       },
       {
         move = "wait_movement",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "wait_movement"},
 
@@ -65,6 +75,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "evade_near_shadowraze_back",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_back"},
 
@@ -72,6 +84,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_medium_shadowraze_back",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_back"},
 
@@ -79,6 +93,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_far_shadowraze_back",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_back"},
 
@@ -86,6 +102,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_medium_shadowraze_front",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_front"},
 
@@ -93,6 +111,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_far_shadowraze_front",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_front"},
 
@@ -107,6 +127,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "put_item_in_inventory",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "put_item_in_inventory"},
 
@@ -114,6 +136,8 @@ M.OBJECTIVES = {
       },
       {
         move = "swap_flask_wraith_band",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "swap_flask_wraith_band"},
 
@@ -121,6 +145,8 @@ M.OBJECTIVES = {
       },
       {
         move = "swap_mango_wraith_band",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "swap_mango_wraith_band"},
 
@@ -135,6 +161,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "heal_tango",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "heal_tango"},
 
@@ -142,6 +170,8 @@ M.OBJECTIVES = {
       },
       {
         move = "heal_magic_stick",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "heal_magic_stick"},
 
@@ -156,6 +186,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "use_enchanted_mango",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "use_enchanted_mango"},
 
@@ -163,6 +195,8 @@ M.OBJECTIVES = {
       },
       {
         move = "use_magic_stick",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "use_magic_stick"},
 
@@ -177,6 +211,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "upgrade",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "upgrade"},
 
@@ -191,6 +227,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "turn_near_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "turn"},
 
@@ -198,6 +236,8 @@ M.OBJECTIVES = {
       },
       {
         move = "near_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "near_shadowraze"},
 
@@ -205,6 +245,8 @@ M.OBJECTIVES = {
       },
       {
         move = "turn_medium_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "turn"},
 
@@ -212,6 +254,8 @@ M.OBJECTIVES = {
       },
       {
         move = "medium_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "medium_shadowraze"},
 
@@ -219,6 +263,8 @@ M.OBJECTIVES = {
       },
       {
         move = "turn_far_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "turn"},
 
@@ -226,6 +272,8 @@ M.OBJECTIVES = {
       },
       {
         move = "far_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "far_shadowraze"},
 
@@ -240,6 +288,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "attack_enemy_hero",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "attack_enemy_hero"},
 
@@ -247,6 +297,8 @@ M.OBJECTIVES = {
       },
       {
         move = "move_enemy_hero",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_enemy_hero"},
 
@@ -261,6 +313,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "move_safe_recovery",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_safe_recovery"},
 
@@ -268,6 +322,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_enemy_hero",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "evade_enemy_hero"},
 
@@ -275,6 +331,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_enemy_tower",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "evade_enemy_tower"},
 
@@ -289,6 +347,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "lasthit_enemy_creep",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "lasthit_enemy_creep"},
 
@@ -296,6 +356,8 @@ M.OBJECTIVES = {
       },
       {
         move = "deny_ally_creep",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "deny_ally_creep"},
 
@@ -310,6 +372,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "destroy_enemy_tower",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "destroy_enemy_tower"},
 
@@ -324,6 +388,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "evade_enemy_creeps",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "evade_enemy_creeps"},
 
@@ -338,6 +404,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "attack_enemy_hero_from_hg",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "attack_enemy_hero_from_hg"},
 
@@ -345,6 +413,8 @@ M.OBJECTIVES = {
       },
       {
         move = "attack_enemy_hero_with_incoming_damage",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "attack_enemy_hero_with_incoming_damage"},
 
@@ -359,6 +429,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "attack_enemy_hero",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "attack_enemy_hero"},
 
@@ -366,6 +438,8 @@ M.OBJECTIVES = {
       },
       {
         move = "attack_enemy_tower",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "attack_enemy_tower"},
 
@@ -373,6 +447,8 @@ M.OBJECTIVES = {
       },
       {
         move = "move_safe",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_safe"},
 
@@ -387,6 +463,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "attack_enemy_creep",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "attack_enemy_creep"},
 
@@ -394,6 +472,8 @@ M.OBJECTIVES = {
       },
       {
         move = "kill_enemy_creep",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "kill_enemy_creep"},
 
@@ -401,6 +481,8 @@ M.OBJECTIVES = {
       },
       {
         move = "attack_enemy_tower",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "attack_enemy_tower"},
 
@@ -415,6 +497,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "aggro_last_hit",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "aggro_last_hit"},
           {action = "stop_attack"},
@@ -423,6 +507,8 @@ M.OBJECTIVES = {
       },
       {
         move = "aggro_hg",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "aggro_hg"},
           {action = "stop_attack"},
@@ -438,6 +524,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "tp_mid_tower",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "tp_mid_tower"},
 
@@ -445,6 +533,8 @@ M.OBJECTIVES = {
       },
       {
         move = "decrease_creeps_distance_aggro",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "decrease_creeps_distance_aggro"},
 
@@ -452,6 +542,8 @@ M.OBJECTIVES = {
       },
       {
         move = "increase_creeps_distance",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "increase_creeps_distance"},
 
@@ -459,6 +551,8 @@ M.OBJECTIVES = {
       },
       {
         move = "decrease_creeps_distance_base",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "decrease_creeps_distance_base"},
 
@@ -466,6 +560,8 @@ M.OBJECTIVES = {
       },
       {
         move = "turn",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "turn"},
 
@@ -480,6 +576,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "move_and_block",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_and_block"},
           {action = "stop_attack_and_move"},
@@ -488,6 +586,8 @@ M.OBJECTIVES = {
       },
       {
         move = "move_start_position",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "move_start_position"},
 
@@ -495,6 +595,8 @@ M.OBJECTIVES = {
       },
       {
         move = "turn_enemy_fountain",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "turn_enemy_fountain"},
           {action = "stop_turn"},
@@ -510,6 +612,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "stop",
+        wait_condition = "nil",
+        cancel_condition = "nil",
         actions = {
           {action = "stop_attack_and_move"},
 
