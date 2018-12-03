@@ -37,10 +37,9 @@ local function FindMoveToExecute(objective)
 end
 
 local function FindObjectiveAndMoveToExecute(strategy)
-  local result_objective = nil
   local result_move = nil
 
-  result_objective = functions.GetElementWith(
+  local result_objective = functions.GetElementWith(
            strategy.objectives,
            nil,
            function(objective)
@@ -59,6 +58,7 @@ end
 local function ChooseStrategyObjectiveMove()
   local objective = nil
   local move = nil
+
   local strategy = functions.GetElementWith(
            objectives.OBJECTIVES,
            nil,
@@ -67,6 +67,7 @@ local function ChooseStrategyObjectiveMove()
                return false end
 
              objective, move = FindObjectiveAndMoveToExecute(strategy)
+
              return objective ~= nil and move ~= nil
            end)
 
@@ -89,16 +90,21 @@ local function FindNextAction(move, action_index)
 end
 
 local function ExecuteAction(objective, move, action_index)
+
   local current_action = GetCurrentAction(move, action_index)
 
   if current_action == nil then
     return FindNextAction(move, action_index)
   end
 
-  logger.Print("\tcurrent_action = " ..
-    current_action.action .. " ACTION_INDEX = " .. action_index)
+  if move.wait_condition == "nil"
+     or not objective.module["pre_" .. move.wait_condition]() then
 
-  objective.module[current_action.action]()
+    logger.Print("\tcurrent_action = " ..
+      current_action.action .. " ACTION_INDEX = " .. action_index)
+
+    objective.module[current_action.action]()
+  end
 
   return FindNextAction(move, action_index)
 end
@@ -109,12 +115,25 @@ local function IsActionTimingDelay()
   return action_time ~= 0 and GameTime() < action_time
 end
 
-local function IsObjectiveActual(objective)
-  if not objective.module["pre_" .. objective.objective]() then
-    return false
+local function IsMoveActual(objective, move)
+  return objective ~= nil
+         and move ~= nil
+         and objective.module["pre_" .. objective.objective]()
+         and objective.module["pre_" .. move.move]()
+end
+
+local function CancelCurrentMove(objective, move)
+  if objective ~= nil
+     and move ~= nil
+     and move.cancel_condition ~= "nil"
+     and objective.module["pre_" .. move.cancel_condition]() then
+
+    env.BOT:Action_ClearActions(true)
+
+    return true
   end
 
-  return FindMoveToExecute(objective) ~= nil
+  return false
 end
 
 local CURRENT_STRATEGY = nil
@@ -131,20 +150,20 @@ function M.Process()
   game_state.UpdateState()
 
   if CURRENT_STRATEGY == nil
-     or CURRENT_OBJECTIVE == nil
-     or CURRENT_MOVE == nil
-     or not IsObjectiveActual(CURRENT_OBJECTIVE) then
+     or not IsMoveActual(CURRENT_OBJECTIVE, CURRENT_MOVE) then
 
-    CURRENT_STRATEGY, CURRENT_OBJECTIVE, CURRENT_MOVE =
-      ChooseStrategyObjectiveMove()
+    if CancelCurrentMove(CURRENT_OBJECTIVE, CURRENT_MOVE) then
+      CURRENT_OBJECTIVE = nil
+      CURRENT_MOVE = nil
+      return
+    end
+
+    CURRENT_STRATEGY, CURRENT_OBJECTIVE, CURRENT_MOVE
+      = ChooseStrategyObjectiveMove()
   end
 
   if CURRENT_OBJECTIVE ~= nil
      and CURRENT_MOVE ~= nil then
-
-    hist.LAST_STRATEGY = CURRENT_STRATEGY
-    hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
-    hist.LAST_MOVE = CURRENT_MOVE
 
     logger.Print("team = " .. GetTeam() ..
       " current_strategy = " .. CURRENT_STRATEGY.strategy ..
@@ -155,6 +174,10 @@ function M.Process()
                                    CURRENT_OBJECTIVE,
                                    CURRENT_MOVE,
                                    ACTION_INDEX)
+
+    hist.LAST_STRATEGY = CURRENT_STRATEGY
+    hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
+    hist.LAST_MOVE = CURRENT_MOVE
   end
 end
 

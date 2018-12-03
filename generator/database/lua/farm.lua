@@ -227,8 +227,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "turn_near_shadowraze",
-        wait_condition = "turn_near_shadowraze",
-        cancel_condition = "turn_near_shadowraze",
+        wait_condition = "wait_turn_near_shadowraze",
+        cancel_condition = "cancel_turn_near_shadowraze",
         actions = {
           {action = "turn"},
 
@@ -236,8 +236,8 @@ M.OBJECTIVES = {
       },
       {
         move = "near_shadowraze",
-        wait_condition = "near_shadowraze",
-        cancel_condition = "near_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "cancel_near_shadowraze",
         actions = {
           {action = "near_shadowraze"},
 
@@ -245,8 +245,8 @@ M.OBJECTIVES = {
       },
       {
         move = "turn_medium_shadowraze",
-        wait_condition = "turn_medium_shadowraze",
-        cancel_condition = "turn_medium_shadowraze",
+        wait_condition = "wait_turn_medium_shadowraze",
+        cancel_condition = "cancel_turn_medium_shadowraze",
         actions = {
           {action = "turn"},
 
@@ -254,8 +254,8 @@ M.OBJECTIVES = {
       },
       {
         move = "medium_shadowraze",
-        wait_condition = "medium_shadowraze",
-        cancel_condition = "medium_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "cancel_medium_shadowraze",
         actions = {
           {action = "medium_shadowraze"},
 
@@ -263,8 +263,8 @@ M.OBJECTIVES = {
       },
       {
         move = "turn_far_shadowraze",
-        wait_condition = "turn_far_shadowraze",
-        cancel_condition = "turn_far_shadowraze",
+        wait_condition = "wait_turn_far_shadowraze",
+        cancel_condition = "cancel_turn_far_shadowraze",
         actions = {
           {action = "turn"},
 
@@ -272,8 +272,8 @@ M.OBJECTIVES = {
       },
       {
         move = "far_shadowraze",
-        wait_condition = "far_shadowraze",
-        cancel_condition = "far_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "cancel_far_shadowraze",
         actions = {
           {action = "far_shadowraze"},
 
