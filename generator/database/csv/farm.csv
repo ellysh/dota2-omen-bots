@@ -25,7 +25,7 @@ item_hp_recovery;heal_tango;heal_tango;;
 item_mp_recovery;use_enchanted_mango;use_enchanted_mango;;
 ;use_magic_stick;use_magic_stick;;
 ;;;;
-nuke_enemy_hero;turn_near_shadowraze;turn;wait_turn_near_shadowraze;cancel_turn_near_shadowraze
+nuke_enemy_hero;turn_near_shadowraze;turn_via_attack;wait_turn_near_shadowraze;cancel_turn_near_shadowraze
 ;near_shadowraze;near_shadowraze;;cancel_near_shadowraze
 ;turn_medium_shadowraze;turn;wait_turn_medium_shadowraze;cancel_turn_medium_shadowraze
 ;medium_shadowraze;medium_shadowraze;;cancel_medium_shadowraze

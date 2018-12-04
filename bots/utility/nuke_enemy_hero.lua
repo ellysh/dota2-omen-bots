@@ -38,6 +38,20 @@ function M.pre_turn_near_shadowraze()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.wait_turn_near_shadowraze()
+  return M.pre_turn_near_shadowraze()
+end
+
+function M.cancel_turn_near_shadowraze()
+  return not M.pre_turn_near_shadowraze()
+end
+
+function M.turn_via_attack()
+  env.BOT:Action_AttackUnit(all_units.GetUnit(env.ENEMY_HERO_DATA), true)
+end
+
+---------------------------------
+
 function M.pre_turn_medium_shadowraze()
   local weights = {
     [gs.EH_IS_VISIBLE] = 0.3,

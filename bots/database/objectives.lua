@@ -1893,7 +1893,7 @@ M.OBJECTIVES = {
         wait_condition = "wait_turn_near_shadowraze",
         cancel_condition = "cancel_turn_near_shadowraze",
         actions = {
-          {action = "turn"},
+          {action = "turn_via_attack"},
 
         },
       },
