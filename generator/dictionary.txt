@@ -27,7 +27,13 @@ buy_tango
 buy_tpscroll
 cancel_attack
 cancel_current_move
+cancel_far_shadowraze
+cancel_medium_shadowraze
 cancel_movement
+cancel_near_shadowraze
+cancel_turn_far_shadowraze
+cancel_turn_medium_shadowraze
+cancel_turn_near_shadowraze
 decrease_creeps_distance_aggro
 decrease_creeps_distance_base
 defend_tower
@@ -99,9 +105,11 @@ turn_enemy_fountain
 turn_far_shadowraze
 turn_medium_shadowraze
 turn_near_shadowraze
+turn_via_attack
 upgrade
 upgrade_skills
 use_enchanted_mango
 use_magic_stick
 wait_attack
 wait_movement
+wait_turn_near_shadowraze

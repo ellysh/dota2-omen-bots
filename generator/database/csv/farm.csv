@@ -27,9 +27,9 @@ item_mp_recovery;use_enchanted_mango;use_enchanted_mango;;
 ;;;;
 nuke_enemy_hero;turn_near_shadowraze;turn_via_attack;wait_turn_near_shadowraze;cancel_turn_near_shadowraze
 ;near_shadowraze;near_shadowraze;;cancel_near_shadowraze
-;turn_medium_shadowraze;turn;wait_turn_medium_shadowraze;cancel_turn_medium_shadowraze
+;turn_medium_shadowraze;turn;;cancel_turn_medium_shadowraze
 ;medium_shadowraze;medium_shadowraze;;cancel_medium_shadowraze
-;turn_far_shadowraze;turn;wait_turn_far_shadowraze;cancel_turn_far_shadowraze
+;turn_far_shadowraze;turn;;cancel_turn_far_shadowraze
 ;far_shadowraze;far_shadowraze;;cancel_far_shadowraze
 ;;;;
 evasion;move_safe_recovery;move_safe_recovery;;

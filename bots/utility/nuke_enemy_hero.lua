@@ -38,11 +38,11 @@ function M.pre_turn_near_shadowraze()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
-function M.wait_turn_near_shadowraze()
+function M.pre_wait_turn_near_shadowraze()
   return M.pre_turn_near_shadowraze()
 end
 
-function M.cancel_turn_near_shadowraze()
+function M.pre_cancel_turn_near_shadowraze()
   return not M.pre_turn_near_shadowraze()
 end
 
@@ -63,6 +63,12 @@ function M.pre_turn_medium_shadowraze()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_cancel_turn_medium_shadowraze()
+  return not M.pre_turn_medium_shadowraze()
+end
+
+---------------------------------
+
 function M.pre_turn_far_shadowraze()
   local weights = {
     [gs.EH_IS_VISIBLE] = 0.3,
@@ -73,6 +79,10 @@ function M.pre_turn_far_shadowraze()
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.pre_cancel_turn_far_shadowraze()
+  return not M.pre_turn_far_shadowraze()
 end
 
 function M.turn()
@@ -92,6 +102,10 @@ function M.pre_near_shadowraze()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_cancel_near_shadowraze()
+  return not M.pre_near_shadowraze()
+end
+
 function M.near_shadowraze()
   env.BOT:Action_UseAbility(env.NEAR_SHADOWRAZE_ABILITY)
 end
@@ -109,6 +123,10 @@ function M.pre_medium_shadowraze()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_cancel_medium_shadowraze()
+  return not M.pre_medium_shadowraze()
+end
+
 function M.medium_shadowraze()
   env.BOT:Action_UseAbility(env.MEDIUM_SHADOWRAZE_ABILITY)
 end
@@ -124,6 +142,10 @@ function M.pre_far_shadowraze()
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.pre_cancel_far_shadowraze()
+  return not M.pre_far_shadowraze()
 end
 
 function M.far_shadowraze()

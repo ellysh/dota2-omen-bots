@@ -1908,7 +1908,7 @@ M.OBJECTIVES = {
       },
       {
         move = "turn_medium_shadowraze",
-        wait_condition = "wait_turn_medium_shadowraze",
+        wait_condition = "nil",
         cancel_condition = "cancel_turn_medium_shadowraze",
         actions = {
           {action = "turn"},
@@ -1926,7 +1926,7 @@ M.OBJECTIVES = {
       },
       {
         move = "turn_far_shadowraze",
-        wait_condition = "wait_turn_far_shadowraze",
+        wait_condition = "nil",
         cancel_condition = "cancel_turn_far_shadowraze",
         actions = {
           {action = "turn"},
