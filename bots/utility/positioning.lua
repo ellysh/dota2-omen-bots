@@ -139,6 +139,10 @@ function M.pre_turn()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_cancel_turn()
+  return not M.pre_turn()
+end
+
 function M.turn()
   env.BOT:Action_MoveDirectly(env.TURN_TARGET_DATA.location)
 end

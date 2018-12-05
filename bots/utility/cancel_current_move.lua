@@ -13,7 +13,6 @@ local M = {}
 
 local function IsCancelable(move)
   local cancelable = {
-    "turn",
     "decrease_creeps_distance_aggro",
     "increase_creeps_distance",
     "decrease_creeps_distance_base",

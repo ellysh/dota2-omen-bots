@@ -502,7 +502,7 @@ M.OBJECTIVES = {
       {
         move = "turn",
         wait_condition = "nil",
-        cancel_condition = "nil",
+        cancel_condition = "cancel_turn",
         actions = {
           {action = "turn"},
 

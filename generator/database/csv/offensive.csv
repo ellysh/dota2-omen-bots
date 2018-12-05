@@ -25,12 +25,12 @@ item_mp_recovery;use_enchanted_mango;use_enchanted_mango;;
 ;;;;
 upgrade_skills;upgrade;upgrade;;
 ;;;;
-nuke_enemy_hero;turn_near_shadowraze;turn;;
-;near_shadowraze;near_shadowraze;;
-;turn_medium_shadowraze;turn;;
-;medium_shadowraze;medium_shadowraze;;
-;turn_far_shadowraze;turn;;
-;far_shadowraze;far_shadowraze;;
+nuke_enemy_hero;turn_near_shadowraze;turn_via_attack;wait_turn_near_shadowraze;cancel_turn_near_shadowraze
+;near_shadowraze;near_shadowraze;;cancel_near_shadowraze
+;turn_medium_shadowraze;turn;;cancel_turn_medium_shadowraze
+;medium_shadowraze;medium_shadowraze;;cancel_medium_shadowraze
+;turn_far_shadowraze;turn;;cancel_turn_far_shadowraze
+;far_shadowraze;far_shadowraze;;cancel_far_shadowraze
 ;;;;
 pursuit_enemy_hero;attack_enemy_hero;attack_enemy_hero;;
 ;move_enemy_hero;move_enemy_hero;;
@@ -66,7 +66,7 @@ positioning;tp_mid_tower;tp_mid_tower;;
 ;decrease_creeps_distance_aggro;decrease_creeps_distance_aggro;;
 ;increase_creeps_distance;increase_creeps_distance;;
 ;decrease_creeps_distance_base;decrease_creeps_distance_base;;
-;turn;turn;;
+;turn;turn;;cancel_turn
 ;;;;
 body_block;move_and_block;move_and_block;;
 ;;stop_attack_and_move;;

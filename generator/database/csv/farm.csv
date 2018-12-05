@@ -59,7 +59,7 @@ positioning;tp_mid_tower;tp_mid_tower;;
 ;decrease_creeps_distance_aggro;decrease_creeps_distance_aggro;;
 ;increase_creeps_distance;increase_creeps_distance;;
 ;decrease_creeps_distance_base;decrease_creeps_distance_base;;
-;turn;turn;;
+;turn;turn;;cancel_turn
 ;;;;
 keep_equilibrium;attack_enemy_creep;attack_enemy_creep;;
 ;attack_ally_creep;attack_ally_creep;;
