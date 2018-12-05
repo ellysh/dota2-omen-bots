@@ -26,7 +26,6 @@ buy_starting_items
 buy_tango
 buy_tpscroll
 cancel_attack
-cancel_current_move
 cancel_decrease_creeps_distance_aggro
 cancel_decrease_creeps_distance_base
 cancel_far_shadowraze

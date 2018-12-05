@@ -4,22 +4,6 @@ local M = {}
 M.OBJECTIVES = {
 
   {
-    objective = "cancel_current_move",
-    module = require(GetScriptDirectory() .."/utility/cancel_current_move"),
-    moves = {
-      {
-        move = "stop_attack_and_move",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "stop_attack_and_move"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "manage_attack_anim",
     module = require(GetScriptDirectory() .."/utility/manage_attack_anim"),
     moves = {

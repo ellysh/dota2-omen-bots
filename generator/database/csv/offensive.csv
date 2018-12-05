@@ -1,6 +1,4 @@
 Objective;Move;Actions;"Wait Condition";"Cancel Condition"
-cancel_current_move;stop_attack_and_move;stop_attack_and_move;;
-;;;;
 manage_attack_anim;cancel_attack;cancel_attack;;
 ;wait_attack;wait_attack;;
 ;;;;
