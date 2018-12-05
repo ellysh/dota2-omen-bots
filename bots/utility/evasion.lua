@@ -36,6 +36,14 @@ function M.pre_move_safe_recovery()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_wait_move_safe_recovery()
+  return M.pre_move_safe_recovery()
+end
+
+function M.pre_cancel_move_safe_recovery()
+  return not M.pre_move_safe_recovery()
+end
+
 function M.move_safe_recovery()
   env.BOT:Action_MovePath(env.SAFE_SPOT_WAYPOINTS)
 end
