@@ -128,6 +128,11 @@ local function CancelCurrentMove(objective, move)
      and move.cancel_condition ~= "nil"
      and objective.module["pre_" .. move.cancel_condition]() then
 
+    logger.Print("team = " .. GetTeam() ..
+      " current_objective = " .. objective.objective ..
+      " current_move = " .. move.move ..
+      " - cancel")
+
     env.BOT:Action_ClearActions(true)
 
     return true
@@ -149,14 +154,14 @@ function M.Process()
 
   game_state.UpdateState()
 
+  if CancelCurrentMove(hist.LAST_OBJECTIVE, hist.LAST_MOVE) then
+    hist.LAST_OBJECTIVE = nil
+    hist.LAST_MOVE = nil
+    return
+  end
+
   if CURRENT_STRATEGY == nil
      or not IsMoveActual(CURRENT_OBJECTIVE, CURRENT_MOVE) then
-
-    if CancelCurrentMove(CURRENT_OBJECTIVE, CURRENT_MOVE) then
-      CURRENT_OBJECTIVE = nil
-      CURRENT_MOVE = nil
-      return
-    end
 
     CURRENT_STRATEGY, CURRENT_OBJECTIVE, CURRENT_MOVE
       = ChooseStrategyObjectiveMove()
@@ -170,14 +175,14 @@ function M.Process()
       " current_objective = " .. CURRENT_OBJECTIVE.objective ..
       " current_move = " .. CURRENT_MOVE.move)
 
+    hist.LAST_STRATEGY = CURRENT_STRATEGY
+    hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
+    hist.LAST_MOVE = CURRENT_MOVE
+
     CURRENT_MOVE, ACTION_INDEX = ExecuteAction(
                                    CURRENT_OBJECTIVE,
                                    CURRENT_MOVE,
                                    ACTION_INDEX)
-
-    hist.LAST_STRATEGY = CURRENT_STRATEGY
-    hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
-    hist.LAST_MOVE = CURRENT_MOVE
   end
 end
 
