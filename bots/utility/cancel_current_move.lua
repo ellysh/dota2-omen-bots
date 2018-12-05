@@ -13,9 +13,6 @@ local M = {}
 
 local function IsCancelable(move)
   local cancelable = {
-    "decrease_creeps_distance_aggro",
-    "increase_creeps_distance",
-    "decrease_creeps_distance_base",
   }
 
   return functions.IsElementInList(cancelable, move, false)

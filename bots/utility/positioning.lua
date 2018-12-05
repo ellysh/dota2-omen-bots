@@ -74,6 +74,10 @@ function M.pre_increase_creeps_distance()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_cancel_increase_creeps_distance()
+  return not M.pre_increase_creeps_distance()
+end
+
 function M.increase_creeps_distance()
   env.BOT:Action_MoveDirectly(env.FARM_SPOT)
 end
@@ -90,6 +94,10 @@ function M.pre_decrease_creeps_distance_base()
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.pre_cancel_decrease_creeps_distance_base()
+  return not M.pre_decrease_creeps_distance_base()
 end
 
 local function GetClosestCreep()
@@ -119,6 +127,10 @@ function M.pre_decrease_creeps_distance_aggro()
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.pre_cancel_decrease_creeps_distance_aggro()
+  return not M.pre_decrease_creeps_distance_aggro()
 end
 
 function M.decrease_creeps_distance_aggro()
