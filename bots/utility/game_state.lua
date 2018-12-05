@@ -82,7 +82,6 @@ M.BOT_IS_TURNING = 52
 M.BOT_IS_ATTACKING = 53
 M.BOT_DOES_BACKSWING = 54
 M.BOT_IS_MOVING_BASE = 55
-M.BOT_IS_MOVING_WAYPOINTS = 56
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -403,9 +402,6 @@ function M.UpdateState()
 
     M.GAME_STATE[M.BOT_IS_MOVING_BASE] =
       NUM[hist.LAST_MOVE.move == "move_base"]
-
-    M.GAME_STATE[M.BOT_IS_MOVING_WAYPOINTS] =
-      NUM[IsMovingWaypoints(hist.LAST_MOVE.move)]
   end
 
   if env.TURN_TARGET_DATA ~= nil then

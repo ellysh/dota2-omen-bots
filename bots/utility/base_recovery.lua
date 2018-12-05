@@ -70,7 +70,23 @@ end
 ---------------------------------
 
 function M.pre_move_base()
-  return true
+  local weights = {
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1
+  }
+
+  return gs.EvaluateFrom(1, gs.GAME_STATE, weights)
+end
+
+function M.pre_wait_move_base()
+  return M.pre_move_base()
+end
+
+function M.pre_cancel_move_base()
+  local weights = {
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.move_base()

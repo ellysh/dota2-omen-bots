@@ -154,8 +154,8 @@ M.OBJECTIVES = {
       },
       {
         move = "move_base",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_move_base",
+        cancel_condition = "cancel_move_base",
         actions = {
           {action = "move_base"},
 
@@ -170,8 +170,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "move_safe_recovery",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_move_safe_recovery",
+        cancel_condition = "cancel_move_safe_recovery",
         actions = {
           {action = "move_safe_recovery"},
 

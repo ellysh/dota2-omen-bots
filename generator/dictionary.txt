@@ -31,6 +31,8 @@ cancel_decrease_creeps_distance_base
 cancel_far_shadowraze
 cancel_increase_creeps_distance
 cancel_medium_shadowraze
+cancel_move_base
+cancel_move_safe_recovery
 cancel_near_shadowraze
 cancel_turn
 cancel_turn_far_shadowraze
@@ -112,4 +114,6 @@ upgrade_skills
 use_enchanted_mango
 use_magic_stick
 wait_attack
+wait_move_base
+wait_move_safe_recovery
 wait_turn_near_shadowraze

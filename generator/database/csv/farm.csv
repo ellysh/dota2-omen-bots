@@ -27,7 +27,7 @@ nuke_enemy_hero;turn_near_shadowraze;turn_via_attack;wait_turn_near_shadowraze;c
 ;turn_far_shadowraze;turn;;cancel_turn_far_shadowraze
 ;far_shadowraze;far_shadowraze;;cancel_far_shadowraze
 ;;;;
-evasion;move_safe_recovery;move_safe_recovery;;
+evasion;move_safe_recovery;move_safe_recovery;wait_move_safe_recovery;cancel_move_safe_recovery
 ;evade_enemy_hero;evade_enemy_hero;;
 ;evade_enemy_tower;evade_enemy_tower;;
 ;;;;
