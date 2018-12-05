@@ -31,7 +31,6 @@ cancel_decrease_creeps_distance_base
 cancel_far_shadowraze
 cancel_increase_creeps_distance
 cancel_medium_shadowraze
-cancel_movement
 cancel_near_shadowraze
 cancel_turn
 cancel_turn_far_shadowraze
@@ -72,7 +71,6 @@ kill_enemy_creep
 kite
 lasthit_enemy_creep
 manage_attack_anim
-manage_movement
 medium_shadowraze
 move_and_block
 move_back
@@ -114,5 +112,4 @@ upgrade_skills
 use_enchanted_mango
 use_magic_stick
 wait_attack
-wait_movement
 wait_turn_near_shadowraze

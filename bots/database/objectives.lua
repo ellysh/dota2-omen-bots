@@ -238,31 +238,6 @@ M.OBJECTIVES = {
   },
 
   {
-    objective = "manage_movement",
-    module = require(GetScriptDirectory() .."/utility/manage_movement"),
-    moves = {
-      {
-        move = "cancel_movement",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "cancel_movement"},
-
-        },
-      },
-      {
-        move = "wait_movement",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "wait_movement"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "base_recovery",
     module = require(GetScriptDirectory() .."/utility/base_recovery"),
     moves = {
@@ -390,31 +365,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "wait_attack"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "manage_movement",
-    module = require(GetScriptDirectory() .."/utility/manage_movement"),
-    moves = {
-      {
-        move = "cancel_movement",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "cancel_movement"},
-
-        },
-      },
-      {
-        move = "wait_movement",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "wait_movement"},
 
         },
       },
@@ -1050,31 +1000,6 @@ M.OBJECTIVES = {
   },
 
   {
-    objective = "manage_movement",
-    module = require(GetScriptDirectory() .."/utility/manage_movement"),
-    moves = {
-      {
-        move = "cancel_movement",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "cancel_movement"},
-
-        },
-      },
-      {
-        move = "wait_movement",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "wait_movement"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "evade_enemy_nukes",
     module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
     moves = {
@@ -1653,31 +1578,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "wait_attack"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "manage_movement",
-    module = require(GetScriptDirectory() .."/utility/manage_movement"),
-    moves = {
-      {
-        move = "cancel_movement",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "cancel_movement"},
-
-        },
-      },
-      {
-        move = "wait_movement",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "wait_movement"},
 
         },
       },
