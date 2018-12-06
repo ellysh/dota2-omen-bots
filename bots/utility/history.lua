@@ -2,7 +2,7 @@ local M = {}
 
 M.LAST_AGGRO_CONTROL = 0
 
-local LAST_SOMA = {
+M.LAST_SOMA = {
   strategy = nil,
   objective = nil,
   move = nil,

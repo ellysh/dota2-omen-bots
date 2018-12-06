@@ -59,8 +59,18 @@ local function IsSomaValid(soma)
   return soma.objective ~= nil and soma.move ~= nil
 end
 
+local function ResetSoma(soma)
+  soma.strategy = nil
+  soma.objective = nil
+  soma.move = nil
+  soma.action_index = 1
+  soma.is_action_started = false
+end
+
 local function ChooseStrategyObjectiveMove()
   local soma = {}
+
+  ResetSoma(soma)
 
   soma.strategy = functions.GetElementWith(
            objectives.OBJECTIVES,
@@ -151,14 +161,6 @@ local function CancelCurrentMove(soma)
   end
 
   return false
-end
-
-local function ResetSoma(soma)
-  soma.strategy = nil
-  soma.objective = nil
-  soma.move = nil
-  soma.action_index = 1
-  soma.is_action_started = false
 end
 
 local CURRENT_SOMA = {
