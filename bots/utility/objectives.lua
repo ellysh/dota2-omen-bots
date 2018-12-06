@@ -89,24 +89,37 @@ local function FindNextAction(move, action_index)
   return move, action_index
 end
 
-local function ExecuteAction(objective, move, action_index)
+local function ExecuteAction(
+  objective,
+  move,
+  action_index,
+  is_action_started)
 
   local current_action = GetCurrentAction(move, action_index)
 
   if current_action == nil then
-    return FindNextAction(move, action_index)
+    return is_action_started, FindNextAction(move, action_index)
   end
 
-  if move.wait_condition == "nil"
-     or not objective.module["pre_" .. move.wait_condition]() then
+  if is_action_started
+     and (move.wait_condition ~= "nil"
+         and objective.module["pre_" .. move.wait_condition]()) then
+
+    logger.Print("\tcurrent_action = " ..
+      current_action.action .. " ACTION_INDEX = " .. action_index ..
+      " - waiting")
+
+    return is_action_started, move, action_index
+  else
 
     logger.Print("\tcurrent_action = " ..
       current_action.action .. " ACTION_INDEX = " .. action_index)
 
     objective.module[current_action.action]()
+    is_action_started = true
   end
 
-  return FindNextAction(move, action_index)
+  return is_action_started, FindNextAction(move, action_index)
 end
 
 local function IsActionTimingDelay()
@@ -145,6 +158,7 @@ local CURRENT_STRATEGY = nil
 local CURRENT_OBJECTIVE = nil
 local CURRENT_MOVE = nil
 local ACTION_INDEX = 1
+local IS_ACTION_STARTED = false
 
 function M.Process()
   if IsActionTimingDelay() then
@@ -157,12 +171,14 @@ function M.Process()
   if CancelCurrentMove(hist.LAST_OBJECTIVE, hist.LAST_MOVE) then
     hist.LAST_OBJECTIVE = nil
     hist.LAST_MOVE = nil
+    IS_ACTION_STARTED = false
     return
   end
 
   if CURRENT_STRATEGY == nil
      or not IsMoveActual(CURRENT_OBJECTIVE, CURRENT_MOVE) then
 
+    IS_ACTION_STARTED = false
     CURRENT_STRATEGY, CURRENT_OBJECTIVE, CURRENT_MOVE
       = ChooseStrategyObjectiveMove()
   end
@@ -179,10 +195,12 @@ function M.Process()
     hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
     hist.LAST_MOVE = CURRENT_MOVE
 
-    CURRENT_MOVE, ACTION_INDEX = ExecuteAction(
-                                   CURRENT_OBJECTIVE,
-                                   CURRENT_MOVE,
-                                   ACTION_INDEX)
+    IS_ACTION_STARTED, CURRENT_MOVE, ACTION_INDEX
+      = ExecuteAction(
+          CURRENT_OBJECTIVE,
+          CURRENT_MOVE,
+          ACTION_INDEX,
+          IS_ACTION_STARTED)
   end
 end
 
