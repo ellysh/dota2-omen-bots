@@ -200,7 +200,7 @@ function M.Process()
       " current_objective = " .. CURRENT_SOMA.objective.objective ..
       " current_move = " .. CURRENT_SOMA.move.move)
 
-    hist.LAST_SOMA = CURRENT_SOMA
+    hist.LAST_SOMA = functions.CopyTable(CURRENT_SOMA)
 
     CURRENT_SOMA = ExecuteAction(CURRENT_SOMA)
   end

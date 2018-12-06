@@ -208,6 +208,16 @@ function M.ClearTable(table)
   end
 end
 
+-- This function is taken from here:
+-- https://gist.github.com/tylerneylon/81333721109155b2d244
+
+function M.CopyTable(table)
+  if type(table) ~= 'table' then return table end
+  local res = {}
+  for k, v in pairs(table) do res[M.CopyTable(k)] = M.CopyTable(v) end
+  return res
+end
+
 function M.GetDistance(location1, location2)
   return math.sqrt(math.pow(location1.x - location2.x, 2) +
            math.pow(location1.y - location2.y, 2))
