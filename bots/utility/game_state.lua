@@ -396,12 +396,12 @@ function M.UpdateState()
           and algorithms.IsAttackDone(env.BOT_DATA)],
   }
 
-  if hist.LAST_MOVE ~= nil then
+  if hist.LAST_SOMA.move ~= nil then
     M.GAME_STATE[M.BOT_IS_TURNING] =
-      NUM[IsTurning(hist.LAST_MOVE.move)]
+      NUM[IsTurning(hist.LAST_SOMA.move.move)]
 
     M.GAME_STATE[M.BOT_IS_MOVING_BASE] =
-      NUM[hist.LAST_MOVE.move == "move_base"]
+      NUM[hist.LAST_SOMA.move.move == "move_base"]
   end
 
   if env.TURN_TARGET_DATA ~= nil then

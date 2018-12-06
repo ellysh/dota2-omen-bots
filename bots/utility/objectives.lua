@@ -56,70 +56,67 @@ local function FindObjectiveAndMoveToExecute(strategy)
 end
 
 local function ChooseStrategyObjectiveMove()
-  local objective = nil
-  local move = nil
+  local soma = {}
 
-  local strategy = functions.GetElementWith(
+  soma.strategy = functions.GetElementWith(
            objectives.OBJECTIVES,
            nil,
            function(strategy)
              if not strategies["pre_" .. strategy.strategy]() then
                return false end
 
-             objective, move = FindObjectiveAndMoveToExecute(strategy)
+             soma.objective, soma.move
+               = FindObjectiveAndMoveToExecute(strategy)
 
-             return objective ~= nil and move ~= nil
+             return soma.objective ~= nil and soma.move ~= nil
            end)
 
-  return strategy, objective, move
+  return soma
 end
 
 local function GetCurrentAction(move, action_index)
   return move.actions[action_index]
 end
 
-local function FindNextAction(move, action_index)
-  action_index = action_index + 1
+local function FindNextAction(soma)
+  soma.action_index = soma.action_index + 1
 
-  if #move.actions < action_index then
-    action_index = 1
-    move = nil
+  if #soma.move.actions < soma.action_index then
+    soma.action_index = 1
+    soma.move = nil
   end
 
-  return move, action_index
+  return soma
 end
 
-local function ExecuteAction(
-  objective,
-  move,
-  action_index,
-  is_action_started)
-
-  local current_action = GetCurrentAction(move, action_index)
+local function ExecuteAction(soma)
+  local current_action = GetCurrentAction(
+                           soma.move,
+                           soma.action_index)
 
   if current_action == nil then
-    return is_action_started, FindNextAction(move, action_index)
+    return FindNextAction(soma)
   end
 
-  if is_action_started
-     and (move.wait_condition ~= "nil"
-         and objective.module["pre_" .. move.wait_condition]()) then
+  if soma.is_action_started
+     and (soma.move.wait_condition ~= "nil"
+         and soma.objective.module[
+               "pre_" .. soma.move.wait_condition]()) then
 
-    logger.Print("\tcurrent_action = " ..
-      current_action.action .. " ACTION_INDEX = " .. action_index ..
-      " - waiting")
+    logger.Print("\tcurrent_action = " .. current_action.action ..
+      " ACTION_INDEX = " .. soma.action_index .. " - waiting")
 
-    return is_action_started, move, action_index
+    return soma
   else
 
-    logger.Print("\tcurrent_action = " ..
-      current_action.action .. " ACTION_INDEX = " .. action_index)
+    logger.Print("\tcurrent_action = " .. current_action.action ..
+      " ACTION_INDEX = " .. soma.action_index)
 
-    objective.module[current_action.action]()
-    is_action_started = true
+    soma.objective.module[current_action.action]()
+    soma.is_action_started = true
   end
 
-  return is_action_started, FindNextAction(move, action_index)
+  return FindNextAction(soma)
 end
 
 local function IsActionTimingDelay()
@@ -128,22 +125,22 @@ local function IsActionTimingDelay()
   return action_time ~= 0 and GameTime() < action_time
 end
 
-local function IsMoveActual(objective, move)
-  return objective ~= nil
-         and move ~= nil
-         and objective.module["pre_" .. objective.objective]()
-         and objective.module["pre_" .. move.move]()
+local function IsMoveActual(soma)
+  return soma.objective ~= nil
+         and soma.move ~= nil
+         and soma.objective.module["pre_" .. soma.objective.objective]()
+         and soma.objective.module["pre_" .. soma.move.move]()
 end
 
-local function CancelCurrentMove(objective, move)
-  if objective ~= nil
-     and move ~= nil
-     and move.cancel_condition ~= "nil"
-     and objective.module["pre_" .. move.cancel_condition]() then
+local function CancelCurrentMove(soma)
+  if soma.objective ~= nil
+     and soma.move ~= nil
+     and soma.move.cancel_condition ~= "nil"
+     and soma.objective.module["pre_" .. soma.move.cancel_condition]() then
 
     logger.Print("team = " .. GetTeam() ..
-      " current_objective = " .. objective.objective ..
-      " current_move = " .. move.move ..
+      " current_objective = " .. soma.objective.objective ..
+      " current_move = " .. soma.move.move ..
       " - cancel")
 
     env.BOT:Action_ClearActions(true)
@@ -154,11 +151,21 @@ local function CancelCurrentMove(objective, move)
   return false
 end
 
-local CURRENT_STRATEGY = nil
-local CURRENT_OBJECTIVE = nil
-local CURRENT_MOVE = nil
-local ACTION_INDEX = 1
-local IS_ACTION_STARTED = false
+local function ResetSoma(soma)
+  soma.strategy = nil
+  soma.objective = nil
+  soma.move = nil
+  soma.action_index = 1
+  soma.is_action_started = false
+end
+
+local CURRENT_SOMA = {
+  strategy = nil,
+  objective = nil,
+  move = nil,
+  action_index = 1,
+  is_action_started = false,
+}
 
 function M.Process()
   if IsActionTimingDelay() then
@@ -168,39 +175,31 @@ function M.Process()
 
   game_state.UpdateState()
 
-  if CancelCurrentMove(hist.LAST_OBJECTIVE, hist.LAST_MOVE) then
-    hist.LAST_OBJECTIVE = nil
-    hist.LAST_MOVE = nil
-    IS_ACTION_STARTED = false
+  if CancelCurrentMove(hist.LAST_SOMA) then
+    ResetSoma(hist.LAST_SOMA)
+    ResetSoma(CURRENT_SOMA)
     return
   end
 
-  if CURRENT_STRATEGY == nil
-     or not IsMoveActual(CURRENT_OBJECTIVE, CURRENT_MOVE) then
+  if CURRENT_SOMA.strategy == nil
+     or not IsMoveActual(CURRENT_SOMA) then
 
-    IS_ACTION_STARTED = false
-    CURRENT_STRATEGY, CURRENT_OBJECTIVE, CURRENT_MOVE
-      = ChooseStrategyObjectiveMove()
+    ResetSoma(CURRENT_SOMA)
+
+    CURRENT_SOMA = ChooseStrategyObjectiveMove()
   end
 
-  if CURRENT_OBJECTIVE ~= nil
-     and CURRENT_MOVE ~= nil then
+  if CURRENT_SOMA.objective ~= nil
+     and CURRENT_SOMA.move ~= nil then
 
     logger.Print("team = " .. GetTeam() ..
-      " current_strategy = " .. CURRENT_STRATEGY.strategy ..
-      " current_objective = " .. CURRENT_OBJECTIVE.objective ..
-      " current_move = " .. CURRENT_MOVE.move)
+      " current_strategy = " .. CURRENT_SOMA.strategy.strategy ..
+      " current_objective = " .. CURRENT_SOMA.objective.objective ..
+      " current_move = " .. CURRENT_SOMA.move.move)
 
-    hist.LAST_STRATEGY = CURRENT_STRATEGY
-    hist.LAST_OBJECTIVE = CURRENT_OBJECTIVE
-    hist.LAST_MOVE = CURRENT_MOVE
+    hist.LAST_SOMA = CURRENT_SOMA
 
-    IS_ACTION_STARTED, CURRENT_MOVE, ACTION_INDEX
-      = ExecuteAction(
-          CURRENT_OBJECTIVE,
-          CURRENT_MOVE,
-          ACTION_INDEX,
-          IS_ACTION_STARTED)
+    CURRENT_SOMA = ExecuteAction(CURRENT_SOMA)
   end
 end
 
