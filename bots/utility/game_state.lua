@@ -219,15 +219,6 @@ local function IsTurning(move)
   return functions.IsElementInList(list, move, false)
 end
 
-local function IsMovingWaypoints(move)
-  local list = {
-    "move_safe_recovery",
-    "move_base",
-  }
-
-  return functions.IsElementInList(list, move, false)
-end
-
 function M.UpdateState()
   -- BOT state
 
