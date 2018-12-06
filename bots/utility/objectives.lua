@@ -103,7 +103,7 @@ local function FindNextAction(soma)
   return soma
 end
 
-local function ExecuteAction(soma)
+local function ExecuteAction(soma, is_action_started)
   local current_action = GetCurrentAction(
                            soma.move,
                            soma.action_index)
@@ -112,10 +112,12 @@ local function ExecuteAction(soma)
     return FindNextAction(soma)
   end
 
-  if soma.is_action_started
+  soma.is_action_started = true
+
+  if is_action_started
      and (soma.move.wait_condition ~= "nil"
-         and soma.objective.module[
-               "pre_" .. soma.move.wait_condition]()) then
+          and soma.objective.module[
+                "pre_" .. soma.move.wait_condition]()) then
 
     logger.Print("\tcurrent_action = " .. current_action.action ..
       " ACTION_INDEX = " .. soma.action_index .. " - waiting")
@@ -127,7 +129,6 @@ local function ExecuteAction(soma)
       " ACTION_INDEX = " .. soma.action_index)
 
     soma.objective.module[current_action.action]()
-    soma.is_action_started = true
   end
 
   return FindNextAction(soma)
@@ -200,9 +201,20 @@ function M.Process()
       " current_objective = " .. CURRENT_SOMA.objective.objective ..
       " current_move = " .. CURRENT_SOMA.move.move)
 
-    hist.LAST_SOMA = functions.CopyTable(CURRENT_SOMA)
+    if not IsSomaValid(hist.LAST_SOMA)
+       or hist.LAST_SOMA.objective.objective
+            ~= CURRENT_SOMA.objective.objective
+       or hist.LAST_SOMA.move.move ~=
+            CURRENT_SOMA.move.move then
 
-    CURRENT_SOMA = ExecuteAction(CURRENT_SOMA)
+      hist.LAST_SOMA = functions.CopyTable(CURRENT_SOMA)
+    end
+
+    CURRENT_SOMA = ExecuteAction(
+                     CURRENT_SOMA,
+                     hist.LAST_SOMA.is_action_started)
+
+    hist.LAST_SOMA.is_action_started = CURRENT_SOMA.is_action_started
   end
 end
 
