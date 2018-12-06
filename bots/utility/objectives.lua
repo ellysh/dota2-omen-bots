@@ -55,6 +55,10 @@ local function FindObjectiveAndMoveToExecute(strategy)
   return result_objective, result_move
 end
 
+local function IsSomaValid(soma)
+  return soma.objective ~= nil and soma.move ~= nil
+end
+
 local function ChooseStrategyObjectiveMove()
   local soma = {}
 
@@ -68,7 +72,7 @@ local function ChooseStrategyObjectiveMove()
              soma.objective, soma.move
                = FindObjectiveAndMoveToExecute(strategy)
 
-             return soma.objective ~= nil and soma.move ~= nil
+             return IsSomaValid(soma)
            end)
 
   return soma
@@ -126,15 +130,13 @@ local function IsActionTimingDelay()
 end
 
 local function IsMoveActual(soma)
-  return soma.objective ~= nil
-         and soma.move ~= nil
+  return IsSomaValid(soma)
          and soma.objective.module["pre_" .. soma.objective.objective]()
          and soma.objective.module["pre_" .. soma.move.move]()
 end
 
 local function CancelCurrentMove(soma)
-  if soma.objective ~= nil
-     and soma.move ~= nil
+  if IsSomaValid(soma)
      and soma.move.cancel_condition ~= "nil"
      and soma.objective.module["pre_" .. soma.move.cancel_condition]() then
 
@@ -189,8 +191,7 @@ function M.Process()
     CURRENT_SOMA = ChooseStrategyObjectiveMove()
   end
 
-  if CURRENT_SOMA.objective ~= nil
-     and CURRENT_SOMA.move ~= nil then
+  if IsSomaValid(CURRENT_SOMA) then
 
     logger.Print("team = " .. GetTeam() ..
       " current_strategy = " .. CURRENT_SOMA.strategy.strategy ..
