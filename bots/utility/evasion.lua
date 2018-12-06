@@ -45,6 +45,8 @@ function M.pre_cancel_move_safe_recovery()
 end
 
 function M.move_safe_recovery()
+  env.BOT:Action_ClearActions(true)
+
   env.BOT:Action_MovePath(env.SAFE_SPOT_WAYPOINTS)
 end
 

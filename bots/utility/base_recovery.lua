@@ -71,7 +71,8 @@ end
 
 function M.pre_move_base()
   local weights = {
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1,
+    [gs.BOT_CASTABLE_FLASK] = -1,
   }
 
   return gs.EvaluateFrom(1, gs.GAME_STATE, weights)
@@ -82,14 +83,12 @@ function M.pre_wait_move_base()
 end
 
 function M.pre_cancel_move_base()
-  local weights = {
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  return not M.pre_move_base()
 end
 
 function M.move_base()
+  env.BOT:Action_ClearActions(true)
+
   env.BOT:Action_MovePath(env.FOUNTAIN_SPOT_WAYPOINTS)
 end
 

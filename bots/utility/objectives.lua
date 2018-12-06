@@ -183,7 +183,6 @@ function M.Process()
   if CancelCurrentMove(hist.LAST_SOMA) then
     ResetSoma(hist.LAST_SOMA)
     ResetSoma(CURRENT_SOMA)
-    return
   end
 
   if CURRENT_SOMA.strategy == nil
