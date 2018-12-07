@@ -1,8 +1,14 @@
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
 local env = require(
   GetScriptDirectory() .."/utility/environment")
+
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
 
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
@@ -34,12 +40,7 @@ function M.pre_move_safe_recovery()
 end
 
 function M.pre_wait_move_safe_recovery()
-  local weights = {
-    [gs.BOT_SAFE_SPOT_WAYPOINTS_CHANGED] = -1,
-  }
-
   return M.pre_move_safe_recovery()
-         and gs.EvaluateFrom(1, gs.GAME_STATE, weights)
 end
 
 function M.pre_cancel_move_safe_recovery()

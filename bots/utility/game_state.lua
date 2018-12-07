@@ -391,7 +391,7 @@ function M.UpdateState()
           and algorithms.IsAttackDone(env.BOT_DATA)],
 
     [M.BOT_SAFE_SPOT_WAYPOINTS_CHANGED] =
-      NUM[not functions.deepcompare(
+      NUM[not functions.AreTablesEqual(
                 env.SAFE_SPOT_WAYPOINTS,
                 hist.LAST_SAFE_SPOT_WAYPOINTS)],
   }

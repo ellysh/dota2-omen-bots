@@ -42,7 +42,7 @@ end
 -- This function compares two Lua table objects. It was taken from here:
 -- https://web.archive.org/web/20131225070434/http://snippets.luacode.org/snippets/Deep_Comparison_of_Two_Values_3
 
-local function deepcompare(t1, t2, ignore_mt)
+function M.AreTablesEqual(t1, t2, ignore_mt)
   local ty1 = type(t1)
   local ty2 = type(t2)
   if ty1 ~= ty2 then return false end
@@ -53,11 +53,11 @@ local function deepcompare(t1, t2, ignore_mt)
   if not ignore_mt and mt and mt.__eq then return t1 == t2 end
   for k1,v1 in pairs(t1) do
     local v2 = t2[k1]
-    if v2 == nil or not deepcompare(v1,v2) then return false end
+    if v2 == nil or not M.AreTablesEqual(v1,v2) then return false end
   end
   for k2,v2 in pairs(t2) do
     local v1 = t1[k2]
-    if v1 == nil or not deepcompare(v1,v2) then return false end
+    if v1 == nil or not M.AreTablesEqual(v1,v2) then return false end
   end
   return true
 end
@@ -70,7 +70,7 @@ function M.GetElementIndexInList(list, element, is_deep)
 
   for i, e in M.spairs(list) do
     if (not is_deep and e == element)
-       or (is_deep and deepcompare(e, element, true)) then
+       or (is_deep and M.AreTablesEqual(e, element, true)) then
       return i end
   end
   return -1
