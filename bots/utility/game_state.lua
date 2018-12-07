@@ -115,6 +115,8 @@ M.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_FRONT = 127
 M.BOT_CAN_EVADE_FAR_SHADOWRAZE_BACK = 128
 M.BOT_CAN_EVADE_FAR_SHADOWRAZE_FRONT = 129
 M.BOT_IS_FACING_EH_MELEE_RANGE = 130
+M.EH_IS_FACING_BOT = 131
+M.EH_IS_FACING_BOT_MELEE_RANGE = 132
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -544,6 +546,18 @@ function M.UpdateState()
       M.GAME_STATE[M.BOT_CAN_EVADE_FAR_SHADOWRAZE_FRONT] =
         NUM[(env.ENEMY_HERO_DISTANCE - constants.FAR_SHADOWRAZE_MIN_RANGE)
             < env.SHADOWRAZE_EVADE_DISTANCE]
+
+    M.GAME_STATE[M.EH_IS_FACING_BOT] =
+      NUM[functions.IsFacingLocation(
+            env.ENEMY_HERO_DATA,
+            env.BOT_DATA.location,
+            constants.TURN_TARGET_MAX_DEGREE)]
+
+    M.GAME_STATE[M.EH_IS_FACING_BOT_MELEE_RANGE] =
+      NUM[functions.IsFacingLocation(
+            env.ENEMY_HERO_DATA,
+            env.BOT_DATA.location,
+            constants.TURN_TARGET_MELEE_MAX_DEGREE)]
     end
   end
 
