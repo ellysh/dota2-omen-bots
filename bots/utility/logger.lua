@@ -7,7 +7,7 @@ local functions = require(
 local M = {}
 
 function M.Print(string)
-  --print(GameTime() .. ": " ..string)
+  print(GameTime() .. ": " ..string)
 end
 
 function M.PrintGameState(state)

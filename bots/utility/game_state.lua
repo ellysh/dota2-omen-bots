@@ -82,6 +82,7 @@ M.BOT_IS_TURNING = 52
 M.BOT_IS_ATTACKING = 53
 M.BOT_DOES_BACKSWING = 54
 M.BOT_IS_MOVING_BASE = 55
+M.BOT_SAFE_SPOT_WAYPOINTS_CHANGED = 56
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -388,6 +389,11 @@ function M.UpdateState()
     [M.BOT_DOES_BACKSWING] =
       NUM[algorithms.IsUnitAttack(env.BOT_DATA)
           and algorithms.IsAttackDone(env.BOT_DATA)],
+
+    [M.BOT_SAFE_SPOT_WAYPOINTS_CHANGED] =
+      NUM[not functions.deepcompare(
+                env.SAFE_SPOT_WAYPOINTS,
+                hist.LAST_SAFE_SPOT_WAYPOINTS)],
   }
 
   if hist.LAST_SOMA.move ~= nil then

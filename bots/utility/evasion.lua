@@ -34,17 +34,30 @@ function M.pre_move_safe_recovery()
 end
 
 function M.pre_wait_move_safe_recovery()
+  local weights = {
+    [gs.BOT_SAFE_SPOT_WAYPOINTS_CHANGED] = -1,
+  }
+
   return M.pre_move_safe_recovery()
+         and gs.EvaluateFrom(1, gs.GAME_STATE, weights)
 end
 
 function M.pre_cancel_move_safe_recovery()
+  local weights = {
+    [gs.BOT_SAFE_SPOT_WAYPOINTS_CHANGED] = 1,
+  }
+
   return not M.pre_move_safe_recovery()
+         or gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.move_safe_recovery()
   env.BOT:Action_ClearActions(true)
 
   env.BOT:Action_MovePath(env.SAFE_SPOT_WAYPOINTS)
+
+  hist.LAST_SAFE_SPOT_WAYPOINTS = functions.CopyTable(
+                                    env.SAFE_SPOT_WAYPOINTS)
 end
 
 ---------------------------------
