@@ -16,6 +16,9 @@ local gs = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
+local buy_items = require(
+  GetScriptDirectory() .."/utility/buy_items")
+
 local M = {}
 
 ---------------------------------
@@ -81,6 +84,8 @@ end
 
 function M.pre_cancel_move_base()
   return not M.pre_move_base()
+         or (buy_items.pre_buy_items()
+             and buy_items.pre_buy_flask())
 end
 
 function M.move_base()
