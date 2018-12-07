@@ -43,7 +43,7 @@ attack_with_better_position;attack_enemy_hero_from_hg;attack_enemy_hero_from_hg;
 ;;;;
 kite;attack_enemy_hero;attack_enemy_hero;;
 ;attack_enemy_tower;attack_enemy_tower;;
-;move_safe;move_safe;;
+;move_safe;move_safe;;cancel_move_safe
 ;;;;
 aggro_control;aggro_last_hit;aggro_last_hit;;
 ;;stop_attack;;

@@ -382,7 +382,7 @@ M.OBJECTIVES = {
       {
         move = "move_safe",
         wait_condition = "nil",
-        cancel_condition = "nil",
+        cancel_condition = "cancel_move_safe",
         actions = {
           {action = "move_safe"},
 

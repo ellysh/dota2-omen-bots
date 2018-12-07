@@ -7,9 +7,6 @@ local env = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
-local action_timing = require(
-  GetScriptDirectory() .."/utility/action_timing")
-
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
@@ -69,18 +66,20 @@ end
 
 function M.pre_move_safe()
   local weights = {
-    [gs.EH_PRESENT] = 0.5,
-    [gs.BOT_ATTACK_EH] = 0.5,
-    [gs.BOT_MOVING] = -1,
+    [gs.EH_PRESENT] = 0.4,
+    [gs.BOT_SHOOT_EH] = 0.3,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = 0.3,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_cancel_move_safe()
+  return not M.pre_move_safe()
+end
+
 function M.move_safe()
   env.BOT:Action_MoveDirectly(env.FARM_SPOT)
-
-  action_timing.SetNextActionDelay(0.4)
 end
 
 ---------------------------------

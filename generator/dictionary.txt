@@ -1,4 +1,3 @@
-
 aggro_control
 aggro_hg
 aggro_last_hit
@@ -38,6 +37,7 @@ cancel_far_shadowraze
 cancel_increase_creeps_distance
 cancel_medium_shadowraze
 cancel_move_base
+cancel_move_safe
 cancel_move_safe_recovery
 cancel_near_shadowraze
 cancel_turn
