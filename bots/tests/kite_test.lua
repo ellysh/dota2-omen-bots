@@ -299,8 +299,8 @@ end
 function test_pre_move_safe_1_succeed()
   kite.test_SetGameState({
     [gs.EH_PRESENT] = 1,
-    [gs.BOT_ATTACK_EH] = 1,
-    [gs.BOT_MOVING] = 0,
+    [gs.BOT_SHOOT_EH] = 1,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = 1,
   })
 
   luaunit.assertTrue(kite.pre_move_safe())
@@ -309,8 +309,8 @@ end
 function test_pre_move_safe_1_fails()
   kite.test_SetGameState({
     [gs.EH_PRESENT] = 0,
-    [gs.BOT_ATTACK_EH] = 1,
-    [gs.BOT_MOVING] = 0,
+    [gs.BOT_SHOOT_EH] = 1,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = 1,
   })
 
   luaunit.assertFalse(kite.pre_move_safe())
@@ -319,8 +319,8 @@ end
 function test_pre_move_safe_2_fails()
   kite.test_SetGameState({
     [gs.EH_PRESENT] = 1,
-    [gs.BOT_ATTACK_EH] = 0,
-    [gs.BOT_MOVING] = 0,
+    [gs.BOT_SHOOT_EH] = 0,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = 1,
   })
 
   luaunit.assertFalse(kite.pre_move_safe())
@@ -329,8 +329,8 @@ end
 function test_pre_move_safe_3_fails()
   kite.test_SetGameState({
     [gs.EH_PRESENT] = 1,
-    [gs.BOT_ATTACK_EH] = 1,
-    [gs.BOT_MOVING] = 1,
+    [gs.BOT_SHOOT_EH] = 1,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
   })
 
   luaunit.assertFalse(kite.pre_move_safe())
