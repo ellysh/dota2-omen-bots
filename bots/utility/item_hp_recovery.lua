@@ -133,7 +133,7 @@ function M.pre_tp_base()
     [gs.BOT_HAS_TANGO] = -1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
     [gs.EH_PRESENT] = -1,
-    [gs.EH_BOT_DISTANCE] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

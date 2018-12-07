@@ -546,7 +546,7 @@ function test_pre_tp_base_1_succeed()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertTrue(item_hp_recovery.pre_tp_base())
@@ -563,7 +563,7 @@ function test_pre_tp_base_2_succeed()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 1,
-    [gs.EH_BOT_DISTANCE] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
   })
 
   luaunit.assertTrue(item_hp_recovery.pre_tp_base())
@@ -580,7 +580,7 @@ function test_pre_tp_base_1_false()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
@@ -597,7 +597,7 @@ function test_pre_tp_base_2_false()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
@@ -614,7 +614,7 @@ function test_pre_tp_base_3_false()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
@@ -631,7 +631,7 @@ function test_pre_tp_base_4_false()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
@@ -648,7 +648,7 @@ function test_pre_tp_base_5_false()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
@@ -665,7 +665,7 @@ function test_pre_tp_base_6_false()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
@@ -682,7 +682,7 @@ function test_pre_tp_base_7_false()
     [gs.BOT_HAS_TANGO] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
@@ -699,24 +699,7 @@ function test_pre_tp_base_8_false()
     [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
     [gs.EH_PRESENT] = 0,
-    [gs.EH_BOT_DISTANCE] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_tp_base())
-end
-
-function test_pre_tp_base_9_false()
-  item_hp_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
-    [gs.BOT_HAS_FLASK] = 0,
-    [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
-    [gs.EH_PRESENT] = 1,
-    [gs.EH_BOT_DISTANCE] = 0.9,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_tp_base())
