@@ -33,6 +33,14 @@ function M.pre_evade_near_shadowraze_back()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_wait_evade_near_shadowraze_back()
+  return M.pre_evade_near_shadowraze_back()
+end
+
+function M.pre_cancel_evade_near_shadowraze_back()
+  return not M.pre_evade_near_shadowraze_back()
+end
+
 ---------------------------------
 
 function M.pre_evade_medium_shadowraze_back()
@@ -43,6 +51,14 @@ function M.pre_evade_medium_shadowraze_back()
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.pre_wait_evade_medium_shadowraze_back()
+  return M.pre_evade_medium_shadowraze_back()
+end
+
+function M.pre_cancel_evade_medium_shadowraze_back()
+  return not M.pre_evade_medium_shadowraze_back()
 end
 
 ---------------------------------
@@ -57,11 +73,16 @@ function M.pre_evade_far_shadowraze_back()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_wait_evade_far_shadowraze_back()
+  return M.pre_evade_far_shadowraze_back()
+end
+
+function M.pre_cancel_evade_far_shadowraze_back()
+  return not M.pre_evade_far_shadowraze_back()
+end
+
 function M.move_back()
   env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
-
-  action_timing.SetNextActionDelay(
-    constants.NEVERMORE_SHADOWRAZE_CAST_TIME)
 end
 
 ---------------------------------
@@ -76,6 +97,14 @@ function M.pre_evade_medium_shadowraze_front()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_wait_evade_medium_shadowraze_front()
+  return M.pre_evade_medium_shadowraze_front()
+end
+
+function M.pre_cancel_evade_medium_shadowraze_front()
+  return not M.pre_evade_medium_shadowraze_front()
+end
+
 ---------------------------------
 
 function M.pre_evade_far_shadowraze_front()
@@ -88,11 +117,16 @@ function M.pre_evade_far_shadowraze_front()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_wait_evade_far_shadowraze_front()
+  return M.pre_evade_far_shadowraze_front()
+end
+
+function M.pre_cancel_evade_far_shadowraze_front()
+  return not M.pre_evade_far_shadowraze_front()
+end
+
 function M.move_front()
   moves.move_enemy_hero()
-
-  action_timing.SetNextActionDelay(
-    constants.NEVERMORE_SHADOWRAZE_CAST_TIME)
 end
 
 -- Provide an access to local functions for unit tests only

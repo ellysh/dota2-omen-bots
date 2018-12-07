@@ -2,11 +2,11 @@ Objective;Move;Actions;"Wait Condition";"Cancel Condition"
 manage_attack_anim;cancel_attack;cancel_attack;;
 ;wait_attack;wait_attack;;
 ;;;;
-evade_enemy_nukes;evade_near_shadowraze_back;move_back;;
-;evade_medium_shadowraze_back;move_back;;
-;evade_far_shadowraze_back;move_back;;
-;evade_medium_shadowraze_front;move_front;;
-;evade_far_shadowraze_front;move_front;;
+evade_enemy_nukes;evade_near_shadowraze_back;move_back;wait_evade_near_shadowraze_back;cancel_evade_near_shadowraze_back
+;evade_medium_shadowraze_back;move_back;wait_evade_medium_shadowraze_back;cancel_evade_medium_shadowraze_back
+;evade_far_shadowraze_back;move_back;wait_evade_far_shadowraze_back;cancel_evade_far_shadowraze_back
+;evade_medium_shadowraze_front;move_front;wait_evade_medium_shadowraze_front;cancel_evade_medium_shadowraze_front
+;evade_far_shadowraze_front;move_front;wait_evade_far_shadowraze_front;cancel_evade_far_shadowraze_front
 ;;;;
 glyph;do_glyph;do_glyph;;
 ;;;;

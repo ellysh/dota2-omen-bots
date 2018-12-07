@@ -377,8 +377,8 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "evade_near_shadowraze_back",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_evade_near_shadowraze_back",
+        cancel_condition = "cancel_evade_near_shadowraze_back",
         actions = {
           {action = "move_back"},
 
@@ -386,8 +386,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_medium_shadowraze_back",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_evade_medium_shadowraze_back",
+        cancel_condition = "cancel_evade_medium_shadowraze_back",
         actions = {
           {action = "move_back"},
 
@@ -395,8 +395,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_far_shadowraze_back",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_evade_far_shadowraze_back",
+        cancel_condition = "cancel_evade_far_shadowraze_back",
         actions = {
           {action = "move_back"},
 
@@ -404,8 +404,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_medium_shadowraze_front",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_evade_medium_shadowraze_front",
+        cancel_condition = "cancel_evade_medium_shadowraze_front",
         actions = {
           {action = "move_front"},
 
@@ -413,8 +413,8 @@ M.OBJECTIVES = {
       },
       {
         move = "evade_far_shadowraze_front",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_evade_far_shadowraze_front",
+        cancel_condition = "cancel_evade_far_shadowraze_front",
         actions = {
           {action = "move_front"},
 

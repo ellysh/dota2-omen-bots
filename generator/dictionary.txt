@@ -1,3 +1,4 @@
+
 aggro_control
 aggro_hg
 aggro_last_hit
@@ -28,6 +29,11 @@ buy_tpscroll
 cancel_attack
 cancel_decrease_creeps_distance_aggro
 cancel_decrease_creeps_distance_base
+cancel_evade_far_shadowraze_back
+cancel_evade_far_shadowraze_front
+cancel_evade_medium_shadowraze_back
+cancel_evade_medium_shadowraze_front
+cancel_evade_near_shadowraze_back
 cancel_far_shadowraze
 cancel_increase_creeps_distance
 cancel_medium_shadowraze
@@ -114,6 +120,11 @@ upgrade_skills
 use_enchanted_mango
 use_magic_stick
 wait_attack
+wait_evade_far_shadowraze_back
+wait_evade_far_shadowraze_front
+wait_evade_medium_shadowraze_back
+wait_evade_medium_shadowraze_front
+wait_evade_near_shadowraze_back
 wait_move_base
 wait_move_safe_recovery
 wait_turn_near_shadowraze
