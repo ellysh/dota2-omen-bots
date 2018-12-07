@@ -1,6 +1,3 @@
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
-
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
@@ -15,12 +12,6 @@ local hist = require(
 
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
-
-local map = require(
-  GetScriptDirectory() .."/utility/map")
-
-local action_timing = require(
-  GetScriptDirectory() .."/utility/action_timing")
 
 local all_units = require(
   GetScriptDirectory() .."/utility/all_units")
@@ -74,10 +65,17 @@ function M.pre_move_enemy_creep()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_wait_move_enemy_creep()
+  return M.pre_move_enemy_creep()
+end
+
+function M.pre_cancel_move_enemy_creep()
+  return M.pre_pull_enemy_creep()
+         or not M.pre_move_enemy_creep()
+end
+
 function M.move_enemy_creep()
   env.BOT:Action_MoveDirectly(env.ENEMY_CREEP_ATTACKING_TOWER.location)
-
-  action_timing.SetNextActionDelay(0.4)
 end
 
 ---------------------------------
@@ -95,10 +93,16 @@ function M.pre_move_safe()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_wait_move_safe()
+  return M.pre_move_safe()
+end
+
+function M.pre_cancel_move_safe()
+  return not M.pre_move_safe()
+end
+
 function M.move_safe()
   env.BOT:Action_MoveDirectly(env.FOUNTAIN_SPOT)
-
-  action_timing.SetNextActionDelay(0.4)
 end
 
 ---------------------------------

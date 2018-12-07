@@ -37,6 +37,7 @@ cancel_far_shadowraze
 cancel_increase_creeps_distance
 cancel_medium_shadowraze
 cancel_move_base
+cancel_move_enemy_creep
 cancel_move_safe
 cancel_move_safe_recovery
 cancel_near_shadowraze
@@ -126,5 +127,7 @@ wait_evade_medium_shadowraze_back
 wait_evade_medium_shadowraze_front
 wait_evade_near_shadowraze_back
 wait_move_base
+wait_move_enemy_creep
+wait_move_safe
 wait_move_safe_recovery
 wait_turn_near_shadowraze

@@ -615,8 +615,8 @@ M.OBJECTIVES = {
       },
       {
         move = "move_enemy_creep",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_move_enemy_creep",
+        cancel_condition = "cancel_move_enemy_creep",
         actions = {
           {action = "move_enemy_creep"},
 
@@ -633,8 +633,8 @@ M.OBJECTIVES = {
       },
       {
         move = "move_safe",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_move_safe",
+        cancel_condition = "cancel_move_safe",
         actions = {
           {action = "move_safe"},
 
