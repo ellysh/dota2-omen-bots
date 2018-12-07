@@ -1,6 +1,3 @@
-local action_timing = require(
-  GetScriptDirectory() .."/utility/action_timing")
-
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 

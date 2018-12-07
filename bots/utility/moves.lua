@@ -4,9 +4,6 @@ local algorithms = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
-local action_timing = require(
-  GetScriptDirectory() .."/utility/action_timing")
-
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 

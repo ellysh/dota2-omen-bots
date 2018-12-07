@@ -4,9 +4,6 @@ local algorithms = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
-local action_timing = require(
-  GetScriptDirectory() .."/utility/action_timing")
-
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 

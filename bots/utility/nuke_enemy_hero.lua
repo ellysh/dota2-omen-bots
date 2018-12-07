@@ -7,9 +7,6 @@ local env = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
-local action_timing = require(
-  GetScriptDirectory() .."/utility/action_timing")
-
 local all_units = require(
   GetScriptDirectory() .."/utility/all_units")
 
