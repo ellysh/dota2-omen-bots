@@ -1,8 +1,14 @@
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
 local env = require(
   GetScriptDirectory() .."/utility/environment")
+
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
 
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
@@ -126,6 +132,25 @@ function M.deliver_items()
   env.BOT:ActionImmediate_Courier(
     courier,
     COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
+end
+
+---------------------------------
+
+function M.pre_cancel_move_safe_spot()
+  local weights = {
+    [gs.BOT_SAFE_SPOT_WAYPOINTS_CHANGED] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.move_safe_spot()
+  env.BOT:Action_ClearActions(true)
+
+  env.BOT:Action_MovePath(env.SAFE_SPOT_WAYPOINTS)
+
+  hist.LAST_SAFE_SPOT_WAYPOINTS = functions.CopyTable(
+                                    env.SAFE_SPOT_WAYPOINTS)
 end
 
 -- Provide an access to local functions for unit tests only

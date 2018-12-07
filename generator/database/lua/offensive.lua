@@ -275,25 +275,25 @@ M.OBJECTIVES = {
         wait_condition = "wait_move_safe_recovery",
         cancel_condition = "cancel_move_safe_recovery",
         actions = {
-          {action = "move_safe_recovery"},
+          {action = "move_safe_spot"},
 
         },
       },
       {
         move = "evade_enemy_hero",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_evade_enemy_hero",
+        cancel_condition = "cancel_evade_enemy_hero",
         actions = {
-          {action = "evade_enemy_hero"},
+          {action = "move_safe_spot"},
 
         },
       },
       {
         move = "evade_enemy_tower",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_evade_enemy_tower",
+        cancel_condition = "cancel_evade_enemy_tower",
         actions = {
-          {action = "evade_enemy_tower"},
+          {action = "move_safe_spot"},
 
         },
       },
@@ -347,10 +347,10 @@ M.OBJECTIVES = {
     moves = {
       {
         move = "evade_enemy_creeps",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_evade_enemy_creeps",
+        cancel_condition = "cancel_evade_enemy_creeps",
         actions = {
-          {action = "evade_enemy_creeps"},
+          {action = "move_safe_spot"},
 
         },
       },

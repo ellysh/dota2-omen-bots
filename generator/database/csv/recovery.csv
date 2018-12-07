@@ -18,9 +18,9 @@ base_recovery;deliver_items;deliver_items;;
 ;restore_mp_on_base;restore_mp_on_base;;
 ;move_base;move_base;wait_move_base;cancel_move_base
 ;;;;
-evasion;move_safe_recovery;move_safe_recovery;wait_move_safe_recovery;cancel_move_safe_recovery
-;evade_enemy_hero;evade_enemy_hero;;
-;evade_enemy_creeps;evade_enemy_creeps;;
-;evade_enemy_tower;evade_enemy_tower;;
+evasion;move_safe_recovery;move_safe_spot;wait_move_safe_recovery;cancel_move_safe_recovery
+;evade_enemy_hero;move_safe_spot;wait_evade_enemy_hero;cancel_evade_enemy_hero
+;evade_enemy_tower;move_safe_spot;wait_evade_enemy_tower;cancel_evade_enemy_tower
+;evade_enemy_creeps;move_safe_spot;wait_evade_enemy_creeps;cancel_evade_enemy_creeps
 ;;;;
 force_stop;stop;stop_attack_and_move;;

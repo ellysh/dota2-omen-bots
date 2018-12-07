@@ -28,6 +28,9 @@ buy_tpscroll
 cancel_attack
 cancel_decrease_creeps_distance_aggro
 cancel_decrease_creeps_distance_base
+cancel_evade_enemy_creeps
+cancel_evade_enemy_hero
+cancel_evade_enemy_tower
 cancel_evade_far_shadowraze_back
 cancel_evade_far_shadowraze_front
 cancel_evade_medium_shadowraze_back
@@ -89,6 +92,7 @@ move_enemy_hero
 move_front
 move_safe
 move_safe_recovery
+move_safe_spot
 move_start_position
 near_shadowraze
 nuke_enemy_hero
@@ -121,6 +125,9 @@ upgrade_skills
 use_enchanted_mango
 use_magic_stick
 wait_attack
+wait_evade_enemy_creeps
+wait_evade_enemy_hero
+wait_evade_enemy_tower
 wait_evade_far_shadowraze_back
 wait_evade_far_shadowraze_front
 wait_evade_medium_shadowraze_back

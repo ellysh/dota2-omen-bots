@@ -1,14 +1,8 @@
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
-
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
 local env = require(
   GetScriptDirectory() .."/utility/environment")
-
-local hist = require(
-  GetScriptDirectory() .."/utility/history")
 
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
@@ -44,21 +38,12 @@ function M.pre_wait_move_safe_recovery()
 end
 
 function M.pre_cancel_move_safe_recovery()
-  local weights = {
-    [gs.BOT_SAFE_SPOT_WAYPOINTS_CHANGED] = 1,
-  }
-
   return not M.pre_move_safe_recovery()
-         or gs.Evaluate(gs.GAME_STATE, weights)
+         or moves.pre_cancel_move_safe_spot()
 end
 
-function M.move_safe_recovery()
-  env.BOT:Action_ClearActions(true)
-
-  env.BOT:Action_MovePath(env.SAFE_SPOT_WAYPOINTS)
-
-  hist.LAST_SAFE_SPOT_WAYPOINTS = functions.CopyTable(
-                                    env.SAFE_SPOT_WAYPOINTS)
+function M.move_safe_spot()
+  moves.move_safe_spot()
 end
 
 ---------------------------------
@@ -75,8 +60,13 @@ function M.pre_evade_enemy_hero()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
-function M.evade_enemy_hero()
-  env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
+function M.pre_wait_evade_enemy_hero()
+  return M.pre_evade_enemy_hero()
+end
+
+function M.pre_cancel_evade_enemy_hero()
+  return not M.pre_evade_enemy_hero()
+         or moves.pre_cancel_move_safe_spot()
 end
 
 ---------------------------------
@@ -90,8 +80,13 @@ function M.pre_evade_enemy_creeps()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
-function M.evade_enemy_creeps()
-  env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
+function M.pre_wait_evade_enemy_creeps()
+  return M.pre_evade_enemy_creeps()
+end
+
+function M.pre_cancel_evade_enemy_creeps()
+  return not M.pre_evade_enemy_creeps()
+         or moves.pre_cancel_move_safe_spot()
 end
 
 ---------------------------------
@@ -111,8 +106,13 @@ function M.pre_evade_enemy_tower()
          or gs.Evaluate(gs.GAME_STATE, weights_2)
 end
 
-function M.evade_enemy_tower()
-  env.BOT:Action_MoveDirectly(env.SAFE_SPOT)
+function M.pre_wait_evade_enemy_tower()
+  return M.pre_evade_enemy_tower()
+end
+
+function M.pre_cancel_evade_enemy_tower()
+  return not M.pre_evade_enemy_tower()
+         or moves.pre_cancel_move_safe_spot()
 end
 
 -- Provide an access to local functions for unit tests only
