@@ -61,6 +61,7 @@ M.NEAR_SHADOWRAZE_ABILITY = {}
 M.MEDIUM_SHADOWRAZE_ABILITY = {}
 M.FAR_SHADOWRAZE_ABILITY = {}
 M.SHADOWRAZE_EVADE_DISTANCE = 0
+M.ENEMY_UNITS_DATA = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -321,35 +322,25 @@ function M.UpdateVariables()
                           M.BOT_DATA,
                           constants.MAX_UNIT_SEARCH_RADIUS))
 
-  M.SAFE_SPOT = algorithms.GetSafeSpot(M.BOT_DATA,
-                                       {M.ENEMY_HERO_DATA,
-                                        M.ENEMY_CREEP_FRONT_DATA,
-                                        M.ENEMY_CREEP_BACK_DATA,
-                                        M.ENEMY_TOWER_DATA})
+  M.ENEMY_UNITS_DATA = algorithms.GetEnemyUnits(M.BOT_DATA)
+
+  M.SAFE_SPOT = algorithms.GetSafeSpot(M.BOT_DATA, M.ENEMY_UNITS_DATA)
 
   M.SAFE_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
                                        M.BOT_DATA,
                                        M.SAFE_SPOT,
-                                       {M.ENEMY_HERO_DATA,
-                                        M.ENEMY_CREEP_FRONT_DATA,
-                                        M.ENEMY_CREEP_BACK_DATA,
-                                        M.ENEMY_TOWER_DATA})
+                                       M.ENEMY_UNITS_DATA)
 
   M.FARM_SPOT = algorithms.GetFarmSpot(M.BOT_DATA,
-                                       {M.ENEMY_HERO_DATA,
-                                        M.ENEMY_CREEP_FRONT_DATA,
-                                        M.ENEMY_CREEP_BACK_DATA,
-                                        M.ENEMY_TOWER_DATA})
+                                       M.ENEMY_UNITS_DATA)
 
   M.FOUNTAIN_SPOT = map.GetAllySpot("fountain")
 
   M.FOUNTAIN_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
                                        M.BOT_DATA,
                                        M.FOUNTAIN_SPOT,
-                                       {M.ENEMY_HERO_DATA,
-                                        M.ENEMY_CREEP_FRONT_DATA,
-                                        M.ENEMY_CREEP_BACK_DATA,
-                                        M.ENEMY_TOWER_DATA})
+                                       M.ENEMY_UNITS_DATA)
+
   M.FOUNTAIN_DISTANCE = functions.GetDistance(
                           M.FOUNTAIN_SPOT,
                           M.BOT_DATA.location)

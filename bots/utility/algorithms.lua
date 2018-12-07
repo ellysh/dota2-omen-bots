@@ -130,6 +130,17 @@ function M.GetAllyCreeps(unit_data, radius)
   return GetUnitsInRadius(unit_data, radius, all_units.GetAllyCreepsData)
 end
 
+function M.GetEnemyUnits(unit_data)
+  local result = { M.GetLastSeenEnemyHero(unit_data),
+                   M.GetEnemyTier1Tower(unit_data) }
+
+  local result = functions.TableConcat(
+                          result,
+                          all_units.GetEnemyHeroesData(unit_data))
+
+  return result
+end
+
 function M.GetTotalHealth(unit_list)
   if unit_list == nil or #unit_list == 0 then
     return 0 end
