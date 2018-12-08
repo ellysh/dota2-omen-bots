@@ -1,3 +1,14 @@
+* version 0.7
+  - Retreat to the safe spot via waypoints.
+  - Add the wait-cancel mechanism for managing the current move.
+  - Use spots near towers as safe spots.
+  - Improve the evading of enemy shadowrazes.
+  - Improve the kiting algorithm.
+  - Fix the bug when the bot evades shadowrazes which should miss.
+  - Fix the bug when bot evades enemy hero which is too far.
+  - Fix the bug with choosing the safe spot when enemy creeps chase.
+  - Fix the bug with losing ally front creeps.
+
 * version 0.6
   - Fix a bug with cyclic turning to the enemy hero for casting a shadowraze.
   - Rework the algorithm for canceling the backswing attack animation.
