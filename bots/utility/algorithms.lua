@@ -417,18 +417,12 @@ local function IsSpotSafe(spot, unit_data, enemy_units)
 end
 
 local SAFE_SPOTS = {
-  map.GetAllySpot("high_ground_safe"),
-  map.GetAllySpot("forest_top_1"),
-  map.GetAllySpot("forest_top_2"),
-  map.GetAllySpot("forest_top_3"),
-  map.GetAllySpot("forest_top_4"),
-  map.GetAllySpot("forest_top_5"),
-  map.GetAllySpot("forest_bot_1"),
-  map.GetAllySpot("forest_bot_2"),
-  map.GetAllySpot("forest_bot_3"),
-  map.GetAllySpot("forest_bot_4"),
-  map.GetAllySpot("forest_bot_5"),
-  map.GetAllySpot("forest_bot_6"),
+  map.GetAllySpot("tier1_front"),
+  map.GetAllySpot("tier1_back"),
+  map.GetAllySpot("tier2_front"),
+  map.GetAllySpot("tier2_back"),
+  map.GetAllySpot("tier3_front"),
+  map.GetAllySpot("tier3_back"),
   map.GetAllySpot("fountain"),
 }
 
@@ -482,7 +476,7 @@ local FARM_SPOTS = {
   map.GetAllySpot("high_ground_farm_top"),
   map.GetAllySpot("forest_farm_bot"),
   map.GetAllySpot("forest_farm_top"),
-  map.GetAllySpot("high_ground_safe"),
+  map.GetAllySpot("tier1_front"),
   map.GetAllySpot("forest_top_1"),
   map.GetAllySpot("forest_top_2"),
   map.GetAllySpot("forest_top_3"),

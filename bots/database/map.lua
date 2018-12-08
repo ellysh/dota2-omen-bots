@@ -24,7 +24,12 @@ M.MAP = {
 
     -- Safe spots
 
-    high_ground_safe = Vector(-1415, -1192, 100),
+    tier1_front = Vector(-1415, -1192, 100),
+    tier1_back = Vector(-1862, -1616, 100),
+    tier2_front = Vector(-2944, -2595, 100),
+    tier2_back = Vector(-3485, -3098, 100),
+    tier3_front = Vector(-4405, -3969, 100),
+    tier3_back = Vector(-4823, -4356, 100),
 
     forest_top_1 = Vector(-2075, -898, 100),
     forest_top_2 = Vector(-2457, -1303, 100),
@@ -70,7 +75,12 @@ M.MAP = {
     forest_farm_top = Vector(218, 928, 100),
 
     -- Safe spots
-    high_ground_safe = Vector(465, 383, 100),
+    tier1_front = Vector(465, 383, 100),
+    tier1_back = Vector(1040, 815, 100),
+    tier2_front = Vector(2263, 1830, 100),
+    tier2_back = Vector(2856, 2397, 100),
+    tier3_front = Vector(4070, 3575, 100),
+    tier3_back = Vector(4532, 4019, 100),
 
     forest_top_1 = Vector(563, 1145, 100),
     forest_top_2 = Vector(1069, 1149, 100),
