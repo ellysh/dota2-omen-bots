@@ -30,7 +30,6 @@ function M.pre_positioning()
   local weights = {
     [gs.BOT_IS_ALIVE] = 1,
     [gs.IS_FIRST_WAVE] = -0.5,
-    [gs.AC_BACK_PRESENT] = -1,
     [gs.AC_FRONT_PRESENT] = 0.5,
     [gs.BOT_IS_CASTING] = -1,
   }

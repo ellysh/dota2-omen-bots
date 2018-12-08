@@ -81,6 +81,7 @@ function M.pre_move_and_block()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
     [gs.BOT_IN_EH_ATTACK_RANGE] = -1,
     [gs.EC_IN_BOT_ATTACK_RANGE] = -1,
+    [gs.AC_FRONT_PRESENT] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

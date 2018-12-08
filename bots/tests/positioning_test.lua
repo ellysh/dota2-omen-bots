@@ -13,7 +13,6 @@ function test_pre_positioning_1_succeed()
   positioning.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
     [gs.IS_FIRST_WAVE] = 0,
-    [gs.AC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 0,
     [gs.BOT_IS_CASTING] = 0,
   })
@@ -25,7 +24,6 @@ function test_pre_positioning_2_succeed()
   positioning.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
     [gs.IS_FIRST_WAVE] = 0,
-    [gs.AC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.BOT_IS_CASTING] = 0,
   })
@@ -37,7 +35,6 @@ function test_pre_positioning_3_succeed()
   positioning.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
     [gs.IS_FIRST_WAVE] = 1,
-    [gs.AC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.BOT_IS_CASTING] = 0,
   })
@@ -49,7 +46,6 @@ function test_pre_positioning_1_fails()
   positioning.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
     [gs.IS_FIRST_WAVE] = 1,
-    [gs.AC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 0,
     [gs.BOT_IS_CASTING] = 0,
   })
@@ -61,45 +57,8 @@ function test_pre_positioning_2_fails()
   positioning.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 0,
     [gs.IS_FIRST_WAVE] = 0,
-    [gs.AC_BACK_PRESENT] = 0,
     [gs.AC_FRONT_PRESENT] = 0,
     [gs.BOT_IS_CASTING] = 0,
-  })
-
-  luaunit.assertFalse(positioning.pre_positioning())
-end
-
-function test_pre_positioning_3_fails()
-  positioning.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.IS_FIRST_WAVE] = 1,
-    [gs.AC_BACK_PRESENT] = 1,
-    [gs.AC_FRONT_PRESENT] = 1,
-    [gs.BOT_IS_CASTING] = 0,
-  })
-
-  luaunit.assertFalse(positioning.pre_positioning())
-end
-
-function test_pre_positioning_4_fails()
-  positioning.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.IS_FIRST_WAVE] = 0,
-    [gs.AC_BACK_PRESENT] = 1,
-    [gs.AC_FRONT_PRESENT] = 0,
-    [gs.BOT_IS_CASTING] = 0,
-  })
-
-  luaunit.assertFalse(positioning.pre_positioning())
-end
-
-function test_pre_positioning_5_fails()
-  positioning.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.IS_FIRST_WAVE] = 0,
-    [gs.AC_BACK_PRESENT] = 1,
-    [gs.AC_FRONT_PRESENT] = 0,
-    [gs.BOT_IS_CASTING] = 1,
   })
 
   luaunit.assertFalse(positioning.pre_positioning())

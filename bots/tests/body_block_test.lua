@@ -111,6 +111,7 @@ function test_pre_move_and_block_1_succeed()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
     [gs.EC_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
   })
 
   luaunit.assertTrue(body_block.pre_move_and_block())
@@ -123,6 +124,7 @@ function test_pre_move_and_block_1_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
     [gs.EC_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
   })
 
   luaunit.assertFalse(body_block.pre_move_and_block())
@@ -135,6 +137,7 @@ function test_pre_move_and_block_2_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
     [gs.EC_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
   })
 
   luaunit.assertFalse(body_block.pre_move_and_block())
@@ -147,6 +150,7 @@ function test_pre_move_and_block_3_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
     [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
     [gs.EC_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
   })
 
   luaunit.assertFalse(body_block.pre_move_and_block())
@@ -159,6 +163,7 @@ function test_pre_move_and_block_4_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.BOT_IN_EH_ATTACK_RANGE] = 1,
     [gs.EC_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
   })
 
   luaunit.assertFalse(body_block.pre_move_and_block())
@@ -171,6 +176,20 @@ function test_pre_move_and_block_5_fails()
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
     [gs.EC_IN_BOT_ATTACK_RANGE] = 1,
+    [gs.AC_FRONT_PRESENT] = 0,
+  })
+
+  luaunit.assertFalse(body_block.pre_move_and_block())
+end
+
+function test_pre_move_and_block_6_fails()
+  body_block.test_SetGameState({
+    [gs.BOT_IN_BODY_BLOCK_FOUNTAIN_DISTANCE] = 1,
+    [gs.AC_IN_MELEE_ATTACK_RANGE] = 1,
+    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.EC_IN_BOT_ATTACK_RANGE] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
   })
 
   luaunit.assertFalse(body_block.pre_move_and_block())
