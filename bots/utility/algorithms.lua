@@ -461,11 +461,15 @@ function M.GetSpotWaypoints(unit_data, spot, enemy_units)
   end
 
   if IsSpotSafe(WAYPOINTS_BOT[1], unit_data, enemy_units) then
-    return functions.TableConcat(WAYPOINTS_BOT, {spot})
+    local result = functions.CopyTable(WAYPOINTS_BOT)
+    table.insert(result, spot)
+    return result
   end
 
   if IsSpotSafe(WAYPOINTS_TOP[1], unit_data, enemy_units) then
-    return functions.TableConcat(WAYPOINTS_TOP, {spot})
+    local result = functions.CopyTable(WAYPOINTS_TOP)
+    table.insert(result, spot)
+    return result
   end
 
   return {spot}
