@@ -409,7 +409,7 @@ function M.UpdateState()
       NUM[functions.IsFacingLocation(
             env.BOT_DATA,
             env.TURN_TARGET_DATA.location,
-            constants.TURN_TARGET_MAX_DEGREE)]
+            constants.TURN_TARGET_MELEE_MAX_DEGREE)]
   end
 
   -- ENEMY_HERO state
