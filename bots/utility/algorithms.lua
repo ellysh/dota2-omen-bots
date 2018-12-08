@@ -136,7 +136,7 @@ function M.GetEnemyUnits(unit_data)
 
   local result = functions.TableConcat(
                           result,
-                          all_units.GetEnemyHeroesData(unit_data))
+                          all_units.GetEnemyCreepsData(unit_data))
 
   return result
 end
