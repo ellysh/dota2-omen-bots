@@ -194,13 +194,15 @@ function M.TableConcat(t1, t2)
 end
 
 function M.IsTableEmpty(table)
-  return table == nil or #table == 0
+  return table == nil or M.GetTableSize(table) == 0
 end
 
 function M.ClearTable(table)
-  for i = 1, #table do
-    table.remove(table, i)
-  end
+  M.DoWithKeysAndElements(
+    table,
+    function(key, element)
+      table[key] = nil
+    end)
 end
 
 -- This function is taken from here:
