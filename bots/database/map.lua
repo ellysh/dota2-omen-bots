@@ -11,7 +11,7 @@ M.MAP = {
     tp_tower_tier_1 = Vector(-1181, -1741, 100),
     first_body_block = Vector(-3709, -3307, 100),
     second_body_block = Vector(-1478, -1274, 100),
-    tower_tier_1_rear_deep = Vector(-4115, -3637, 2534),
+    tower_tier_1_rear_deep = Vector(-4115, -3637, 1734),
     between_tier_1_tear_2 = Vector(-2562, -2062, 1030),
     river = Vector(-598, -472, 260),
 
@@ -63,7 +63,7 @@ M.MAP = {
     tp_tower_tier_1 = Vector(530, 1138, 100),
     first_body_block = Vector(3357, 2878, 100),
     second_body_block = Vector(573, 463, 100),
-    tower_tier_1_rear_deep = Vector(3654, 3017, 3000),
+    tower_tier_1_rear_deep = Vector(3654, 3017, 1971),
     between_tier_1_tear_2 = Vector(1606, 1236, 1040),
     river = Vector(-437, -313, 250),
 
