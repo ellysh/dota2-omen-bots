@@ -338,21 +338,34 @@ function M.UpdateVariables()
 
   M.ENEMY_UNITS_DATA = algorithms.GetEnemyUnits(M.BOT_DATA)
 
-  M.SAFE_SPOT = algorithms.GetSafeSpot(M.BOT_DATA, M.ENEMY_UNITS_DATA)
-
-  M.SAFE_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
-                                       M.BOT_DATA,
-                                       M.SAFE_SPOT,
-                                       M.ENEMY_UNITS_DATA)
-
-  M.FARM_SPOT = algorithms.GetFarmSpot(M.BOT_DATA,
-                                       M.ENEMY_UNITS_DATA)
-
   M.FOUNTAIN_SPOT = map.GetAllySpot("fountain")
 
   M.FOUNTAIN_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
                                        M.BOT_DATA,
                                        M.FOUNTAIN_SPOT,
+                                       M.ENEMY_UNITS_DATA)
+
+  M.SAFE_SPOT = algorithms.GetSafeSpot(M.BOT_DATA, M.ENEMY_UNITS_DATA)
+
+  if functions.AreTablesEqual(M.SAFE_SPOT, M.FOUNTAIN_SPOT) then
+    local enemy_units = {M.ENEMY_HERO_DATA, M.ENEMY_TOWER_DATA}
+
+    M.SAFE_SPOT = algorithms.GetSafeSpot(
+                    M.BOT_DATA,
+                    enemy_units)
+
+    M.SAFE_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
+                              M.BOT_DATA,
+                              M.SAFE_SPOT,
+                              enemy_units)
+  else
+    M.SAFE_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
+                              M.BOT_DATA,
+                              M.SAFE_SPOT,
+                              M.ENEMY_UNITS_DATA)
+  end
+
+  M.FARM_SPOT = algorithms.GetFarmSpot(M.BOT_DATA,
                                        M.ENEMY_UNITS_DATA)
 
   M.FOUNTAIN_DISTANCE = functions.GetDistance(
