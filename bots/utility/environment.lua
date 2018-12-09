@@ -232,7 +232,11 @@ local function InvalidateEnemyHeroData()
      or IsUnitTpOut(M.ENEMY_HERO_DATA) then
 
     all_units.InvalidateUnit(M.ENEMY_HERO_DATA)
+    M.ENEMY_HERO_DATA = nil
+    return true
   end
+
+  return false
 end
 
 ---------------------------------
@@ -244,11 +248,21 @@ function M.UpdateVariables()
 
   M.ENEMY_HERO_DATA = algorithms.GetLastSeenEnemyHero(M.BOT_DATA)
 
-  M.IS_BOT_LOW_HP = IsUnitRelativeLowHp(M.BOT_DATA, M.ENEMY_HERO_DATA)
+  if M.ENEMY_HERO_DATA ~= nil
+     and not InvalidateEnemyHeroData() then
+    M.IS_ENEMY_HERO_LOW_HP = IsUnitRelativeLowHp(
+                               M.ENEMY_HERO_DATA,
+                               M.BOT_DATA)
 
-  M.IS_ENEMY_HERO_LOW_HP = IsUnitRelativeLowHp(
-                             M.ENEMY_HERO_DATA,
-                             M.BOT_DATA)
+    M.DOES_TOWER_PROTECT_ENEMY =
+      algorithms.DoesTowerProtectUnit(M.ENEMY_HERO_DATA)
+
+    M.ENEMY_HERO_DISTANCE = functions.GetUnitDistance(
+                              M.BOT_DATA,
+                              M.ENEMY_HERO_DATA)
+  end
+
+  M.IS_BOT_LOW_HP = IsUnitRelativeLowHp(M.BOT_DATA, M.ENEMY_HERO_DATA)
 
   M.ENEMY_CREEP_FRONT_DATA = GetClosestCreep(
                                constants.MAX_UNIT_SEARCH_RADIUS,
@@ -344,17 +358,6 @@ function M.UpdateVariables()
   M.FOUNTAIN_DISTANCE = functions.GetDistance(
                           M.FOUNTAIN_SPOT,
                           M.BOT_DATA.location)
-
-  if M.ENEMY_HERO_DATA ~= nil then
-    M.DOES_TOWER_PROTECT_ENEMY =
-      algorithms.DoesTowerProtectUnit(M.ENEMY_HERO_DATA)
-
-    M.ENEMY_HERO_DISTANCE = functions.GetUnitDistance(
-                              M.BOT_DATA,
-                              M.ENEMY_HERO_DATA)
-
-    InvalidateEnemyHeroData()
-  end
 
   M.DOES_BOT_HAVE_ADVANTAGE = DoesUnitHaveAdvantage(
                                 M.BOT_DATA,
