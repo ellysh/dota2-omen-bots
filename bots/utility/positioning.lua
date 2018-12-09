@@ -68,6 +68,7 @@ function M.pre_increase_creeps_distance()
     [gs.AC_FRONT_PRESENT] = 0.6,
     [gs.EH_HAS_BETTER_POSITION] = 0.4,
     [gs.EC_IN_MIN_BASE_DISTANCE] = 0.4,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = -0.4,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

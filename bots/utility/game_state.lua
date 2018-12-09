@@ -472,8 +472,8 @@ function M.UpdateState()
 
     M.GAME_STATE[M.EH_HAS_BETTER_POSITION] =
       NUM[algorithms.IsUnitPositionBetter(
-        env.ENEMY_HERO_DATA,
-        env.BOT_DATA)]
+            env.ENEMY_HERO_DATA,
+            env.BOT_DATA)]
 
     M.GAME_STATE[M.BOT_ATTACK_EH] =
       NUM[env.BOT_DATA.attack_target == env.ENEMY_HERO_DATA]
