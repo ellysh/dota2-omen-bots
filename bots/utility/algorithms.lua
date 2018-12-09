@@ -163,10 +163,9 @@ function M.GetLastSeenEnemyHero(unit_data)
            heroes,
            M.CompareMaxTimestamp,
            function(unit_data)
-             return unit_data ~= nil
-                    and not map.IsUnitInSpot(
-                              unit_data,
-                              map.GetUnitAllySpot(unit_data, "fountain"))
+             return not map.IsUnitInSpot(
+                          unit_data,
+                          map.GetUnitAllySpot(unit_data, "fountain"))
            end)
 end
 
