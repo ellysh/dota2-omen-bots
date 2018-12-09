@@ -343,7 +343,8 @@ function M.UpdateVariables()
   M.FOUNTAIN_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
                                        M.BOT_DATA,
                                        M.FOUNTAIN_SPOT,
-                                       M.ENEMY_UNITS_DATA)
+                                       {M.ENEMY_HERO_DATA,
+                                        M.ENEMY_TOWER_DATA})
 
   M.SAFE_SPOT = algorithms.GetSafeSpot(M.BOT_DATA, M.ENEMY_UNITS_DATA)
 
