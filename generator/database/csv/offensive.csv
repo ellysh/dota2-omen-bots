@@ -11,6 +11,7 @@ evade_enemy_nukes;evade_near_shadowraze_back;move_back;wait_evade_near_shadowraz
 swap_items;put_item_in_inventory;put_item_in_inventory;;
 ;swap_flask_wraith_band;swap_flask_wraith_band;;
 ;swap_mango_wraith_band;swap_mango_wraith_band;;
+;swap_wraith_band_faerie_fire;swap_wraith_band_faerie_fire;;
 ;;;;
 item_hp_recovery;heal_tango;heal_tango;;
 ;heal_magic_stick;heal_magic_stick;;

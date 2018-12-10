@@ -127,6 +127,15 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "swap_wraith_band_faerie_fire",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "swap_wraith_band_faerie_fire"},
+
+        },
+      },
     },
   },
 

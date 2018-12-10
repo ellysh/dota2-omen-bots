@@ -360,7 +360,7 @@ function M.IsFocusedByTower(unit_data)
   return 0 < unit_data.incoming_damage_from_towers
 end
 
-local function IsEnemyNearSpot(unit_data, enemy_units, spot)
+local function IsEnemyBlockSpot(unit_data, enemy_units, spot)
   local enemy_unit = functions.GetElementWith(
                        enemy_units,
                        nil,
@@ -405,7 +405,7 @@ function M.IsFrontUnit(bot_data, unit_data)
 end
 
 local function IsSpotSafe(spot, unit_data, enemy_units)
-  return not IsEnemyNearSpot(unit_data, enemy_units, spot)
+  return not IsEnemyBlockSpot(unit_data, enemy_units, spot)
 
          and not (map.IsUnitInSpot(unit_data, spot)
                   and (M.IsFocusedByEnemyHero(unit_data)
@@ -446,18 +446,39 @@ local WAYPOINTS_BOT = {
   map.GetAllySpot("forest_enemy_bot_2"),
 }
 
+local function GetUpdatedWaypoints(unit_data, waypoints)
+  local result = {}
+  for _, element in functions.spairs(waypoints) do
+
+    if result[#result] ~= nil
+       and functions.IsUnitBetweenLocations(
+             unit_data,
+             result[#result],
+             element) then
+
+      table.remove(result)
+    end
+
+    table.insert(result, element)
+  end
+
+  return result
+end
+
 function M.GetSpotWaypoints(unit_data, spot, enemy_units)
   if IsSpotSafe(spot, unit_data, enemy_units) then
     return {spot}
   end
 
-  if IsSpotSafe(WAYPOINTS_BOT[1], unit_data, enemy_units) then
+  local waypoints_bot = GetUpdatedWaypoints(WAYPOINTS_BOT)
+  if IsSpotSafe(waypoints_bot[1], unit_data, enemy_units) then
     local result = functions.CopyTable(WAYPOINTS_BOT)
     table.insert(result, spot)
     return result
   end
 
-  if IsSpotSafe(WAYPOINTS_TOP[1], unit_data, enemy_units) then
+  local waypoints_top = GetUpdatedWaypoints(WAYPOINTS_TOP)
+  if IsSpotSafe(waypoints_top[1], unit_data, enemy_units) then
     local result = functions.CopyTable(WAYPOINTS_TOP)
     table.insert(result, spot)
     return result
