@@ -470,16 +470,16 @@ function M.GetSpotWaypoints(unit_data, spot, enemy_units)
     return {spot}
   end
 
-  local waypoints_bot = GetUpdatedWaypoints(WAYPOINTS_BOT)
+  local waypoints_bot = GetUpdatedWaypoints(unit_data, WAYPOINTS_BOT)
   if IsSpotSafe(waypoints_bot[1], unit_data, enemy_units) then
-    local result = functions.CopyTable(WAYPOINTS_BOT)
+    local result = functions.CopyTable(waypoints_bot)
     table.insert(result, spot)
     return result
   end
 
-  local waypoints_top = GetUpdatedWaypoints(WAYPOINTS_TOP)
+  local waypoints_top = GetUpdatedWaypoints(unit_data, WAYPOINTS_TOP)
   if IsSpotSafe(waypoints_top[1], unit_data, enemy_units) then
-    local result = functions.CopyTable(WAYPOINTS_TOP)
+    local result = functions.CopyTable(waypoints_top)
     table.insert(result, spot)
     return result
   end
