@@ -237,4 +237,46 @@ function test_pre_restore_mp_on_base_4_fails()
   luaunit.assertFalse(base_recovery.pre_restore_mp_on_base())
 end
 
+---------------------------------
+
+function test_pre_move_base_1_succeed()
+  base_recovery.test_SetGameState({
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+  })
+
+  luaunit.assertTrue(base_recovery.pre_move_base())
+end
+
+function test_pre_move_base_2_succeed()
+  base_recovery.test_SetGameState({
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+  })
+
+  luaunit.assertTrue(base_recovery.pre_move_base())
+end
+
+function test_pre_move_base_1_fails()
+  base_recovery.test_SetGameState({
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
+    [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+  })
+
+  luaunit.assertFalse(base_recovery.pre_move_base())
+end
+
+function test_pre_move_base_2_fails()
+  base_recovery.test_SetGameState({
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+  })
+
+  luaunit.assertFalse(base_recovery.pre_move_base())
+end
+
 os.exit(luaunit.LuaUnit.run())
