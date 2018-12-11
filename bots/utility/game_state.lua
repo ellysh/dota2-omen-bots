@@ -83,6 +83,7 @@ M.BOT_IS_ATTACKING = 53
 M.BOT_DOES_BACKSWING = 54
 M.BOT_IS_MOVING_BASE = 55
 M.BOT_NEXT_WAYPOINT_BLOCKED = 56
+M.BOT_LAST_WAYPOINT_REACHED = 57
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -398,6 +399,11 @@ function M.UpdateState()
                 algorithms.GetNextWaypoint(
                   env.BOT_DATA,
                   env.SAFE_SPOT_WAYPOINTS))],
+
+    [M.BOT_LAST_WAYPOINT_REACHED] =
+      NUM[map.IsUnitInSpot(
+            env.BOT_DATA,
+            env.SAFE_SPOT_WAYPOINTS[#env.SAFE_SPOT_WAYPOINTS])],
   }
 
   if hist.LAST_SOMA.move ~= nil then

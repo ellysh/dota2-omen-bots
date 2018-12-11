@@ -17,5 +17,8 @@ xdotool key 'Return'
 xdotool type 'clear'
 xdotool key 'Return'
 
+xdotool type 'dota_creeps_no_spawning 0'
+xdotool key 'Return'
+
 xdotool type 'host_timescale 0'
 xdotool key 'Return'

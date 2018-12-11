@@ -139,6 +139,7 @@ end
 function M.pre_cancel_move_safe_spot()
   local weights = {
     [gs.BOT_NEXT_WAYPOINT_BLOCKED] = 1,
+    [gs.BOT_LAST_WAYPOINT_REACHED] = 1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
