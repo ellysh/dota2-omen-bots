@@ -10,7 +10,7 @@ M.LAST_SOMA = {
   is_action_started = false,
 }
 
-M.LAST_SAFE_SPOT_WAYPOINTS = {}
+M.LAST_SAFE_SPOT = {}
 
 -- Provide an access to local functions for unit tests only
 

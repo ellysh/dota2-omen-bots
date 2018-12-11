@@ -140,6 +140,7 @@ function M.pre_cancel_move_safe_spot()
   local weights = {
     [gs.BOT_NEXT_WAYPOINT_BLOCKED] = 1,
     [gs.BOT_LAST_WAYPOINT_REACHED] = 1,
+    [gs.SAFE_SPOT_HAS_CHANGED] = 1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -150,8 +151,7 @@ function M.move_safe_spot()
 
   env.BOT:Action_MovePath(env.SAFE_SPOT_WAYPOINTS)
 
-  hist.LAST_SAFE_SPOT_WAYPOINTS = functions.CopyTable(
-                                    env.SAFE_SPOT_WAYPOINTS)
+  hist.LAST_SAFE_SPOT = env.SAFE_SPOT
 end
 
 -- Provide an access to local functions for unit tests only
