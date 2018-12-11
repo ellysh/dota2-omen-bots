@@ -12,7 +12,7 @@ local luaunit = require("luaunit")
 function test_pre_item_mp_recovery_1_succeed()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -22,7 +22,7 @@ end
 function test_pre_item_mp_recovery_1_fails()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 0,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -32,7 +32,7 @@ end
 function test_pre_item_mp_recovery_2_fails()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -42,7 +42,7 @@ end
 function test_pre_item_mp_recovery_3_fails()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 0,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -52,7 +52,7 @@ end
 function test_pre_item_mp_recovery_4_fails()
   item_mp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_IS_CASTING] = 1,
   })
 

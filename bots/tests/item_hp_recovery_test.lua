@@ -13,7 +13,7 @@ function test_pre_item_hp_recovery_1_succeed()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -24,7 +24,7 @@ function test_pre_item_hp_recovery_1_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 0,
     [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -35,7 +35,7 @@ function test_pre_item_hp_recovery_2_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -46,7 +46,7 @@ function test_pre_item_hp_recovery_3_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 0,
     [gs.BOT_IS_HEALING] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -57,7 +57,7 @@ function test_pre_item_hp_recovery_4_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_HEALING] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -67,8 +67,8 @@ end
 function test_pre_item_hp_recovery_5_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 0,
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_IS_HEALING] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -77,31 +77,9 @@ end
 
 function test_pre_item_hp_recovery_6_fails()
   item_hp_recovery.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 0,
-    [gs.BOT_IS_HEALING] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
-    [gs.BOT_IS_CASTING] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
-end
-
-function test_pre_item_hp_recovery_7_fails()
-  item_hp_recovery.test_SetGameState({
-    [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_IS_HEALING] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0.5,
-    [gs.BOT_IS_CASTING] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_item_hp_recovery())
-end
-
-function test_pre_item_hp_recovery_8_fails()
-  item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_ALIVE] = 1,
     [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_IS_CASTING] = 1,
   })
 
@@ -540,7 +518,7 @@ function test_pre_tp_base_1_succeed()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,
@@ -557,7 +535,7 @@ function test_pre_tp_base_2_succeed()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,
@@ -574,7 +552,7 @@ function test_pre_tp_base_1_false()
     [gs.BOT_IS_LOW_HP] = 0,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,
@@ -591,7 +569,7 @@ function test_pre_tp_base_2_false()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 0,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,
@@ -608,7 +586,7 @@ function test_pre_tp_base_3_false()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 0,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,
@@ -625,7 +603,7 @@ function test_pre_tp_base_4_false()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,
@@ -642,7 +620,7 @@ function test_pre_tp_base_5_false()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 1,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,
@@ -659,7 +637,7 @@ function test_pre_tp_base_6_false()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 1,
     [gs.BOT_HAS_TANGO] = 0,
@@ -676,7 +654,7 @@ function test_pre_tp_base_7_false()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 1,
@@ -693,7 +671,7 @@ function test_pre_tp_base_8_false()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
     [gs.BOT_GOLD] = 1,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,

@@ -19,9 +19,9 @@ local M = {}
 
 function M.pre_item_hp_recovery()
   local weights = {
-    [gs.BOT_IS_ALIVE] = 0.6,
-    [gs.BOT_IS_HEALING] = -0.4,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0.4,
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_HEALING] = -1,
+    [gs.BOT_NEAR_FOUNTAIN] = -1,
     [gs.BOT_IS_CASTING] = -1,
   }
 
@@ -126,8 +126,8 @@ function M.pre_tp_base()
   local weights = {
     [gs.BOT_IS_LOW_HP] = 0.3,
     [gs.BOT_CASTABLE_TP_SCROLL] = 0.3,
-    [gs.BOT_GOLD] = 0.2,
-    [gs.BOT_FOUNTAIN_DISTANCE] = 0.2,
+    [gs.BOT_GOLD] = 0.4,
+    [gs.BOT_NEAR_FOUNTAIN] = -1,
     [gs.BOT_HAS_FLASK] = -1,
     [gs.BOT_HAS_FAERIE_FIRE] = -1,
     [gs.BOT_HAS_TANGO] = -1,
