@@ -262,10 +262,8 @@ function M.UpdateState()
                              0,
                              constants.MIN_BOT_RESPAWN_TIME),
 
-    [M.BOT_FOUNTAIN_DISTANCE] = NormalizeValue(
-                                  env.FOUNTAIN_DISTANCE,
-                                  0,
-                                  constants.BASE_RADIUS),
+    [M.BOT_FOUNTAIN_DISTANCE] =
+      NUM[env.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS],
 
     [M.BOT_CASTABLE_FLASK] =
       NUM[algorithms.IsItemCastable(env.BOT_DATA, "item_flask", false)],

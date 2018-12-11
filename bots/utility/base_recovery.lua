@@ -73,6 +73,7 @@ function M.pre_move_base()
   local weights = {
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1,
     [gs.BOT_CASTABLE_FLASK] = -1,
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
   }
 
   return gs.EvaluateFrom(1, gs.GAME_STATE, weights)
@@ -83,9 +84,14 @@ function M.pre_wait_move_base()
 end
 
 function M.pre_cancel_move_base()
+  local weights = {
+    [gs.BOT_FOUNTAIN_DISTANCE] = 1,
+  }
+
   return not M.pre_move_base()
          or (buy_items.pre_buy_items()
-             and buy_items.pre_buy_flask())
+             and buy_items.pre_buy_flask()
+             and not gs.Evaluate(gs.GAME_STATE, weights))
 end
 
 function M.move_base()
