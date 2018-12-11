@@ -360,7 +360,7 @@ function M.IsFocusedByTower(unit_data)
   return 0 < unit_data.incoming_damage_from_towers
 end
 
-local function IsEnemyBlockSpot(unit_data, enemy_units, spot)
+function M.IsEnemyBlockSpot(unit_data, enemy_units, spot)
   local enemy_unit = functions.GetElementWith(
                        enemy_units,
                        nil,
@@ -405,7 +405,7 @@ function M.IsFrontUnit(bot_data, unit_data)
 end
 
 local function IsSpotSafe(spot, unit_data, enemy_units)
-  return not IsEnemyBlockSpot(unit_data, enemy_units, spot)
+  return not M.IsEnemyBlockSpot(unit_data, enemy_units, spot)
 
          and not (map.IsUnitInSpot(unit_data, spot)
                   and (M.IsFocusedByEnemyHero(unit_data)
@@ -444,47 +444,43 @@ local WAYPOINTS_TOP = {
 local WAYPOINTS_BOT = {
   map.GetAllySpot("forest_enemy_bot_1"),
   map.GetAllySpot("forest_enemy_bot_2"),
+  map.GetAllySpot("forest_enemy_bot_3"),
 }
-
-local function GetUpdatedWaypoints(unit_data, waypoints)
-  local result = {}
-  for _, element in functions.spairs(waypoints) do
-
-    if result[#result] ~= nil
-       and functions.IsUnitBetweenLocations(
-             unit_data,
-             result[#result],
-             element) then
-
-      table.remove(result)
-    end
-
-    table.insert(result, element)
-  end
-
-  return result
-end
 
 function M.GetSpotWaypoints(unit_data, spot, enemy_units)
   if IsSpotSafe(spot, unit_data, enemy_units) then
     return {spot}
   end
 
-  local waypoints_bot = GetUpdatedWaypoints(unit_data, WAYPOINTS_BOT)
-  if IsSpotSafe(waypoints_bot[1], unit_data, enemy_units) then
-    local result = functions.CopyTable(waypoints_bot)
+  if IsSpotSafe(WAYPOINTS_BOT[1], unit_data, enemy_units) then
+    local result = functions.CopyTable(WAYPOINTS_BOT)
     table.insert(result, spot)
     return result
   end
 
-  local waypoints_top = GetUpdatedWaypoints(unit_data, WAYPOINTS_TOP)
-  if IsSpotSafe(waypoints_top[1], unit_data, enemy_units) then
-    local result = functions.CopyTable(waypoints_top)
+  if IsSpotSafe(WAYPOINTS_TOP[1], unit_data, enemy_units) then
+    local result = functions.CopyTable(WAYPOINTS_TOP)
     table.insert(result, spot)
     return result
   end
 
   return {spot}
+end
+
+function M.GetNextWaypoint(unit_data, waypoints)
+  if #waypoints < 2 then
+    return waypoints[#waypoints] end
+
+  for i = 2, #waypoints do
+    if functions.IsUnitBetweenLocations(
+         unit_data,
+         waypoints[i],
+         waypoints[i - 1]) then
+      return waypoints[i]
+    end
+  end
+
+  return waypoints[1]
 end
 
 local FARM_SPOTS = {

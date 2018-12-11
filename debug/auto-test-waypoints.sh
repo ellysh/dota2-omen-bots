@@ -21,3 +21,6 @@ xdotool key 'Return'
 
 xdotool type 'dota_bot_give_item item_hood_of_defiance'
 xdotool key 'Return'
+
+xdotool type 'dota_creeps_no_spawning 1'
+xdotool key 'Return'

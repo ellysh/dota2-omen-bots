@@ -82,7 +82,7 @@ M.BOT_IS_TURNING = 52
 M.BOT_IS_ATTACKING = 53
 M.BOT_DOES_BACKSWING = 54
 M.BOT_IS_MOVING_BASE = 55
-M.BOT_SAFE_SPOT_WAYPOINTS_CHANGED = 56
+M.BOT_NEXT_WAYPOINT_BLOCKED = 56
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -390,10 +390,14 @@ function M.UpdateState()
       NUM[algorithms.IsUnitAttack(env.BOT_DATA)
           and algorithms.IsAttackDone(env.BOT_DATA)],
 
-    [M.BOT_SAFE_SPOT_WAYPOINTS_CHANGED] =
-      NUM[not functions.AreTablesEqual(
-                env.SAFE_SPOT_WAYPOINTS,
-                hist.LAST_SAFE_SPOT_WAYPOINTS)],
+    [M.BOT_NEXT_WAYPOINT_BLOCKED] =
+      NUM[env.ENEMY_HERO_DATA ~= nil
+          and algorithms.IsEnemyBlockSpot(
+                env.BOT_DATA,
+                {env.ENEMY_HERO_DATA},
+                algorithms.GetNextWaypoint(
+                  env.BOT_DATA,
+                  env.SAFE_SPOT_WAYPOINTS))],
   }
 
   if hist.LAST_SOMA.move ~= nil then
