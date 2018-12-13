@@ -28,6 +28,7 @@ function M.pre_move_safe_recovery()
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1,
     [gs.BOT_HP_MAX_DELTA] = 0.95,
     [gs.BOT_IN_SAFE_SPOT] = -1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
