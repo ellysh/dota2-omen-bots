@@ -124,9 +124,9 @@ end
 
 function M.pre_tp_base()
   local weights = {
-    [gs.BOT_IS_LOW_HP] = 0.3,
-    [gs.BOT_CASTABLE_TP_SCROLL] = 0.3,
-    [gs.BOT_GOLD] = 0.4,
+    [gs.BOT_IS_LOW_HP] = 0.5,
+    [gs.BOT_CASTABLE_TP_SCROLL] = 0.5,
+    [gs.BOT_HAS_RESERVED_GOLD] = -1,
     [gs.BOT_NEAR_FOUNTAIN] = -1,
     [gs.BOT_HAS_FLASK] = -1,
     [gs.BOT_HAS_FAERIE_FIRE] = -1,

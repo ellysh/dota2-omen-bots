@@ -48,7 +48,7 @@ M.BOT_CASTABLE_FLASK = 18
 M.BOT_CASTABLE_FAERIE_FIRE = 19
 M.BOT_CASTABLE_TANGO = 20
 M.BOT_CASTABLE_TP_SCROLL = 21
-M.BOT_GOLD = 22
+M.BOT_HAS_RESERVED_GOLD = 22
 M.BOT_HAS_FLASK = 23
 M.BOT_HAS_FAERIE_FIRE = 24
 M.BOT_HAS_TANGO = 25
@@ -284,7 +284,8 @@ function M.UpdateState()
             "item_tpscroll",
             false)],
 
-    [M.BOT_GOLD] = NUM[env.BOT_DATA.gold < constants.RESERVED_GOLD],
+    [M.BOT_HAS_RESERVED_GOLD] =
+      NUM[constants.RESERVED_GOLD <= env.BOT_DATA.gold],
 
     [M.BOT_HAS_FLASK] = NUM[
              algorithms.DoesBotOrCourierHaveItem("item_flask")],

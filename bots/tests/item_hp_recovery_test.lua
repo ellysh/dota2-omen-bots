@@ -517,7 +517,7 @@ function test_pre_tp_base_1_succeed()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
@@ -534,7 +534,7 @@ function test_pre_tp_base_2_succeed()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
@@ -551,7 +551,7 @@ function test_pre_tp_base_1_false()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 0,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
@@ -568,7 +568,7 @@ function test_pre_tp_base_2_false()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 0,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
@@ -585,8 +585,8 @@ function test_pre_tp_base_3_false()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 0,
-    [gs.BOT_NEAR_FOUNTAIN] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 1,
+    [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
     [gs.BOT_HAS_TANGO] = 0,
@@ -602,7 +602,7 @@ function test_pre_tp_base_4_false()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
@@ -619,7 +619,7 @@ function test_pre_tp_base_5_false()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 1,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
@@ -636,7 +636,7 @@ function test_pre_tp_base_6_false()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 1,
@@ -653,7 +653,7 @@ function test_pre_tp_base_7_false()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
@@ -670,7 +670,7 @@ function test_pre_tp_base_8_false()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_GOLD] = 1,
+    [gs.BOT_HAS_RESERVED_GOLD] = 0,
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
