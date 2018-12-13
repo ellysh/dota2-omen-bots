@@ -97,30 +97,14 @@ function test_pre_heal_flask_1_succeed()
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
   luaunit.assertTrue(item_hp_recovery.pre_heal_flask())
 end
 
-function test_pre_heal_flask_2_succeed()
-  item_hp_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_HP_RATE] = 0.4,
-    [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = nil,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
-  })
-
-  luaunit.assertTrue(item_hp_recovery.pre_heal_flask())
-end
-
-function test_pre_heal_flask_3_succeed()
+function test_pre_heal_flask_1_succeed()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IS_FLASK_HEALING] = 0,
@@ -129,7 +113,7 @@ function test_pre_heal_flask_3_succeed()
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.1,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
@@ -145,7 +129,7 @@ function test_pre_heal_flask_1_fails()
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
@@ -161,7 +145,7 @@ function test_pre_heal_flask_2_fails()
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
@@ -177,7 +161,7 @@ function test_pre_heal_flask_3_fails()
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
@@ -193,7 +177,7 @@ function test_pre_heal_flask_4_fails()
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
@@ -209,7 +193,7 @@ function test_pre_heal_flask_5_fails()
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 0,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
@@ -225,7 +209,7 @@ function test_pre_heal_flask_6_fails()
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.6,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
@@ -239,9 +223,9 @@ function test_pre_heal_flask_7_fails()
     [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
     [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
     [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_HP_RATE] = 0.4,
+    [gs.BOT_HP_RATE] = 0.1,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
   })
 
