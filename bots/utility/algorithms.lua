@@ -52,6 +52,16 @@ function M.IsItemInInventory(unit_data, item_name)
          or unit:GetItemSlotType(slot) == ITEM_SLOT_TYPE_INVALID
 end
 
+function M.GetFullBackpackSlot(unit_data)
+  for i = constants.BACKPACK_START_INDEX, constants.INVENTORY_END_INDEX, 1 do
+    local item = unit_data.handle:GetItemInSlot(i)
+    if item ~= nil then
+      return i
+    end
+  end
+  return nil
+end
+
 function M.IsAttackTargetable(unit_data)
   return not unit_data.is_invulnerable
          and not unit_data.is_illusion

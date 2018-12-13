@@ -55,19 +55,19 @@ end
 
 ---------------------------------
 
-function M.pre_swap_wraith_band_faerie_fire()
+function M.pre_swap_faerie_fire_to_backpack()
   local ff_slot = env.BOT:FindItemSlot("item_faerie_fire")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
+  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
 
-  return env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_BACKPACK
+  return backpack_slot ~= nil
          and env.BOT:GetItemSlotType(ff_slot) == ITEM_SLOT_TYPE_MAIN
 end
 
-function M.swap_wraith_band_faerie_fire()
+function M.swap_faerie_fire_to_backpack()
   local ff_slot = env.BOT:FindItemSlot("item_faerie_fire")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
+  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
 
-  env.BOT:ActionImmediate_SwapItems(ff_slot, wb_slot)
+  env.BOT:ActionImmediate_SwapItems(ff_slot, backpack_slot)
 
   action_timing.SetNextActionDelay(0.05)
 end

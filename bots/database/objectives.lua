@@ -183,11 +183,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_wraith_band_faerie_fire",
+        move = "swap_faerie_fire_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_wraith_band_faerie_fire"},
+          {action = "swap_faerie_fire_to_backpack"},
 
         },
       },
@@ -480,11 +480,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_wraith_band_faerie_fire",
+        move = "swap_faerie_fire_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_wraith_band_faerie_fire"},
+          {action = "swap_faerie_fire_to_backpack"},
 
         },
       },
@@ -1101,11 +1101,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_wraith_band_faerie_fire",
+        move = "swap_faerie_fire_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_wraith_band_faerie_fire"},
+          {action = "swap_faerie_fire_to_backpack"},
 
         },
       },
@@ -1711,11 +1711,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_wraith_band_faerie_fire",
+        move = "swap_faerie_fire_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_wraith_band_faerie_fire"},
+          {action = "swap_faerie_fire_to_backpack"},
 
         },
       },
