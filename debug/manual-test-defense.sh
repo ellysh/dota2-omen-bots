@@ -22,6 +22,9 @@ xdotool key 'Return'
 xdotool type 'dota_create_item item_hood_of_defiance'
 xdotool key 'Return'
 
+xdotool type 'dota_create_item item_silver_edge'
+xdotool key 'Return'
+
 xdotool type 'dota_hero_level 15'
 xdotool key 'Return'
 
@@ -44,7 +47,13 @@ xdotool key 'Return'
 xdotool type 'dota_bot_give_item item_enchanted_mango'
 xdotool key 'Return'
 
-xdotool type 'dota_bot_give_item item_enchanted_mango'
+xdotool type 'dota_bot_give_item item_flask'
+xdotool key 'Return'
+
+xdotool type 'dota_bot_give_item item_flask'
+xdotool key 'Return'
+
+xdotool type 'dota_bot_give_item item_flask'
 xdotool key 'Return'
 
 #xdotool type 'dota_bot_give_gold 1200'
