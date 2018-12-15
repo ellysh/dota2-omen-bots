@@ -1,9 +1,6 @@
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
-local all_units = require(
-  GetScriptDirectory() .."/utility/all_units")
-
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
@@ -39,7 +36,7 @@ function M.pre_aggro_last_hit()
 end
 
 function M.aggro_last_hit()
-  env.BOT:Action_AttackUnit(all_units.GetUnit(env.ENEMY_HERO_DATA), true)
+  env.BOT:Action_AttackUnit(env.ENEMY_HERO_DATA.handle, true)
 
   hist.LAST_AGGRO_CONTROL = GameTime()
 end
@@ -62,7 +59,7 @@ function M.pre_aggro_hg()
 end
 
 function M.aggro_hg()
-  env.BOT:Action_AttackUnit(all_units.GetUnit(env.ENEMY_HERO_DATA), true)
+  env.BOT:Action_AttackUnit(env.ENEMY_HERO_DATA.handle, true)
 
   hist.LAST_AGGRO_CONTROL = GameTime()
 end

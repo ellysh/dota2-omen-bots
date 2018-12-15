@@ -13,9 +13,6 @@ local hist = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
-local all_units = require(
-  GetScriptDirectory() .."/utility/all_units")
-
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
@@ -44,7 +41,7 @@ function M.pre_pull_enemy_creep()
 end
 
 function M.pull_enemy_creep()
-  env.BOT:Action_AttackUnit(all_units.GetUnit(env.ENEMY_HERO_DATA), true)
+  env.BOT:Action_AttackUnit(env.ENEMY_HERO_DATA.handle, true)
 
   hist.LAST_AGGRO_CONTROL = GameTime()
 end

@@ -24,7 +24,7 @@ function M.GetBotData()
 end
 
 function M.HasModifier(unit_data, modifier_name)
-  local unit = all_units.GetUnit(unit_data)
+  local unit = unit_data.handle
 
   return not unit:IsNull()
          and unit:HasModifier(modifier_name)
@@ -45,7 +45,7 @@ function M.IsItemPresent(unit_data, item_name)
 end
 
 function M.IsItemInInventory(unit_data, item_name)
-  local unit = all_units.GetUnit(unit_data)
+  local unit = unit_data.handle
   local slot = unit:FindItemSlot(item_name)
 
   return unit:GetItemSlotType(slot) == ITEM_SLOT_TYPE_MAIN
@@ -215,9 +215,8 @@ end
 
 function M.AttackUnit(bot_data, unit_data)
   local bot = GetBot()
-  local unit = all_units.GetUnit(unit_data)
 
-  bot:Action_AttackUnit(unit, true)
+  bot:Action_AttackUnit(unit_data.handle, true)
 end
 
 function M.BuyItem(item_name)
@@ -714,7 +713,7 @@ function M.IsUnitAttackTarget(unit_data, target_data)
                <= unit_data.attack_range + constants.MOTION_BUFFER_RANGE
   else
     return M.IsUnitShootTarget(
-             all_units.GetUnit(unit_data),
+             unit_data.handle,
              target_data)
   end
 end

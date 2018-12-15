@@ -312,10 +312,6 @@ function M.GetUnitData(unit)
   end
 end
 
-function M.GetUnit(unit_data)
-  return unit_data.handle
-end
-
 function M.GetEnemyCreepsData(unit_data)
   return UNIT_LIST[GetOpposingTeam()][UNIT_TYPE["CREEP"]]
 end

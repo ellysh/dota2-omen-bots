@@ -10,9 +10,6 @@ local constants = require(
 local action_timing = require(
   GetScriptDirectory() .."/utility/action_timing")
 
-local all_units = require(
-  GetScriptDirectory() .."/utility/all_units")
-
 local map = require(
   GetScriptDirectory() .."/utility/map")
 
@@ -105,7 +102,7 @@ local function GetFirstMovingCreep()
 end
 
 function M.move_and_block()
-  local creep = all_units.GetUnit(GetFirstMovingCreep())
+  local creep = GetFirstMovingCreep().handle
   local target_location = creep:GetExtrapolatedLocation(1.0)
 
   if algorithms.GetDistanceFromFountain(env.BOT_DATA, target_location)

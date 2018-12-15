@@ -7,9 +7,6 @@ local env = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
-local all_units = require(
-  GetScriptDirectory() .."/utility/all_units")
-
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
@@ -44,7 +41,7 @@ function M.pre_cancel_turn_near_shadowraze()
 end
 
 function M.turn_via_attack()
-  env.BOT:Action_AttackUnit(all_units.GetUnit(env.ENEMY_HERO_DATA), true)
+  env.BOT:Action_AttackUnit(env.ENEMY_HERO_DATA.handle, true)
 end
 
 ---------------------------------
