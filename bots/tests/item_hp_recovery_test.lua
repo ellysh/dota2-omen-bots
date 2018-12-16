@@ -90,31 +90,39 @@ end
 
 function test_pre_heal_flask_1_succeed()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
+
+    -- weights_2
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FLASK_HEALING] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
   })
 
   luaunit.assertTrue(item_hp_recovery.pre_heal_flask())
 end
 
-function test_pre_heal_flask_1_succeed()
+function test_pre_heal_flask_2_succeed()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_HP_RATE] = 0.1,
+    [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+
+    -- weights_2
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FLASK_HEALING] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
   })
 
   luaunit.assertTrue(item_hp_recovery.pre_heal_flask())
@@ -122,15 +130,19 @@ end
 
 function test_pre_heal_flask_1_fails()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+
+    -- weights_2
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FLASK_HEALING] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
@@ -138,15 +150,19 @@ end
 
 function test_pre_heal_flask_2_fails()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
-    [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
+
+    -- weights_2
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FLASK_HEALING] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
@@ -154,15 +170,19 @@ end
 
 function test_pre_heal_flask_3_fails()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_HP_RATE] = 0.4,
+    [gs.BOT_HP_RATE] = 0.6,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+
+    -- weights_2
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FLASK_HEALING] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
@@ -170,15 +190,19 @@ end
 
 function test_pre_heal_flask_4_fails()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 1,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+
+    -- weights_2
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FLASK_HEALING] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
@@ -186,15 +210,19 @@ end
 
 function test_pre_heal_flask_5_fails()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
     [gs.BOT_HP_RATE] = 0.4,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 1,
+
+    -- weights_2
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_IS_FLASK_HEALING] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
@@ -202,15 +230,19 @@ end
 
 function test_pre_heal_flask_6_fails()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_HP_RATE] = 0.6,
+    [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+
+    -- weights_2
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FLASK_HEALING] = 1,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
@@ -218,53 +250,23 @@ end
 
 function test_pre_heal_flask_7_fails()
   item_hp_recovery.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_HP_RATE] = 0.1,
+    [gs.BOT_HP_RATE] = 0.4,
     [gs.BOT_CASTABLE_FLASK] = 1,
+
+    -- weights_2
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
-end
-
---[[
-function test_pre_heal_flask_8_fails()
-  item_hp_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
+    [gs.EH_PRESENT] = 0,
     [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 1,
-    [gs.BOT_HP_RATE] = 0.4,
-    [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
+    [gs.BOT_IS_FLASK_HEALING] = 1,
+
+    -- weights_3
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 1,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
 end
-
-function test_pre_heal_flask_9_fails()
-  item_hp_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
-    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
-    [gs.BOT_IS_FOCUSED_BY_TOWER] = 0,
-    [gs.BOT_HP_RATE] = 0.4,
-    [gs.BOT_CASTABLE_FLASK] = 1,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_flask())
-end
---]]
 
 ---------------------------------
 
