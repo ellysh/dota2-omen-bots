@@ -38,16 +38,20 @@ function M.pre_heal_flask()
   }
 
   local weights_2 = {
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0.5,
+    [gs.EH_PRESENT] = 0.5,
     [gs.BOT_IS_FLASK_HEALING] = -1,
     [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = -1,
+  }
+
+  local weights_3 = {
+    [gs.EH_PRESENT] = -1,
     [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = -1,
-    --[gs.BOT_IS_FOCUSED_BY_TOWER] = -1,
-    --[gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights_1)
-         and gs.Evaluate(gs.GAME_STATE, weights_2)
+         and (gs.Evaluate(gs.GAME_STATE, weights_2)
+              or gs.EvaluateFrom(1, gs.GAME_STATE, weights_3))
 end
 
 function M.heal_flask()
