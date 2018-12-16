@@ -39,54 +39,6 @@ function M.pre_recovery()
               or base_recovery.pre_restore_mp_on_base())
 end
 
-local function IsEnemyUnitOnAllyHighGround()
-  return (env.ENEMY_HERO_DATA ~= nil
-          and (map.IsUnitInEnemyTowerAttackRange(env.ENEMY_HERO_DATA)
-               or map.IsUnitBetweenEnemyTowers(env.ENEMY_HERO_DATA)))
-
-         or nil ~= algorithms.GetCreepWith(
-                     env.BOT_DATA,
-                     constants.SIDE["ENEMY"],
-                     nil,
-                     function(unit_data)
-                       return map.IsUnitInEnemyTowerAttackRange(unit_data)
-                              or map.IsUnitBetweenEnemyTowers(unit_data)
-                     end)
-end
-
-function M.pre_defensive()
-  return DoesCreepMeet()
-         and algorithms.HasLevelForAggression(env.BOT_DATA)
-         and not env.IS_ENEMY_HERO_LOW_HP
-         and ((env.DOES_ENEMY_HERO_HAVE_ADVANTAGE
-               and not env.DOES_BOT_HAVE_ADVANTAGE)
-
-              or IsEnemyUnitOnAllyHighGround()
-
-              or (env.ALLY_TOWER_DATA ~= nil
-                  and 0 < algorithms.GetTotalIncomingDamage(
-                            env.ALLY_TOWER_DATA)))
-end
-
----------------------------------
-
-function M.pre_offensive()
-  return DoesCreepMeet()
-         and algorithms.HasLevelForAggression(env.BOT_DATA)
-         and (env.ENEMY_HERO_DATA == nil
-              or env.IS_ENEMY_HERO_LOW_HP
-
-              or (env.DOES_BOT_HAVE_ADVANTAGE
-                  and not env.DOES_ENEMY_HERO_HAVE_ADVANTAGE)
-
-              or (env.ENEMY_TOWER_DATA ~= nil
-                  and env.ENEMY_TOWER_DISTANCE
-                      <= algorithms.GetAttackRange(
-                           env.BOT_DATA,
-                           env.ENEMY_TOWER_DATA,
-                           false)))
-end
-
 ---------------------------------
 
 function M.pre_farm()
