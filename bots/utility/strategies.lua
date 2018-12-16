@@ -1,20 +1,14 @@
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
-
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
-
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
-
-local map = require(
-  GetScriptDirectory() .."/utility/map")
 
 local base_recovery = require(
   GetScriptDirectory() .."/utility/base_recovery")
 
 local env = require(
   GetScriptDirectory() .."/utility/environment")
+
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
 
 local M = {}
 
@@ -26,6 +20,7 @@ end
 
 function M.pre_buy()
   return DoesCreepMeet()
+         and algorithms.IsBotAlive()
 end
 
 ---------------------------------
@@ -41,6 +36,20 @@ end
 
 ---------------------------------
 
+function M.pre_assault_enemy_tower()
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = -1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0.3,
+    [gs.EH_PRESENT] = -0.3,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0.3,
+    [gs.ET_ATTACK_AC] = 0.3,
+    [gs.AC_FRONT_PRESENT] = 0.4,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+---------------------------------
 function M.pre_farm()
   return true
 end
