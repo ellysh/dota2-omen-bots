@@ -401,6 +401,40 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "push_lane",
+    module = require(GetScriptDirectory() .."/utility/push_lane"),
+    moves = {
+      {
+        move = "attack_enemy_creep",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "attack_enemy_creep"},
+
+        },
+      },
+      {
+        move = "kill_enemy_creep",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "kill_enemy_creep"},
+
+        },
+      },
+      {
+        move = "attack_enemy_tower",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "attack_enemy_tower"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "aggro_control",
     module = require(GetScriptDirectory() .."/utility/aggro_control"),
     moves = {
