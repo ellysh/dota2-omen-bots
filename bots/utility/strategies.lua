@@ -1,6 +1,3 @@
-local algorithms = require(
-  GetScriptDirectory() .."/utility/algorithms")
-
 local base_recovery = require(
   GetScriptDirectory() .."/utility/base_recovery")
 
@@ -14,22 +11,34 @@ local M = {}
 
 ---------------------------------
 
-local function DoesCreepMeet()
-  return 25 < DotaTime()
-end
-
 function M.pre_buy()
-  return DoesCreepMeet()
-         and algorithms.IsBotAlive()
+  local weights = {
+    [gs.BOT_IS_ALIVE] = 0.5,
+    [gs.DOES_CREEP_MEET] = 0.5,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
 
 function M.pre_recovery()
-  return DoesCreepMeet()
-         and (not algorithms.IsBotAlive()
-              or env.IS_BOT_LOW_HP
-              or env.IS_BASE_RECOVERY
+  local weights_1 = {
+    [gs.DOES_CREEP_MEET] = 1,
+  }
+
+  local weights_2 = {
+    [gs.BOT_IS_ALIVE] = -1,
+  }
+
+  local weights_3 = {
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IS_BASE_RECOVERY] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights_1)
+         and (gs.EvaluateFrom(1, gs.GAME_STATE, weights_2)
+              or gs.Evaluate(gs.GAME_STATE, weights_3)
               or base_recovery.pre_restore_hp_on_base()
               or base_recovery.pre_restore_mp_on_base())
 end

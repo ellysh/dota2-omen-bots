@@ -100,4 +100,115 @@ function test_pre_assault_enemy_tower_4_fails()
   luaunit.assertFalse(strategies.pre_assault_enemy_tower())
 end
 
+---------------------------------
+
+function test_pre_buy_1_succeed()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.DOES_CREEP_MEET] = 1,
+  })
+
+  luaunit.assertTrue(strategies.pre_buy())
+end
+
+function test_pre_buy_1_fails()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 0,
+    [gs.DOES_CREEP_MEET] = 1,
+  })
+
+  luaunit.assertFalse(strategies.pre_buy())
+end
+
+function test_pre_buy_2_fails()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.DOES_CREEP_MEET] = 0,
+  })
+
+  luaunit.assertFalse(strategies.pre_buy())
+end
+
+---------------------------------
+
+function test_pre_recovery_1_succeed()
+  strategies.test_SetGameState({
+    -- weights_1
+    [gs.DOES_CREEP_MEET] = 1,
+
+    -- weights_2
+    [gs.BOT_IS_ALIVE] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_BASE_RECOVERY] = 0,
+  })
+
+  luaunit.assertTrue(strategies.pre_recovery())
+end
+
+function test_pre_recovery_2_succeed()
+  strategies.test_SetGameState({
+    -- weights_1
+    [gs.DOES_CREEP_MEET] = 1,
+
+    -- weights_2
+    [gs.BOT_IS_ALIVE] = 1,
+
+    -- weights_3
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IS_BASE_RECOVERY] = 0,
+  })
+
+  luaunit.assertTrue(strategies.pre_recovery())
+end
+
+function test_pre_recovery_3_succeed()
+  strategies.test_SetGameState({
+    -- weights_1
+    [gs.DOES_CREEP_MEET] = 1,
+
+    -- weights_2
+    [gs.BOT_IS_ALIVE] = 1,
+
+    -- weights_3
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_BASE_RECOVERY] = 1,
+  })
+
+  luaunit.assertTrue(strategies.pre_recovery())
+end
+
+function test_pre_recovery_1_fails()
+  strategies.test_SetGameState({
+    -- weights_1
+    [gs.DOES_CREEP_MEET] = 0,
+
+    -- weights_2
+    [gs.BOT_IS_ALIVE] = 0,
+
+    -- weights_3
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_BASE_RECOVERY] = 0,
+  })
+
+  luaunit.assertFalse(strategies.pre_recovery())
+end
+
+function test_pre_recovery_2_fails()
+  strategies.test_SetGameState({
+    -- weights_1
+    [gs.DOES_CREEP_MEET] = 1,
+
+    -- weights_2
+    [gs.BOT_IS_ALIVE] = 1,
+
+    -- weights_3
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_BASE_RECOVERY] = 0,
+  })
+
+  luaunit.assertFalse(strategies.pre_recovery())
+end
+
 os.exit(luaunit.LuaUnit.run())

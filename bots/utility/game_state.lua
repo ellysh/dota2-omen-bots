@@ -180,6 +180,9 @@ M.TREE_ET_UNSAFE_DISTANCE = 501
 -- Courier state
 M.COURIER_ON_BASE = 600
 
+-- General game state
+M.DOES_CREEP_MEET = 700
+
 local function GetAllyTowerIncomingDamage()
   return algorithms.GetTotalIncomingDamage(env.ALLY_TOWER_DATA)
            * functions.GetDamageMultiplier(env.ALLY_TOWER_DATA.armor)
@@ -807,6 +810,9 @@ function M.UpdateState()
     M.GAME_STATE[M.COURIER_ON_BASE] =
       NUM[map.IsUnitInSpot(courier_data, map.GetAllySpot("fountain"))]
   end
+
+  -- General game state
+  M.GAME_STATE[M.DOES_CREEP_MEET] = NUM[25 < DotaTime()]
 
   logger.PrintGameState(M.GAME_STATE)
 end
