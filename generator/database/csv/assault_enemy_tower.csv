@@ -1,0 +1,23 @@
+Objective;Move;Actions;"Wait Condition";"Cancel Condition"
+manage_attack_anim;cancel_attack;cancel_attack;;
+;wait_attack;wait_attack;;
+;;;;
+evasion;move_safe_recovery;move_safe_spot;wait_move_safe_recovery;cancel_move_safe_recovery
+;evade_enemy_hero;move_safe_spot;wait_evade_enemy_hero;cancel_evade_enemy_hero
+;;;;
+push_lane;destroy_enemy_tower;destroy_enemy_tower;;
+;;;;
+evasion;evade_enemy_tower;move_safe_spot;wait_evade_enemy_tower;cancel_evade_enemy_tower
+;evade_enemy_creeps;move_safe_spot;wait_evade_enemy_creeps;cancel_evade_enemy_creeps
+;;;;
+farm;lasthit_enemy_creep;lasthit_enemy_creep;;
+;;;;
+push_lane;attack_enemy_creep;attack_enemy_creep;;
+;kill_enemy_creep;kill_enemy_creep;;
+;attack_enemy_tower;attack_enemy_tower;;
+;;;;
+positioning;increase_creeps_distance;increase_creeps_distance;;cancel_increase_creeps_distance
+;decrease_creeps_distance_base;decrease_creeps_distance_base;;cancel_decrease_creeps_distance_base
+;turn;turn;;cancel_turn
+;;;;
+force_stop;stop;stop_attack_and_move;;
