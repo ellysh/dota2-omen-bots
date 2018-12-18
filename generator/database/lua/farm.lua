@@ -153,6 +153,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "heal_faerie_fire",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "heal_faerie_fire"},
+
+        },
+      },
+      {
         move = "heal_magic_stick",
         wait_condition = "nil",
         cancel_condition = "nil",
