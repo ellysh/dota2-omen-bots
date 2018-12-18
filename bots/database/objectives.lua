@@ -631,6 +631,22 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "glyph",
+    module = require(GetScriptDirectory() .."/utility/glyph"),
+    moves = {
+      {
+        move = "do_glyph",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "do_glyph"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "prepare_for_match",
     module = require(GetScriptDirectory() .."/utility/prepare_for_match"),
     moves = {
