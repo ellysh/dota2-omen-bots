@@ -181,6 +181,19 @@ function M.buy_ring_of_health()
 end
 
 ---------------------------------
+
+function M.pre_buy_observer_ward()
+  -- TODO: Check if the ward already placed
+  -- TODO: Check if the night comes soon
+  return pre_buy_item("item_ward_observer")
+end
+
+function M.buy_observer_ward()
+  algorithms.BuyItem("item_ward_observer")
+end
+
+---------------------------------
+
 function M.pre_deliver_items()
   return moves.pre_deliver_items()
 end
