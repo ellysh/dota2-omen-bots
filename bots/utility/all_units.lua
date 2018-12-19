@@ -10,6 +10,7 @@ local UNIT_TYPE = {
   CREEP = {},
   HERO = {},
   BUILDING = {},
+  WARD = {},
 }
 
 local UNIT_LIST = {
@@ -17,11 +18,13 @@ local UNIT_LIST = {
     [UNIT_TYPE["CREEP"]] = {},
     [UNIT_TYPE["HERO"]] = {},
     [UNIT_TYPE["BUILDING"]] = {},
+    [UNIT_TYPE["WARD"]] = {},
   },
   [TEAM_DIRE] = {
     [UNIT_TYPE["CREEP"]] = {},
     [UNIT_TYPE["HERO"]] = {},
     [UNIT_TYPE["BUILDING"]] = {},
+    [UNIT_TYPE["WARD"]] = {},
   },
 }
 
@@ -120,6 +123,10 @@ local function AddAllyBuilding(_, unit)
   AddUnit(unit, UNIT_TYPE["BUILDING"], GetTeam())
 end
 
+local function AddAllyWard(_, unit)
+  AddUnit(unit, UNIT_TYPE["WARD"], GetTeam())
+end
+
 local function AddEnemyCreep(_, unit)
   AddUnit(unit, UNIT_TYPE["CREEP"], GetOpposingTeam())
 end
@@ -130,6 +137,10 @@ end
 
 local function AddEnemyBuilding(_, unit)
   AddUnit(unit, UNIT_TYPE["BUILDING"], GetOpposingTeam())
+end
+
+local function AddEnemyWard(_, unit)
+  AddUnit(unit, UNIT_TYPE["WARD"], GetOpposingTeam())
 end
 
 local function GetBotData()
@@ -163,6 +174,10 @@ local function InvalidateDeprecatedUnits()
     InvalidateUnit)
 
   functions.DoWithKeysAndElements(
+    UNIT_LIST[GetTeam()][UNIT_TYPE["WARD"]],
+    InvalidateUnit)
+
+  functions.DoWithKeysAndElements(
     UNIT_LIST[GetOpposingTeam()][UNIT_TYPE["CREEP"]],
     InvalidateUnit)
 
@@ -172,6 +187,10 @@ local function InvalidateDeprecatedUnits()
 
   functions.DoWithKeysAndElements(
     UNIT_LIST[GetOpposingTeam()][UNIT_TYPE["BUILDING"]],
+    InvalidateUnit)
+
+  functions.DoWithKeysAndElements(
+    UNIT_LIST[GetOpposingTeam()][UNIT_TYPE["WARD"]],
     InvalidateUnit)
 end
 
@@ -266,6 +285,9 @@ function M.UpdateUnitList()
   units = GetUnitList(UNIT_LIST_ALLIED_BUILDINGS)
   functions.DoWithKeysAndElements(units, AddAllyBuilding)
 
+  units = GetUnitList(UNIT_LIST_ALLIED_WARDS)
+  functions.DoWithKeysAndElements(units, AddAllyWard)
+
   units = GetUnitList(UNIT_LIST_ENEMY_CREEPS)
   functions.DoWithKeysAndElements(units, AddEnemyCreep)
 
@@ -274,6 +296,9 @@ function M.UpdateUnitList()
 
   units = GetUnitList(UNIT_LIST_ENEMY_BUILDINGS)
   functions.DoWithKeysAndElements(units, AddEnemyBuilding)
+
+  units = GetUnitList(UNIT_LIST_ENEMY_WARDS)
+  functions.DoWithKeysAndElements(units, AddEnemyWard)
 
   units = { GetCourier(0) }
   if units[1] == nil then
@@ -301,7 +326,7 @@ local function GetUnitType(unit)
     return UNIT_TYPE["BUILDING"]
   end
 
-  return UNIT_TYPE["CREEP"]
+  return UNIT_TYPE["WARD"]
 end
 
 function M.GetUnitData(unit)
