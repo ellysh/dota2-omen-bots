@@ -98,6 +98,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "buy_observer_ward",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_observer_ward"},
+
+        },
+      },
+      {
         move = "deliver_items",
         wait_condition = "nil",
         cancel_condition = "nil",

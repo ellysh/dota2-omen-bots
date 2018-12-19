@@ -20,6 +20,7 @@ buy_enchanted_mango
 buy_flask
 buy_items
 buy_magic_stick
+buy_observer_ward
 buy_ring_of_health
 buy_ring_of_regen
 buy_starting_items
