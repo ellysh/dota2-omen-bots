@@ -53,7 +53,7 @@ function M.IsItemInInventory(unit_data, item_name)
 end
 
 function M.GetFullBackpackSlot(unit_data)
-  for i = constants.BACKPACK_START_INDEX, constants.INVENTORY_END_INDEX, 1 do
+  for i = constants.BACKPACK_START_INDEX, constants.BACKPACK_END_INDEX, 1 do
     local item = unit_data.handle:GetItemInSlot(i)
     if item ~= nil then
       return i

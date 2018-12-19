@@ -326,7 +326,8 @@ local function GetUnitType(unit)
     return UNIT_TYPE["BUILDING"]
   end
 
-  return UNIT_TYPE["WARD"]
+  -- This default value is required for the courier
+  return UNIT_TYPE["CREEP"]
 end
 
 function M.GetUnitData(unit)
