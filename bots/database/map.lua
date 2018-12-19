@@ -53,6 +53,11 @@ M.MAP = {
 
     river_top_1 = Vector(-997, 1312, 100),
     river_top_2 = Vector(-1988, 478, 100),
+
+    -- Ward spots
+    ally_revier_side = Vector(-1127, -508, 10),
+    enemy_revier_side_1 = Vector(697, -331, 10),
+    enemy_revier_side_2 = Vector(-307, 156, 10),
   },
 
   [TEAM_DIRE] = {
@@ -105,7 +110,14 @@ M.MAP = {
 
     river_top_1 = Vector(-1988, 478, 100),
     river_top_2 = Vector(-997, 1312, 100),
+
+    -- Ward spots
+
+    ally_revier_side = Vector(-471, 240, 10),
+    enemy_revier_side_1 = Vector(-115, -1048, 10),
+    enemy_revier_side_2 = Vector(-1356, -301, 10),
   },
+
   [TEAM_NEUTRAL] = {
     river = Vector(-521, -375, 280),
     river_farm_bot = Vector(-249, -623, 100),
