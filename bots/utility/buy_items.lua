@@ -13,6 +13,9 @@ local env = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
@@ -183,9 +186,13 @@ end
 ---------------------------------
 
 function M.pre_buy_observer_ward()
-  -- TODO: Check if the ward already placed
-  -- TODO: Check if the night comes soon
+  local weights = {
+    [gs.AW_PRESENT] = -1,
+    [gs.IS_NIGHT] = 1,
+  }
+
   return pre_buy_item("item_ward_observer")
+         and gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.buy_observer_ward()

@@ -361,6 +361,10 @@ function M.GetAllyBuildingsData(unit_data)
   return UNIT_LIST[unit_data.team][UNIT_TYPE["BUILDING"]]
 end
 
+function M.GetAllyWardsData(unit_data)
+  return UNIT_LIST[unit_data.team][UNIT_TYPE["WARD"]]
+end
+
 function M.InvalidateUnit(unit_data)
   -- We should store the unit details because they will be cleared by
   -- the functions.ClearTable call

@@ -180,8 +180,12 @@ M.TREE_ET_UNSAFE_DISTANCE = 501
 -- Courier state
 M.COURIER_ON_BASE = 600
 
+-- Wards state
+M.AW_PRESENT = 700
+
 -- General game state
-M.DOES_CREEP_MEET = 700
+M.DOES_CREEP_MEET = 800
+M.IS_NIGHT = 801
 
 local function GetAllyTowerIncomingDamage()
   return algorithms.GetTotalIncomingDamage(env.ALLY_TOWER_DATA)
@@ -224,6 +228,11 @@ local function IsTurning(move)
   }
 
   return functions.IsElementInList(list, move, false)
+end
+
+local function IsNight()
+  return GetTimeOfDay() < 0.25
+         or 0.75 < GetTimeOfDay()
 end
 
 function M.UpdateState()
@@ -811,8 +820,12 @@ function M.UpdateState()
       NUM[map.IsUnitInSpot(courier_data, map.GetAllySpot("fountain"))]
   end
 
+  -- Wards state
+  M.GAME_STATE[M.AW_PRESENT] = NUM[env.ALLY_WARD_DATA ~= nil]
+
   -- General game state
   M.GAME_STATE[M.DOES_CREEP_MEET] = NUM[25 < DotaTime()]
+  M.GAME_STATE[M.IS_NIGHT] = NUM[IsNight()]
 
   logger.PrintGameState(M.GAME_STATE)
 end

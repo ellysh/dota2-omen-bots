@@ -60,6 +60,7 @@ M.MEDIUM_SHADOWRAZE_ABILITY = {}
 M.FAR_SHADOWRAZE_ABILITY = {}
 M.SHADOWRAZE_EVADE_DISTANCE = 0
 M.ENEMY_UNITS_DATA = {}
+M.ALLY_WARD_DATA = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -392,6 +393,8 @@ function M.UpdateVariables()
 
   M.SHADOWRAZE_EVADE_DISTANCE =
     M.BOT_DATA.speed * constants.NEVERMORE_SHADOWRAZE_CAST_TIME
+
+  M.ALLY_WARD_DATA = all_units.GetAllyWardsData(M.BOT_DATA)[1]
 end
 
 -- Provide an access to local functions for unit tests only
