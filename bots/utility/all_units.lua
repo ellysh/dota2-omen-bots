@@ -124,7 +124,12 @@ local function AddAllyBuilding(_, unit)
 end
 
 local function AddAllyWard(_, unit)
-  AddUnit(unit, UNIT_TYPE["WARD"], GetTeam())
+  UNIT_LIST[GetTeam()][UNIT_TYPE["WARD"]][tostring(unit)] = {
+    timestamp = CURRENT_GAME_TIME,
+    handle = unit,
+    type = UNIT_TYPE["WARD"],
+    team = GetTeam(),
+  }
 end
 
 local function AddEnemyCreep(_, unit)
@@ -140,7 +145,12 @@ local function AddEnemyBuilding(_, unit)
 end
 
 local function AddEnemyWard(_, unit)
-  AddUnit(unit, UNIT_TYPE["WARD"], GetOpposingTeam())
+  UNIT_LIST[GetOpposingTeam()][UNIT_TYPE["WARD"]][tostring(unit)] = {
+    timestamp = CURRENT_GAME_TIME,
+    handle = unit,
+    type = UNIT_TYPE["WARD"],
+    team = GetOpposingTeam(),
+  }
 end
 
 local function GetBotData()

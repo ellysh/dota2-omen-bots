@@ -166,6 +166,12 @@ function M.GetTotalHealth(unit_list)
   return total_health
 end
 
+function M.GetAllyWard(unit_data)
+  local wards = all_units.GetAllyWardsData(unit_data)
+
+  return functions.GetElementWith(wards, nil, nil)
+end
+
 function M.GetLastSeenEnemyHero(unit_data)
   local heroes = all_units.GetEnemyHeroesData(unit_data)
 
