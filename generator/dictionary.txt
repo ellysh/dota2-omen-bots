@@ -97,6 +97,7 @@ move_safe_spot
 move_start_position
 near_shadowraze
 nuke_enemy_hero
+plant_ward
 positioning
 prepare_for_match
 pull_enemy_creep
@@ -140,3 +141,4 @@ wait_move_enemy_creep
 wait_move_safe
 wait_move_safe_recovery
 wait_turn_near_shadowraze
+warding

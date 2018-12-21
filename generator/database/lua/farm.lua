@@ -564,6 +564,22 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "warding",
+    module = require(GetScriptDirectory() .."/utility/warding"),
+    moves = {
+      {
+        move = "plant_ward",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "plant_ward"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "body_block",
     module = require(GetScriptDirectory() .."/utility/body_block"),
     moves = {

@@ -67,6 +67,8 @@ positioning;tp_mid_tower;tp_mid_tower;;
 keep_equilibrium;attack_enemy_creep;attack_enemy_creep;;
 ;attack_ally_creep;attack_ally_creep;;
 ;;;;
+warding;plant_ward;plant_ward;;
+;;;;
 body_block;move_and_block;move_and_block;;
 ;;stop_attack_and_move;;
 ;move_start_position;move_start_position;;
