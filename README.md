@@ -28,14 +28,13 @@ You can play with OMEN Bots in the "All pick" mode. In this case, Shadow Shaman 
 You should follow the following limitations when playing with the bot:
 
 1. Pick only Shadow Fiend hero.
-2. No wards.
-3. No shrines.
-4. No neutral camps or Roshan.
-5. No Bottle.
-6. No scan.
-7. No runes.
-8. Bot difficulty is Hard or above.
-9. No Infused Raindrop.
+2. No shrines.
+3. No neutral camps or Roshan.
+4. No Bottle.
+5. No scan.
+6. No runes.
+7. Bot difficulty is Hard or above.
+8. No Infused Raindrop.
 
 ## Update
 
