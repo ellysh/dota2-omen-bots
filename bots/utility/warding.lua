@@ -4,14 +4,29 @@ local env = require(
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
+local algorithms = require(
+  GetScriptDirectory() .."/utility/algorithms")
+
+local map = require(
+  GetScriptDirectory() .."/utility/map")
+
 local M = {}
+
+---------------------------------
+
+function M.pre_warding()
+  local weights = {
+    [gs.BOT_CASTABLE_WARD] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
 
 ---------------------------------
 
 function M.pre_plant_ward()
   local weights = {
-    [gs.BOT_HAS_WARD] = 0.5,
-    [gs.IS_NIGHT] = 0.5,
+    [gs.IS_NIGHT] = 1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -22,7 +37,7 @@ end
 function M.plant_ward()
   env.BOT:Action_UseAbilityOnLocation(
     algorithms.GetItem(env.BOT_DATA, "item_ward_observer"),
-    map.GetUnitAllySpot(unit_data, "ally_revier_side"))
+    map.GetUnitAllySpot(env.BOT_DATA, "ally_revier_side"))
 end
 
 ---------------------------------
