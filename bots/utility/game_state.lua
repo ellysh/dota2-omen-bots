@@ -84,6 +84,7 @@ M.BOT_IS_MOVING_BASE = 55
 M.BOT_NEXT_WAYPOINT_BLOCKED = 56
 M.BOT_LAST_WAYPOINT_REACHED = 57
 M.SAFE_SPOT_HAS_CHANGED = 58
+M.BOT_HAS_WARD = 59
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -418,6 +419,9 @@ function M.UpdateState()
       NUM[not functions.AreTablesEqual(
                 env.SAFE_SPOT,
                 hist.LAST_SAFE_SPOT)],
+
+    [M.BOT_HAS_WARD] =
+      NUM[algorithms.DoesBotOrCourierHaveItem("item_ward_observer")],
   }
 
   if hist.LAST_SOMA.move ~= nil then
