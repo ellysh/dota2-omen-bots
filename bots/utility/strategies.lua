@@ -62,7 +62,8 @@ end
 
 function M.pre_fight()
   local weights = {
-    [gs.EH_PRESENT] = 1,
+    [gs.BOT_IS_ALIVE] = 0.5,
+    [gs.EH_PRESENT] = 0.5,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
