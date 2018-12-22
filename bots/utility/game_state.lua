@@ -423,7 +423,10 @@ function M.UpdateState()
                 hist.LAST_SAFE_SPOT)],
 
     [M.BOT_CASTABLE_WARD] =
-      NUM[algorithms.DoesBotOrCourierHaveItem("item_ward_observer")],
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_ward_observer",
+            false)],
 
     [M.BOT_BUY_WARD_PERIOD_ACHIEVED] =
       NUM[constants.BUY_WARD_PERIOD
