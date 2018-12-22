@@ -20,17 +20,21 @@ local M = {}
 function M.pre_close_fight()
   local weights = {
     [gs.BOT_IS_CASTING] = -1,
+    [gs.EH_IS_VISIBLE] = 1,
   }
 
-  return gs.EvaluateFrom(1, gs.GAME_STATE, weights)
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
 
 function M.pre_kill_enemy_hero()
-  -- TODO: Consider hits here
+  local weights = {
+    [gs.EH_HAS_LESS_HTD] = 1,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = -1,
+  }
 
-  return moves.pre_attack_enemy_hero()
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 function M.kill_enemy_hero()

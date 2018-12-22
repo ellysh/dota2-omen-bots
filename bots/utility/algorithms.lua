@@ -786,6 +786,12 @@ function M.IsUnitLastSeenOnStairs(unit_data)
          and not IsLocationVisible(enemy_high_ground)
 end
 
+function M.GetHitsToDie(unit_data)
+  return functions.GetRate(
+           unit_data.health,
+           M.GetTotalIncomingDamage(unit_data))
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_UpdateUnitList = all_units.UpdateUnitList
