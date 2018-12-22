@@ -19,5 +19,3 @@ push_lane;attack_enemy_creep;attack_enemy_creep;;
 positioning;increase_creeps_distance;increase_creeps_distance;;cancel_increase_creeps_distance
 ;decrease_creeps_distance_base;decrease_creeps_distance_base;;cancel_decrease_creeps_distance_base
 ;turn;turn;;cancel_turn
-;;;;
-force_stop;stop;stop_attack_and_move;;

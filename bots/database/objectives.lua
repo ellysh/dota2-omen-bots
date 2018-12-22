@@ -539,22 +539,6 @@ M.OBJECTIVES = {
     },
   },
 
-  {
-    objective = "force_stop",
-    module = require(GetScriptDirectory() .."/utility/force_stop"),
-    moves = {
-      {
-        move = "stop",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "stop_attack_and_move"},
-
-        },
-      },
-    },
-  },
-
 
     },
   },
@@ -751,6 +735,47 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "close_fight",
+    module = require(GetScriptDirectory() .."/utility/close_fight"),
+    moves = {
+      {
+        move = "kill_enemy_hero",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "kill_enemy_hero"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "attack_with_better_position",
+    module = require(GetScriptDirectory() .."/utility/attack_with_better_position"),
+    moves = {
+      {
+        move = "attack_enemy_hero_from_hg",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "attack_enemy_hero_from_hg"},
+
+        },
+      },
+      {
+        move = "attack_enemy_hero_with_incoming_damage",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "attack_enemy_hero_with_incoming_damage"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "pursuit_enemy_hero",
     module = require(GetScriptDirectory() .."/utility/pursuit_enemy_hero"),
     moves = {
@@ -769,22 +794,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "move_enemy_hero"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "force_stop",
-    module = require(GetScriptDirectory() .."/utility/force_stop"),
-    moves = {
-      {
-        move = "stop",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "stop_attack_and_move"},
 
         },
       },
@@ -1155,31 +1164,6 @@ M.OBJECTIVES = {
         cancel_condition = "cancel_evade_enemy_creeps",
         actions = {
           {action = "move_safe_spot"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "attack_with_better_position",
-    module = require(GetScriptDirectory() .."/utility/attack_with_better_position"),
-    moves = {
-      {
-        move = "attack_enemy_hero_from_hg",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "attack_enemy_hero_from_hg"},
-
-        },
-      },
-      {
-        move = "attack_enemy_hero_with_incoming_damage",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "attack_enemy_hero_with_incoming_damage"},
 
         },
       },

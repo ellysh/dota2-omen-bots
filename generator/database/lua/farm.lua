@@ -367,31 +367,6 @@ M.OBJECTIVES = {
   },
 
   {
-    objective = "attack_with_better_position",
-    module = require(GetScriptDirectory() .."/utility/attack_with_better_position"),
-    moves = {
-      {
-        move = "attack_enemy_hero_from_hg",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "attack_enemy_hero_from_hg"},
-
-        },
-      },
-      {
-        move = "attack_enemy_hero_with_incoming_damage",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "attack_enemy_hero_with_incoming_damage"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "kite",
     module = require(GetScriptDirectory() .."/utility/kite"),
     moves = {

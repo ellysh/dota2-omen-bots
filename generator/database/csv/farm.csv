@@ -42,9 +42,6 @@ farm;lasthit_enemy_creep;lasthit_enemy_creep;;
 ;;;;
 evasion;evade_enemy_creeps;move_safe_spot;wait_evade_enemy_creeps;cancel_evade_enemy_creeps
 ;;;;
-attack_with_better_position;attack_enemy_hero_from_hg;attack_enemy_hero_from_hg;;
-;attack_enemy_hero_with_incoming_damage;attack_enemy_hero_with_incoming_damage;;
-;;;;
 kite;attack_enemy_hero;attack_enemy_hero;;
 ;attack_enemy_tower;attack_enemy_tower;;
 ;move_safe;move_safe;;cancel_move_safe

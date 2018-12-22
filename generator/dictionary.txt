@@ -49,6 +49,7 @@ cancel_turn
 cancel_turn_far_shadowraze
 cancel_turn_medium_shadowraze
 cancel_turn_near_shadowraze
+close_fight
 decrease_creeps_distance_aggro
 decrease_creeps_distance_base
 defend_tower
@@ -81,6 +82,7 @@ item_hp_recovery
 item_mp_recovery
 keep_equilibrium
 kill_enemy_creep
+kill_enemy_hero
 kite
 lasthit_enemy_creep
 manage_attack_anim
