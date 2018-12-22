@@ -13,6 +13,9 @@ local env = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
+
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
@@ -188,7 +191,8 @@ end
 function M.pre_buy_observer_ward()
   local weights = {
     [gs.AW_PRESENT] = -1,
-    [gs.IS_NIGHT] = 1,
+    [gs.IS_NIGHT] = 0.5,
+    [gs.BOT_BUY_WARD_PERIOD_ACHIEVED] = 0.5,
   }
 
   return pre_buy_item("item_ward_observer")
@@ -197,6 +201,8 @@ end
 
 function M.buy_observer_ward()
   algorithms.BuyItem("item_ward_observer")
+
+  hist.WARD_BUYING_TIMESTAMP = GameTime()
 end
 
 ---------------------------------

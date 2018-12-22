@@ -12,6 +12,8 @@ M.LAST_SOMA = {
 
 M.LAST_SAFE_SPOT = {}
 
+M.WARD_BUYING_TIMESTAMP = 0
+
 -- Provide an access to local functions for unit tests only
 
 return M

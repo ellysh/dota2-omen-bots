@@ -85,6 +85,7 @@ M.BOT_NEXT_WAYPOINT_BLOCKED = 56
 M.BOT_LAST_WAYPOINT_REACHED = 57
 M.SAFE_SPOT_HAS_CHANGED = 58
 M.BOT_CASTABLE_WARD = 59
+M.BOT_BUY_WARD_PERIOD_ACHIEVED = 60
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -422,6 +423,10 @@ function M.UpdateState()
 
     [M.BOT_CASTABLE_WARD] =
       NUM[algorithms.DoesBotOrCourierHaveItem("item_ward_observer")],
+
+    [M.BOT_BUY_WARD_PERIOD_ACHIEVED] =
+      NUM[constants.BUY_WARD_PERIOD
+          <= (GameTime() - hist.WARD_BUYING_TIMESTAMP)]
   }
 
   if hist.LAST_SOMA.move ~= nil then
