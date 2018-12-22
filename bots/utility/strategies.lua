@@ -59,6 +59,16 @@ function M.pre_assault_enemy_tower()
 end
 
 ---------------------------------
+
+function M.pre_fight()
+  local weights = {
+    [gs.EH_PRESENT] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+---------------------------------
 function M.pre_farm()
   return true
 end
