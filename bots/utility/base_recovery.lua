@@ -84,14 +84,19 @@ function M.pre_wait_move_base()
 end
 
 function M.pre_cancel_move_base()
-  local weights = {
+  local weights_1 = {
     [gs.BOT_NEAR_FOUNTAIN] = 1,
+  }
+
+  local weights_2 = {
+    [gs.BOT_HAS_FLASK] = 1,
   }
 
   return not M.pre_move_base()
          or (buy_items.pre_buy_items()
              and buy_items.pre_buy_flask()
-             and not gs.Evaluate(gs.GAME_STATE, weights))
+             and not gs.Evaluate(gs.GAME_STATE, weights_1))
+         or gs.Evaluate(gs.GAME_STATE, weights_2)
 end
 
 function M.move_base()

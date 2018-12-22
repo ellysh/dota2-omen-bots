@@ -299,12 +299,14 @@ function M.UpdateState()
     [M.BOT_HAS_RESERVED_GOLD] =
       NUM[constants.RESERVED_GOLD <= env.BOT_DATA.gold],
 
-    [M.BOT_HAS_FLASK] = NUM[
-             algorithms.DoesBotOrCourierHaveItem("item_flask")],
-    [M.BOT_HAS_FAERIE_FIRE] = NUM[
-             algorithms.DoesBotOrCourierHaveItem("item_faerie_fire")],
-    [M.BOT_HAS_TANGO] = NUM[
-             algorithms.DoesBotOrCourierHaveItem("item_tango")],
+    [M.BOT_HAS_FLASK] =
+      NUM[algorithms.DoesBotOrCourierHaveItem("item_flask")],
+
+    [M.BOT_HAS_FAERIE_FIRE] =
+      NUM[algorithms.DoesBotOrCourierHaveItem("item_faerie_fire")],
+
+    [M.BOT_HAS_TANGO] =
+      NUM[algorithms.DoesBotOrCourierHaveItem("item_tango")],
 
     [M.BOT_IN_ENEMY_TOWER_RANGE] =
       NUM[map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)],
