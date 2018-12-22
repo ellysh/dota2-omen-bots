@@ -18,9 +18,11 @@ local M = {}
 ---------------------------------
 
 function M.pre_close_fight()
-  -- TODO: Consider general attack preconditions here
+  local weights = {
+    [gs.BOT_IS_CASTING] = -1,
+  }
 
-  return moves.pre_attack_objective()
+  return gs.EvaluateFrom(1, gs.GAME_STATE, weights)
 end
 
 ---------------------------------
