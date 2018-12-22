@@ -1,3 +1,10 @@
+* version 0.8
+    - Implement moves for using wards.
+    - Implement an algorithm for moving to the safe spot through waypoints.
+    - Add a strategy for the close fight with the enemy hero on low hp.
+    - Keep a minimal safe distance with the enemy hero when using the flask.
+    - Fix bugs with moving to the base for recovery.
+
 * version 0.7
   - Retreat to the safe spot via waypoints.
   - Add the wait-cancel mechanism for managing the current move.
