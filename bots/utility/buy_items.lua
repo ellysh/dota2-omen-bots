@@ -202,7 +202,7 @@ end
 function M.buy_observer_ward()
   algorithms.BuyItem("item_ward_observer")
 
-  hist.WARD_BUYING_TIMESTAMP = GameTime()
+  hist.WARD_BUYING_TIMESTAMP = env.CURRENT_GAME_TIME
 end
 
 ---------------------------------

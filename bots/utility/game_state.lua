@@ -426,7 +426,7 @@ function M.UpdateState()
 
     [M.BOT_BUY_WARD_PERIOD_ACHIEVED] =
       NUM[constants.BUY_WARD_PERIOD
-          <= (GameTime() - hist.WARD_BUYING_TIMESTAMP)]
+          <= (env.CURRENT_GAME_TIME - hist.WARD_BUYING_TIMESTAMP)]
   }
 
   if hist.LAST_SOMA.move ~= nil then
@@ -748,7 +748,7 @@ function M.UpdateState()
   end
 
   M.GAME_STATE[M.EC_AGGRO_COOLDOWN] =
-    NUM[functions.GetDelta(hist.LAST_AGGRO_CONTROL, GameTime())
+    NUM[functions.GetDelta(hist.LAST_AGGRO_CONTROL, env.CURRENT_GAME_TIME)
         < constants.CREEPS_AGGRO_COOLDOWN]
 
   M.GAME_STATE[M.EAC_PRE_LAST_HIT_PRESENT] =

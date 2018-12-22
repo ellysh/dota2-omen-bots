@@ -38,7 +38,7 @@ end
 function M.aggro_last_hit()
   env.BOT:Action_AttackUnit(env.ENEMY_HERO_DATA.handle, true)
 
-  hist.LAST_AGGRO_CONTROL = GameTime()
+  hist.LAST_AGGRO_CONTROL = env.CURRENT_GAME_TIME
 end
 
 ---------------------------------
@@ -61,7 +61,7 @@ end
 function M.aggro_hg()
   env.BOT:Action_AttackUnit(env.ENEMY_HERO_DATA.handle, true)
 
-  hist.LAST_AGGRO_CONTROL = GameTime()
+  hist.LAST_AGGRO_CONTROL = env.CURRENT_GAME_TIME
 end
 
 ---------------------------------
