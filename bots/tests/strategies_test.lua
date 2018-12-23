@@ -211,4 +211,33 @@ function test_pre_recovery_2_fails()
   luaunit.assertFalse(strategies.pre_recovery())
 end
 
+---------------------------------
+
+function test_pre_fight_1_succeed()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.EH_PRESENT] = 1,
+  })
+
+  luaunit.assertTrue(strategies.pre_fight())
+end
+
+function test_pre_fight_1_fails()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.EH_PRESENT] = 0,
+  })
+
+  luaunit.assertFalse(strategies.pre_fight())
+end
+
+function test_pre_fight_2_fails()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 0,
+    [gs.EH_PRESENT] = 1,
+  })
+
+  luaunit.assertFalse(strategies.pre_fight())
+end
+
 os.exit(luaunit.LuaUnit.run())
