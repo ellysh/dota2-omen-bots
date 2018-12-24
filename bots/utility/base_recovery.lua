@@ -74,6 +74,7 @@ function M.pre_move_base()
     [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1,
     [gs.BOT_CASTABLE_FLASK] = -1,
     [gs.BOT_NEAR_FOUNTAIN] = 1,
+    [gs.BOT_HAS_FLASK] = -1,
   }
 
   return gs.EvaluateFrom(1, gs.GAME_STATE, weights)
