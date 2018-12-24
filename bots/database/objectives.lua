@@ -282,7 +282,7 @@ M.OBJECTIVES = {
         wait_condition = "nil",
         cancel_condition = "cancel_turn_medium_shadowraze",
         actions = {
-          {action = "turn"},
+          {action = "turn_via_attack"},
 
         },
       },
@@ -300,7 +300,7 @@ M.OBJECTIVES = {
         wait_condition = "nil",
         cancel_condition = "cancel_turn_far_shadowraze",
         actions = {
-          {action = "turn"},
+          {action = "turn_via_attack"},
 
         },
       },
