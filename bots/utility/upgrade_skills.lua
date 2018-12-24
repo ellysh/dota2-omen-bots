@@ -22,11 +22,13 @@ end
 
 function M.pre_upgrade()
   return 0 < env.BOT_DATA.ability_points
+         and 0 < #skill_build.SKILL_BUILD
 end
 
 function M.upgrade()
-  env.BOT:ActionImmediate_LevelAbility(
-    skill_build.SKILL_BUILD[env.BOT_DATA.level])
+  local skill_name = table.remove(skill_build.SKILL_BUILD, 1)
+
+  env.BOT:ActionImmediate_LevelAbility(skill_name)
 end
 
 ---------------------------------
