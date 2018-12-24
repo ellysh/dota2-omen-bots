@@ -87,6 +87,7 @@ M.SAFE_SPOT_HAS_CHANGED = 58
 M.BOT_CASTABLE_WARD = 59
 M.BOT_BUY_WARD_PERIOD_ACHIEVED = 60
 M.BOT_HAS_LEVEL_FOR_NUKES = 61
+M.BOT_IS_INACTIVE = 62
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -183,6 +184,7 @@ M.TREE_ET_UNSAFE_DISTANCE = 501
 
 -- Courier state
 M.COURIER_ON_BASE = 600
+M.COURIER_IS_AVAILABLE = 601
 
 -- Wards state
 M.AW_PRESENT = 700
@@ -232,6 +234,16 @@ local function IsTurning(move)
   }
 
   return functions.IsElementInList(list, move, false)
+end
+
+local function IsInactive(objective)
+  local list = {
+    "swap_items",
+    "buy_items",
+    "glyph",
+  }
+
+  return functions.IsElementInList(list, objective, false)
 end
 
 local function IsNight()
@@ -445,6 +457,9 @@ function M.UpdateState()
 
     M.GAME_STATE[M.BOT_IS_MOVING_BASE] =
       NUM[hist.LAST_SOMA.move.move == "move_base"]
+
+    M.GAME_STATE[M.BOT_IS_INACTIVE] =
+      NUM[IsInactive(hist.LAST_SOMA.objective.objective)]
   end
 
   if env.TURN_TARGET_DATA ~= nil then
@@ -841,6 +856,8 @@ function M.UpdateState()
   if courier_data ~= nil then
     M.GAME_STATE[M.COURIER_ON_BASE] =
       NUM[map.IsUnitInSpot(courier_data, map.GetAllySpot("fountain"))]
+
+    M.GAME_STATE[M.COURIER_IS_AVAILABLE] = NUM[IsCourierAvailable()]
   end
 
   -- Wards state

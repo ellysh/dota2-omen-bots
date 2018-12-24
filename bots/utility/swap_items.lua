@@ -7,12 +7,20 @@ local action_timing = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
+local gs = require(
+  GetScriptDirectory() .."/utility/game_state")
+
 local M = {}
 
 ---------------------------------
 
 function M.pre_swap_items()
-  return algorithms.IsBotAlive()
+  local weights = {
+    [gs.BOT_IS_INACTIVE] = -1,
+    [gs.BOT_IS_ALIVE] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
@@ -110,5 +118,9 @@ end
 ---------------------------------
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+end
 
 return M

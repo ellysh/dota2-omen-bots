@@ -24,8 +24,13 @@ local M = {}
 ---------------------------------
 
 function M.pre_buy_items()
-  return IsCourierAvailable()
-         and algorithms.IsBotAlive()
+  local weights = {
+    [gs.BOT_IS_INACTIVE] = -1,
+    [gs.BOT_IS_ALIVE] = 0.5,
+    [gs.COURIER_IS_AVAILABLE] = 0.5,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
 ---------------------------------
@@ -216,5 +221,9 @@ function M.deliver_items()
 end
 
 -- Provide an access to local functions for unit tests only
+
+function M.test_SetGameState(state)
+  gs.GAME_STATE = state
+end
 
 return M
