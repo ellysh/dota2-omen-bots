@@ -9,6 +9,30 @@ local luaunit = require("luaunit")
 
 ---------------------------------
 
+function test_pre_nuke_enemy_hero_1_succeed()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.BOT_HAS_LEVEL_FOR_NUKES] = 1,
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertTrue(nuke_enemy_hero.pre_nuke_enemy_hero())
+end
+
+function test_pre_nuke_enemy_hero_1_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.BOT_HAS_LEVEL_FOR_NUKES] = 0,
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_nuke_enemy_hero())
+end
+
+---------------------------------
+
 function test_pre_turn_near_shadowraze_1_succeed()
   nuke_enemy_hero.test_SetGameState({
     [gs.EH_IS_VISIBLE] = 1,

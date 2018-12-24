@@ -15,7 +15,12 @@ local M = {}
 ---------------------------------
 
 function M.pre_nuke_enemy_hero()
-  return moves.pre_attack_objective()
+  local weights = {
+    [gs.BOT_HAS_LEVEL_FOR_NUKES] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+         and moves.pre_attack_objective()
 end
 
 ---------------------------------

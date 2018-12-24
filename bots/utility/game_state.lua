@@ -86,6 +86,7 @@ M.BOT_LAST_WAYPOINT_REACHED = 57
 M.SAFE_SPOT_HAS_CHANGED = 58
 M.BOT_CASTABLE_WARD = 59
 M.BOT_BUY_WARD_PERIOD_ACHIEVED = 60
+M.BOT_HAS_LEVEL_FOR_NUKES = 61
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -320,8 +321,8 @@ function M.UpdateState()
                                  env.BOT_DATA,
                                  env.SAFE_SPOT)],
 
-    [M.BOT_HAS_LEVEL_FOR_AGRESSION] = NUM[
-      algorithms.HasLevelForAggression(env.BOT_DATA)],
+    [M.BOT_HAS_LEVEL_FOR_AGRESSION] =
+      NUM[constants.HERO_LEVEL_FOR_AGGRESSION <= env.BOT_DATA.level],
 
     [M.BOT_INCOMING_DAMAGE] = NormalizeValue(
              (env.BOT_DATA.incoming_damage_from_creeps
@@ -432,7 +433,10 @@ function M.UpdateState()
 
     [M.BOT_BUY_WARD_PERIOD_ACHIEVED] =
       NUM[constants.BUY_WARD_PERIOD
-          <= (env.CURRENT_GAME_TIME - hist.WARD_BUYING_TIMESTAMP)]
+          <= (env.CURRENT_GAME_TIME - hist.WARD_BUYING_TIMESTAMP)],
+
+    [M.BOT_HAS_LEVEL_FOR_NUKES] =
+      NUM[constants.HERO_LEVEL_FOR_NUKES <= env.BOT_DATA.level],
   }
 
   if hist.LAST_SOMA.move ~= nil then
