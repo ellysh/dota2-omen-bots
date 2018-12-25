@@ -216,7 +216,7 @@ function M.IsUnitLowHp(unit_data)
 end
 
 function M.IsUnitLowMp(unit_data)
-  return unit_data.mana < constants.UNIT_LOW_MANA
+  return unit_data.mana <= constants.UNIT_LOW_MANA
 end
 
 function M.AttackUnit(bot_data, unit_data)
