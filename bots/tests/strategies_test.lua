@@ -218,6 +218,18 @@ function test_pre_fight_1_succeed()
     [gs.BOT_IS_ALIVE] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.EH_ATTACK_BOT] = 0,
+  })
+
+  luaunit.assertTrue(strategies.pre_fight())
+end
+
+function test_pre_fight_2_succeed()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
+    [gs.EH_ATTACK_BOT] = 1,
   })
 
   luaunit.assertTrue(strategies.pre_fight())
@@ -228,6 +240,7 @@ function test_pre_fight_1_fails()
     [gs.BOT_IS_ALIVE] = 0,
     [gs.EH_PRESENT] = 1,
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.EH_ATTACK_BOT] = 0,
   })
 
   luaunit.assertFalse(strategies.pre_fight())
@@ -238,6 +251,7 @@ function test_pre_fight_2_fails()
     [gs.BOT_IS_ALIVE] = 1,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.EH_ATTACK_BOT] = 0,
   })
 
   luaunit.assertFalse(strategies.pre_fight())
@@ -248,6 +262,29 @@ function test_pre_fight_3_fails()
     [gs.BOT_IS_ALIVE] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
+    [gs.EH_ATTACK_BOT] = 0,
+  })
+
+  luaunit.assertFalse(strategies.pre_fight())
+end
+
+function test_pre_fight_4_fails()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 0,
+    [gs.EH_PRESENT] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.EH_ATTACK_BOT] = 1,
+  })
+
+  luaunit.assertFalse(strategies.pre_fight())
+end
+
+function test_pre_fight_5_fails()
+  strategies.test_SetGameState({
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.EH_PRESENT] = 0,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.EH_ATTACK_BOT] = 1,
   })
 
   luaunit.assertFalse(strategies.pre_fight())

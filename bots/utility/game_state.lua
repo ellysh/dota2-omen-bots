@@ -124,6 +124,7 @@ M.EH_IS_FACING_BOT = 131
 M.EH_IS_FACING_BOT_MELEE_RANGE = 132
 M.BOT_SHOOT_EH = 133
 M.EH_HAS_LESS_HTD = 134
+M.EH_ATTACK_BOT = 135
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -626,6 +627,9 @@ function M.UpdateState()
     M.GAME_STATE[M.EH_HAS_LESS_HTD] =
       NUM[algorithms.GetHitsToDie(env.ENEMY_HERO_DATA)
           < algorithms.GetHitsToDie(env.BOT_DATA)]
+
+    M.GAME_STATE[M.EH_ATTACK_BOT] =
+      NUM[env.ENEMY_HERO_DATA.attack_target == env.BOT_DATA]
   end
 
   -- ALLY_TOWER state
