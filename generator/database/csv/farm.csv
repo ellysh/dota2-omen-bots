@@ -8,7 +8,9 @@ evade_enemy_nukes;evade_near_shadowraze_back;move_back;wait_evade_near_shadowraz
 ;evade_medium_shadowraze_front;move_front;wait_evade_medium_shadowraze_front;cancel_evade_medium_shadowraze_front
 ;evade_far_shadowraze_front;move_front;wait_evade_far_shadowraze_front;cancel_evade_far_shadowraze_front
 ;;;;
-item_defense;use_hood_of_defiance;use_hood_of_defiance;;
+item_defense;use_hood_vs_near_shadowraze;use_hood;;
+;use_hood_vs_medium_shadowraze;use_hood;;
+;use_hood_vs_far_shadowraze;use_hood;;
 ;;;;
 glyph;do_glyph;do_glyph;;
 ;;;;

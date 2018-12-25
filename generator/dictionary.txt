@@ -129,7 +129,10 @@ turn_via_attack
 upgrade
 upgrade_skills
 use_enchanted_mango
-use_hood_of_defiance
+use_hood
+use_hood_vs_far_shadowraze
+use_hood_vs_medium_shadowraze
+use_hood_vs_near_shadowraze
 use_magic_stick
 wait_attack
 wait_evade_enemy_creeps

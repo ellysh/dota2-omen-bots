@@ -85,11 +85,29 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/item_defense"),
     moves = {
       {
-        move = "use_hood_of_defiance",
+        move = "use_hood_vs_near_shadowraze",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "use_hood_of_defiance"},
+          {action = "use_hood"},
+
+        },
+      },
+      {
+        move = "use_hood_vs_medium_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_hood"},
+
+        },
+      },
+      {
+        move = "use_hood_vs_far_shadowraze",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_hood"},
 
         },
       },
