@@ -424,4 +424,61 @@ function test_pre_far_shadowraze_4_fails()
   luaunit.assertFalse(nuke_enemy_hero.pre_far_shadowraze())
 end
 
+---------------------------------
+
+function test_pre_requiem_1_succeed()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_REQUIEM ] = 1,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.EH_CAN_EVADE_REQUIEM] = 0,
+  })
+
+  luaunit.assertTrue(nuke_enemy_hero.pre_requiem())
+end
+
+function test_pre_requiem_1_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 0,
+    [gs.BOT_CASTABLE_REQUIEM ] = 1,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.EH_CAN_EVADE_REQUIEM] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_requiem())
+end
+
+function test_pre_requiem_2_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_REQUIEM ] = 0,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.EH_CAN_EVADE_REQUIEM] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_requiem())
+end
+
+function test_pre_requiem_3_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_REQUIEM ] = 1,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 0,
+    [gs.EH_CAN_EVADE_REQUIEM] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_requiem())
+end
+
+function test_pre_requiem_4_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_REQUIEM ] = 1,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.EH_CAN_EVADE_REQUIEM] = 1,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_requiem())
+end
+
 os.exit(luaunit.LuaUnit.run())
