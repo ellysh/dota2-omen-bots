@@ -78,6 +78,7 @@ heal_flask
 heal_magic_stick
 heal_tango
 increase_creeps_distance
+item_defense
 item_hp_recovery
 item_mp_recovery
 keep_equilibrium
@@ -128,6 +129,7 @@ turn_via_attack
 upgrade
 upgrade_skills
 use_enchanted_mango
+use_hood_of_defiance
 use_magic_stick
 wait_attack
 wait_evade_enemy_creeps

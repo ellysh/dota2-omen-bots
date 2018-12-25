@@ -36,6 +36,22 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "item_defense",
+    module = require(GetScriptDirectory() .."/utility/item_defense"),
+    moves = {
+      {
+        move = "use_hood_of_defiance",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_hood_of_defiance"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "swap_items",
     module = require(GetScriptDirectory() .."/utility/swap_items"),
     moves = {

@@ -206,6 +206,22 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "item_defense",
+    module = require(GetScriptDirectory() .."/utility/item_defense"),
+    moves = {
+      {
+        move = "use_hood_of_defiance",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_hood_of_defiance"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "item_hp_recovery",
     module = require(GetScriptDirectory() .."/utility/item_hp_recovery"),
     moves = {
@@ -415,6 +431,22 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "do_glyph"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "item_defense",
+    module = require(GetScriptDirectory() .."/utility/item_defense"),
+    moves = {
+      {
+        move = "use_hood_of_defiance",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_hood_of_defiance"},
 
         },
       },
@@ -878,6 +910,22 @@ M.OBJECTIVES = {
         cancel_condition = "cancel_evade_far_shadowraze_front",
         actions = {
           {action = "move_front"},
+
+        },
+      },
+    },
+  },
+
+  {
+    objective = "item_defense",
+    module = require(GetScriptDirectory() .."/utility/item_defense"),
+    moves = {
+      {
+        move = "use_hood_of_defiance",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_hood_of_defiance"},
 
         },
       },
