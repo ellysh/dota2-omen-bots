@@ -59,10 +59,11 @@ M.NEAR_SHADOWRAZE_ABILITY = {}
 M.MEDIUM_SHADOWRAZE_ABILITY = {}
 M.FAR_SHADOWRAZE_ABILITY = {}
 M.REQUIEM_ABILITY = {}
-M.SHADOWRAZE_EVADE_DISTANCE = 0
+M.BOT_SHADOWRAZE_EVADE_DISTANCE = 0
 M.ENEMY_UNITS_DATA = {}
 M.ALLY_WARD_DATA = {}
 M.CURRENT_GAME_TIME = 0
+M.ENEMY_HERO_REQUIEM_EVADE_DISTANCE = 0
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -240,6 +241,10 @@ function M.UpdateVariables()
     M.ENEMY_HERO_DISTANCE = functions.GetUnitDistance(
                               M.BOT_DATA,
                               M.ENEMY_HERO_DATA)
+
+    M.ENEMY_HERO_REQUIEM_EVADE_DISTANCE =
+      M.ENEMY_HERO_DATA.speed * constants.NEVERMORE_REQUIEM_CAST_TIME
+
   end
 
   M.IS_BOT_LOW_HP = IsUnitRelativeLowHp(M.BOT_DATA, M.ENEMY_HERO_DATA)
@@ -396,7 +401,7 @@ function M.UpdateVariables()
   M.REQUIEM_ABILITY =
     M.BOT:GetAbilityByName("nevermore_requiem")
 
-  M.SHADOWRAZE_EVADE_DISTANCE =
+  M.BOT_SHADOWRAZE_EVADE_DISTANCE =
     M.BOT_DATA.speed * constants.NEVERMORE_SHADOWRAZE_CAST_TIME
 
   M.ALLY_WARD_DATA = algorithms.GetAllyWard(M.BOT_DATA)

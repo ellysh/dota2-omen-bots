@@ -41,7 +41,6 @@ cancel_move_enemy_creep
 cancel_move_safe
 cancel_move_safe_recovery
 cancel_near_shadowraze
-cancel_requiem
 cancel_turn
 cancel_turn_far_shadowraze
 cancel_turn_medium_shadowraze

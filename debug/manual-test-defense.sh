@@ -35,7 +35,7 @@ xdotool key 'Return'
 
 # Give items, gold and level to the bot
 
-xdotool type 'dota_bot_give_level 1'
+xdotool type 'dota_bot_give_level 11'
 xdotool key 'Return'
 
 xdotool type 'dota_bot_give_item item_enchanted_mango'

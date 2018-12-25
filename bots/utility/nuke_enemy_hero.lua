@@ -157,14 +157,11 @@ function M.pre_requiem()
   local weights = {
     [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_REQUIEM ] = 0.3,
-    [gs.EH_IN_REQUIEM_RANGE] = 0.4,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 0.4,
+    [gs.EH_CAN_EVADE_REQUIEM] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
-end
-
-function M.pre_cancel_requiem()
-  return not M.pre_requiem()
 end
 
 function M.requiem()

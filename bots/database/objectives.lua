@@ -350,7 +350,7 @@ M.OBJECTIVES = {
       {
         move = "requiem",
         wait_condition = "nil",
-        cancel_condition = "cancel_requiem",
+        cancel_condition = "nil",
         actions = {
           {action = "requiem"},
 
@@ -1159,6 +1159,15 @@ M.OBJECTIVES = {
         cancel_condition = "cancel_far_shadowraze",
         actions = {
           {action = "far_shadowraze"},
+
+        },
+      },
+      {
+        move = "requiem",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "requiem"},
 
         },
       },
