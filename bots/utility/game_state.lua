@@ -54,7 +54,7 @@ M.BOT_HAS_TANGO = 25
 M.BOT_IN_ENEMY_TOWER_RANGE = 26
 M.BOT_IN_SAFE_SPOT = 27
 M.BOT_HAS_LEVEL_FOR_AGRESSION = 28
-M.BOT_INCOMING_DAMAGE = 29
+--M.BOT_INCOMING_DAMAGE = 29
 M.BOT_HAS_BETTER_POSITION = 30
 M.BOT_STASH_FULL = 31
 M.BOT_MOVING = 32
@@ -96,7 +96,7 @@ M.EH_PRESENT = 100
 M.EH_IS_LOW_HP = 101
 M.EH_IS_TOWER_PROTECTED = 102
 M.BOT_IN_SAFE_DISTANCE_FROM_EH = 103
-M.EH_INCOMING_DAMAGE = 105
+--M.EH_INCOMING_DAMAGE = 105
 M.EH_NOT_IN_BOT_ATTACK_RANGE = 106
 M.EH_IN_PURSUIT_RANGE = 107
 M.BOT_IN_EH_ATTACK_RANGE = 108
@@ -339,12 +339,6 @@ function M.UpdateState()
     [M.BOT_HAS_LEVEL_FOR_AGRESSION] =
       NUM[constants.HERO_LEVEL_FOR_AGGRESSION <= env.BOT_DATA.level],
 
-    [M.BOT_INCOMING_DAMAGE] = NormalizeValue(
-             (env.BOT_DATA.incoming_damage_from_creeps
-              + env.BOT_DATA.incoming_damage_from_towers),
-             0,
-             constants.MAX_INCOMING_ATTACK_DAMAGE),
-
     [M.BOT_STASH_FULL] = NUM[0 < env.BOT_DATA.stash_value],
 
     [M.BOT_MOVING] = NUM[algorithms.IsUnitMoving(env.BOT_DATA)],
@@ -495,12 +489,6 @@ function M.UpdateState()
 
     M.GAME_STATE[M.BOT_IN_SAFE_DISTANCE_FROM_EH] =
       NUM[constants.SAFE_HERO_DISTANCE < env.ENEMY_HERO_DISTANCE]
-
-    M.GAME_STATE[M.EH_INCOMING_DAMAGE] = NormalizeValue(
-            (env.ENEMY_HERO_DATA.incoming_damage_from_creeps
-             + env.ENEMY_HERO_DATA.incoming_damage_from_towers),
-            0,
-            constants.MAX_INCOMING_ATTACK_DAMAGE)
 
     M.GAME_STATE[M.EH_NOT_IN_BOT_ATTACK_RANGE] = NUM[
                           algorithms.GetAttackRange(
