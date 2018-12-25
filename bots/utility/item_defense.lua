@@ -28,8 +28,7 @@ end
 
 function M.pre_use_hood_of_defiance()
   local weights_1 = {
-    [gs.BOT_IS_LOW_MP] = 0.5,
-    [gs.BOT_CASTABLE_HOOD] = 0.5,
+    [gs.BOT_CASTABLE_HOOD] = 1,
   }
 
   local weights_2 = {
