@@ -89,6 +89,7 @@ M.BOT_BUY_WARD_PERIOD_ACHIEVED = 60
 M.BOT_HAS_LEVEL_FOR_NUKES = 61
 M.BOT_IS_INACTIVE = 62
 M.BOT_CASTABLE_HOOD = 63
+M.BOT_HAS_MODIFIER_HOOD = 64
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -458,6 +459,10 @@ function M.UpdateState()
             "item_hood_of_defiance",
             false)],
 
+    [M.BOT_HAS_MODIFIER_HOOD] =
+       NUM[algorithms.HasModifier(
+             env.BOT_DATA,
+             "modifier_item_hood_of_defiance_barrier")],
   }
 
   if hist.LAST_SOMA.move ~= nil then
