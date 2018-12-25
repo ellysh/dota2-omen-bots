@@ -243,7 +243,9 @@ function M.UpdateVariables()
                               M.ENEMY_HERO_DATA)
 
     M.ENEMY_HERO_REQUIEM_EVADE_DISTANCE =
-      M.ENEMY_HERO_DATA.speed * constants.NEVERMORE_REQUIEM_CAST_TIME
+      M.ENEMY_HERO_DATA.speed
+      * (constants.NEVERMORE_REQUIEM_CAST_TIME
+         - constants.HUMAN_REACTION_TIME)
 
   end
 

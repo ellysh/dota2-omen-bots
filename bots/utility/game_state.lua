@@ -616,10 +616,6 @@ function M.UpdateState()
       M.GAME_STATE[M.BOT_CAN_EVADE_FAR_SHADOWRAZE_FRONT] =
         NUM[(env.ENEMY_HERO_DISTANCE - constants.FAR_SHADOWRAZE_MIN_RANGE)
             < env.BOT_SHADOWRAZE_EVADE_DISTANCE]
-
-      M.GAME_STATE[M.EH_HAS_HP_FOR_REQUIEM] =
-        NUM[env.ENEMY_HERO_DATA.health
-            <= (2 * env.REQUIEM_ABILITY:GetAbilityDamage())]
     end
 
     M.GAME_STATE[M.EH_IS_FACING_BOT] =
@@ -643,6 +639,10 @@ function M.UpdateState()
 
     M.GAME_STATE[M.EH_ATTACK_BOT] =
       NUM[env.ENEMY_HERO_DATA.attack_target == env.BOT_DATA]
+
+    M.GAME_STATE[M.EH_HAS_HP_FOR_REQUIEM] =
+      NUM[env.ENEMY_HERO_DATA.health
+          <= (2 * env.REQUIEM_ABILITY:GetAbilityDamage())]
   end
 
   -- ALLY_TOWER state
