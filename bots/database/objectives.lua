@@ -347,6 +347,15 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "requiem",
+        wait_condition = "nil",
+        cancel_condition = "cancel_requiem",
+        actions = {
+          {action = "requiem"},
+
+        },
+      },
     },
   },
 
