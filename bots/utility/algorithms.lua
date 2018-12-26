@@ -245,9 +245,14 @@ function M.GetEnemyTowerDistance(unit_data)
            map.GetUnitEnemySpot(unit_data, "tower_tier_1_attack"))
 end
 
-function M.DoesTowerProtectUnit(unit_data)
-  return M.GetAllyTowerDistance(unit_data)
+function M.DoesTowerProtectUnit(bot_data, tower_data, unit_data)
+  return functions.GetUnitDistance(unit_data, tower_data)
          <= constants.TOWER_PROTECT_DISTANCE
+
+         or functions.IsUnitBetweenLocations(
+              tower_data,
+              bot_data.location,
+              unit_data.location)
 end
 
 function M.DoesBotOrCourierHaveItem(item_name)
