@@ -387,24 +387,28 @@ function M.IsEnemyBlockSpot(unit_data, enemy_units, spot)
   local enemy_unit = functions.GetElementWith(
                        enemy_units,
                        nil,
-                       function(target_data)
-                       return functions.GetDistance(
-                                target_data.location,
-                                spot)
-                              <= M.GetAttackRange(
-                                   target_data,
-                                   unit_data,
-                                   true)
-                                 + constants.MAX_SAFE_INC_DISTANCE
 
-                              or functions.IsUnitBetweenLocations(
-                                   target_data,
-                                   unit_data.location,
+  function(target_data)
+    local target_spot_distance = functions.GetDistance(
+                                   target_data.location,
                                    spot)
 
-                              or map.IsUnitInSpot(target_data, spot)
-                       end)
+    return target_spot_distance
+           <= (M.GetAttackRange(
+                 target_data,
+                 unit_data,
+                 true)
+               + constants.MAX_SAFE_INC_DISTANCE)
 
+           or (target_data.is_hero
+               and target_spot_distance
+                   <= constants.SAFE_HERO_DISTANCE)
+
+           or functions.IsUnitBetweenLocations(
+                target_data,
+                unit_data.location,
+                spot)
+  end)
 
   return enemy_unit ~= nil
 end
