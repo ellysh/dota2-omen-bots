@@ -275,7 +275,6 @@ function test_pre_heal_faerie_fire_1_succeed()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_FLASK] = 0,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
-    [gs.BOT_CASTABLE_TANGO] = 0,
   })
 
   luaunit.assertTrue(item_hp_recovery.pre_heal_faerie_fire())
@@ -286,7 +285,6 @@ function test_pre_heal_faerie_fire_1_fails()
     [gs.BOT_IS_LOW_HP] = 0,
     [gs.BOT_CASTABLE_FLASK] = 0,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
-    [gs.BOT_CASTABLE_TANGO] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_faerie_fire())
@@ -297,7 +295,6 @@ function test_pre_heal_faerie_fire_2_fails()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_FLASK] = 0,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_faerie_fire())
@@ -308,193 +305,9 @@ function test_pre_heal_faerie_fire_3_fails()
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_FLASK] = 1,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
-    [gs.BOT_CASTABLE_TANGO] = 0,
   })
 
   luaunit.assertFalse(item_hp_recovery.pre_heal_faerie_fire())
-end
-
-function test_pre_heal_faerie_fire_4_fails()
-  item_hp_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-    [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_faerie_fire())
-end
-
----------------------------------
-
-function test_pre_heal_tango_1_succeed()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-  })
-
-  luaunit.assertTrue(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_2_succeed()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = 0,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-  })
-
-  luaunit.assertTrue(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_3_succeed()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-  })
-
-  luaunit.assertTrue(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_4_succeed()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 1,
-  })
-
-  luaunit.assertTrue(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_1_fails()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.29,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_2_fails()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_CASTABLE_FLASK] = 1,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_3_fails()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 1,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_4_fails()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 0,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_5_fails()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 0,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = 1,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_tango())
-end
-
-function test_pre_heal_tango_6_fails()
-  item_hp_recovery.test_SetGameState({
-    -- weights_1
-    [gs.BOT_IS_HEALING] = 0,
-    [gs.BOT_CASTABLE_TANGO] = 1,
-    [gs.BOT_HP_MAX_DELTA] = 0.31,
-    [gs.NO_TREE_PRESENT] = 1,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = nil,
-
-    -- weights_2
-    [gs.BOT_IS_LOW_HP] = 0,
-    [gs.BOT_CASTABLE_FLASK] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_heal_tango())
 end
 
 ---------------------------------
@@ -507,7 +320,6 @@ function test_pre_tp_base_1_succeed()
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
@@ -524,7 +336,6 @@ function test_pre_tp_base_2_succeed()
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 1,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
@@ -541,7 +352,6 @@ function test_pre_tp_base_1_false()
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
@@ -558,7 +368,6 @@ function test_pre_tp_base_2_false()
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
@@ -575,7 +384,6 @@ function test_pre_tp_base_3_false()
     [gs.BOT_NEAR_FOUNTAIN] = 0,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
@@ -592,7 +400,6 @@ function test_pre_tp_base_4_false()
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
@@ -609,7 +416,6 @@ function test_pre_tp_base_5_false()
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 1,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
@@ -626,24 +432,6 @@ function test_pre_tp_base_6_false()
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 1,
-    [gs.BOT_HAS_TANGO] = 0,
-    [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
-    [gs.EH_PRESENT] = 0,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
-  })
-
-  luaunit.assertFalse(item_hp_recovery.pre_tp_base())
-end
-
-function test_pre_tp_base_7_false()
-  item_hp_recovery.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_CASTABLE_TP_SCROLL] = 1,
-    [gs.BOT_HAS_RESERVED_GOLD] = 0,
-    [gs.BOT_NEAR_FOUNTAIN] = 1,
-    [gs.BOT_HAS_FLASK] = 0,
-    [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 0,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
@@ -660,7 +448,6 @@ function test_pre_tp_base_8_false()
     [gs.BOT_NEAR_FOUNTAIN] = 1,
     [gs.BOT_HAS_FLASK] = 0,
     [gs.BOT_HAS_FAERIE_FIRE] = 0,
-    [gs.BOT_HAS_TANGO] = 0,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = 1,
     [gs.EH_PRESENT] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
