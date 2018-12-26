@@ -20,7 +20,6 @@ buy_observer_ward
 buy_ring_of_health
 buy_ring_of_regen
 buy_starting_items
-buy_tango
 buy_tpscroll
 cancel_attack
 cancel_decrease_creeps_distance_aggro
@@ -73,7 +72,6 @@ glyph
 heal_faerie_fire
 heal_flask
 heal_magic_stick
-heal_tango
 increase_creeps_distance
 increase_creeps_distance_aggro
 item_defense

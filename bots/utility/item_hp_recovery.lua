@@ -92,7 +92,6 @@ function M.pre_heal_faerie_fire()
     [gs.BOT_IS_LOW_HP] = 0.5,
     [gs.BOT_CASTABLE_FLASK] = -1,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 0.5,
-    [gs.BOT_CASTABLE_TANGO] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -105,32 +104,6 @@ end
 
 ---------------------------------
 
-function M.pre_heal_tango()
-  local weights_1 = {
-    [gs.BOT_IS_HEALING] = -1,
-    [gs.BOT_CASTABLE_TANGO] = 0.7,
-    [gs.BOT_HP_MAX_DELTA] = 1,
-    [gs.NO_TREE_PRESENT] = -1,
-    [gs.TREE_ET_UNSAFE_DISTANCE] = -1,
-  }
-
-  local weights_2 = {
-    [gs.BOT_IS_LOW_HP] = -1,
-    [gs.BOT_CASTABLE_FLASK] = -1,
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights_1)
-         and gs.EvaluateFrom(2, gs.GAME_STATE, weights_2)
-end
-
-function M.heal_tango()
-  env.BOT:Action_UseAbilityOnTree(
-    algorithms.GetItem(env.BOT_DATA, "item_tango"),
-    env.NEARBY_TREE)
-end
-
----------------------------------
-
 function M.pre_tp_base()
   local weights = {
     [gs.BOT_IS_LOW_HP] = 0.5,
@@ -139,7 +112,6 @@ function M.pre_tp_base()
     [gs.BOT_NEAR_FOUNTAIN] = -1,
     [gs.BOT_HAS_FLASK] = -1,
     [gs.BOT_HAS_FAERIE_FIRE] = -1,
-    [gs.BOT_HAS_TANGO] = -1,
     [gs.BOT_IN_ENEMY_TOWER_RANGE] = -1,
     [gs.EH_PRESENT] = -1,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,

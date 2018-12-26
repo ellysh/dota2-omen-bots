@@ -61,18 +61,6 @@ end
 
 ---------------------------------
 
-function M.pre_buy_tango()
-  return not algorithms.DoesBotOrCourierHaveItem("item_tango")
-         and env.BOT_DATA.level == 1
-         and GetItemCost("item_tango") <= env.BOT_DATA.gold
-end
-
-function M.buy_tango()
-  algorithms.BuyItem("item_tango")
-end
-
----------------------------------
-
 function M.pre_buy_enchanted_mango()
   return pre_buy_item("item_enchanted_mango")
          and algorithms.DoesBotOrCourierHaveItem("item_flask")

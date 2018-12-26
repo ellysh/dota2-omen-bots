@@ -530,15 +530,6 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/item_hp_recovery"),
     moves = {
       {
-        move = "heal_tango",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "heal_tango"},
-
-        },
-      },
-      {
         move = "heal_flask",
         wait_condition = "nil",
         cancel_condition = "nil",
@@ -1067,15 +1058,6 @@ M.OBJECTIVES = {
     objective = "item_hp_recovery",
     module = require(GetScriptDirectory() .."/utility/item_hp_recovery"),
     moves = {
-      {
-        move = "heal_tango",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "heal_tango"},
-
-        },
-      },
       {
         move = "heal_faerie_fire",
         wait_condition = "nil",
