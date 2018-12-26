@@ -751,18 +751,12 @@ function M.UpdateState()
 
   if env.LAST_HIT_ENEMY_CREEP ~= nil then
     M.GAME_STATE[M.EC_LAST_HIT_IS_TOWER_PROTECTED] =
-      NUM[algorithms.DoesTowerProtectUnit(
-            env.BOT_DATA,
-            env.ENEMY_TOWER_DATA,
-            env.LAST_HIT_ENEMY_CREEP)]
+      NUM[algorithms.DoesTowerProtectUnit(env.LAST_HIT_ENEMY_CREEP)]
   end
 
   if env.LAST_HIT_ALLY_CREEP ~= nil then
     M.GAME_STATE[M.AC_LAST_HIT_IS_TOWER_PROTECTED] =
-      NUM[algorithms.DoesTowerProtectUnit(
-            env.BOT_DATA,
-            env.ENEMY_TOWER_DATA,
-            env.LAST_HIT_ALLY_CREEP)]
+      NUM[algorithms.DoesTowerProtectUnit(env.LAST_HIT_ALLY_CREEP)]
 
     M.GAME_STATE[M.AC_LAST_HIT_HP_RATE] =
       functions.GetRate(
@@ -776,8 +770,6 @@ function M.UpdateState()
   if env.ENEMY_CREEP_MAX_HP_TARGETABLE_DATA ~= nil then
     M.GAME_STATE[M.EC_MAX_HP_TARGETABLE_IS_TOWER_PROTECTED] =
       NUM[algorithms.DoesTowerProtectUnit(
-            env.BOT_DATA,
-            env.ENEMY_TOWER_DATA,
             env.ENEMY_CREEP_MAX_HP_TARGETABLE_DATA)]
   end
 
@@ -787,8 +779,6 @@ function M.UpdateState()
   if env.ENEMY_CREEP_MIN_HP_TARGETABLE_DATA ~= nil then
     M.GAME_STATE[M.EC_MIN_HP_TARGETABLE_IS_TOWER_PROTECTED] =
       NUM[algorithms.DoesTowerProtectUnit(
-            env.BOT_DATA,
-            env.ENEMY_TOWER_DATA,
             env.ENEMY_CREEP_MIN_HP_TARGETABLE_DATA)]
   end
 
@@ -798,8 +788,6 @@ function M.UpdateState()
   if env.ALLY_CREEP_TARGETABLE_DATA ~= nil then
     M.GAME_STATE[M.AC_TARGETABLE_IS_TOWER_PROTECTED] =
       NUM[algorithms.DoesTowerProtectUnit(
-            env.BOT_DATA,
-            env.ENEMY_TOWER_DATA,
             env.ALLY_CREEP_TARGETABLE_DATA)]
   end
 

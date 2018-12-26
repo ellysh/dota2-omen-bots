@@ -236,10 +236,7 @@ function M.UpdateVariables()
                                M.BOT_DATA)
 
     M.DOES_TOWER_PROTECT_ENEMY =
-      algorithms.DoesTowerProtectUnit(
-        M.BOT_DATA,
-        M.ENEMY_TOWER_DATA,
-        M.ENEMY_HERO_DATA)
+      algorithms.DoesTowerProtectUnit(M.ENEMY_HERO_DATA)
 
     M.ENEMY_HERO_DISTANCE = functions.GetUnitDistance(
                               M.BOT_DATA,

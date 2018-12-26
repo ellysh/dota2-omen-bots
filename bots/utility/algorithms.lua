@@ -245,7 +245,10 @@ function M.GetEnemyTowerDistance(unit_data)
            map.GetUnitEnemySpot(unit_data, "tower_tier_1_attack"))
 end
 
-function M.DoesTowerProtectUnit(bot_data, tower_data, unit_data)
+function M.DoesTowerProtectUnit(unit_data)
+  local bot_data = M.GetBotData()
+  local tower_data = M.GetEnemyTier1Tower(bot_data)
+
   return functions.GetUnitDistance(unit_data, tower_data)
          <= constants.TOWER_PROTECT_DISTANCE
 
@@ -560,6 +563,8 @@ function M.IsCourierUnit(unit_data)
 end
 
 function M.IsAliveFrontUnit(unit_data)
+  local bot_data = M.GetBotData()
+
   return (constants.UNIT_HALF_HEALTH_LEVEL
           < functions.GetRate(unit_data.health, unit_data.max_health)
           or not map.IsUnitInEnemyTowerAttackRange(unit_data)
@@ -567,9 +572,10 @@ function M.IsAliveFrontUnit(unit_data)
                unit_data,
                constants.MIN_BASE_CREEP_DISTANCE))
 
-         and not map.IsUnitInSpot(
-                   unit_data,
-                   map.GetEnemySpot("tower_tier_1_rear_deep"))
+         and not functions.IsUnitBetweenLocations(
+              M.GetEnemyTier1Tower(bot_data),
+              bot_data.location,
+              unit_data.location)
 end
 
 function M.AreAllyCreepsInRadius(unit_data, radius, direction)
