@@ -16,8 +16,8 @@ local gs = require(
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
-local buy_items = require(
-  GetScriptDirectory() .."/utility/buy_items")
+local item_hp_recovery = require(
+  GetScriptDirectory() .."/utility/item_hp_recovery")
 
 local M = {}
 
@@ -85,19 +85,8 @@ function M.pre_wait_move_base()
 end
 
 function M.pre_cancel_move_base()
-  local weights_1 = {
-    [gs.BOT_NEAR_FOUNTAIN] = 1,
-  }
-
-  local weights_2 = {
-    [gs.BOT_HAS_FLASK] = 1,
-  }
-
   return not M.pre_move_base()
-         or (buy_items.pre_buy_items()
-             and buy_items.pre_buy_flask()
-             and not gs.Evaluate(gs.GAME_STATE, weights_1))
-         or gs.Evaluate(gs.GAME_STATE, weights_2)
+         or item_hp_recovery.pre_heal_flask()
 end
 
 function M.move_base()

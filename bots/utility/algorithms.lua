@@ -452,6 +452,7 @@ end
 local WAYPOINTS_TOP = {
   map.GetAllySpot("forest_enemy_top_1"),
   map.GetAllySpot("forest_enemy_top_2"),
+  map.GetAllySpot("forest_enemy_top_3"),
   map.GetAllySpot("river_top_1"),
   map.GetAllySpot("river_top_2"),
 }

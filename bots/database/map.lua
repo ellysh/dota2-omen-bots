@@ -44,8 +44,9 @@ M.MAP = {
     forest_bot_5 = Vector(-2552, -2656, 100),
     forest_bot_6 = Vector(-3049, -3852, 100),
 
-    forest_enemy_top_1 = Vector(988, 2274, 100),
-    forest_enemy_top_2 = Vector(-208, 1814, 100),
+    forest_enemy_top_1 = Vector(1575, 1700, 100),
+    forest_enemy_top_2 = Vector(988, 2274, 100),
+    forest_enemy_top_3 = Vector(-208, 1814, 100),
 
     forest_enemy_bot_1 = Vector(1732, 563, 100),
     forest_enemy_bot_2 = Vector(1462, -479, 100),
@@ -101,8 +102,9 @@ M.MAP = {
     forest_bot_5 = Vector(3698, 2079, 100),
     forest_bot_6 = Vector(3698, 2079, 100),
 
-    forest_enemy_top_1 = Vector(-3313, -1305, 100),
-    forest_enemy_top_2 = Vector(2875, 331, 100),
+    forest_enemy_top_1 = Vector(-2729, -1700, 100),
+    forest_enemy_top_2 = Vector(-3313, -1305, 100),
+    forest_enemy_top_3 = Vector(-2875, 331, 100),
 
     forest_enemy_bot_1 = Vector(-1743, -1860, 100),
     forest_enemy_bot_2 = Vector(-1422, -2380, 100),
