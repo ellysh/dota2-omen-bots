@@ -71,7 +71,7 @@ M.BOT_CASTABLE_MEDIUM_SHADOWRAZE = 42
 M.BOT_CASTABLE_FAR_SHADOWRAZE = 43
 M.BOT_IS_LOW_MP = 44
 M.BOT_CASTABLE_ENCHANTED_MANGO = 45
-M.BOT_CASTABLE_MAGIC_STICK = 46
+--M.BOT_CASTABLE_MAGIC_STICK = 46
 M.BOT_CASTABLE_MAGIC_WAND = 47
 M.BOT_IS_CASTING_NEAR_SHADOWRAZE = 48
 M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE = 49
@@ -377,12 +377,6 @@ function M.UpdateState()
             env.BOT_DATA,
             "item_enchanted_mango",
             false)],
-
-    [M.BOT_CASTABLE_MAGIC_STICK] =
-      NUM[algorithms.IsItemCastable(
-            env.BOT_DATA,
-            "item_magic_stick",
-            true)],
 
     [M.BOT_CASTABLE_MAGIC_WAND] =
       NUM[algorithms.IsItemCastable(
