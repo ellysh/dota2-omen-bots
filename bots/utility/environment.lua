@@ -52,7 +52,6 @@ M.IS_FOCUSED_BY_ENEMY_HERO = false
 M.IS_FOCUSED_BY_UNKNOWN_UNIT = false
 M.IS_FOCUSED_BY_TOWER = false
 M.IS_BASE_RECOVERY = false
-M.NEARBY_TREE = {}
 M.TURN_TARGET_DATA = {}
 M.BODY_BLOCK_SPOT = {}
 M.NEAR_SHADOWRAZE_ABILITY = {}
@@ -377,8 +376,6 @@ function M.UpdateVariables()
                        < constants.UNIT_HALF_HEALTH_LEVEL
 
                        and M.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS
-
-  M.NEARBY_TREE = M.BOT_DATA.nearby_trees[1]
 
   M.TURN_TARGET_DATA = M.PRE_LAST_HIT_ANY_CREEP
 

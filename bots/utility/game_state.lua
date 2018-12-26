@@ -45,12 +45,12 @@ M.BOT_RESPAWN_TIME = 16
 M.BOT_NEAR_FOUNTAIN = 17
 M.BOT_CASTABLE_FLASK = 18
 M.BOT_CASTABLE_FAERIE_FIRE = 19
-M.BOT_CASTABLE_TANGO = 20
+--M.BOT_CASTABLE_TANGO = 20
 M.BOT_CASTABLE_TP_SCROLL = 21
 M.BOT_HAS_RESERVED_GOLD = 22
 M.BOT_HAS_FLASK = 23
 M.BOT_HAS_FAERIE_FIRE = 24
-M.BOT_HAS_TANGO = 25
+--M.BOT_HAS_TANGO = 25
 M.BOT_IN_ENEMY_TOWER_RANGE = 26
 M.BOT_IN_SAFE_SPOT = 27
 M.BOT_HAS_LEVEL_FOR_AGRESSION = 28
@@ -182,10 +182,6 @@ M.EC_ATTACKING_BOT_BETWEEN_AT = 433
 M.EC_ATTACKING_BOT_IN_AT_ATTACK_RANGE = 434
 M.EC_IN_MELEE_ATTACK_RANGE = 435
 
--- Tree state
-M.NO_TREE_PRESENT = 500
-M.TREE_ET_UNSAFE_DISTANCE = 501
-
 -- Courier state
 M.COURIER_ON_BASE = 600
 M.COURIER_IS_AVAILABLE = 601
@@ -304,9 +300,6 @@ function M.UpdateState()
             "item_faerie_fire",
             false)],
 
-    [M.BOT_CASTABLE_TANGO] =
-      NUM[algorithms.IsItemCastable(env.BOT_DATA, "item_tango", false)],
-
     [M.BOT_CASTABLE_TP_SCROLL] =
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
@@ -321,9 +314,6 @@ function M.UpdateState()
 
     [M.BOT_HAS_FAERIE_FIRE] =
       NUM[algorithms.DoesBotOrCourierHaveItem("item_faerie_fire")],
-
-    [M.BOT_HAS_TANGO] =
-      NUM[algorithms.DoesBotOrCourierHaveItem("item_tango")],
 
     [M.BOT_IN_ENEMY_TOWER_RANGE] =
       NUM[map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)],
@@ -851,18 +841,6 @@ function M.UpdateState()
     NUM[algorithms.AreEnemyCreepsInRadius(
           env.BOT_DATA,
           constants.MAX_MELEE_ATTACK_RANGE)]
-
-  -- Tree state
-
-  M.GAME_STATE[M.NO_TREE_PRESENT] = NUM[env.NEARBY_TREE == nil]
-
-  if env.NEARBY_TREE ~= nil and env.ENEMY_TOWER_DATA ~= nil then
-    M.GAME_STATE[M.TREE_ET_UNSAFE_DISTANCE] =
-      NUM[functions.GetDistance(
-            GetTreeLocation(env.NEARBY_TREE),
-            env.ENEMY_TOWER_DATA.location)
-          <= constants.TANGO_USAGE_FROM_ET_DISTANCE]
-  end
 
   -- Courier state
 
