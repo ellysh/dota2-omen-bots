@@ -1,3 +1,11 @@
+* version 0.9
+    - Implement the move for casting the requiem ability.
+    - Implement the move for using the hood of defiance.
+    - Fix bugs with moving to the base through waypoints.
+    - Fix the bug when the bot stays AFK while buying items.
+    - Fix the bug with stuck when turning for casting shadowraze.
+    - Fix the bug with upgrading skills when the bot gains two levels at the time.
+
 * version 0.8
     - Implement moves for using wards.
     - Implement an algorithm for moving to the safe spot through waypoints.
