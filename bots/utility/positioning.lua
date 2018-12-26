@@ -116,6 +116,7 @@ function M.pre_decrease_creeps_distance_base()
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
+         and not M.pre_increase_creeps_distance()
 end
 
 function M.pre_cancel_decrease_creeps_distance_base()

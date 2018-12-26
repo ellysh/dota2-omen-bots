@@ -462,4 +462,78 @@ function test_pre_turn_5_fails()
   luaunit.assertFalse(positioning.pre_turn())
 end
 
+---------------------------------
+
+function test_pre_increase_creeps_distance_aggro_1_succeed()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.EH_ATTACK_BOT] = 1,
+  })
+
+  luaunit.assertTrue(positioning.pre_increase_creeps_distance_aggro())
+end
+
+function test_pre_increase_creeps_distance_aggro_1_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.EH_ATTACK_BOT] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance_aggro())
+end
+
+function test_pre_increase_creeps_distance_aggro_2_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 0,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.EH_ATTACK_BOT] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance_aggro())
+end
+
+function test_pre_increase_creeps_distance_aggro_3_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.EH_ATTACK_BOT] = 0,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance_aggro())
+end
+
+function test_pre_increase_creeps_distance_aggro_4_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
+    [gs.EC_AGGRO_COOLDOWN] = 1,
+    [gs.EH_ATTACK_BOT] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance_aggro())
+end
+
+function test_pre_increase_creeps_distance_aggro_5_fails()
+  positioning.test_SetGameState({
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.AC_FRONT_PRESENT] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
+    [gs.EC_AGGRO_COOLDOWN] = 0,
+    [gs.EH_ATTACK_BOT] = 1,
+  })
+
+  luaunit.assertFalse(positioning.pre_increase_creeps_distance_aggro())
+end
+
 os.exit(luaunit.LuaUnit.run())
