@@ -379,10 +379,7 @@ function M.UpdateVariables()
 
   M.NEARBY_TREE = M.BOT_DATA.nearby_trees[1]
 
-  M.TURN_TARGET_DATA = functions.ternary(
-                         M.PRE_LAST_HIT_ANY_CREEP ~= nil,
-                         M.PRE_LAST_HIT_ANY_CREEP,
-                         M.ENEMY_HERO_DATA)
+  M.TURN_TARGET_DATA = M.PRE_LAST_HIT_ANY_CREEP
 
   M.BODY_BLOCK_SPOT = GetBodyBlockSpot()
 

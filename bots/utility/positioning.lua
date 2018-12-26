@@ -178,7 +178,7 @@ function M.pre_cancel_turn()
 end
 
 function M.turn()
-  env.BOT:Action_MoveDirectly(env.TURN_TARGET_DATA.location)
+  env.BOT:Action_AttackUnit(env.TURN_TARGET_DATA.handle, true)
 end
 
 ---------------------------------
