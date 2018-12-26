@@ -82,9 +82,47 @@ end
 
 ---------------------------------
 
+function M.pre_buy_slippers()
+  return pre_buy_item("item_slippers")
+
+         and not hist.BOT_HAS_2ND_WRAITH_BAND
+end
+
+function M.buy_slippers()
+  algorithms.BuyItem("item_slippers")
+end
+
+---------------------------------
+
+function M.pre_buy_circlet()
+  return pre_buy_item("item_circlet")
+         and algorithms.DoesBotOrCourierHaveItem("item_slippers")
+         and not hist.BOT_HAS_2ND_WRAITH_BAND
+end
+
+function M.buy_circlet()
+  algorithms.BuyItem("item_circlet")
+end
+
+---------------------------------
+
+function M.pre_buy_recipe_wraith_band()
+  return pre_buy_item("item_recipe_wraith_band")
+         and algorithms.DoesBotOrCourierHaveItem("item_circlet")
+         and not hist.BOT_HAS_2ND_WRAITH_BAND
+end
+
+function M.buy_recipe_wraith_band()
+  algorithms.BuyItem("item_recipe_wraith_band")
+
+  hist.BOT_HAS_2ND_WRAITH_BAND = true
+end
+
+---------------------------------
+
 function M.pre_buy_boots()
   return pre_buy_item("item_boots")
-
+         and hist.BOT_HAS_2ND_WRAITH_BAND
          and not algorithms.DoesBotOrCourierHaveItem(
                    "item_power_treads")
 end
@@ -110,7 +148,7 @@ end
 
 function M.pre_buy_boots_of_elves()
   return pre_buy_item("item_boots_of_elves")
-         and algorithms.DoesBotOrCourierHaveItem("item_cloak")
+         and algorithms.DoesBotOrCourierHaveItem("item_boots")
          and not algorithms.DoesBotOrCourierHaveItem("item_power_treads")
 end
 
