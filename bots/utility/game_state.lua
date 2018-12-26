@@ -866,11 +866,9 @@ function M.UpdateState()
 
   -- Courier state
 
-  local courier_data = algorithms.GetCourierData()
-
-  if courier_data ~= nil then
+  if env.COURIER_DATA ~= nil then
     M.GAME_STATE[M.COURIER_ON_BASE] =
-      NUM[map.IsUnitInSpot(courier_data, map.GetAllySpot("fountain"))]
+      NUM[map.IsUnitInSpot(env.COURIER_DATA, map.GetAllySpot("fountain"))]
 
     M.GAME_STATE[M.COURIER_IS_AVAILABLE] = NUM[IsCourierAvailable()]
   end

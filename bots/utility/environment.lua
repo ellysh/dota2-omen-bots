@@ -64,6 +64,7 @@ M.ENEMY_UNITS_DATA = {}
 M.ALLY_WARD_DATA = {}
 M.CURRENT_GAME_TIME = 0
 M.ENEMY_HERO_REQUIEM_EVADE_DISTANCE = 0
+M.COURIER_DATA = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -406,6 +407,8 @@ function M.UpdateVariables()
   M.ALLY_WARD_DATA = algorithms.GetAllyWard(M.BOT_DATA)
 
   M.CURRENT_GAME_TIME = GameTime()
+
+  M.COURIER_DATA = algorithms.GetCourierData()
 end
 
 -- Provide an access to local functions for unit tests only

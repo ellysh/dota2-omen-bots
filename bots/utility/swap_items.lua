@@ -1,6 +1,12 @@
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local action_timing = require(
   GetScriptDirectory() .."/utility/action_timing")
 
@@ -82,6 +88,13 @@ end
 
 ---------------------------------
 
+local function DoesCourierHaveFlask()
+  return env.COURIER_DATA ~= nil
+         and algorithms.IsItemPresent(env.COURIER_DATA, "item_flask")
+         and functions.GetUnitDistance(env.COURIER_DATA, env.BOT_DATA)
+             <= constants.COURIER_NEAR_BOT_DISTANCE
+end
+
 local function GetFullSlotInBackpack(unit_data)
   for i = 6, 8 do
     if nil ~= env.BOT:GetItemInSlot(i) then
@@ -105,12 +118,44 @@ end
 function M.pre_put_item_in_inventory()
   return ((nil ~= GetFullSlotInBackpack(env.BOT_DATA))
           and (nil ~= GetEmptySlotInInventory(env.BOT_DATA)))
+          and not DoesCourierHaveFlask()
 end
 
 function M.put_item_in_inventory()
   env.BOT:ActionImmediate_SwapItems(
     GetFullSlotInBackpack(env.BOT_DATA),
     GetEmptySlotInInventory(env.BOT_DATA))
+
+  action_timing.SetNextActionDelay(0.05)
+end
+
+---------------------------------
+
+local function GetEmptySlotInBackpack(unit_data)
+  for i = 6, 8 do
+    if nil == env.BOT:GetItemInSlot(i) then
+      return i
+    end
+  end
+
+  return nil
+end
+
+function M.pre_put_wraith_band_in_backpack()
+  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
+
+  return DoesCourierHaveFlask()
+         and env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_MAIN
+         and nil ~= GetEmptySlotInBackpack(env.BOT_DATA)
+         and nil == GetEmptySlotInInventory(env.BOT_DATA)
+end
+
+function M.put_wraith_band_in_backpack()
+  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
+
+  env.BOT:ActionImmediate_SwapItems(
+    wb_slot,
+    GetEmptySlotInBackpack(env.BOT_DATA))
 
   action_timing.SetNextActionDelay(0.05)
 end

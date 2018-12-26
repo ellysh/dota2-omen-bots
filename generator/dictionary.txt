@@ -105,6 +105,7 @@ pull_enemy_creep
 pursuit_enemy_hero
 push_lane
 put_item_in_inventory
+put_wraith_band_in_backpack
 requiem
 restore_hp_on_base
 restore_mp_on_base
