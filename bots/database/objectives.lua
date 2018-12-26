@@ -38,15 +38,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_magic_stick"},
-
-        },
-      },
-      {
         move = "buy_boots",
         wait_condition = "nil",
         cancel_condition = "nil",
@@ -252,15 +243,6 @@ M.OBJECTIVES = {
 
         },
       },
-      {
-        move = "heal_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "heal_magic_stick"},
-
-        },
-      },
     },
   },
 
@@ -274,15 +256,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "use_enchanted_mango"},
-
-        },
-      },
-      {
-        move = "use_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_magic_stick"},
 
         },
       },
@@ -544,15 +517,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "heal_faerie_fire"},
-
-        },
-      },
-      {
-        move = "heal_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "heal_magic_stick"},
 
         },
       },
@@ -1067,15 +1031,6 @@ M.OBJECTIVES = {
 
         },
       },
-      {
-        move = "heal_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "heal_magic_stick"},
-
-        },
-      },
     },
   },
 
@@ -1089,15 +1044,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "use_enchanted_mango"},
-
-        },
-      },
-      {
-        move = "use_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_magic_stick"},
 
         },
       },

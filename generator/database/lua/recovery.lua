@@ -144,15 +144,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "heal_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "heal_magic_stick"},
-
-        },
-      },
-      {
         move = "tp_base",
         wait_condition = "nil",
         cancel_condition = "nil",

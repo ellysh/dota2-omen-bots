@@ -82,24 +82,8 @@ end
 
 ---------------------------------
 
-function M.pre_buy_magic_stick()
-  return pre_buy_item("item_magic_stick")
-
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_magic_wand")
-end
-
-function M.buy_magic_stick()
-  algorithms.BuyItem("item_magic_stick")
-end
-
----------------------------------
-
 function M.pre_buy_boots()
   return pre_buy_item("item_boots")
-
-         and algorithms.DoesBotOrCourierHaveItem(
-                   "item_magic_stick")
 
          and not algorithms.DoesBotOrCourierHaveItem(
                    "item_power_treads")

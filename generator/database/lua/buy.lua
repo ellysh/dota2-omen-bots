@@ -35,15 +35,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_magic_stick"},
-
-        },
-      },
-      {
         move = "buy_boots",
         wait_condition = "nil",
         cancel_condition = "nil",

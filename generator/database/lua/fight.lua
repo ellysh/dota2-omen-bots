@@ -127,15 +127,6 @@ M.OBJECTIVES = {
 
         },
       },
-      {
-        move = "heal_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "heal_magic_stick"},
-
-        },
-      },
     },
   },
 
@@ -149,15 +140,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "use_enchanted_mango"},
-
-        },
-      },
-      {
-        move = "use_magic_stick",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_magic_stick"},
 
         },
       },

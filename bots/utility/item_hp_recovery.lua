@@ -63,30 +63,6 @@ end
 
 ----------------------------------
 
-function M.pre_heal_magic_stick()
-  local weights = {
-    [gs.BOT_IS_LOW_HP] = 0.61,
-    [gs.BOT_IN_EH_ATTACK_RANGE] = 0.1,
-    [gs.EH_IS_CASTING] = 0.1,
-    [gs.BOT_CASTABLE_MAGIC_STICK] = 0.3,
-    [gs.BOT_CASTABLE_MAGIC_WAND] = 0.3,
-  }
-
-  return gs.Evaluate(gs.GAME_STATE, weights)
-end
-
-function M.heal_magic_stick()
-  if gs.GAME_STATE[gs.BOT_CASTABLE_MAGIC_STICK] then
-    env.BOT:Action_UseAbility(
-      algorithms.GetItem(env.BOT_DATA, "item_magic_stick"))
-  else
-    env.BOT:Action_UseAbility(
-      algorithms.GetItem(env.BOT_DATA, "item_magic_wand"))
-  end
-end
-
-----------------------------------
-
 function M.pre_heal_faerie_fire()
   local weights = {
     [gs.BOT_IS_LOW_HP] = 0.5,

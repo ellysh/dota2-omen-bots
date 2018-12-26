@@ -13,10 +13,8 @@ item_defense;use_hood_vs_near_shadowraze;use_hood;;
 ;use_hood_vs_far_shadowraze;use_hood;;
 ;;;;
 item_hp_recovery;heal_faerie_fire;heal_faerie_fire;;
-;heal_magic_stick;heal_magic_stick;;
 ;;;;
 item_mp_recovery;use_enchanted_mango;use_enchanted_mango;;
-;use_magic_stick;use_magic_stick;;
 ;;;;
 nuke_enemy_hero;turn_near_shadowraze;turn_via_attack;wait_turn_near_shadowraze;cancel_turn_near_shadowraze
 ;near_shadowraze;near_shadowraze;;cancel_near_shadowraze
