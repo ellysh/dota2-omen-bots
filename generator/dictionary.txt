@@ -35,6 +35,7 @@ cancel_evade_medium_shadowraze_front
 cancel_evade_near_shadowraze_back
 cancel_far_shadowraze
 cancel_increase_creeps_distance
+cancel_increase_creeps_distance_aggro
 cancel_medium_shadowraze
 cancel_move_base
 cancel_move_enemy_creep
@@ -74,6 +75,7 @@ heal_flask
 heal_magic_stick
 heal_tango
 increase_creeps_distance
+increase_creeps_distance_aggro
 item_defense
 item_hp_recovery
 item_mp_recovery

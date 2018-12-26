@@ -84,6 +84,28 @@ end
 
 ---------------------------------
 
+function M.pre_increase_creeps_distance_aggro()
+  local weights = {
+    [gs.EAC_PRE_LAST_HIT_PRESENT] = -1,
+    [gs.AC_FRONT_PRESENT] = 0.3,
+    [gs.EC_IN_AGGRO_RADIUS] = 0.4,
+    [gs.EC_AGGRO_COOLDOWN] = -0.4,
+    [gs.EH_ATTACK_BOT] = 0.3,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.pre_cancel_increase_creeps_distance_aggro()
+  return not M.pre_increase_creeps_distance_aggro()
+end
+
+function M.increase_creeps_distance_aggro()
+  env.BOT:Action_MoveDirectly(env.FARM_SPOT)
+end
+
+---------------------------------
+
 function M.pre_decrease_creeps_distance_base()
   local weights = {
     [gs.EC_IN_MAX_BASE_DISTANCE] = -1,

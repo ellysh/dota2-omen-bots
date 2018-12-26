@@ -518,6 +518,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "increase_creeps_distance_aggro",
+        wait_condition = "nil",
+        cancel_condition = "cancel_increase_creeps_distance_aggro",
+        actions = {
+          {action = "increase_creeps_distance_aggro"},
+
+        },
+      },
+      {
         move = "decrease_creeps_distance_aggro",
         wait_condition = "nil",
         cancel_condition = "cancel_decrease_creeps_distance_aggro",
