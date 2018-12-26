@@ -47,15 +47,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_cloak",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_cloak"},
-
-        },
-      },
-      {
         move = "buy_boots_of_elves",
         wait_condition = "nil",
         cancel_condition = "nil",
@@ -70,24 +61,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "buy_blades_of_attack"},
-
-        },
-      },
-      {
-        move = "buy_ring_of_regen",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_ring_of_regen"},
-
-        },
-      },
-      {
-        move = "buy_ring_of_health",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_ring_of_health"},
 
         },
       },
@@ -190,40 +163,6 @@ M.OBJECTIVES = {
         cancel_condition = "cancel_evade_far_shadowraze_front",
         actions = {
           {action = "move_front"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "item_defense",
-    module = require(GetScriptDirectory() .."/utility/item_defense"),
-    moves = {
-      {
-        move = "use_hood_vs_near_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-      {
-        move = "use_hood_vs_medium_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-      {
-        move = "use_hood_vs_far_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
 
         },
       },
@@ -406,40 +345,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "do_glyph"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "item_defense",
-    module = require(GetScriptDirectory() .."/utility/item_defense"),
-    moves = {
-      {
-        move = "use_hood_vs_near_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-      {
-        move = "use_hood_vs_medium_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-      {
-        move = "use_hood_vs_far_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
 
         },
       },
@@ -894,40 +799,6 @@ M.OBJECTIVES = {
         cancel_condition = "cancel_evade_far_shadowraze_front",
         actions = {
           {action = "move_front"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "item_defense",
-    module = require(GetScriptDirectory() .."/utility/item_defense"),
-    moves = {
-      {
-        move = "use_hood_vs_near_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-      {
-        move = "use_hood_vs_medium_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-      {
-        move = "use_hood_vs_far_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
 
         },
       },

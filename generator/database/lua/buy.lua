@@ -44,15 +44,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_cloak",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_cloak"},
-
-        },
-      },
-      {
         move = "buy_boots_of_elves",
         wait_condition = "nil",
         cancel_condition = "nil",
@@ -67,24 +58,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "buy_blades_of_attack"},
-
-        },
-      },
-      {
-        move = "buy_ring_of_regen",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_ring_of_regen"},
-
-        },
-      },
-      {
-        move = "buy_ring_of_health",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_ring_of_health"},
 
         },
       },

@@ -81,40 +81,6 @@ M.OBJECTIVES = {
   },
 
   {
-    objective = "item_defense",
-    module = require(GetScriptDirectory() .."/utility/item_defense"),
-    moves = {
-      {
-        move = "use_hood_vs_near_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-      {
-        move = "use_hood_vs_medium_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-      {
-        move = "use_hood_vs_far_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_hood"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "glyph",
     module = require(GetScriptDirectory() .."/utility/glyph"),
     moves = {

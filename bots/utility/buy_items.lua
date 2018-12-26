@@ -95,21 +95,6 @@ end
 
 ---------------------------------
 
-function M.pre_buy_cloak()
-  return pre_buy_item("item_cloak")
-
-         and algorithms.DoesBotOrCourierHaveItem("item_boots")
-
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_hood_of_defiance")
-end
-
-function M.buy_cloak()
-  algorithms.BuyItem("item_cloak")
-end
-
----------------------------------
-
 function M.pre_buy_blades_of_attack()
   return pre_buy_item("item_blades_of_attack")
          and algorithms.DoesBotOrCourierHaveItem("item_boots_of_elves")
@@ -131,36 +116,6 @@ end
 
 function M.buy_boots_of_elves()
   algorithms.BuyItem("item_boots_of_elves")
-end
-
----------------------------------
-
-function M.pre_buy_ring_of_regen()
-  return pre_buy_item("item_ring_of_regen")
-
-         and algorithms.DoesBotOrCourierHaveItem("item_power_treads")
-
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_hood_of_defiance")
-end
-
-function M.buy_ring_of_regen()
-  algorithms.BuyItem("item_ring_of_regen")
-end
-
----------------------------------
-
-function M.pre_buy_ring_of_health()
-  return pre_buy_item("item_ring_of_health")
-
-         and algorithms.DoesBotOrCourierHaveItem("item_ring_of_regen")
-
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_hood_of_defiance")
-end
-
-function M.buy_ring_of_health()
-  algorithms.BuyItem("item_ring_of_health")
 end
 
 ---------------------------------
