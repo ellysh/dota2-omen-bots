@@ -11,10 +11,13 @@ buyback
 buy_blades_of_attack
 buy_boots
 buy_boots_of_elves
+buy_circlet
 buy_enchanted_mango
 buy_flask
 buy_items
 buy_observer_ward
+buy_recipe_wraith_band
+buy_slippers
 buy_starting_items
 buy_tpscroll
 cancel_attack

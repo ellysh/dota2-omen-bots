@@ -35,6 +35,33 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "buy_slippers",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_slippers"},
+
+        },
+      },
+      {
+        move = "buy_circlet",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_circlet"},
+
+        },
+      },
+      {
+        move = "buy_recipe_wraith_band",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_recipe_wraith_band"},
+
+        },
+      },
+      {
         move = "buy_boots",
         wait_condition = "nil",
         cancel_condition = "nil",
