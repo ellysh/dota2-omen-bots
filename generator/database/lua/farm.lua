@@ -193,6 +193,15 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "use_enchanted_mango_with_cyclone",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_enchanted_mango"},
+
+        },
+      },
     },
   },
 

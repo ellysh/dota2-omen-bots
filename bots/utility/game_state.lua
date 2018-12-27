@@ -45,7 +45,7 @@ M.BOT_RESPAWN_TIME = 16
 M.BOT_NEAR_FOUNTAIN = 17
 M.BOT_CASTABLE_FLASK = 18
 M.BOT_CASTABLE_FAERIE_FIRE = 19
---M.BOT_CASTABLE_TANGO = 20
+M.BOT_HAS_CYCLONE = 20
 M.BOT_CASTABLE_TP_SCROLL = 21
 M.BOT_HAS_RESERVED_GOLD = 22
 M.BOT_HAS_FLASK = 23
@@ -299,6 +299,9 @@ function M.UpdateState()
             env.BOT_DATA,
             "item_faerie_fire",
             false)],
+
+    [M.BOT_HAS_CYCLONE] =
+      NUM[algorithms.DoesBotOrCourierHaveItem("item_cyclone")],
 
     [M.BOT_CASTABLE_TP_SCROLL] =
       NUM[algorithms.IsItemCastable(

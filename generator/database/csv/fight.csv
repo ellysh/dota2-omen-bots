@@ -11,6 +11,7 @@ evade_enemy_nukes;evade_near_shadowraze_back;move_back;wait_evade_near_shadowraz
 item_hp_recovery;heal_faerie_fire;heal_faerie_fire;;
 ;;;;
 item_mp_recovery;use_enchanted_mango;use_enchanted_mango;;
+;use_enchanted_mango_with_cyclone;use_enchanted_mango;;
 ;;;;
 nuke_enemy_hero;turn_near_shadowraze;turn_via_attack;wait_turn_near_shadowraze;cancel_turn_near_shadowraze
 ;near_shadowraze;near_shadowraze;;cancel_near_shadowraze

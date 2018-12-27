@@ -99,4 +99,46 @@ end
 
 ---------------------------------
 
+function test_pre_use_enchanted_mango_with_cyclone_1_succeed()
+  item_mp_recovery.test_SetGameState({
+    [gs.BOT_HAS_CYCLONE] = 1,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 1,
+  })
+
+  luaunit.assertTrue(
+    item_mp_recovery.pre_use_enchanted_mango_with_cyclone())
+end
+
+function test_use_enchanted_mango_with_cyclone_1_fails()
+  item_mp_recovery.test_SetGameState({
+    [gs.BOT_HAS_CYCLONE] = 0,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 1,
+  })
+
+  luaunit.assertFalse(
+    item_mp_recovery.pre_use_enchanted_mango_with_cyclone())
+end
+
+function test_use_enchanted_mango_with_cyclone_2_fails()
+  item_mp_recovery.test_SetGameState({
+    [gs.BOT_HAS_CYCLONE] = 1,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 0,
+  })
+
+  luaunit.assertFalse(
+    item_mp_recovery.pre_use_enchanted_mango_with_cyclone())
+end
+
+function test_use_enchanted_mango_with_cyclone_4_fails()
+  item_mp_recovery.test_SetGameState({
+    [gs.BOT_HAS_CYCLONE] = 0,
+    [gs.BOT_CASTABLE_ENCHANTED_MANGO] = 0,
+  })
+
+  luaunit.assertFalse(
+    item_mp_recovery.pre_use_enchanted_mango_with_cyclone())
+end
+
+---------------------------------
+
 os.exit(luaunit.LuaUnit.run())
