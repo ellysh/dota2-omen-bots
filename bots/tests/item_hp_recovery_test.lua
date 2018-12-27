@@ -274,6 +274,18 @@ function test_pre_heal_faerie_fire_1_succeed()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
+    [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
+  })
+
+  luaunit.assertTrue(item_hp_recovery.pre_heal_faerie_fire())
+end
+
+function test_pre_heal_faerie_fire_2_succeed()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FLASK] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
   })
 
@@ -284,6 +296,7 @@ function test_pre_heal_faerie_fire_1_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 0,
     [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
   })
 
@@ -294,6 +307,7 @@ function test_pre_heal_faerie_fire_2_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 0,
   })
 
@@ -304,6 +318,29 @@ function test_pre_heal_faerie_fire_3_fails()
   item_hp_recovery.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_CASTABLE_FLASK] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0,
+    [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_heal_faerie_fire())
+end
+
+function test_pre_heal_faerie_fire_4_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
+    [gs.BOT_CASTABLE_FAERIE_FIRE] = 0,
+  })
+
+  luaunit.assertFalse(item_hp_recovery.pre_heal_faerie_fire())
+end
+
+function test_pre_heal_faerie_fire_5_fails()
+  item_hp_recovery.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FLASK] = 0,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 1,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 1,
   })
 

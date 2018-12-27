@@ -66,7 +66,8 @@ end
 function M.pre_heal_faerie_fire()
   local weights = {
     [gs.BOT_IS_LOW_HP] = 0.5,
-    [gs.BOT_CASTABLE_FLASK] = -1,
+    [gs.BOT_CASTABLE_FLASK] = -0.3,
+    [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0.3,
     [gs.BOT_CASTABLE_FAERIE_FIRE] = 0.5,
   }
 
