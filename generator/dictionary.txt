@@ -17,10 +17,14 @@ buy_flask
 buy_infused_raindrop
 buy_items
 buy_observer_ward
+buy_recipe_cyclone
 buy_recipe_wraith_band
 buy_slippers
+buy_staff_of_wizardry
 buy_starting_items
 buy_tpscroll
+buy_void_stone
+buy_wind_lace
 cancel_attack
 cancel_decrease_creeps_distance_aggro
 cancel_decrease_creeps_distance_base

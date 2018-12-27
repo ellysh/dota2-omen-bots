@@ -98,6 +98,42 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "buy_wind_lace",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_wind_lace"},
+
+        },
+      },
+      {
+        move = "buy_void_stone",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_void_stone"},
+
+        },
+      },
+      {
+        move = "buy_staff_of_wizardry",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_staff_of_wizardry"},
+
+        },
+      },
+      {
+        move = "buy_recipe_cyclone",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_recipe_cyclone"},
+
+        },
+      },
+      {
         move = "buy_observer_ward",
         wait_condition = "nil",
         cancel_condition = "nil",
