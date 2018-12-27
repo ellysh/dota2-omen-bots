@@ -34,7 +34,6 @@ You should follow the following limitations when playing with the bot:
 5. No scan.
 6. No runes.
 7. Bot difficulty is Hard or above.
-8. No Infused Raindrop.
 
 ## Update
 
