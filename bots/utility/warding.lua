@@ -7,6 +7,9 @@ local gs = require(
 local algorithms = require(
   GetScriptDirectory() .."/utility/algorithms")
 
+local moves = require(
+  GetScriptDirectory() .."/utility/moves")
+
 local map = require(
   GetScriptDirectory() .."/utility/map")
 
@@ -20,6 +23,7 @@ function M.pre_warding()
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
+         and moves.pre_interrupt_cast_objective()
 end
 
 ---------------------------------
