@@ -35,6 +35,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "buy_infused_raindrop",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_infused_raindrop"},
+
+        },
+      },
+      {
         move = "buy_slippers",
         wait_condition = "nil",
         cancel_condition = "nil",

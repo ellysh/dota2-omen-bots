@@ -14,6 +14,7 @@ buy_boots_of_elves
 buy_circlet
 buy_enchanted_mango
 buy_flask
+buy_infused_raindrop
 buy_items
 buy_observer_ward
 buy_recipe_wraith_band
