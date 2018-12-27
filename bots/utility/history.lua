@@ -14,8 +14,6 @@ M.LAST_SAFE_SPOT = {}
 
 M.WARD_BUYING_TIMESTAMP = 0
 
-M.BOT_HAS_2ND_WRAITH_BAND = false
-
 -- Provide an access to local functions for unit tests only
 
 return M

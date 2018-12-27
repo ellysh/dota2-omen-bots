@@ -94,10 +94,29 @@ end
 
 ---------------------------------
 
+local function HasTwoWraithBands(unit_data)
+  local counter = 0
+
+  functions.DoWithKeysAndElements(
+    unit_data.items,
+    function(_, item)
+      if not item:IsNull() and item:GetName() == "item_wraith_band" then
+        counter = counter + 1
+      end
+    end)
+
+  return counter == 2
+end
+
 function M.pre_buy_slippers()
   return pre_buy_item("item_slippers")
-
-         and not hist.BOT_HAS_2ND_WRAITH_BAND
+         and not HasTwoWraithBands(env.BOT_DATA)
+         and not algorithms.IsItemPresent(
+                   env.COURIER_DATA,
+                   "item_wraith_band")
+         and not algorithms.IsItemPresent(
+                   env.COURIER_DATA,
+                   "item_recipe_wraith_band")
 end
 
 function M.buy_slippers()
@@ -109,7 +128,7 @@ end
 function M.pre_buy_circlet()
   return pre_buy_item("item_circlet")
          and algorithms.DoesBotOrCourierHaveItem("item_slippers")
-         and not hist.BOT_HAS_2ND_WRAITH_BAND
+         and not HasTwoWraithBands(env.BOT_DATA)
 end
 
 function M.buy_circlet()
@@ -121,20 +140,18 @@ end
 function M.pre_buy_recipe_wraith_band()
   return pre_buy_item("item_recipe_wraith_band")
          and algorithms.DoesBotOrCourierHaveItem("item_circlet")
-         and not hist.BOT_HAS_2ND_WRAITH_BAND
+         and not HasTwoWraithBands(env.BOT_DATA)
 end
 
 function M.buy_recipe_wraith_band()
   algorithms.BuyItem("item_recipe_wraith_band")
-
-  hist.BOT_HAS_2ND_WRAITH_BAND = true
 end
 
 ---------------------------------
 
 function M.pre_buy_boots()
   return pre_buy_item("item_boots")
-         and hist.BOT_HAS_2ND_WRAITH_BAND
+         and HasTwoWraithBands(env.BOT_DATA)
          and not algorithms.DoesBotOrCourierHaveItem(
                    "item_power_treads")
 end

@@ -96,7 +96,7 @@ local function DoesCourierHaveFlask()
 end
 
 local function GetFullSlotInBackpack(unit_data)
-  for i = 6, 8 do
+  for i = constants.BACKPACK_START_INDEX, constants.BACKPACK_END_INDEX do
     if nil ~= env.BOT:GetItemInSlot(i) then
       return i
     end
@@ -106,7 +106,7 @@ local function GetFullSlotInBackpack(unit_data)
 end
 
 local function GetEmptySlotInInventory(unit_data)
-  for i = 0, 5 do
+  for i = constants.INVENTORY_START_INDEX, constants.INVENTORY_END_INDEX do
     if nil == env.BOT:GetItemInSlot(i) then
       return i
     end
@@ -132,7 +132,7 @@ end
 ---------------------------------
 
 local function GetEmptySlotInBackpack(unit_data)
-  for i = 6, 8 do
+  for i = constants.BACKPACK_START_INDEX, constants.BACKPACK_END_INDEX do
     if nil == env.BOT:GetItemInSlot(i) then
       return i
     end
