@@ -25,7 +25,6 @@ function M.pre_evade_near_shadowraze_back()
     [gs.EH_IS_CASTING_NEAR_SHADOWRAZE] = 0.4,
     [gs.BOT_CAN_EVADE_NEAR_SHADOWRAZE_BACK] = 0.3,
     [gs.EH_IS_FACING_BOT_MELEE_RANGE] = 0.3,
-    [gs.BOT_HAS_MODIFIER_HOOD] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -46,7 +45,6 @@ function M.pre_evade_medium_shadowraze_back()
     [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 0.4,
     [gs.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_BACK] = 0.3,
     [gs.EH_IS_FACING_BOT] = 0.3,
-    [gs.BOT_HAS_MODIFIER_HOOD] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -67,7 +65,6 @@ function M.pre_evade_far_shadowraze_back()
     [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 0.4,
     [gs.BOT_CAN_EVADE_FAR_SHADOWRAZE_BACK] = 0.3,
     [gs.EH_IS_FACING_BOT] = 0.3,
-    [gs.BOT_HAS_MODIFIER_HOOD] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -92,7 +89,6 @@ function M.pre_evade_medium_shadowraze_front()
     [gs.EH_IS_CASTING_MEDIUM_SHADOWRAZE] = 0.4,
     [gs.BOT_CAN_EVADE_MEDIUM_SHADOWRAZE_FRONT] = 0.3,
     [gs.EH_IS_FACING_BOT] = 0.3,
-    [gs.BOT_HAS_MODIFIER_HOOD] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -113,7 +109,6 @@ function M.pre_evade_far_shadowraze_front()
     [gs.EH_IS_CASTING_FAR_SHADOWRAZE] = 0.4,
     [gs.BOT_CAN_EVADE_FAR_SHADOWRAZE_FRONT] = 0.3,
     [gs.EH_IS_FACING_BOT] = 0.3,
-    [gs.BOT_HAS_MODIFIER_HOOD] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
