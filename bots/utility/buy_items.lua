@@ -74,6 +74,7 @@ end
 
 function M.pre_buy_infused_raindrop()
   return pre_buy_item("item_infused_raindrop")
+         and 0 < GetItemStockCount("item_infused_raindrop")
          and algorithms.DoesBotOrCourierHaveItem("item_flask")
 end
 
