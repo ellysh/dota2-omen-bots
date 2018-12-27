@@ -9,6 +9,7 @@ base_recovery
 body_block
 buyback
 buy_blades_of_attack
+buy_blink
 buy_boots
 buy_boots_of_elves
 buy_circlet

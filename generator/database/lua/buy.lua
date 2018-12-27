@@ -134,6 +134,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "buy_blink",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_blink"},
+
+        },
+      },
+      {
         move = "buy_observer_ward",
         wait_condition = "nil",
         cancel_condition = "nil",

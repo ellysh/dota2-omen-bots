@@ -236,6 +236,17 @@ end
 
 ---------------------------------
 
+function M.pre_buy_blink()
+  return pre_buy_item("item_blink")
+         and algorithms.DoesBotOrCourierHaveItem("item_cyclone")
+end
+
+function M.buy_blink()
+  algorithms.BuyItem("item_blink")
+end
+
+---------------------------------
+
 function M.pre_buy_observer_ward()
   local weights = {
     [gs.AW_PRESENT] = -1,
