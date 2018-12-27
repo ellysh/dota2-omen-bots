@@ -37,6 +37,7 @@ function M.pre_swap_flask_wraith_band()
 
   return env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_BACKPACK
          and env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_MAIN
+         and gs.GAME_STATE[gs.BOT_HP_RATE] < 0.5
 end
 
 function M.swap_flask_wraith_band()
@@ -56,6 +57,7 @@ function M.pre_swap_mango_wraith_band()
 
   return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_BACKPACK
          and env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_MAIN
+         and gs.GAME_STATE[gs.BOT_MP_RATE] < 0.5
 end
 
 function M.swap_mango_wraith_band()
@@ -148,6 +150,7 @@ function M.pre_put_wraith_band_in_backpack()
          and env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_MAIN
          and nil ~= GetEmptySlotInBackpack(env.BOT_DATA)
          and nil == GetEmptySlotInInventory(env.BOT_DATA)
+         and gs.GAME_STATE[gs.BOT_HP_RATE] < 0.5
 end
 
 function M.put_wraith_band_in_backpack()
