@@ -161,6 +161,15 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "swap_raindrop_flask",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "swap_raindrop_flask"},
+
+        },
+      },
     },
   },
 
