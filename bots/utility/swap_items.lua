@@ -165,21 +165,20 @@ end
 
 ---------------------------------
 
-function M.pre_swap_raindrop_flask()
-  local raindrop_slot = env.BOT:FindItemSlot("item_infused_raindrop")
+function M.pre_swap_flask_to_backpack()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
+  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
 
-  return env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_MAIN
-         and env.BOT:GetItemSlotType(raindrop_slot)
-             == ITEM_SLOT_TYPE_BACKPACK
+  return backpack_slot ~= nil
+         and env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_MAIN
          and 0.5 < gs.GAME_STATE[gs.BOT_HP_RATE]
 end
 
-function M.swap_raindrop_flask()
-  local raindrop_slot = env.BOT:FindItemSlot("item_infused_raindrop")
+function M.swap_flask_to_backpack()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
+  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
 
-  env.BOT:ActionImmediate_SwapItems(raindrop_slot, flask_slot)
+  env.BOT:ActionImmediate_SwapItems(flask_slot, backpack_slot)
 
   action_timing.SetNextActionDelay(0.05)
 end

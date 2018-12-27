@@ -85,11 +85,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_raindrop_flask",
+        move = "swap_flask_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_raindrop_flask"},
+          {action = "swap_flask_to_backpack"},
 
         },
       },
