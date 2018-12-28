@@ -296,13 +296,14 @@ function M.UpdateState()
             env.BOT_DATA,
             "item_flask",
             false,
-            hist.SWAP_FLASK_TIMESTAMP)],
+            hist.SWAP_BACKPACK_TIMESTAMP)],
 
     [M.BOT_CASTABLE_FAERIE_FIRE] =
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
             "item_faerie_fire",
-            false)],
+            false,
+            hist.SWAP_BACKPACK_TIMESTAMP)],
 
     [M.BOT_HAS_CYCLONE] =
       NUM[algorithms.DoesBotOrCourierHaveItem("item_cyclone")],
@@ -384,7 +385,7 @@ function M.UpdateState()
             env.BOT_DATA,
             "item_enchanted_mango",
             false,
-            env.SWAP_MANGO_TIMESTAMP)],
+            env.SWAP_BACKPACK_TIMESTAMP)],
 
     [M.BOT_IS_CASTING_NEAR_SHADOWRAZE] =
       NUM[env.NEAR_SHADOWRAZE_ABILITY:IsInAbilityPhase()],
@@ -428,7 +429,8 @@ function M.UpdateState()
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
             "item_ward_observer",
-            false)],
+            false,
+            hist.SWAP_BACKPACK_TIMESTAMP)],
 
     [M.BOT_BUY_WARD_PERIOD_ACHIEVED] =
       NUM[constants.BUY_WARD_PERIOD

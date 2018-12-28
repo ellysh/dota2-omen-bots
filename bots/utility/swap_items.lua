@@ -49,7 +49,7 @@ function M.swap_flask_wraith_band()
 
   env.BOT:ActionImmediate_SwapItems(flask_slot, wb_slot)
 
-  hist.SWAP_FLASK_TIMESTAMP = env.CURRENT_GAME_TIME
+  hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 
   action_timing.SetNextActionDelay(0.05)
 end
@@ -71,7 +71,7 @@ function M.swap_mango_wraith_band()
 
   env.BOT:ActionImmediate_SwapItems(mango_slot, wb_slot)
 
-  hist.SWAP_MANGO_TIMESTAMP = env.CURRENT_GAME_TIME
+  hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 
   action_timing.SetNextActionDelay(0.05)
 end
@@ -115,6 +115,8 @@ function M.put_item_in_inventory()
   env.BOT:ActionImmediate_SwapItems(
     GetFullSlotInBackpack(env.BOT_DATA),
     GetEmptySlotInInventory(env.BOT_DATA))
+
+  hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 
   action_timing.SetNextActionDelay(0.05)
 end
@@ -167,6 +169,8 @@ function M.swap_flask_to_backpack()
   local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
 
   env.BOT:ActionImmediate_SwapItems(flask_slot, backpack_slot)
+
+  hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 
   action_timing.SetNextActionDelay(0.05)
 end
