@@ -543,7 +543,12 @@ function M.GetFarmSpot(unit_data, enemy_units)
   return functions.ternary(spot ~= nil, spot, FARM_SPOTS[#FARM_SPOTS])
 end
 
-function M.IsItemCastable(unit_data, item_name, check_charges)
+function M.IsItemCastable(
+  unit_data,
+  item_name,
+  check_charges,
+  swap_timestamp)
+
   local item = M.GetItem(unit_data, item_name)
 
   return M.IsItemPresent(unit_data, item_name)
@@ -551,6 +556,9 @@ function M.IsItemCastable(unit_data, item_name, check_charges)
          and item:IsFullyCastable()
          and (not check_charges
               or 0 < item:GetCurrentCharges())
+         and (swap_timestamp == nil
+              or (swap_timestamp + constants.BACKPACK_SWAP_PENALTY_TIME)
+                 < GameTime())
 end
 
 function M.IsRangedUnit(unit_data)

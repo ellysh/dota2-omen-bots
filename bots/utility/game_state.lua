@@ -72,7 +72,7 @@ M.BOT_CASTABLE_FAR_SHADOWRAZE = 43
 M.BOT_IS_LOW_MP = 44
 M.BOT_CASTABLE_ENCHANTED_MANGO = 45
 --M.BOT_CASTABLE_MAGIC_STICK = 46
-M.BOT_CASTABLE_MAGIC_WAND = 47
+--M.BOT_CASTABLE_MAGIC_WAND = 47
 M.BOT_IS_CASTING_NEAR_SHADOWRAZE = 48
 M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE = 49
 M.BOT_IS_CASTING_FAR_SHADOWRAZE = 50
@@ -292,7 +292,11 @@ function M.UpdateState()
       NUM[env.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS],
 
     [M.BOT_CASTABLE_FLASK] =
-      NUM[algorithms.IsItemCastable(env.BOT_DATA, "item_flask", false)],
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_flask",
+            false,
+            hist.SWAP_FLASK_TIMESTAMP)],
 
     [M.BOT_CASTABLE_FAERIE_FIRE] =
       NUM[algorithms.IsItemCastable(
@@ -379,13 +383,8 @@ function M.UpdateState()
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
             "item_enchanted_mango",
-            false)],
-
-    [M.BOT_CASTABLE_MAGIC_WAND] =
-      NUM[algorithms.IsItemCastable(
-            env.BOT_DATA,
-            "item_magic_wand",
-            true)],
+            false,
+            env.SWAP_MANGO_TIMESTAMP)],
 
     [M.BOT_IS_CASTING_NEAR_SHADOWRAZE] =
       NUM[env.NEAR_SHADOWRAZE_ABILITY:IsInAbilityPhase()],

@@ -16,6 +16,9 @@ local env = require(
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
+
 local M = {}
 
 ---------------------------------
@@ -46,6 +49,8 @@ function M.swap_flask_wraith_band()
 
   env.BOT:ActionImmediate_SwapItems(flask_slot, wb_slot)
 
+  hist.SWAP_FLASK_TIMESTAMP = env.CURRENT_GAME_TIME
+
   action_timing.SetNextActionDelay(0.05)
 end
 
@@ -65,6 +70,8 @@ function M.swap_mango_wraith_band()
   local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
   env.BOT:ActionImmediate_SwapItems(mango_slot, wb_slot)
+
+  hist.SWAP_MANGO_TIMESTAMP = env.CURRENT_GAME_TIME
 
   action_timing.SetNextActionDelay(0.05)
 end
