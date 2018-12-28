@@ -52,7 +52,7 @@ M.BOT_CASTABLE_TP_SCROLL = 21
 M.BOT_HAS_RESERVED_GOLD = 22
 M.BOT_HAS_FLASK = 23
 M.BOT_HAS_FAERIE_FIRE = 24
---M.BOT_HAS_TANGO = 25
+M.BOT_CASTABLE_CYCLONE = 25
 M.BOT_IN_ENEMY_TOWER_RANGE = 26
 M.BOT_IN_SAFE_SPOT = 27
 M.BOT_HAS_LEVEL_FOR_AGRESSION = 28
@@ -293,6 +293,13 @@ function M.UpdateState()
 
     [M.BOT_NEAR_FOUNTAIN] =
       NUM[env.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS],
+
+    [M.BOT_CASTABLE_CYCLONE] =
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_cyclone",
+            false,
+            hist.SWAP_BACKPACK_TIMESTAMP)],
 
     [M.BOT_CASTABLE_FLASK] =
       NUM[algorithms.IsItemCastable(

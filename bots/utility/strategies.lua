@@ -72,6 +72,20 @@ function M.pre_fight()
 end
 
 ---------------------------------
+
+function M.pre_combo()
+  local weights = {
+    [gs.BOT_IS_ALIVE] = 0.3,
+    [gs.EH_PRESENT] = 0.3,
+    [gs.BOT_CASTABLE_CYCLONE] = 0.2,
+    [gs.BOT_CASTABLE_REQUIEM] = 0.2,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+---------------------------------
+
 function M.pre_farm()
   return true
 end
