@@ -78,6 +78,27 @@ end
 
 ---------------------------------
 
+function M.pre_swap_raindrop_mango()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local raindrop_slot = env.BOT:FindItemSlot("item_infused_raindrop")
+
+  return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_MAIN
+         and env.BOT:GetItemSlotType(raindrop_slot)
+             == ITEM_SLOT_TYPE_BACKPACK
+         and 0.5 < gs.GAME_STATE[gs.BOT_MP_RATE]
+end
+
+function M.swap_raindrop_mango()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local raindrop_slot = env.BOT:FindItemSlot("item_infused_raindrop")
+
+  env.BOT:ActionImmediate_SwapItems(mango_slot, raindrop_slot)
+
+  action_timing.SetNextActionDelay(0.05)
+end
+
+---------------------------------
+
 local function DoesCourierHaveFlask()
   return env.COURIER_DATA ~= nil
          and algorithms.IsItemPresent(env.COURIER_DATA, "item_flask")

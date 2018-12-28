@@ -84,6 +84,15 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "swap_raindrop_mango",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "swap_raindrop_mango"},
+
+        },
+      },
     },
   },
 

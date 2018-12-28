@@ -490,6 +490,15 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "swap_raindrop_mango",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "swap_raindrop_mango"},
+
+        },
+      },
     },
   },
 
@@ -973,6 +982,15 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "swap_flask_to_backpack"},
+
+        },
+      },
+      {
+        move = "swap_raindrop_mango",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "swap_raindrop_mango"},
 
         },
       },
