@@ -23,5 +23,6 @@ evasion;move_safe_recovery;move_safe_spot;wait_move_safe_recovery;cancel_move_sa
 ;evade_enemy_hero;move_safe_spot;wait_evade_enemy_hero;cancel_evade_enemy_hero
 ;evade_enemy_tower;move_safe_spot;wait_evade_enemy_tower;cancel_evade_enemy_tower
 ;evade_enemy_creeps;move_safe_spot;wait_evade_enemy_creeps;cancel_evade_enemy_creeps
+;evade_invisible_enemy_hero;move_safe_spot;wait_evade_invisible_enemy_hero;cancel_evade_invisible_enemy_hero
 ;;;;
 force_stop;stop;stop_attack_and_move;;

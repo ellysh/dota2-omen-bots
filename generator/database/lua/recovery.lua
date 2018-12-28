@@ -213,6 +213,15 @@ M.OBJECTIVES = {
 
         },
       },
+      {
+        move = "evade_invisible_enemy_hero",
+        wait_condition = "wait_evade_invisible_enemy_hero",
+        cancel_condition = "cancel_evade_invisible_enemy_hero",
+        actions = {
+          {action = "move_safe_spot"},
+
+        },
+      },
     },
   },
 
