@@ -74,7 +74,7 @@ M.BOT_CASTABLE_FAR_SHADOWRAZE = 43
 M.BOT_IS_LOW_MP = 44
 M.BOT_CASTABLE_ENCHANTED_MANGO = 45
 M.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM = 46
---M.BOT_CASTABLE_MAGIC_WAND = 47
+M.BOT_HAS_MAX_SOULS = 47
 M.BOT_IS_CASTING_NEAR_SHADOWRAZE = 48
 M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE = 49
 M.BOT_IS_CASTING_FAR_SHADOWRAZE = 50
@@ -301,6 +301,12 @@ function M.UpdateState()
       NUM[(constants.CYCLONE_MANA_COST
            + env.REQUIEM_ABILITY:GetManaCost())
           <= env.BOT_DATA.mana],
+
+    [M.BOT_HAS_MAX_SOULS] =
+      NUM[constants.NEVERMORE_MAX_SOULS
+           <= env.BOT:GetModifierStackCount(
+                env.BOT:GetModifierByName(
+                  "modifier_nevermore_necromastery"))],
 
     [M.BOT_CASTABLE_CYCLONE] =
       NUM[algorithms.IsItemCastable(

@@ -16,7 +16,8 @@ local M = {}
 
 function M.pre_cyclone_and_requiem()
   local weights = {
-    [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 1
+    [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 0.5,
+    [gs.BOT_HAS_MAX_SOULS] = 0.5,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
