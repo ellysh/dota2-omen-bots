@@ -31,7 +31,7 @@ xdotool key 'Return'
 xdotool type 'dota_give_gold 99999'
 xdotool key 'Return'
 
-#exit 1
+exit 1
 
 # Give items, gold and level to the bot
 

@@ -1,5 +1,5 @@
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
+local algorithms = require(
+  GetScriptDirectory() .."/utility/algorithms")
 
 local env = require(
   GetScriptDirectory() .."/utility/environment")
@@ -33,7 +33,7 @@ end
 function M.cyclone()
   env.BOT:Action_UseAbilityOnEntity(
     algorithms.GetItem(env.BOT_DATA, "item_cyclone"),
-    env.ENEMY_HERO_DATA)
+    env.ENEMY_HERO_DATA.handle)
 end
 
 ---------------------------------
