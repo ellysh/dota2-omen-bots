@@ -621,13 +621,17 @@ function M.UpdateState()
     M.GAME_STATE[M.EH_HAS_HP_FOR_REQUIEM] =
       NUM[env.ENEMY_HERO_DATA.health
           <= (2 * env.REQUIEM_ABILITY:GetAbilityDamage())]
+  end
+
+  if hist.LAST_SEEN_EH_DATA ~= nil
+     and (env.ENEMY_HERO_DATA == nil
+          or not M.GAME_STATE[M.EH_IS_VISIBLE]) then
 
     M.GAME_STATE[M.BOT_IN_EH_POTENTIAL_RADIUS] =
-      NUM[not M.GAME_STATE[M.EH_IS_VISIBLE]
-          and 1 < GetUnitPotentialValue(
-                    env.ENEMY_HERO_DATA.handler,
-                    env.BOT_DATA.location,
-                    constants.SAFE_HERO_DISTANCE)]
+      NUM[(functions.GetUnitDistance(env.BOT_DATA, hist.LAST_SEEN_EH_DATA)
+           - (hist.LAST_SEEN_EH_DATA.speed * (env.CURRENT_GAME_TIME
+           - hist.LAST_SEEN_EH_TIMESTAMP)))
+          < constants.SAFE_HERO_DISTANCE]
   end
 
   -- ALLY_TOWER state

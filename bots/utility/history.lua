@@ -16,6 +16,10 @@ M.WARD_BUYING_TIMESTAMP = 0
 
 M.SWAP_BACKPACK_TIMESTAMP = 0
 
+M.LAST_SEEN_EH_DATA = nil
+
+M.LAST_SEEN_EH_TIMESTAMP = 0
+
 -- Provide an access to local functions for unit tests only
 
 return M

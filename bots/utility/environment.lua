@@ -13,6 +13,9 @@ local constants = require(
 local all_units = require(
   GetScriptDirectory() .."/utility/all_units")
 
+local hist = require(
+  GetScriptDirectory() .."/utility/history")
+
 local M = {}
 
 M.BOT = {}
@@ -228,6 +231,11 @@ function M.UpdateVariables()
   M.BOT_DATA = algorithms.GetBotData()
 
   M.ENEMY_HERO_DATA = algorithms.GetLastSeenEnemyHero(M.BOT_DATA)
+
+  if M.ENEMY_HERO_DATA ~= nil then
+    hist.LAST_SEEN_EH_DATA = M.ENEMY_HERO_DATA
+    hist.LAST_SEEN_EH_TIMESTAMP = M.ENEMY_HERO_DATA.timestamp
+  end
 
   if M.ENEMY_HERO_DATA ~= nil
      and not InvalidateEnemyHeroData() then
