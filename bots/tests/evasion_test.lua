@@ -161,6 +161,35 @@ end
 
 ---------------------------------
 
+function test_pre_evade_invisible_enemy_hero_1_succeed()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 1,
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_invisible_enemy_hero())
+end
+
+function test_pre_evade_invisible_enemy_hero_1_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 1,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_invisible_enemy_hero())
+end
+
+function test_pre_evade_invisible_enemy_hero_2_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_invisible_enemy_hero())
+end
+
+---------------------------------
+
 function test_pre_evade_enemy_creeps_1_succeed()
   evasion.test_SetGameState({
     [gs.BOT_IS_FOCUSED_BY_CREEPS] = 1,
