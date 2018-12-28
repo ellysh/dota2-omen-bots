@@ -11,10 +11,31 @@ local luaunit = require("luaunit")
 
 function test_pre_move_safe_recovery_1_succeed()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
     [gs.BOT_HP_MAX_DELTA] = 0.09,
+
+    -- weights_2
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
     [gs.BOT_IN_SAFE_SPOT] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 0,
+  })
+
+  luaunit.assertTrue(evasion.pre_move_safe_recovery())
+end
+
+function test_pre_move_safe_recovery_2_succeed()
+  evasion.test_SetGameState({
+    -- weights_1
+    [gs.BOT_IS_FLASK_HEALING] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.09,
+
+    -- weights_2
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
+    [gs.BOT_IN_SAFE_SPOT] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 1,
   })
 
   luaunit.assertTrue(evasion.pre_move_safe_recovery())
@@ -22,10 +43,15 @@ end
 
 function test_pre_move_safe_recovery_1_fails()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
     [gs.BOT_HP_MAX_DELTA] = 0.07,
+
+    -- weights_2
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
     [gs.BOT_IN_SAFE_SPOT] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_move_safe_recovery())
@@ -33,10 +59,15 @@ end
 
 function test_pre_move_safe_recovery_2_fails()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FLASK_HEALING] = 0,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
     [gs.BOT_HP_MAX_DELTA] = 1,
+
+    -- weights_2
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
     [gs.BOT_IN_SAFE_SPOT] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_move_safe_recovery())
@@ -44,10 +75,15 @@ end
 
 function test_pre_move_safe_recovery_3_fails()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
     [gs.BOT_HP_MAX_DELTA] = 0.1,
+
+    -- weights_2
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 1,
     [gs.BOT_IN_SAFE_SPOT] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_move_safe_recovery())
@@ -55,10 +91,31 @@ end
 
 function test_pre_move_safe_recovery_4_fails()
   evasion.test_SetGameState({
+    -- weights_1
     [gs.BOT_IS_FLASK_HEALING] = 1,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
     [gs.BOT_HP_MAX_DELTA] = 0.1,
+
+    -- weights_2
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
     [gs.BOT_IN_SAFE_SPOT] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_move_safe_recovery())
+end
+
+function test_pre_move_safe_recovery_5_fails()
+  evasion.test_SetGameState({
+    -- weights_1
+    [gs.BOT_IS_FLASK_HEALING] = 1,
+    [gs.BOT_HP_MAX_DELTA] = 0.1,
+
+    -- weights_2
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = 0,
+    [gs.BOT_IN_SAFE_SPOT] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_move_safe_recovery())
