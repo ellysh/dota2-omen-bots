@@ -15,7 +15,12 @@ local M = {}
 ---------------------------------
 
 function M.pre_cyclone_and_requiem()
-  return moves.pre_attack_objective()
+  local weights = {
+    [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 1
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+         and moves.pre_attack_objective()
 end
 
 ---------------------------------
