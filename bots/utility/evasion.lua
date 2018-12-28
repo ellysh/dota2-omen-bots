@@ -23,15 +23,20 @@ local function GetFlaskHealingRemainingDuration()
 end
 
 function M.pre_move_safe_recovery()
-  local weights = {
+  local weights_1 = {
     [gs.BOT_IS_FLASK_HEALING] = 0.924,
-    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1,
     [gs.BOT_HP_MAX_DELTA] = 0.95,
-    [gs.BOT_IN_SAFE_SPOT] = -1,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = -1,
   }
 
-  return gs.Evaluate(gs.GAME_STATE, weights)
+  local weights_2 = {
+    [gs.BOT_HAS_MODIFIER_FOUNTAIN] = -1,
+    [gs.BOT_IN_SAFE_SPOT] = -1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = -1,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights_1)
+         and gs.EvaluateFrom(1, gs.GAME_STATE, weights_2)
 end
 
 function M.pre_wait_move_safe_recovery()
@@ -67,6 +72,25 @@ function M.pre_cancel_evade_enemy_hero()
          or moves.pre_cancel_move_safe_spot()
 end
 
+---------------------------------
+
+function M.pre_evade_invisible_enemy_hero()
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = 0.5,
+    [gs.BOT_IN_EH_POTENTIAL_RADIUS] = 0.5,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.pre_wait_evade_invisible_enemy_hero()
+  return M.pre_evade_invisible_enemy_hero()
+end
+
+function M.pre_cancel_evade_invisible_enemy_hero()
+  return not M.pre_evade_invisible_enemy_hero()
+         or moves.pre_cancel_move_safe_spot()
+end
 ---------------------------------
 
 function M.pre_evade_enemy_creeps()

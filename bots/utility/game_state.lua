@@ -128,6 +128,7 @@ M.EH_IS_FACING_BOT_MELEE_RANGE = 132
 M.BOT_SHOOT_EH = 133
 M.EH_HAS_LESS_HTD = 134
 M.EH_ATTACK_BOT = 135
+M.BOT_IN_EH_POTENTIAL_RADIUS = 136
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -620,6 +621,13 @@ function M.UpdateState()
     M.GAME_STATE[M.EH_HAS_HP_FOR_REQUIEM] =
       NUM[env.ENEMY_HERO_DATA.health
           <= (2 * env.REQUIEM_ABILITY:GetAbilityDamage())]
+
+    M.GAME_STATE[M.BOT_IN_EH_POTENTIAL_RADIUS] =
+      NUM[not M.GAME_STATE[M.EH_IS_VISIBLE]
+          and 1 < GetUnitPotentialValue(
+                    env.ENEMY_HERO_DATA.handler,
+                    env.BOT_DATA.location,
+                    constants.SAFE_HERO_DISTANCE)]
   end
 
   -- ALLY_TOWER state
