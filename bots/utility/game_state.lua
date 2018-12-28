@@ -131,6 +131,9 @@ M.BOT_SHOOT_EH = 133
 M.EH_HAS_LESS_HTD = 134
 M.EH_ATTACK_BOT = 135
 M.BOT_IN_EH_POTENTIAL_RADIUS = 136
+M.EH_IN_CYCLONE_RANGE = 137
+M.EH_HAS_CYCLONE_MODIFIER = 138
+M.BOT_IN_EH_LOCATION = 139
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -630,6 +633,18 @@ function M.UpdateState()
     M.GAME_STATE[M.EH_HAS_HP_FOR_REQUIEM] =
       NUM[env.ENEMY_HERO_DATA.health
           <= (2 * env.REQUIEM_ABILITY:GetAbilityDamage())]
+
+    M.GAME_STATE[M.EH_IN_CYCLONE_RANGE] =
+      NUM[env.ENEMY_HERO_DISTANCE
+          <= (env.BOT_DATA.speed * (constants.CYCLONE_MODIFIER_TIME - 1))]
+
+    M.GAME_STATE[M.EH_HAS_CYCLONE_MODIFIER] =
+      NUM[algorithms.HasModifier(
+            env.ENEMY_HERO_DATA,
+            "modifier_eul_cyclone")]
+
+    M.GAME_STATE[M.BOT_IN_EH_LOCATION] =
+      NUM[env.ENEMY_HERO_DISTANCE <= constants.NEVERMORE_COLLISION_SIZE]
   end
 
   if hist.LAST_SEEN_EH_DATA ~= nil

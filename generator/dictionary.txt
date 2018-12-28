@@ -52,6 +52,8 @@ cancel_turn_far_shadowraze
 cancel_turn_medium_shadowraze
 cancel_turn_near_shadowraze
 close_fight
+cyclone
+cyclone_and_requiem
 decrease_creeps_distance_aggro
 decrease_creeps_distance_base
 defend_tower
@@ -94,6 +96,7 @@ move_back
 move_base
 move_enemy_creep
 move_enemy_hero
+move_enemy_hero_location
 move_front
 move_safe
 move_safe_recovery

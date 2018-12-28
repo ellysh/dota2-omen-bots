@@ -174,24 +174,33 @@ M.OBJECTIVES = {
     strategy = "combo",
     objectives = {
   {
-    objective = "manage_attack_anim",
-    module = require(GetScriptDirectory() .."/utility/manage_attack_anim"),
+    objective = "cyclone_and_requiem",
+    module = require(GetScriptDirectory() .."/utility/cyclone_and_requiem"),
     moves = {
       {
-        move = "cancel_attack",
+        move = "cyclone",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "cancel_attack"},
+          {action = "cyclone"},
 
         },
       },
       {
-        move = "wait_attack",
+        move = "move_enemy_hero_location",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "wait_attack"},
+          {action = "move_enemy_hero_location"},
+
+        },
+      },
+      {
+        move = "requiem",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "requiem"},
 
         },
       },
