@@ -233,8 +233,14 @@ function M.UpdateVariables()
   M.ENEMY_HERO_DATA = algorithms.GetLastSeenEnemyHero(M.BOT_DATA)
 
   if M.ENEMY_HERO_DATA ~= nil then
-    hist.LAST_SEEN_EH_DATA = M.ENEMY_HERO_DATA
-    hist.LAST_SEEN_EH_TIMESTAMP = M.ENEMY_HERO_DATA.timestamp
+    hist.LAST_SEEN_EH_DATA = {}
+
+    hist.LAST_SEEN_EH_DATA.location =
+      functions.CopyTable(M.ENEMY_HERO_DATA.location)
+
+    hist.LAST_SEEN_EH_DATA.timestamp = M.ENEMY_HERO_DATA.timestamp
+
+    hist.LAST_SEEN_EH_DATA.speed = M.ENEMY_HERO_DATA.speed
   end
 
   if M.ENEMY_HERO_DATA ~= nil

@@ -25,6 +25,8 @@ local NUM = {  [true] = 1, [false] = 0 }
 
 M.GAME_STATE = {}
 
+-- Do not use GAME_STATE variables as bool! They are converted to numbers
+
 -- GAME_STATE indexes
 -- BOT state
 M.BOT_IS_ALIVE = 1
@@ -625,13 +627,15 @@ function M.UpdateState()
 
   if hist.LAST_SEEN_EH_DATA ~= nil
      and (env.ENEMY_HERO_DATA == nil
-          or not M.GAME_STATE[M.EH_IS_VISIBLE]) then
+          or not env.ENEMY_HERO_DATA.is_visible) then
+
+    local potential_distance =
+      functions.GetUnitDistance(env.BOT_DATA, hist.LAST_SEEN_EH_DATA)
+      - (hist.LAST_SEEN_EH_DATA.speed * (env.CURRENT_GAME_TIME
+      - hist.LAST_SEEN_EH_DATA.timestamp))
 
     M.GAME_STATE[M.BOT_IN_EH_POTENTIAL_RADIUS] =
-      NUM[(functions.GetUnitDistance(env.BOT_DATA, hist.LAST_SEEN_EH_DATA)
-           - (hist.LAST_SEEN_EH_DATA.speed * (env.CURRENT_GAME_TIME
-           - hist.LAST_SEEN_EH_TIMESTAMP)))
-          < constants.SAFE_HERO_DISTANCE]
+      NUM[potential_distance < constants.SAFE_HERO_DISTANCE]
   end
 
   -- ALLY_TOWER state
