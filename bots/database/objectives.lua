@@ -482,15 +482,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_faerie_fire_to_backpack",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "swap_faerie_fire_to_backpack"},
-
-        },
-      },
-      {
         move = "swap_flask_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",
@@ -973,15 +964,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "swap_mango_wraith_band"},
-
-        },
-      },
-      {
-        move = "swap_faerie_fire_to_backpack",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "swap_faerie_fire_to_backpack"},
 
         },
       },

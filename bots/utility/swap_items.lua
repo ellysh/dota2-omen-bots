@@ -78,25 +78,6 @@ end
 
 ---------------------------------
 
-function M.pre_swap_faerie_fire_to_backpack()
-  local ff_slot = env.BOT:FindItemSlot("item_faerie_fire")
-  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
-
-  return backpack_slot ~= nil
-         and env.BOT:GetItemSlotType(ff_slot) == ITEM_SLOT_TYPE_MAIN
-end
-
-function M.swap_faerie_fire_to_backpack()
-  local ff_slot = env.BOT:FindItemSlot("item_faerie_fire")
-  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
-
-  env.BOT:ActionImmediate_SwapItems(ff_slot, backpack_slot)
-
-  action_timing.SetNextActionDelay(0.05)
-end
-
----------------------------------
-
 local function DoesCourierHaveFlask()
   return env.COURIER_DATA ~= nil
          and algorithms.IsItemPresent(env.COURIER_DATA, "item_flask")
