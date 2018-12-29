@@ -1,17 +1,24 @@
+* version 1.0
+  - Implement the blink + eul's + requiem combo.
+  - Implement the eul's + requiem combo.
+  - Consider a potential location of enemy hero when evading him.
+  - Rework management of the inventory and backpack slots.
+  - Rework the item build. Now the bot buys the 2nd wraith band, infused raindrops, eul's and blink.
+
 * version 0.9
-    - Implement the move for casting the requiem ability.
-    - Implement the move for using the hood of defiance.
-    - Fix bugs with moving to the base through waypoints.
-    - Fix the bug when the bot stays AFK while buying items.
-    - Fix the bug with stuck when turning for casting shadowraze.
-    - Fix the bug with upgrading skills when the bot gains two levels at the time.
+  - Implement the move for casting the requiem ability.
+  - Implement the move for using the hood of defiance.
+  - Fix bugs with moving to the base through waypoints.
+  - Fix the bug when the bot stays AFK while buying items.
+  - Fix the bug with stuck when turning for casting shadowraze.
+  - Fix the bug with upgrading skills when the bot gains two levels at the time.
 
 * version 0.8
-    - Implement moves for using wards.
-    - Implement an algorithm for moving to the safe spot through waypoints.
-    - Add a strategy for the close fight with the enemy hero on low hp.
-    - Keep a minimal safe distance with the enemy hero when using the flask.
-    - Fix bugs with moving to the base for recovery.
+  - Implement moves for using wards.
+  - Implement an algorithm for moving to the safe spot through waypoints.
+  - Add a strategy for the close fight with the enemy hero on low hp.
+  - Keep a minimal safe distance with the enemy hero when using the flask.
+  - Fix bugs with moving to the base for recovery.
 
 * version 0.7
   - Retreat to the safe spot via waypoints.
