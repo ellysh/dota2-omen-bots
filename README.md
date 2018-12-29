@@ -25,7 +25,7 @@ You can play with OMEN Bots in the "All pick" mode. In this case, Shadow Shaman 
 
 ## Limitations
 
-You should follow the following limitations when playing with the bot:
+It is recommended to follow some limitations when playing with the bot:
 
 1. Pick only Shadow Fiend hero.
 2. No shrines.
