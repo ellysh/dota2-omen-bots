@@ -91,6 +91,7 @@ M.BOT_BUY_WARD_PERIOD_ACHIEVED = 60
 M.BOT_HAS_LEVEL_FOR_NUKES = 61
 M.BOT_IS_INACTIVE = 62
 M.BOT_CASTABLE_BLINK = 63
+M.BOT_HAS_HP_FOR_REQUIEM = 64
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -470,6 +471,10 @@ function M.UpdateState()
 
     [M.BOT_HAS_LEVEL_FOR_NUKES] =
       NUM[constants.HERO_LEVEL_FOR_NUKES <= env.BOT_DATA.level],
+
+    [M.BOT_HAS_HP_FOR_REQUIEM] =
+      NUM[(2 * algorithms.GetTotalIncomingDamage(env.BOT_DATA))
+          <= env.BOT_DATA.health],
   }
 
   if hist.LAST_SOMA.move ~= nil then

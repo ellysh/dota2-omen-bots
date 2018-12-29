@@ -155,9 +155,11 @@ end
 
 function M.pre_requiem()
   local weights = {
-    [gs.EH_IS_VISIBLE] = 0.3,
-    [gs.BOT_CASTABLE_REQUIEM ] = 0.3,
-    [gs.EH_HAS_HP_FOR_REQUIEM] = 0.4,
+    [gs.EH_IS_VISIBLE] = 0.2,
+    [gs.BOT_CASTABLE_REQUIEM ] = 0.2,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 0.2,
+    [gs.BOT_HAS_HP_FOR_REQUIEM] = 0.2,
+    [gs.BOT_HAS_MAX_SOULS] = 0.2,
     [gs.EH_CAN_EVADE_REQUIEM] = -1,
   }
 
