@@ -90,7 +90,7 @@ M.BOT_CASTABLE_WARD = 59
 M.BOT_BUY_WARD_PERIOD_ACHIEVED = 60
 M.BOT_HAS_LEVEL_FOR_NUKES = 61
 M.BOT_IS_INACTIVE = 62
---M.BOT_CASTABLE_HOOD = 63
+M.BOT_CASTABLE_BLINK = 63
 --M.BOT_HAS_MODIFIER_HOOD = 64
 
 -- ENEMY_HERO state
@@ -134,6 +134,7 @@ M.BOT_IN_EH_POTENTIAL_RADIUS = 136
 M.EH_IN_CYCLONE_RANGE = 137
 M.EH_HAS_CYCLONE_MODIFIER = 138
 M.BOT_IN_EH_LOCATION = 139
+M.EH_IN_BLINK_RANGE = 140
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -312,6 +313,13 @@ function M.UpdateState()
       NUM[algorithms.IsItemCastable(
             env.BOT_DATA,
             "item_cyclone",
+            false,
+            hist.SWAP_BACKPACK_TIMESTAMP)],
+
+    [M.BOT_CASTABLE_BLINK] =
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_blink",
             false,
             hist.SWAP_BACKPACK_TIMESTAMP)],
 
@@ -656,6 +664,9 @@ function M.UpdateState()
 
     M.GAME_STATE[M.BOT_IN_EH_LOCATION] =
       NUM[env.ENEMY_HERO_DISTANCE <= constants.NEVERMORE_COLLISION_SIZE]
+
+    M.GAME_STATE[M.EH_IN_BLINK_RANGE] =
+      NUM[env.ENEMY_HERO_DISTANCE <= constants.BLINK_CAST_RANGE]
   end
 
   if hist.LAST_SEEN_EH_DATA ~= nil

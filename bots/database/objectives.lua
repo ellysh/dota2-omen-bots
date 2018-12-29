@@ -178,6 +178,15 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/cyclone_and_requiem"),
     moves = {
       {
+        move = "blink",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "blink"},
+
+        },
+      },
+      {
         move = "cyclone",
         wait_condition = "nil",
         cancel_condition = "nil",

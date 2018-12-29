@@ -27,6 +27,24 @@ end
 
 ---------------------------------
 
+function M.pre_blink()
+  local weights = {
+    [gs.EH_IS_VISIBLE] = 0.3,
+    [gs.BOT_CASTABLE_BLINK] = 0.3,
+    [gs.EH_IN_BLINK_RANGE] = 0.4,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.blink()
+  env.BOT:Action_UseAbilityOnLocation(
+    algorithms.GetItem(env.BOT_DATA, "item_blink"),
+    env.ENEMY_HERO_DATA.location)
+end
+
+---------------------------------
+
 function M.pre_cyclone()
   local weights = {
     [gs.EH_IS_VISIBLE] = 0.3,

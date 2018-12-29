@@ -6,6 +6,7 @@ attack_enemy_creep
 attack_enemy_hero
 attack_enemy_tower
 base_recovery
+blink
 body_block
 buyback
 buy_blades_of_attack

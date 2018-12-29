@@ -1,4 +1,5 @@
 Objective;Move;Actions;"Wait Condition";"Cancel Condition"
-cyclone_and_requiem;cyclone;cyclone;;
+cyclone_and_requiem;blink;blink;;
+;cyclone;cyclone;;
 ;move_enemy_hero_location;move_enemy_hero_location;;
 ;requiem;requiem;;
