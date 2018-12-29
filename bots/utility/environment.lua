@@ -95,14 +95,17 @@ local function IsUnitRelativeLowHp(unit_data, enemy_hero_data)
          and (algorithms.IsUnitLowHp(unit_data)
 
               or (enemy_hero_data ~= nil
+
                   and functions.GetRate(
                         unit_data.health,
                         unit_data.max_health)
                       < constants.UNIT_MODERATE_HEALTH_LEVEL
+
                   and (algorithms.IsBiggerThan(
                          enemy_hero_data.health,
                          unit_data.health,
                          unit_data.max_health / 2)
+
                        or algorithms.IsBiggerThan(
                          enemy_hero_data.attack_damage * 3,
                          unit_data.health,

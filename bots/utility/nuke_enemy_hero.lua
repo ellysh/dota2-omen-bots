@@ -4,9 +4,6 @@ local constants = require(
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
-local moves = require(
-  GetScriptDirectory() .."/utility/moves")
-
 local gs = require(
   GetScriptDirectory() .."/utility/game_state")
 
@@ -16,11 +13,13 @@ local M = {}
 
 function M.pre_nuke_enemy_hero()
   local weights = {
-    [gs.BOT_HAS_LEVEL_FOR_NUKES] = 1,
+    [gs.BOT_HAS_LEVEL_FOR_NUKES] = 0.3,
+    [gs.BOT_HAS_HP_FOR_NUKE] = 0.3,
+    [gs.BOT_IS_ALIVE] = 0.4,
+    [gs.BOT_IS_CASTING] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
-         and moves.pre_attack_objective()
 end
 
 ---------------------------------
@@ -155,10 +154,9 @@ end
 
 function M.pre_requiem()
   local weights = {
-    [gs.EH_IS_VISIBLE] = 0.2,
-    [gs.BOT_CASTABLE_REQUIEM ] = 0.2,
+    [gs.EH_IS_VISIBLE] = 0.3,
+    [gs.BOT_CASTABLE_REQUIEM ] = 0.3,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 0.2,
-    [gs.BOT_HAS_HP_FOR_REQUIEM] = 0.2,
     [gs.BOT_HAS_MAX_SOULS] = 0.2,
     [gs.EH_CAN_EVADE_REQUIEM] = -1,
   }
@@ -174,8 +172,6 @@ end
 
 function M.test_SetGameState(state)
   gs.GAME_STATE = state
-
-  moves.test_SetGameState(state)
 end
 
 return M

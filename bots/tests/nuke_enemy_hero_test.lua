@@ -13,7 +13,7 @@ function test_pre_nuke_enemy_hero_1_succeed()
   nuke_enemy_hero.test_SetGameState({
     [gs.BOT_HAS_LEVEL_FOR_NUKES] = 1,
     [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_HAS_HP_FOR_NUKE] = 1,
     [gs.BOT_IS_CASTING] = 0,
   })
 
@@ -24,8 +24,41 @@ function test_pre_nuke_enemy_hero_1_fails()
   nuke_enemy_hero.test_SetGameState({
     [gs.BOT_HAS_LEVEL_FOR_NUKES] = 0,
     [gs.BOT_IS_ALIVE] = 1,
-    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_HAS_HP_FOR_NUKE] = 1,
     [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_nuke_enemy_hero())
+end
+
+function test_pre_nuke_enemy_hero_2_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.BOT_HAS_LEVEL_FOR_NUKES] = 1,
+    [gs.BOT_IS_ALIVE] = 0,
+    [gs.BOT_HAS_HP_FOR_NUKE] = 1,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_nuke_enemy_hero())
+end
+
+function test_pre_nuke_enemy_hero_3_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.BOT_HAS_LEVEL_FOR_NUKES] = 1,
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_HAS_HP_FOR_NUKE] = 0,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_nuke_enemy_hero())
+end
+
+function test_pre_nuke_enemy_hero_4_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.BOT_HAS_LEVEL_FOR_NUKES] = 1,
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_HAS_HP_FOR_NUKE] = 1,
+    [gs.BOT_IS_CASTING] = 1,
   })
 
   luaunit.assertFalse(nuke_enemy_hero.pre_nuke_enemy_hero())
@@ -431,7 +464,6 @@ function test_pre_requiem_1_succeed()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
-    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
@@ -444,7 +476,6 @@ function test_pre_requiem_1_fails()
     [gs.EH_IS_VISIBLE] = 0,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
-    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
@@ -457,7 +488,6 @@ function test_pre_requiem_2_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 0,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
-    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
@@ -470,7 +500,6 @@ function test_pre_requiem_3_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 0,
-    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
@@ -483,8 +512,7 @@ function test_pre_requiem_4_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
-    [gs.BOT_HAS_HP_FOR_REQUIEM] = 0,
-    [gs.BOT_HAS_MAX_SOULS] = 1,
+    [gs.BOT_HAS_MAX_SOULS] = 0,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
 
@@ -496,20 +524,6 @@ function test_pre_requiem_5_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
-    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
-    [gs.BOT_HAS_MAX_SOULS] = 0,
-    [gs.EH_CAN_EVADE_REQUIEM] = 0,
-  })
-
-  luaunit.assertFalse(nuke_enemy_hero.pre_requiem())
-end
-
-function test_pre_requiem_6_fails()
-  nuke_enemy_hero.test_SetGameState({
-    [gs.EH_IS_VISIBLE] = 1,
-    [gs.BOT_CASTABLE_REQUIEM ] = 1,
-    [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
-    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 1,
   })
