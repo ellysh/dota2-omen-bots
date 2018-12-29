@@ -431,6 +431,8 @@ function test_pre_requiem_1_succeed()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
 
@@ -442,6 +444,8 @@ function test_pre_requiem_1_fails()
     [gs.EH_IS_VISIBLE] = 0,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
 
@@ -453,6 +457,8 @@ function test_pre_requiem_2_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 0,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
 
@@ -464,6 +470,8 @@ function test_pre_requiem_3_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 0,
+    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 0,
   })
 
@@ -475,6 +483,34 @@ function test_pre_requiem_4_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_REQUIEM ] = 1,
     [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_HP_FOR_REQUIEM] = 0,
+    [gs.BOT_HAS_MAX_SOULS] = 1,
+    [gs.EH_CAN_EVADE_REQUIEM] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_requiem())
+end
+
+function test_pre_requiem_5_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_REQUIEM ] = 1,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_MAX_SOULS] = 0,
+    [gs.EH_CAN_EVADE_REQUIEM] = 0,
+  })
+
+  luaunit.assertFalse(nuke_enemy_hero.pre_requiem())
+end
+
+function test_pre_requiem_6_fails()
+  nuke_enemy_hero.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_REQUIEM ] = 1,
+    [gs.EH_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_HP_FOR_REQUIEM] = 1,
+    [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.EH_CAN_EVADE_REQUIEM] = 1,
   })
 
