@@ -668,11 +668,13 @@ function M.UpdateState()
     M.GAME_STATE[M.EH_IN_BLINK_RANGE] =
       NUM[env.ENEMY_HERO_DISTANCE <= constants.BLINK_CAST_RANGE]
 
-    M.GAME_STATE[M.EH_CYCLONE_TIMING_READY] =
-      NUM[env.ENEMY_HERO_DATA.handle:GetModifierRemainingDuration(
-            env.ENEMY_HERO_DATA.handle:GetModifierByName(
-              "modifier_eul_cyclone"))
-          <= constants.NEVERMORE_REQUIEM_CAST_TIME]
+    if not env.ENEMY_HERO_DATA.handle:IsNull() then
+      M.GAME_STATE[M.EH_CYCLONE_TIMING_READY] =
+        NUM[env.ENEMY_HERO_DATA.handle:GetModifierRemainingDuration(
+              env.ENEMY_HERO_DATA.handle:GetModifierByName(
+                "modifier_eul_cyclone"))
+            <= constants.NEVERMORE_REQUIEM_CAST_TIME]
+    end
   end
 
   if hist.LAST_SEEN_EH_DATA ~= nil

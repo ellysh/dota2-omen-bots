@@ -17,6 +17,7 @@ local M = {}
 function M.pre_cyclone_and_requiem()
   local weights = {
     [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 0.3,
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 0.3,
     [gs.BOT_HAS_MAX_SOULS] = 0.3,
     [gs.BOT_CASTABLE_REQUIEM] = 0.4,
   }
