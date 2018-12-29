@@ -655,7 +655,10 @@ function M.UpdateState()
 
     M.GAME_STATE[M.EH_IN_CYCLONE_RANGE] =
       NUM[env.ENEMY_HERO_DISTANCE
-          <= (env.BOT_DATA.speed * (constants.CYCLONE_MODIFIER_TIME - 1))]
+          <= (env.BOT_DATA.speed
+              * (constants.CYCLONE_MODIFIER_TIME
+                 - constants.NEVERMORE_REQUIEM_CAST_TIME
+                 + constants.HUMAN_REACTION_TIME))]
 
     M.GAME_STATE[M.EH_HAS_CYCLONE_MODIFIER] =
       NUM[algorithms.HasModifier(
