@@ -12,6 +12,23 @@ local luaunit = require("luaunit")
 function test_pre_cyclone_and_requiem_1_succeed()
   cyclone_and_requiem.test_SetGameState({
     [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 1,
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 0,
+    [gs.BOT_HAS_MAX_SOULS] = 1,
+    [gs.BOT_CASTABLE_REQUIEM] = 1,
+
+    -- M.pre_attack_objective
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertTrue(cyclone_and_requiem.pre_cyclone_and_requiem())
+end
+
+function test_pre_cyclone_and_requiem_2_succeed()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 0,
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 1,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.BOT_CASTABLE_REQUIEM] = 1,
 
@@ -27,6 +44,7 @@ end
 function test_pre_cyclone_and_requiem_1_fails()
   cyclone_and_requiem.test_SetGameState({
     [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 0,
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 0,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.BOT_CASTABLE_REQUIEM] = 1,
 
@@ -42,6 +60,7 @@ end
 function test_pre_cyclone_and_requiem_2_fails()
   cyclone_and_requiem.test_SetGameState({
     [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 1,
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 0,
     [gs.BOT_HAS_MAX_SOULS] = 0,
     [gs.BOT_CASTABLE_REQUIEM] = 1,
 
@@ -57,6 +76,7 @@ end
 function test_pre_cyclone_and_requiem_3_fails()
   cyclone_and_requiem.test_SetGameState({
     [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 1,
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 0,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.BOT_CASTABLE_REQUIEM] = 0,
 
@@ -72,6 +92,7 @@ end
 function test_pre_cyclone_and_requiem_4_fails()
   cyclone_and_requiem.test_SetGameState({
     [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 1,
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 0,
     [gs.BOT_HAS_MAX_SOULS] = 1,
     [gs.BOT_CASTABLE_REQUIEM] = 1,
 
@@ -82,6 +103,64 @@ function test_pre_cyclone_and_requiem_4_fails()
   })
 
   luaunit.assertFalse(cyclone_and_requiem.pre_cyclone_and_requiem())
+end
+
+function test_pre_cyclone_and_requiem_5_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM] = 1,
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 1,
+    [gs.BOT_HAS_MAX_SOULS] = 0,
+    [gs.BOT_CASTABLE_REQUIEM] = 1,
+
+    -- M.pre_attack_objective
+    [gs.BOT_IS_ALIVE] = 1,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IS_CASTING] = 0,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_cyclone_and_requiem())
+end
+
+---------------------------------
+
+function test_pre_blink_1_succeed()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_BLINK] = 1,
+    [gs.EH_IN_BLINK_RANGE] = 1,
+  })
+
+  luaunit.assertTrue(cyclone_and_requiem.pre_blink())
+end
+
+function test_pre_blink_1_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 0,
+    [gs.BOT_CASTABLE_BLINK] = 1,
+    [gs.EH_IN_BLINK_RANGE] = 1,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_blink())
+end
+
+function test_pre_blink_2_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_BLINK] = 0,
+    [gs.EH_IN_BLINK_RANGE] = 1,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_blink())
+end
+
+function test_pre_blink_3_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_BLINK] = 1,
+    [gs.EH_IN_BLINK_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_blink())
 end
 
 ---------------------------------
@@ -170,10 +249,68 @@ end
 
 ---------------------------------
 
+function test_pre_wait_cyclone_timing_1_succeed()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 1,
+    [gs.BOT_CASTABLE_REQUIEM] = 1,
+    [gs.BOT_IN_EH_LOCATION] = 1,
+    [gs.EH_CYCLONE_TIMING_READY] = 0,
+  })
+
+  luaunit.assertTrue(cyclone_and_requiem.pre_wait_cyclone_timing())
+end
+
+function test_pre_wait_cyclone_timing_1_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 0,
+    [gs.BOT_CASTABLE_REQUIEM] = 1,
+    [gs.BOT_IN_EH_LOCATION] = 1,
+    [gs.EH_CYCLONE_TIMING_READY] = 0,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_wait_cyclone_timing())
+end
+
+function test_pre_wait_cyclone_timing_2_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 1,
+    [gs.BOT_CASTABLE_REQUIEM] = 0,
+    [gs.BOT_IN_EH_LOCATION] = 1,
+    [gs.EH_CYCLONE_TIMING_READY] = 0,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_wait_cyclone_timing())
+end
+
+function test_pre_wait_cyclone_timing_3_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 1,
+    [gs.BOT_CASTABLE_REQUIEM] = 1,
+    [gs.BOT_IN_EH_LOCATION] = 0,
+    [gs.EH_CYCLONE_TIMING_READY] = 0,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_wait_cyclone_timing())
+end
+
+function test_pre_wait_cyclone_timing_4_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 1,
+    [gs.BOT_CASTABLE_REQUIEM] = 1,
+    [gs.BOT_IN_EH_LOCATION] = 1,
+    [gs.EH_CYCLONE_TIMING_READY] = 1,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_wait_cyclone_timing())
+end
+
+---------------------------------
+
 function test_pre_requiem_1_succeed()
   cyclone_and_requiem.test_SetGameState({
     [gs.BOT_CASTABLE_REQUIEM] = 1,
     [gs.BOT_IN_EH_LOCATION] = 1,
+    [gs.EH_CYCLONE_TIMING_READY] = 1,
   })
 
   luaunit.assertTrue(cyclone_and_requiem.pre_requiem())
@@ -183,6 +320,7 @@ function test_pre_requiem_1_fails()
   cyclone_and_requiem.test_SetGameState({
     [gs.BOT_CASTABLE_REQUIEM] = 0,
     [gs.BOT_IN_EH_LOCATION] = 1,
+    [gs.EH_CYCLONE_TIMING_READY] = 1,
   })
 
   luaunit.assertFalse(cyclone_and_requiem.pre_requiem())
@@ -192,6 +330,17 @@ function test_pre_requiem_2_fails()
   cyclone_and_requiem.test_SetGameState({
     [gs.BOT_CASTABLE_REQUIEM] = 1,
     [gs.BOT_IN_EH_LOCATION] = 0,
+    [gs.EH_CYCLONE_TIMING_READY] = 1,
+  })
+
+  luaunit.assertFalse(cyclone_and_requiem.pre_requiem())
+end
+
+function test_pre_requiem_3_fails()
+  cyclone_and_requiem.test_SetGameState({
+    [gs.BOT_CASTABLE_REQUIEM] = 1,
+    [gs.BOT_IN_EH_LOCATION] = 1,
+    [gs.EH_CYCLONE_TIMING_READY] = 0,
   })
 
   luaunit.assertFalse(cyclone_and_requiem.pre_requiem())
