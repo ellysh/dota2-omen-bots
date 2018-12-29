@@ -139,6 +139,7 @@ upgrade_skills
 use_enchanted_mango
 use_enchanted_mango_with_cyclone
 wait_attack
+wait_cyclone_timing
 wait_evade_enemy_creeps
 wait_evade_enemy_hero
 wait_evade_enemy_tower

@@ -205,6 +205,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "wait_cyclone_timing",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "wait_cyclone_timing"},
+
+        },
+      },
+      {
         move = "requiem",
         wait_condition = "nil",
         cancel_condition = "nil",

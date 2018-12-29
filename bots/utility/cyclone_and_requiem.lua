@@ -79,10 +79,28 @@ end
 
 ---------------------------------
 
+function M.pre_wait_cyclone_timing()
+  local weights = {
+    [gs.EH_HAS_CYCLONE_MODIFIER] = 0.3,
+    [gs.BOT_CASTABLE_REQUIEM] = 0.3,
+    [gs.BOT_IN_EH_LOCATION] = 0.4,
+    [gs.EH_CYCLONE_TIMING_READY] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.wait_cyclone_timing()
+  env.BOT:Action_ClearActions(true)
+end
+
+---------------------------------
+
 function M.pre_requiem()
   local weights = {
-    [gs.BOT_CASTABLE_REQUIEM] = 0.5,
-    [gs.BOT_IN_EH_LOCATION] = 0.5,
+    [gs.BOT_CASTABLE_REQUIEM] = 0.3,
+    [gs.BOT_IN_EH_LOCATION] = 0.3,
+    [gs.EH_CYCLONE_TIMING_READY] = 0.4,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
