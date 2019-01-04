@@ -165,13 +165,68 @@ end
 
 ---------------------------------
 
+function M.pre_buy_two_boots_of_elves()
+  return (2 * GetItemCost("item_boots_of_elves")) <= env.BOT_DATA.gold
+         and algorithms.DoesBotOrCourierHaveItem("item_power_treads")
+         and not algorithms.DoesBotOrCourierHaveItem(
+                   "item_boots_of_elves")
+         and not algorithms.DoesBotOrCourierHaveItem(
+                   "item_dragon_lance")
+end
+
+function M.buy_two_boots_of_elves()
+  algorithms.BuyItem("item_boots_of_elves")
+  algorithms.BuyItem("item_boots_of_elves")
+end
+
+---------------------------------
+
+function M.pre_buy_ogre_axe()
+  return pre_buy_item("item_ogre_axe")
+         and algorithms.DoesBotOrCourierHaveItem("item_boots_of_elves")
+         and algorithms.DoesBotOrCourierHaveItem("item_power_treads")
+         and not algorithms.DoesBotOrCourierHaveItem("item_dragon_lance")
+end
+
+function M.buy_ogre_axe()
+  algorithms.BuyItem("item_ogre_axe")
+end
+
+---------------------------------
+
 function M.pre_buy_blink()
   return pre_buy_item("item_blink")
-         and algorithms.DoesBotOrCourierHaveItem("item_mask_of_madness")
+         and algorithms.DoesBotOrCourierHaveItem("item_dragon_lance")
 end
 
 function M.buy_blink()
   algorithms.BuyItem("item_blink")
+end
+
+---------------------------------
+
+function M.pre_buy_lifesteal()
+  return pre_buy_item("item_lifesteal")
+         and algorithms.DoesBotOrCourierHaveItem("item_blink")
+         and not algorithms.DoesBotOrCourierHaveItem(
+                   "item_mask_of_madness")
+end
+
+function M.buy_lifesteal()
+  algorithms.BuyItem("item_lifesteal")
+end
+
+---------------------------------
+
+function M.pre_buy_quarterstaff()
+  return pre_buy_item("item_quarterstaff")
+         and algorithms.DoesBotOrCourierHaveItem("item_lifesteal")
+         and not algorithms.DoesBotOrCourierHaveItem(
+                   "item_mask_of_madness")
+end
+
+function M.buy_quarterstaff()
+  algorithms.BuyItem("item_quarterstaff")
 end
 
 ---------------------------------

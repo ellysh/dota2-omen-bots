@@ -80,11 +80,47 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "buy_two_boots_of_elves",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_two_boots_of_elves"},
+
+        },
+      },
+      {
+        move = "buy_ogre_axe",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_ogre_axe"},
+
+        },
+      },
+      {
         move = "buy_blink",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
           {action = "buy_blink"},
+
+        },
+      },
+      {
+        move = "buy_lifesteal",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_lifesteal"},
+
+        },
+      },
+      {
+        move = "buy_quarterstaff",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_quarterstaff"},
 
         },
       },
