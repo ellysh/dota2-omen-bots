@@ -72,7 +72,7 @@ M.BOT_IN_BODY_BLOCK_FOUNTAIN_DISTANCE = 40
 --M.BOT_CASTABLE_MEDIUM_SHADOWRAZE = 42
 --M.BOT_CASTABLE_FAR_SHADOWRAZE = 43
 M.BOT_IS_LOW_MP = 44
-M.BOT_CASTABLE_ENCHANTED_MANGO = 45
+--M.BOT_CASTABLE_ENCHANTED_MANGO = 45
 --M.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM = 46
 --M.BOT_HAS_MAX_SOULS = 47
 --M.BOT_IS_CASTING_NEAR_SHADOWRAZE = 48
@@ -369,13 +369,6 @@ function M.UpdateState()
       NUM[IsBodyBlockFountainDistance()],
 
     [M.BOT_IS_LOW_MP] = NUM[algorithms.IsUnitLowMp(env.BOT_DATA)],
-
-    [M.BOT_CASTABLE_ENCHANTED_MANGO] =
-      NUM[algorithms.IsItemCastable(
-            env.BOT_DATA,
-            "item_enchanted_mango",
-            false,
-            env.SWAP_BACKPACK_TIMESTAMP)],
 
     [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting],
 
