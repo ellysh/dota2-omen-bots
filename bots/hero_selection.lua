@@ -2,7 +2,7 @@ local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
 local BotHeroes = {
-  "npc_dota_hero_nevermore",
+  "npc_dota_hero_drow_ranger",
   "npc_dota_hero_shadow_shaman",
   "npc_dota_hero_shadow_shaman",
   "npc_dota_hero_shadow_shaman",
