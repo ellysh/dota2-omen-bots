@@ -174,51 +174,24 @@ M.OBJECTIVES = {
     strategy = "combo",
     objectives = {
   {
-    objective = "cyclone_and_requiem",
-    module = require(GetScriptDirectory() .."/utility/cyclone_and_requiem"),
+    objective = "manage_attack_anim",
+    module = require(GetScriptDirectory() .."/utility/manage_attack_anim"),
     moves = {
       {
-        move = "blink",
+        move = "cancel_attack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "blink"},
+          {action = "cancel_attack"},
 
         },
       },
       {
-        move = "cyclone",
+        move = "wait_attack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "cyclone"},
-
-        },
-      },
-      {
-        move = "move_enemy_hero_location",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "move_enemy_hero_location"},
-
-        },
-      },
-      {
-        move = "wait_cyclone_timing",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "wait_cyclone_timing"},
-
-        },
-      },
-      {
-        move = "requiem",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "requiem"},
+          {action = "wait_attack"},
 
         },
       },
@@ -258,58 +231,6 @@ M.OBJECTIVES = {
   },
 
   {
-    objective = "evade_enemy_nukes",
-    module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
-    moves = {
-      {
-        move = "evade_near_shadowraze_back",
-        wait_condition = "wait_evade_near_shadowraze_back",
-        cancel_condition = "cancel_evade_near_shadowraze_back",
-        actions = {
-          {action = "move_back"},
-
-        },
-      },
-      {
-        move = "evade_medium_shadowraze_back",
-        wait_condition = "wait_evade_medium_shadowraze_back",
-        cancel_condition = "cancel_evade_medium_shadowraze_back",
-        actions = {
-          {action = "move_back"},
-
-        },
-      },
-      {
-        move = "evade_far_shadowraze_back",
-        wait_condition = "wait_evade_far_shadowraze_back",
-        cancel_condition = "cancel_evade_far_shadowraze_back",
-        actions = {
-          {action = "move_back"},
-
-        },
-      },
-      {
-        move = "evade_medium_shadowraze_front",
-        wait_condition = "wait_evade_medium_shadowraze_front",
-        cancel_condition = "cancel_evade_medium_shadowraze_front",
-        actions = {
-          {action = "move_front"},
-
-        },
-      },
-      {
-        move = "evade_far_shadowraze_front",
-        wait_condition = "wait_evade_far_shadowraze_front",
-        cancel_condition = "cancel_evade_far_shadowraze_front",
-        actions = {
-          {action = "move_front"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "item_hp_recovery",
     module = require(GetScriptDirectory() .."/utility/item_hp_recovery"),
     moves = {
@@ -319,101 +240,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "heal_faerie_fire"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "item_mp_recovery",
-    module = require(GetScriptDirectory() .."/utility/item_mp_recovery"),
-    moves = {
-      {
-        move = "use_enchanted_mango",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_enchanted_mango"},
-
-        },
-      },
-      {
-        move = "use_enchanted_mango_with_cyclone",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_enchanted_mango"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "nuke_enemy_hero",
-    module = require(GetScriptDirectory() .."/utility/nuke_enemy_hero"),
-    moves = {
-      {
-        move = "turn_near_shadowraze",
-        wait_condition = "wait_turn_near_shadowraze",
-        cancel_condition = "cancel_turn_near_shadowraze",
-        actions = {
-          {action = "turn_via_attack"},
-
-        },
-      },
-      {
-        move = "near_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_near_shadowraze",
-        actions = {
-          {action = "near_shadowraze"},
-
-        },
-      },
-      {
-        move = "turn_medium_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_turn_medium_shadowraze",
-        actions = {
-          {action = "turn_via_attack"},
-
-        },
-      },
-      {
-        move = "medium_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_medium_shadowraze",
-        actions = {
-          {action = "medium_shadowraze"},
-
-        },
-      },
-      {
-        move = "turn_far_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_turn_far_shadowraze",
-        actions = {
-          {action = "turn_via_attack"},
-
-        },
-      },
-      {
-        move = "far_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_far_shadowraze",
-        actions = {
-          {action = "far_shadowraze"},
-
-        },
-      },
-      {
-        move = "requiem",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "requiem"},
 
         },
       },
@@ -921,58 +747,6 @@ M.OBJECTIVES = {
   },
 
   {
-    objective = "evade_enemy_nukes",
-    module = require(GetScriptDirectory() .."/utility/evade_enemy_nukes"),
-    moves = {
-      {
-        move = "evade_near_shadowraze_back",
-        wait_condition = "wait_evade_near_shadowraze_back",
-        cancel_condition = "cancel_evade_near_shadowraze_back",
-        actions = {
-          {action = "move_back"},
-
-        },
-      },
-      {
-        move = "evade_medium_shadowraze_back",
-        wait_condition = "wait_evade_medium_shadowraze_back",
-        cancel_condition = "cancel_evade_medium_shadowraze_back",
-        actions = {
-          {action = "move_back"},
-
-        },
-      },
-      {
-        move = "evade_far_shadowraze_back",
-        wait_condition = "wait_evade_far_shadowraze_back",
-        cancel_condition = "cancel_evade_far_shadowraze_back",
-        actions = {
-          {action = "move_back"},
-
-        },
-      },
-      {
-        move = "evade_medium_shadowraze_front",
-        wait_condition = "wait_evade_medium_shadowraze_front",
-        cancel_condition = "cancel_evade_medium_shadowraze_front",
-        actions = {
-          {action = "move_front"},
-
-        },
-      },
-      {
-        move = "evade_far_shadowraze_front",
-        wait_condition = "wait_evade_far_shadowraze_front",
-        cancel_condition = "cancel_evade_far_shadowraze_front",
-        actions = {
-          {action = "move_front"},
-
-        },
-      },
-    },
-  },
-
-  {
     objective = "glyph",
     module = require(GetScriptDirectory() .."/utility/glyph"),
     moves = {
@@ -1075,101 +849,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "heal_faerie_fire"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "item_mp_recovery",
-    module = require(GetScriptDirectory() .."/utility/item_mp_recovery"),
-    moves = {
-      {
-        move = "use_enchanted_mango",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_enchanted_mango"},
-
-        },
-      },
-      {
-        move = "use_enchanted_mango_with_cyclone",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "use_enchanted_mango"},
-
-        },
-      },
-    },
-  },
-
-  {
-    objective = "nuke_enemy_hero",
-    module = require(GetScriptDirectory() .."/utility/nuke_enemy_hero"),
-    moves = {
-      {
-        move = "turn_near_shadowraze",
-        wait_condition = "wait_turn_near_shadowraze",
-        cancel_condition = "cancel_turn_near_shadowraze",
-        actions = {
-          {action = "turn_via_attack"},
-
-        },
-      },
-      {
-        move = "near_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_near_shadowraze",
-        actions = {
-          {action = "near_shadowraze"},
-
-        },
-      },
-      {
-        move = "turn_medium_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_turn_medium_shadowraze",
-        actions = {
-          {action = "turn"},
-
-        },
-      },
-      {
-        move = "medium_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_medium_shadowraze",
-        actions = {
-          {action = "medium_shadowraze"},
-
-        },
-      },
-      {
-        move = "turn_far_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_turn_far_shadowraze",
-        actions = {
-          {action = "turn"},
-
-        },
-      },
-      {
-        move = "far_shadowraze",
-        wait_condition = "nil",
-        cancel_condition = "cancel_far_shadowraze",
-        actions = {
-          {action = "far_shadowraze"},
-
-        },
-      },
-      {
-        move = "requiem",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "requiem"},
 
         },
       },

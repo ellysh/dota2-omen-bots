@@ -416,13 +416,6 @@ function M.UpdateState()
     [M.BOT_BUY_WARD_PERIOD_ACHIEVED] =
       NUM[constants.BUY_WARD_PERIOD
           <= (env.CURRENT_GAME_TIME - hist.WARD_BUYING_TIMESTAMP)],
-
-    [M.BOT_HAS_LEVEL_FOR_NUKES] =
-      NUM[constants.HERO_LEVEL_FOR_NUKES <= env.BOT_DATA.level],
-
-    [M.BOT_HAS_HP_FOR_NUKE] =
-      NUM[(2 * algorithms.GetTotalIncomingDamage(env.BOT_DATA))
-          <= env.BOT_DATA.health],
   }
 
   if hist.LAST_SOMA.move ~= nil then
