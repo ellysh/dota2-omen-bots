@@ -61,29 +61,6 @@ end
 
 ---------------------------------
 
-function M.pre_buy_enchanted_mango()
-  return pre_buy_item("item_enchanted_mango")
-         and algorithms.DoesBotOrCourierHaveItem("item_flask")
-         and not algorithms.DoesBotOrCourierHaveItem("item_cyclone")
-end
-
-function M.buy_enchanted_mango()
-  algorithms.BuyItem("item_enchanted_mango")
-end
-
----------------------------------
-
-function M.pre_buy_infused_raindrop()
-  return pre_buy_item("item_infused_raindrop")
-         and 0 < GetItemStockCount("item_infused_raindrop")
-         and algorithms.DoesBotOrCourierHaveItem("item_flask")
-end
-
-function M.buy_infused_raindrop()
-  algorithms.BuyItem("item_infused_raindrop")
-end
-
----------------------------------
 function M.pre_buy_tpscroll()
   return not algorithms.DoesBotOrCourierHaveItem("item_tpscroll")
          and GetItemCost("item_tpscroll") <= env.BOT_DATA.gold
@@ -188,57 +165,9 @@ end
 
 ---------------------------------
 
-function M.pre_buy_wind_lace()
-  return pre_buy_item("item_wind_lace")
-         and algorithms.DoesBotOrCourierHaveItem("item_power_treads")
-         and not algorithms.DoesBotOrCourierHaveItem("item_cyclone")
-end
-
-function M.buy_wind_lace()
-  algorithms.BuyItem("item_wind_lace")
-end
-
----------------------------------
-
-function M.pre_buy_void_stone()
-  return pre_buy_item("item_void_stone")
-         and algorithms.DoesBotOrCourierHaveItem("item_wind_lace")
-         and not algorithms.DoesBotOrCourierHaveItem("item_cyclone")
-end
-
-function M.buy_void_stone()
-  algorithms.BuyItem("item_void_stone")
-end
-
----------------------------------
-
-function M.pre_buy_staff_of_wizardry()
-  return pre_buy_item("item_staff_of_wizardry")
-         and algorithms.DoesBotOrCourierHaveItem("item_void_stone")
-         and not algorithms.DoesBotOrCourierHaveItem("item_cyclone")
-end
-
-function M.buy_staff_of_wizardry()
-  algorithms.BuyItem("item_staff_of_wizardry")
-end
-
----------------------------------
-
-function M.pre_buy_recipe_cyclone()
-  return pre_buy_item("item_recipe_cyclone")
-         and algorithms.DoesBotOrCourierHaveItem("item_staff_of_wizardry")
-         and not algorithms.DoesBotOrCourierHaveItem("item_cyclone")
-end
-
-function M.buy_recipe_cyclone()
-  algorithms.BuyItem("item_recipe_cyclone")
-end
-
----------------------------------
-
 function M.pre_buy_blink()
   return pre_buy_item("item_blink")
-         and algorithms.DoesBotOrCourierHaveItem("item_cyclone")
+         and algorithms.DoesBotOrCourierHaveItem("item_mask_of_madness")
 end
 
 function M.buy_blink()

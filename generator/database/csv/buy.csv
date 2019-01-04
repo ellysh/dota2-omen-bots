@@ -1,18 +1,12 @@
 Objective;Move;Actions;"Wait Condition";"Cancel Condition"
 buy_items;buy_flask;buy_flask;;
 ;buy_tpscroll;buy_tpscroll;;
-;buy_enchanted_mango;buy_enchanted_mango;;
-;buy_infused_raindrop;buy_infused_raindrop;;
 ;buy_slippers;buy_slippers;;
 ;buy_circlet;buy_circlet;;
 ;buy_recipe_wraith_band;buy_recipe_wraith_band;;
 ;buy_boots;buy_boots;;
 ;buy_boots_of_elves;buy_boots_of_elves;;
 ;buy_blades_of_attack;buy_blades_of_attack;;
-;buy_wind_lace;buy_wind_lace;;
-;buy_void_stone;buy_void_stone;;
-;buy_staff_of_wizardry;buy_staff_of_wizardry;;
-;buy_recipe_cyclone;buy_recipe_cyclone;;
 ;buy_blink;buy_blink;;
 ;buy_observer_ward;buy_observer_ward;;
 ;deliver_items;deliver_items;;

@@ -29,24 +29,6 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_enchanted_mango",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_enchanted_mango"},
-
-        },
-      },
-      {
-        move = "buy_infused_raindrop",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_infused_raindrop"},
-
-        },
-      },
-      {
         move = "buy_slippers",
         wait_condition = "nil",
         cancel_condition = "nil",
@@ -97,42 +79,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "buy_blades_of_attack"},
-
-        },
-      },
-      {
-        move = "buy_wind_lace",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_wind_lace"},
-
-        },
-      },
-      {
-        move = "buy_void_stone",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_void_stone"},
-
-        },
-      },
-      {
-        move = "buy_staff_of_wizardry",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_staff_of_wizardry"},
-
-        },
-      },
-      {
-        move = "buy_recipe_cyclone",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "buy_recipe_cyclone"},
 
         },
       },
