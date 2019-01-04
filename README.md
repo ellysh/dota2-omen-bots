@@ -1,4 +1,4 @@
-# Dota 2 OMEN Bots 1.0 version
+# Dota 2 OMEN Bots 0.1 version
 
 *This project is still in a developing stage.*
 
@@ -18,7 +18,7 @@ There are steps to start playing with the bot:
 2. Choose the "1v1 Solo Mid" game mode.
 3. Choose the OMEN bots for both sides.
 4. Start a game.
-5. Pick Shadow Fiend.
+5. Pick Drow Ranger.
 6. Wait until bots do not pick their heroes after you.
 
 You can play with OMEN Bots in the "All pick" mode. In this case, Shadow Shaman bot buys a courier for you. You should stop "All pick" game when any side does two kills or mid Tier 1 Tower is destroyed.
@@ -27,7 +27,7 @@ You can play with OMEN Bots in the "All pick" mode. In this case, Shadow Shaman 
 
 It is recommended to follow some limitations when playing with the bot:
 
-1. Pick only Shadow Fiend hero.
+1. Pick only Drow Ranger hero.
 2. No shrines.
 3. No neutral camps or Roshan.
 4. No Bottle.
