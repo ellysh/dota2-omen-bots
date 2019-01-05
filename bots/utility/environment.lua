@@ -61,6 +61,9 @@ M.ENEMY_UNITS_DATA = {}
 M.ALLY_WARD_DATA = {}
 M.CURRENT_GAME_TIME = 0
 M.COURIER_DATA = {}
+M.FROST_ARROWS_ABILITY = {}
+M.GUST_ABILITY = {}
+M.PRECISION_AURA_ABILITY = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -396,6 +399,15 @@ function M.UpdateVariables()
   M.CURRENT_GAME_TIME = GameTime()
 
   M.COURIER_DATA = algorithms.GetCourierData()
+
+  M.FROST_ARROWS_ABILITY =
+    M.BOT:GetAbilityByName("drow_ranger_frost_arrows")
+
+  M.GUST_ABILITY =
+    M.BOT:GetAbilityByName("drow_ranger_wave_of_silence")
+
+  M.PRECISION_AURA_ABILITY =
+    M.BOT:GetAbilityByName("drow_ranger_trueshot")
 end
 
 -- Provide an access to local functions for unit tests only

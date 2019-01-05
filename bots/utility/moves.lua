@@ -96,8 +96,23 @@ function M.pre_attack_enemy_hero()
   return gs.Evaluate(gs.GAME_STATE, weights)
 end
 
+function M.pre_freeze_enemy_hero()
+  local weights = {
+    [gs.BOT_CASTABLE_FROST_ARROWS] = 1,
+    [gs.BOT_IS_SILENCED] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
 function M.attack_enemy_hero()
-  algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_HERO_DATA)
+  if M.pre_freeze_enemy_hero() then
+    env.BOT:Action_UseAbilityOnEntity(
+      env.FROST_ARROWS_ABILITY,
+      env.ENEMY_HERO_DATA.handle)
+  else
+    algorithms.AttackUnit(env.BOT_DATA, env.ENEMY_HERO_DATA)
+  end
 end
 
 ---------------------------------
