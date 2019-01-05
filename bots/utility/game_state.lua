@@ -189,6 +189,7 @@ M.EC_ATTACKING_BOT_PRESENT = 432
 M.EC_ATTACKING_BOT_BETWEEN_AT = 433
 M.EC_ATTACKING_BOT_IN_AT_ATTACK_RANGE = 434
 M.EC_IN_MELEE_ATTACK_RANGE = 435
+M.AC_SIEGE_PRESENT = 436
 
 -- Courier state
 M.COURIER_ON_BASE = 600
@@ -254,6 +255,20 @@ end
 local function IsNight()
   return GetTimeOfDay() < 0.25
          or 0.75 < GetTimeOfDay()
+end
+
+local function IsAllySiegeCreepPresent()
+  local creeps = algorithms.GetAllyCreeps(
+                   env.BOT_DATA,
+                   constants.MAX_UNIT_SEARCH_RADIUS)
+
+  return nil ~= functions.GetElementWith(
+                  creeps,
+                  nil,
+                  function(unit_data)
+                    return unit_data.name == "npc_dota_goodguys_siege"
+                           or unit_data.name == "npc_dota_badguys_siege"
+                  end)
 end
 
 function M.UpdateState()
@@ -765,6 +780,8 @@ function M.UpdateState()
     NUM[algorithms.AreEnemyCreepsInRadius(
           env.BOT_DATA,
           constants.MAX_MELEE_ATTACK_RANGE)]
+
+  M.GAME_STATE[M.AC_SIEGE_PRESENT] = NUM[IsAllySiegeCreepPresent()]
 
   -- Courier state
 

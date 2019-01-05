@@ -12,7 +12,8 @@ evasion;evade_enemy_tower;move_safe_spot;wait_evade_enemy_tower;cancel_evade_ene
 ;;;;
 farm;lasthit_enemy_creep;lasthit_enemy_creep;;
 ;;;;
-push_lane;attack_enemy_creep;attack_enemy_creep;;
+push_lane;use_precision_aura;use_precision_aura;;
+;attack_enemy_creep;attack_enemy_creep;;
 ;kill_enemy_creep;kill_enemy_creep;;
 ;attack_enemy_tower;attack_enemy_tower;;
 ;;;;

@@ -100,6 +100,22 @@ end
 
 --------------------------------
 
+function M.pre_use_precision_aura()
+  local weights = {
+    [gs.BOT_CASTABLE_PRECISION_AURA] = 0.5,
+    [gs.AC_SIEGE_PRESENT] = 0.5,
+    [gs.BOT_IS_SILENCED] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.use_precision_aura()
+  env.BOT:Action_UseAbility(env.PRECISION_AURA_ABILITY)
+end
+
+--------------------------------
+
 -- Provide an access to local functions for unit tests only
 
 function M.test_SetGameState(state)

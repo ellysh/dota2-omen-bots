@@ -97,6 +97,7 @@ turn
 turn_enemy_fountain
 upgrade
 upgrade_skills
+use_precision_aura
 wait_attack
 wait_evade_enemy_creeps
 wait_evade_enemy_hero
