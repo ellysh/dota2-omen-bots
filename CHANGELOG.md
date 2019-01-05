@@ -1,4 +1,4 @@
-* version dr-1.0
+* version dr-1.1
   - Change the hero to Drow Ranger.
   - Apply Drow Ranger specific constants.
   - Remove SF specific objectives and moves.

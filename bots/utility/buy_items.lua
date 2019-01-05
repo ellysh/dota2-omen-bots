@@ -172,6 +172,7 @@ function M.pre_buy_two_boots_of_elves()
                    "item_boots_of_elves")
          and not algorithms.DoesBotOrCourierHaveItem(
                    "item_dragon_lance")
+         and not algorithms.DoesBotOrCourierHaveItem("item_hurricane_pike")
 end
 
 function M.buy_two_boots_of_elves()
@@ -186,6 +187,7 @@ function M.pre_buy_ogre_axe()
          and algorithms.DoesBotOrCourierHaveItem("item_boots_of_elves")
          and algorithms.DoesBotOrCourierHaveItem("item_power_treads")
          and not algorithms.DoesBotOrCourierHaveItem("item_dragon_lance")
+         and not algorithms.DoesBotOrCourierHaveItem("item_hurricane_pike")
 end
 
 function M.buy_ogre_axe()
@@ -205,28 +207,53 @@ end
 
 ---------------------------------
 
-function M.pre_buy_lifesteal()
-  return pre_buy_item("item_lifesteal")
+function M.pre_buy_ring_of_regen()
+  return pre_buy_item("item_ring_of_regen")
          and algorithms.DoesBotOrCourierHaveItem("item_blink")
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_mask_of_madness")
+         and not algorithms.DoesBotOrCourierHaveItem("item_force_staff")
+         and not algorithms.DoesBotOrCourierHaveItem("item_hurricane_pike")
 end
 
-function M.buy_lifesteal()
-  algorithms.BuyItem("item_lifesteal")
+function M.buy_ring_of_regen()
+  algorithms.BuyItem("item_ring_of_regen")
 end
 
 ---------------------------------
 
-function M.pre_buy_quarterstaff()
-  return pre_buy_item("item_quarterstaff")
-         and algorithms.DoesBotOrCourierHaveItem("item_lifesteal")
-         and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_mask_of_madness")
+function M.pre_buy_staff_of_wizardry()
+  return pre_buy_item("item_staff_of_wizardry")
+         and algorithms.DoesBotOrCourierHaveItem("item_ring_of_regen")
+         and not algorithms.DoesBotOrCourierHaveItem("item_force_staff")
+         and not algorithms.DoesBotOrCourierHaveItem("item_hurricane_pike")
 end
 
-function M.buy_quarterstaff()
-  algorithms.BuyItem("item_quarterstaff")
+function M.buy_staff_of_wizardry()
+  algorithms.BuyItem("item_staff_of_wizardry")
+end
+
+---------------------------------
+
+function M.pre_buy_recipe_force_staff()
+  return pre_buy_item("item_recipe_force_staff")
+         and algorithms.DoesBotOrCourierHaveItem("item_staff_of_wizardry")
+         and not algorithms.DoesBotOrCourierHaveItem("item_force_staff")
+         and not algorithms.DoesBotOrCourierHaveItem("item_hurricane_pike")
+end
+
+function M.buy_recipe_force_staff()
+  algorithms.BuyItem("item_recipe_force_staff")
+end
+
+---------------------------------
+
+function M.pre_buy_recipe_hurricane_pike()
+  return pre_buy_item("item_recipe_hurricane_pike")
+         and algorithms.DoesBotOrCourierHaveItem("item_force_staff")
+         and not algorithms.DoesBotOrCourierHaveItem("item_hurricane_pike")
+end
+
+function M.buy_recipe_hurricane_pike()
+  algorithms.BuyItem("item_recipe_hurricane_pike")
 end
 
 ---------------------------------

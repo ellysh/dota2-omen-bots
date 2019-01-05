@@ -15,12 +15,14 @@ buy_boots_of_elves
 buy_circlet
 buy_flask
 buy_items
-buy_lifesteal
 buy_observer_ward
 buy_ogre_axe
-buy_quarterstaff
+buy_recipe_force_staff
+buy_recipe_hurricane_pike
 buy_recipe_wraith_band
+buy_ring_of_regen
 buy_slippers
+buy_staff_of_wizardry
 buy_starting_items
 buy_tpscroll
 buy_two_boots_of_elves

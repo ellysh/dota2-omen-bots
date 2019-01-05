@@ -110,20 +110,38 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_lifesteal",
+        move = "buy_ring_of_regen",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "buy_lifesteal"},
+          {action = "buy_ring_of_regen"},
 
         },
       },
       {
-        move = "buy_quarterstaff",
+        move = "buy_staff_of_wizardry",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "buy_quarterstaff"},
+          {action = "buy_staff_of_wizardry"},
+
+        },
+      },
+      {
+        move = "buy_recipe_force_staff",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_recipe_force_staff"},
+
+        },
+      },
+      {
+        move = "buy_recipe_hurricane_pike",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "buy_recipe_hurricane_pike"},
 
         },
       },
