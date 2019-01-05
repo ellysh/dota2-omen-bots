@@ -14,6 +14,8 @@ item_hp_recovery;heal_flask;heal_flask;;
 ;heal_faerie_fire;heal_faerie_fire;;
 ;tp_base;tp_base;;
 ;;;;
+evasion;use_gust;use_gust;;
+;;;;
 base_recovery;deliver_items;deliver_items;;
 ;restore_hp_on_base;restore_hp_on_base;;
 ;restore_mp_on_base;restore_mp_on_base;;

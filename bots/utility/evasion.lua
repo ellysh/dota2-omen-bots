@@ -137,6 +137,26 @@ function M.pre_cancel_evade_enemy_tower()
          or moves.pre_cancel_move_safe_spot()
 end
 
+---------------------------------
+
+function M.pre_use_gust()
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = 0.3,
+    [gs.BOT_CASTABLE_GUST] = 0.3,
+    [gs.EH_IN_GUST_RANGE] = 0.2,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 0.2,
+    [gs.BOT_IS_SILENCED] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.use_gust()
+  env.BOT:Action_UseAbilityOnLocation(
+    env.GUST_ABILITY,
+    env.ENEMY_HERO_DATA.location)
+end
+
 -- Provide an access to local functions for unit tests only
 
 function M.test_SetGameState(state)

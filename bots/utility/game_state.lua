@@ -52,7 +52,7 @@ M.BOT_CASTABLE_TP_SCROLL = 21
 M.BOT_HAS_RESERVED_GOLD = 22
 M.BOT_HAS_FLASK = 23
 M.BOT_HAS_FAERIE_FIRE = 24
---M.BOT_CASTABLE_CYCLONE = 25
+M.BOT_HAS_FROST_ARROWS_MODIFIER = 25
 M.BOT_IN_ENEMY_TOWER_RANGE = 26
 M.BOT_IN_SAFE_SPOT = 27
 M.BOT_HAS_LEVEL_FOR_AGRESSION = 28
@@ -98,7 +98,7 @@ M.EH_PRESENT = 100
 M.EH_IS_LOW_HP = 101
 M.EH_IS_TOWER_PROTECTED = 102
 M.BOT_IN_SAFE_DISTANCE_FROM_EH = 103
---M.EH_CAN_EVADE_REQUIEM = 104
+M.EH_IN_GUST_RANGE = 104
 --M.EH_HAS_HP_FOR_REQUIEM = 105
 M.EH_NOT_IN_BOT_ATTACK_RANGE = 106
 M.EH_IN_PURSUIT_RANGE = 107
@@ -342,6 +342,11 @@ function M.UpdateState()
     [M.BOT_HAS_FAERIE_FIRE] =
       NUM[algorithms.DoesBotOrCourierHaveItem("item_faerie_fire")],
 
+    [M.BOT_HAS_FROST_ARROWS_MODIFIER] =
+      NUM[algorithms.HasModifier(
+            env.BOT_DATA,
+            "modifier_drow_ranger_frost_arrows_slow")],
+
     [M.BOT_IN_ENEMY_TOWER_RANGE] =
       NUM[map.IsUnitInEnemyTowerAttackRange(env.BOT_DATA)],
 
@@ -467,6 +472,9 @@ function M.UpdateState()
 
     M.GAME_STATE[M.BOT_IN_SAFE_DISTANCE_FROM_EH] =
       NUM[constants.SAFE_HERO_DISTANCE < env.ENEMY_HERO_DISTANCE]
+
+    M.GAME_STATE[M.EH_IN_GUST_RANGE] =
+      NUM[env.ENEMY_HERO_DISTANCE < env.GUST_ABILITY:GetCastRange()]
 
     M.GAME_STATE[M.EH_NOT_IN_BOT_ATTACK_RANGE] = NUM[
                           algorithms.GetAttackRange(

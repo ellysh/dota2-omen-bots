@@ -422,6 +422,22 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "evasion",
+    module = require(GetScriptDirectory() .."/utility/evasion"),
+    moves = {
+      {
+        move = "use_gust",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_gust"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "base_recovery",
     module = require(GetScriptDirectory() .."/utility/base_recovery"),
     moves = {
