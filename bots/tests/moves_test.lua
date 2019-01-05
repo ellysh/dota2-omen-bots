@@ -409,4 +409,33 @@ function test_pre_cancel_move_safe_spot_1_fails()
   luaunit.assertFalse(moves.pre_cancel_move_safe_spot())
 end
 
+---------------------------------
+
+function test_pre_freeze_enemy_hero_1_succeed()
+  moves.test_SetGameState({
+    [gs.BOT_CASTABLE_FROST_ARROWS] = 1,
+    [gs.BOT_IS_SILENCED] = 0,
+  })
+
+  luaunit.assertTrue(moves.pre_freeze_enemy_hero())
+end
+
+function test_pre_freeze_enemy_hero_1_fails()
+  moves.test_SetGameState({
+    [gs.BOT_CASTABLE_FROST_ARROWS] = 0,
+    [gs.BOT_IS_SILENCED] = 0,
+  })
+
+  luaunit.assertFalse(moves.pre_freeze_enemy_hero())
+end
+
+function test_pre_freeze_enemy_hero_2_fails()
+  moves.test_SetGameState({
+    [gs.BOT_CASTABLE_FROST_ARROWS] = 1,
+    [gs.BOT_IS_SILENCED] = 1,
+  })
+
+  luaunit.assertFalse(moves.pre_freeze_enemy_hero())
+end
+
 os.exit(luaunit.LuaUnit.run())
