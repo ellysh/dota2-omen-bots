@@ -337,4 +337,46 @@ function test_pre_destroy_enemy_tower_5_fails()
   luaunit.assertFalse(push_lane.pre_destroy_enemy_tower())
 end
 
+---------------------------------
+
+function test_pre_use_precision_aura_1_succeed()
+  push_lane.test_SetGameState({
+    [gs.BOT_CASTABLE_PRECISION_AURA] = 1,
+    [gs.AC_SIEGE_PRESENT] = 1,
+    [gs.BOT_IS_SILENCED] = 0,
+  })
+
+  luaunit.assertTrue(push_lane.pre_use_precision_aura())
+end
+
+function test_pre_use_precision_aura_1_fails()
+  push_lane.test_SetGameState({
+    [gs.BOT_CASTABLE_PRECISION_AURA] = 0,
+    [gs.AC_SIEGE_PRESENT] = 1,
+    [gs.BOT_IS_SILENCED] = 0,
+  })
+
+  luaunit.assertFalse(push_lane.pre_use_precision_aura())
+end
+
+function test_pre_use_precision_aura_2_fails()
+  push_lane.test_SetGameState({
+    [gs.BOT_CASTABLE_PRECISION_AURA] = 1,
+    [gs.AC_SIEGE_PRESENT] = 0,
+    [gs.BOT_IS_SILENCED] = 0,
+  })
+
+  luaunit.assertFalse(push_lane.pre_use_precision_aura())
+end
+
+function test_pre_use_precision_aura_3_fails()
+  push_lane.test_SetGameState({
+    [gs.BOT_CASTABLE_PRECISION_AURA] = 1,
+    [gs.AC_SIEGE_PRESENT] = 1,
+    [gs.BOT_IS_SILENCED] = 1,
+  })
+
+  luaunit.assertFalse(push_lane.pre_use_precision_aura())
+end
+
 os.exit(luaunit.LuaUnit.run())

@@ -31,7 +31,8 @@ kite;attack_enemy_hero;attack_enemy_hero;;
 ;attack_enemy_tower;attack_enemy_tower;;
 ;move_safe;move_safe;;cancel_move_safe
 ;;;;
-push_lane;attack_enemy_creep;attack_enemy_creep;;
+push_lane;use_precision_aura;use_precision_aura;;
+;attack_enemy_creep;attack_enemy_creep;;
 ;kill_enemy_creep;kill_enemy_creep;;
 ;attack_enemy_tower;attack_enemy_tower;;
 ;;;;

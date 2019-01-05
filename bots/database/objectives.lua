@@ -1003,6 +1003,15 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/push_lane"),
     moves = {
       {
+        move = "use_precision_aura",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_precision_aura"},
+
+        },
+      },
+      {
         move = "attack_enemy_creep",
         wait_condition = "nil",
         cancel_condition = "nil",
