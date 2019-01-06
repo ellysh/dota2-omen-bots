@@ -101,7 +101,7 @@ local function IsUnitRelativeLowHp(unit_data, enemy_hero_data)
                   and (algorithms.IsBiggerThan(
                          enemy_hero_data.health,
                          unit_data.health,
-                         unit_data.max_health / 2)
+                         unit_data.max_health / 3)
 
                        or algorithms.IsBiggerThan(
                          enemy_hero_data.attack_damage * 3,
