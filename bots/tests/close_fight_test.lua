@@ -107,4 +107,33 @@ function test_pre_use_pike_3_fails()
   luaunit.assertFalse(close_fight.pre_use_pike())
 end
 
+---------------------------------
+
+function test_pre_attack_enemy_hero_with_pike_1_succeed()
+  close_fight.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_HAS_PIKE_MODIFIER] = 1,
+  })
+
+  luaunit.assertTrue(close_fight.pre_attack_enemy_hero_with_pike())
+end
+
+function test_pre_attack_enemy_hero_with_pike_1_fails()
+  close_fight.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 0,
+    [gs.BOT_HAS_PIKE_MODIFIER] = 1,
+  })
+
+  luaunit.assertFalse(close_fight.pre_attack_enemy_hero_with_pike())
+end
+
+function test_pre_attack_enemy_hero_with_pike_2_fails()
+  close_fight.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_HAS_PIKE_MODIFIER] = 0,
+  })
+
+  luaunit.assertFalse(close_fight.pre_attack_enemy_hero_with_pike())
+end
+
 os.exit(luaunit.LuaUnit.run())
