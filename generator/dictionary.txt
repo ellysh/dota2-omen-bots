@@ -100,6 +100,7 @@ turn_enemy_fountain
 upgrade
 upgrade_skills
 use_gust
+use_pike
 use_precision_aura
 wait_attack
 wait_evade_enemy_creeps

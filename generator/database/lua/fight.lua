@@ -49,6 +49,15 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/close_fight"),
     moves = {
       {
+        move = "use_pike",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "use_pike"},
+
+        },
+      },
+      {
         move = "kill_enemy_hero",
         wait_condition = "nil",
         cancel_condition = "nil",

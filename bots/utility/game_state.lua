@@ -56,7 +56,7 @@ M.BOT_HAS_FROST_ARROWS_MODIFIER = 25
 M.BOT_IN_ENEMY_TOWER_RANGE = 26
 M.BOT_IN_SAFE_SPOT = 27
 M.BOT_HAS_LEVEL_FOR_AGRESSION = 28
---M.BOT_CASTABLE_REQUIEM = 29
+M.BOT_CASTABLE_PIKE = 29
 M.BOT_HAS_BETTER_POSITION = 30
 M.BOT_STASH_FULL = 31
 M.BOT_MOVING = 32
@@ -99,7 +99,7 @@ M.EH_IS_LOW_HP = 101
 M.EH_IS_TOWER_PROTECTED = 102
 M.BOT_IN_SAFE_DISTANCE_FROM_EH = 103
 M.EH_IN_GUST_RANGE = 104
---M.EH_HAS_HP_FOR_REQUIEM = 105
+M.EH_HAS_HP_FOR_PIKE = 105
 M.EH_NOT_IN_BOT_ATTACK_RANGE = 106
 M.EH_IN_PURSUIT_RANGE = 107
 M.BOT_IN_EH_ATTACK_RANGE = 108
@@ -111,7 +111,7 @@ M.BOT_ATTACK_EH = 113
 M.EH_IN_REAR_SPOT = 114
 M.BOT_IN_EH_MIN_DISTANCE = 115
 M.EH_IS_FLASK_HEALING = 116
---M.EH_IN_NEAR_SHADOWRAZE_RANGE = 117
+M.EH_IN_PIKE_RANGE = 117
 --M.EH_IN_MEDIUM_SHADOWRAZE_RANGE = 118
 --M.EH_IN_FAR_SHADOWRAZE_RANGE = 119
 M.BOT_IS_FACING_EH = 120
@@ -369,6 +369,13 @@ function M.UpdateState()
     [M.BOT_HAS_LEVEL_FOR_AGRESSION] =
       NUM[constants.HERO_LEVEL_FOR_AGGRESSION <= env.BOT_DATA.level],
 
+    [M.BOT_CASTABLE_PIKE] =
+      NUM[algorithms.IsItemCastable(
+            env.BOT_DATA,
+            "item_hurricane_pike",
+            false,
+            hist.SWAP_BACKPACK_TIMESTAMP)],
+
     [M.BOT_STASH_FULL] = NUM[0 < env.BOT_DATA.stash_value],
 
     [M.BOT_MOVING] = NUM[algorithms.IsUnitMoving(env.BOT_DATA)],
@@ -483,6 +490,10 @@ function M.UpdateState()
     M.GAME_STATE[M.EH_IN_GUST_RANGE] =
       NUM[env.ENEMY_HERO_DISTANCE < env.GUST_ABILITY:GetCastRange()]
 
+    M.GAME_STATE[M.EH_HAS_HP_FOR_PIKE] =
+      NUM[env.ENEMY_HERO_DATA.health
+          <= (4 * env.BOT_DATA.attack_damage)]
+
     M.GAME_STATE[M.EH_NOT_IN_BOT_ATTACK_RANGE] = NUM[
                           algorithms.GetAttackRange(
                             env.BOT_DATA,
@@ -538,6 +549,9 @@ function M.UpdateState()
 
     M.GAME_STATE[M.EH_IS_FLASK_HEALING] =
       NUM[env.ENEMY_HERO_DATA.is_flask_healing]
+
+    M.GAME_STATE[M.EH_IN_PIKE_RANGE] =
+      NUM[env.ENEMY_HERO_DISTANCE <= constants.PIKE_CAST_RANGE]
 
     M.GAME_STATE[M.BOT_IS_FACING_EH] =
       NUM[functions.IsFacingLocation(

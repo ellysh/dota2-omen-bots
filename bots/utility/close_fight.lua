@@ -43,6 +43,24 @@ end
 
 ---------------------------------
 
+function M.pre_use_pike()
+  local weights = {
+    [gs.EH_HAS_HP_FOR_PIKE] = 0.3,
+    [gs.EH_IN_PIKE_RANGE] = 0.3,
+    [gs.BOT_CASTABLE_PIKE] = 0.4,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.use_pike()
+  env.BOT:Action_UseAbilityOnEntity(
+    algorithms.GetItem(env.BOT_DATA, "item_hurricane_pike"),
+    env.ENEMY_HERO_DATA.handle)
+end
+
+---------------------------------
+
 -- Provide an access to local functions for unit tests only
 
 function M.test_SetGameState(state)
