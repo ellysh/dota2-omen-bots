@@ -7,7 +7,7 @@ sleep 3
 xdotool type 'dota_bot_give_level 15'
 xdotool key 'Return'
 
-xdotool type 'dota_bot_give_item item_cyclone'
+xdotool type 'dota_bot_give_item item_hurricane_pike'
 xdotool key 'Return'
 
 xdotool type 'dota_bot_give_item item_wraith_band'

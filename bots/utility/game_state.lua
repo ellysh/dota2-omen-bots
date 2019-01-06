@@ -590,7 +590,8 @@ function M.UpdateState()
       NUM[env.ENEMY_HERO_DATA.attack_target == env.BOT_DATA]
 
     M.GAME_STATE[M.BOT_IN_EH_LOCATION] =
-      NUM[env.ENEMY_HERO_DISTANCE <= constants.DROW_RANGER_COLLISION_SIZE]
+      NUM[env.ENEMY_HERO_DISTANCE
+          <= constants.UNITS_IN_SAME_LOCATION_DISTANCE]
 
     M.GAME_STATE[M.EH_IN_BLINK_RANGE] =
       NUM[env.ENEMY_HERO_DISTANCE <= constants.BLINK_CAST_RANGE]
