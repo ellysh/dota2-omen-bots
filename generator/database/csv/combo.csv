@@ -1,3 +1,3 @@
 Objective;Move;Actions;"Wait Condition";"Cancel Condition"
-manage_attack_anim;cancel_attack;cancel_attack;;
-;wait_attack;wait_attack;;
+blink_attack;blink;blink;;
+;use_gust;use_gust;;

@@ -4,24 +4,24 @@ local M = {}
 M.OBJECTIVES = {
 
   {
-    objective = "manage_attack_anim",
-    module = require(GetScriptDirectory() .."/utility/manage_attack_anim"),
+    objective = "blink_attack",
+    module = require(GetScriptDirectory() .."/utility/blink_attack"),
     moves = {
       {
-        move = "cancel_attack",
+        move = "blink",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "cancel_attack"},
+          {action = "blink"},
 
         },
       },
       {
-        move = "wait_attack",
+        move = "use_gust",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "wait_attack"},
+          {action = "use_gust"},
 
         },
       },
