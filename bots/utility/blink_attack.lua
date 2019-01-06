@@ -29,7 +29,8 @@ function M.pre_blink()
   local weights = {
     [gs.EH_IS_VISIBLE] = 0.3,
     [gs.BOT_CASTABLE_BLINK] = 0.3,
-    [gs.EH_IN_BLINK_RANGE] = 0.4,
+    [gs.EH_IN_BLINK_RANGE] = 0.2,
+    [gs.EH_HAS_HP_FOR_BLINK] = 0.2,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

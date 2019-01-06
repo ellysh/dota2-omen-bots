@@ -42,6 +42,7 @@ function test_pre_blink_1_succeed()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_BLINK] = 1,
     [gs.EH_IN_BLINK_RANGE] = 1,
+    [gs.EH_HAS_HP_FOR_BLINK] = 1,
   })
 
   luaunit.assertTrue(blink_attack.pre_blink())
@@ -52,6 +53,7 @@ function test_pre_blink_1_fails()
     [gs.EH_IS_VISIBLE] = 0,
     [gs.BOT_CASTABLE_BLINK] = 1,
     [gs.EH_IN_BLINK_RANGE] = 1,
+    [gs.EH_HAS_HP_FOR_BLINK] = 1,
   })
 
   luaunit.assertFalse(blink_attack.pre_blink())
@@ -62,6 +64,7 @@ function test_pre_blink_2_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_BLINK] = 0,
     [gs.EH_IN_BLINK_RANGE] = 1,
+    [gs.EH_HAS_HP_FOR_BLINK] = 1,
   })
 
   luaunit.assertFalse(blink_attack.pre_blink())
@@ -72,6 +75,18 @@ function test_pre_blink_3_fails()
     [gs.EH_IS_VISIBLE] = 1,
     [gs.BOT_CASTABLE_BLINK] = 1,
     [gs.EH_IN_BLINK_RANGE] = 0,
+    [gs.EH_HAS_HP_FOR_BLINK] = 1,
+  })
+
+  luaunit.assertFalse(blink_attack.pre_blink())
+end
+
+function test_pre_blink_4_fails()
+  blink_attack.test_SetGameState({
+    [gs.EH_IS_VISIBLE] = 1,
+    [gs.BOT_CASTABLE_BLINK] = 1,
+    [gs.EH_IN_BLINK_RANGE] = 1,
+    [gs.EH_HAS_HP_FOR_BLINK] = 0,
   })
 
   luaunit.assertFalse(blink_attack.pre_blink())
