@@ -72,13 +72,13 @@ end
 
 ---------------------------------
 
-local function HasTwoWraithBands(unit_data)
+local function HasTwoItems(unit_data, item_name)
   local counter = 0
 
   functions.DoWithKeysAndElements(
     unit_data.items,
     function(_, item)
-      if not item:IsNull() and item:GetName() == "item_wraith_band" then
+      if not item:IsNull() and item:GetName() == item_name then
         counter = counter + 1
       end
     end)
@@ -88,7 +88,7 @@ end
 
 function M.pre_buy_slippers()
   return pre_buy_item("item_slippers")
-         and not HasTwoWraithBands(env.BOT_DATA)
+         and not HasTwoItems(env.BOT_DATA, "item_wraith_band")
          and not algorithms.IsItemPresent(
                    env.COURIER_DATA,
                    "item_wraith_band")
@@ -106,7 +106,7 @@ end
 function M.pre_buy_circlet()
   return pre_buy_item("item_circlet")
          and algorithms.DoesBotOrCourierHaveItem("item_slippers")
-         and not HasTwoWraithBands(env.BOT_DATA)
+         and not HasTwoItems(env.BOT_DATA, "item_wraith_band")
 end
 
 function M.buy_circlet()
@@ -118,7 +118,7 @@ end
 function M.pre_buy_recipe_wraith_band()
   return pre_buy_item("item_recipe_wraith_band")
          and algorithms.DoesBotOrCourierHaveItem("item_circlet")
-         and not HasTwoWraithBands(env.BOT_DATA)
+         and not HasTwoItems(env.BOT_DATA, "item_wraith_band")
 end
 
 function M.buy_recipe_wraith_band()
@@ -129,7 +129,7 @@ end
 
 function M.pre_buy_boots()
   return pre_buy_item("item_boots")
-         and HasTwoWraithBands(env.BOT_DATA)
+         and HasTwoItems(env.BOT_DATA, "item_wraith_band")
          and not algorithms.DoesBotOrCourierHaveItem(
                    "item_power_treads")
 end
@@ -166,9 +166,11 @@ end
 ---------------------------------
 
 function M.pre_buy_two_boots_of_elves()
-  return (2 * GetItemCost("item_boots_of_elves")) <= env.BOT_DATA.gold
+  return IsEnoughGoldToBuy("item_boots_of_elves")
          and algorithms.DoesBotOrCourierHaveItem("item_power_treads")
-         and not algorithms.DoesBotOrCourierHaveItem(
+         and not HasTwoItems(env.BOT_DATA, "item_boots_of_elves")
+         and not algorithms.IsItemPresent(
+                   env.COURIER_DATA,
                    "item_boots_of_elves")
          and not algorithms.DoesBotOrCourierHaveItem(
                    "item_dragon_lance")
@@ -177,14 +179,13 @@ end
 
 function M.buy_two_boots_of_elves()
   algorithms.BuyItem("item_boots_of_elves")
-  algorithms.BuyItem("item_boots_of_elves")
 end
 
 ---------------------------------
 
 function M.pre_buy_ogre_axe()
   return pre_buy_item("item_ogre_axe")
-         and algorithms.DoesBotOrCourierHaveItem("item_boots_of_elves")
+         and HasTwoItems(env.BOT_DATA, "item_boots_of_elves")
          and algorithms.DoesBotOrCourierHaveItem("item_power_treads")
          and not algorithms.DoesBotOrCourierHaveItem("item_dragon_lance")
          and not algorithms.DoesBotOrCourierHaveItem("item_hurricane_pike")
