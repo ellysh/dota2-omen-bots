@@ -52,6 +52,8 @@ do_buyback
 do_glyph
 evade_enemy_creeps
 evade_enemy_hero
+evade_enemy_hero_with_force_staff
+evade_enemy_hero_with_pike
 evade_enemy_tower
 evade_invisible_enemy_hero
 evasion

@@ -74,7 +74,7 @@ M.BOT_CASTABLE_PRECISION_AURA = 43
 M.BOT_IS_LOW_MP = 44
 M.BOT_CASTABLE_FORCE_STAFF = 45
 M.BOT_HAS_PIKE_MODIFIER = 46
---M.BOT_HAS_MAX_SOULS = 47
+M.BOT_IS_FACING_SAFE_SPOT = 47
 --M.BOT_IS_CASTING_NEAR_SHADOWRAZE = 48
 --M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE = 49
 --M.BOT_IS_CASTING_FAR_SHADOWRAZE = 50
@@ -425,6 +425,12 @@ function M.UpdateState()
       NUM[algorithms.HasModifier(
         env.BOT_DATA,
         "modifier_item_hurricane_pike_range")],
+
+    [M.BOT_IS_FACING_SAFE_SPOT] =
+      NUM[functions.IsFacingLocation(
+            env.BOT_DATA,
+            env.SAFE_SPOT,
+            constants.TURN_TARGET_MAX_DEGREE)],
 
     [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting],
 

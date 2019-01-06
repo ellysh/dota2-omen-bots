@@ -1,6 +1,9 @@
 local moves = require(
   GetScriptDirectory() .."/utility/moves")
 
+local algorithms = require(
+  GetScriptDirectory() .."/utility/algorithms")
+
 local env = require(
   GetScriptDirectory() .."/utility/environment")
 
@@ -146,6 +149,8 @@ function M.pre_use_gust()
     [gs.EH_IN_GUST_RANGE] = 0.2,
     [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 0.2,
     [gs.BOT_IS_SILENCED] = -1,
+    [gs.BOT_CASTABLE_PIKE] = -1,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
@@ -155,6 +160,46 @@ function M.use_gust()
   env.BOT:Action_UseAbilityOnLocation(
     env.GUST_ABILITY,
     env.ENEMY_HERO_DATA.location)
+end
+
+---------------------------------
+
+function M.pre_evade_enemy_hero_with_force_staff()
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = 0.3,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0.3,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 0.2,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 0.2,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.evade_enemy_hero_with_force_staff()
+  env.BOT:Action_UseAbilityOnEntity(
+    algorithms.GetItem(env.BOT_DATA, "item_force_staff"),
+    env.BOT_DATA.handle)
+end
+
+---------------------------------
+
+function M.pre_evade_enemy_hero_with_pike()
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = 0.3,
+    [gs.BOT_CASTABLE_PIKE] = 0.3,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 0.2,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 0.2,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = -1,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.evade_enemy_hero_with_pike()
+  env.BOT:Action_UseAbilityOnEntity(
+    algorithms.GetItem(env.BOT_DATA, "item_hurricane_pike"),
+    env.BOT_DATA.handle)
 end
 
 -- Provide an access to local functions for unit tests only

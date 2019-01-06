@@ -75,7 +75,6 @@ function M.move_enemy_hero_with_force_staff()
   env.BOT:Action_UseAbilityOnEntity(
     algorithms.GetItem(env.BOT_DATA, "item_force_staff"),
     env.BOT_DATA.handle)
-
 end
 
 ---------------------------------
@@ -93,7 +92,6 @@ function M.move_enemy_hero_with_pike()
   env.BOT:Action_UseAbilityOnEntity(
     algorithms.GetItem(env.BOT_DATA, "item_hurricane_pike"),
     env.BOT_DATA.handle)
-
 end
 
 ---------------------------------

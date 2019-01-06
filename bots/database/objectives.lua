@@ -462,6 +462,24 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/evasion"),
     moves = {
       {
+        move = "evade_enemy_hero_with_force_staff",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "evade_enemy_hero_with_force_staff"},
+
+        },
+      },
+      {
+        move = "evade_enemy_hero_with_pike",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "evade_enemy_hero_with_pike"},
+
+        },
+      },
+      {
         move = "use_gust",
         wait_condition = "nil",
         cancel_condition = "nil",
