@@ -219,4 +219,68 @@ function test_pre_pursuit_enemy_hero_7_fails()
   luaunit.assertFalse(pursuit_enemy_hero.pre_pursuit_enemy_hero())
 end
 
+---------------------------------
+
+function test_pre_move_enemy_hero_with_force_staff_1_succeed()
+  pursuit_enemy_hero.test_SetGameState({
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 1,
+    [gs.BOT_IS_FACING_EH] = 1,
+  })
+
+  luaunit.assertTrue(
+    pursuit_enemy_hero.pre_move_enemy_hero_with_force_staff())
+end
+
+function test_pre_move_enemy_hero_with_force_staff_1_fails()
+  pursuit_enemy_hero.test_SetGameState({
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
+    [gs.BOT_IS_FACING_EH] = 1,
+  })
+
+  luaunit.assertFalse(
+    pursuit_enemy_hero.pre_move_enemy_hero_with_force_staff())
+end
+
+function test_pre_move_enemy_hero_with_force_staff_2_fails()
+  pursuit_enemy_hero.test_SetGameState({
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 1,
+    [gs.BOT_IS_FACING_EH] = 0,
+  })
+
+  luaunit.assertFalse(
+    pursuit_enemy_hero.pre_move_enemy_hero_with_force_staff())
+end
+
+---------------------------------
+
+function test_pre_move_enemy_hero_with_pike_1_succeed()
+  pursuit_enemy_hero.test_SetGameState({
+    [gs.BOT_CASTABLE_PIKE] = 1,
+    [gs.BOT_IS_FACING_EH] = 1,
+  })
+
+  luaunit.assertTrue(
+    pursuit_enemy_hero.pre_move_enemy_hero_with_pike())
+end
+
+function test_pre_move_enemy_hero_with_pike_1_fails()
+  pursuit_enemy_hero.test_SetGameState({
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_IS_FACING_EH] = 1,
+  })
+
+  luaunit.assertFalse(
+    pursuit_enemy_hero.pre_move_enemy_hero_with_pike())
+end
+
+function test_pre_move_enemy_hero_with_pike_2_fails()
+  pursuit_enemy_hero.test_SetGameState({
+    [gs.BOT_CASTABLE_PIKE] = 1,
+    [gs.BOT_IS_FACING_EH] = 0,
+  })
+
+  luaunit.assertFalse(
+    pursuit_enemy_hero.pre_move_enemy_hero_with_pike())
+end
+
 os.exit(luaunit.LuaUnit.run())
