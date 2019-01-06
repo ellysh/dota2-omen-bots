@@ -298,6 +298,8 @@ function test_pre_use_gust_1_succeed()
     [gs.EH_IN_GUST_RANGE] = 1,
     [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
     [gs.BOT_IS_SILENCED] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
   })
 
   luaunit.assertTrue(evasion.pre_use_gust())
@@ -310,6 +312,8 @@ function test_pre_use_gust_1_fails()
     [gs.EH_IN_GUST_RANGE] = 1,
     [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
     [gs.BOT_IS_SILENCED] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_use_gust())
@@ -322,6 +326,8 @@ function test_pre_use_gust_2_fails()
     [gs.EH_IN_GUST_RANGE] = 1,
     [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
     [gs.BOT_IS_SILENCED] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_use_gust())
@@ -334,6 +340,8 @@ function test_pre_use_gust_3_fails()
     [gs.EH_IN_GUST_RANGE] = 0,
     [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
     [gs.BOT_IS_SILENCED] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_use_gust())
@@ -346,6 +354,8 @@ function test_pre_use_gust_4_fails()
     [gs.EH_IN_GUST_RANGE] = 1,
     [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 0,
     [gs.BOT_IS_SILENCED] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_use_gust())
@@ -358,6 +368,36 @@ function test_pre_use_gust_5_fails()
     [gs.EH_IN_GUST_RANGE] = 1,
     [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
     [gs.BOT_IS_SILENCED] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_use_gust())
+end
+
+function test_pre_use_gust_6_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_GUST] = 1,
+    [gs.EH_IN_GUST_RANGE] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IS_SILENCED] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_use_gust())
+end
+
+function test_pre_use_gust_7_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_GUST] = 1,
+    [gs.EH_IN_GUST_RANGE] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IS_SILENCED] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 1,
   })
 
   luaunit.assertFalse(evasion.pre_use_gust())
