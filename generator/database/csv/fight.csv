@@ -9,4 +9,5 @@ close_fight;use_pike;use_pike;;
 ;;;;
 pursuit_enemy_hero;attack_enemy_hero;attack_enemy_hero;;
 ;move_enemy_hero_with_force_staff;move_enemy_hero_with_force_staff;;
+;move_enemy_hero_with_pike;move_enemy_hero_with_pike;;
 ;move_enemy_hero;move_enemy_hero;;

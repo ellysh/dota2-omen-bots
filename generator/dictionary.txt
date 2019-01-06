@@ -72,6 +72,7 @@ move_and_block
 move_base
 move_enemy_hero
 move_enemy_hero_with_force_staff
+move_enemy_hero_with_pike
 move_safe
 move_safe_recovery
 move_safe_spot

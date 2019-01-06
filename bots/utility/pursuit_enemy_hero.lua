@@ -80,6 +80,24 @@ end
 
 ---------------------------------
 
+function M.pre_move_enemy_hero_with_pike()
+  local weights = {
+    [gs.BOT_CASTABLE_PIKE] = 0.5,
+    [gs.BOT_IS_FACING_EH] = 0.5,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.move_enemy_hero_with_pike()
+  env.BOT:Action_UseAbilityOnEntity(
+    algorithms.GetItem(env.BOT_DATA, "item_hurricane_pike"),
+    env.BOT_DATA.handle)
+
+end
+
+---------------------------------
+
 -- Provide an access to local functions for unit tests only
 
 function M.test_SetGameState(state)
