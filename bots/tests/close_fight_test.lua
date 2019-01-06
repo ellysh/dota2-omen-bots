@@ -65,4 +65,46 @@ function test_pre_kill_enemy_hero_2_fails()
   luaunit.assertFalse(close_fight.pre_kill_enemy_hero())
 end
 
+---------------------------------
+
+function test_pre_use_pike_1_succeed()
+  close_fight.test_SetGameState({
+    [gs.EH_HAS_HP_FOR_PIKE] = 1,
+    [gs.EH_IN_PIKE_RANGE] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+  })
+
+  luaunit.assertTrue(close_fight.pre_use_pike())
+end
+
+function test_pre_use_pike_1_fails()
+  close_fight.test_SetGameState({
+    [gs.EH_HAS_HP_FOR_PIKE] = 0,
+    [gs.EH_IN_PIKE_RANGE] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+  })
+
+  luaunit.assertFalse(close_fight.pre_use_pike())
+end
+
+function test_pre_use_pike_2_fails()
+  close_fight.test_SetGameState({
+    [gs.EH_HAS_HP_FOR_PIKE] = 1,
+    [gs.EH_IN_PIKE_RANGE] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+  })
+
+  luaunit.assertFalse(close_fight.pre_use_pike())
+end
+
+function test_pre_use_pike_3_fails()
+  close_fight.test_SetGameState({
+    [gs.EH_HAS_HP_FOR_PIKE] = 1,
+    [gs.EH_IN_PIKE_RANGE] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+  })
+
+  luaunit.assertFalse(close_fight.pre_use_pike())
+end
+
 os.exit(luaunit.LuaUnit.run())
