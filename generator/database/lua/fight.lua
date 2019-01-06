@@ -58,6 +58,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "attack_enemy_hero_with_pike",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "attack_enemy_hero_with_pike"},
+
+        },
+      },
+      {
         move = "kill_enemy_hero",
         wait_condition = "nil",
         cancel_condition = "nil",

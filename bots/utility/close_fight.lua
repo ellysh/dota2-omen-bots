@@ -61,6 +61,19 @@ end
 
 ---------------------------------
 
+function M.pre_attack_enemy_hero_with_pike()
+  local weights = {
+    [gs.EH_IS_VISIBLE] = 0.5,
+    [gs.BOT_HAS_PIKE_MODIFIER] = 0.5,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.attack_enemy_hero_with_pike()
+  -- The hero attacks automatically when it has the pike modifier
+end
+
 -- Provide an access to local functions for unit tests only
 
 function M.test_SetGameState(state)

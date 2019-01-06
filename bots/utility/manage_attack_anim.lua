@@ -20,6 +20,7 @@ end
 function M.pre_cancel_attack()
   local weights = {
     [gs.BOT_DOES_BACKSWING] = 1,
+    [gs.BOT_HAS_PIKE_MODIFIER] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

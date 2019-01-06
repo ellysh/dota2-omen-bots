@@ -4,6 +4,7 @@ aggro_last_hit
 attack_ally_creep
 attack_enemy_creep
 attack_enemy_hero
+attack_enemy_hero_with_pike
 attack_enemy_tower
 base_recovery
 blink

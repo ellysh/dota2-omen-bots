@@ -73,7 +73,7 @@ M.BOT_CASTABLE_GUST = 42
 M.BOT_CASTABLE_PRECISION_AURA = 43
 M.BOT_IS_LOW_MP = 44
 M.BOT_CASTABLE_FORCE_STAFF = 45
---M.BOT_HAS_MP_FOR_CYCLONE_AND_REQUIEM = 46
+M.BOT_HAS_PIKE_MODIFIER = 46
 --M.BOT_HAS_MAX_SOULS = 47
 --M.BOT_IS_CASTING_NEAR_SHADOWRAZE = 48
 --M.BOT_IS_CASTING_MEDIUM_SHADOWRAZE = 49
@@ -421,6 +421,11 @@ function M.UpdateState()
             "item_force_staff",
             false,
             hist.SWAP_BACKPACK_TIMESTAMP)],
+
+    [M.BOT_HAS_PIKE_MODIFIER] =
+      NUM[algorithms.HasModifier(
+        env.BOT_DATA,
+        "modifier_item_hurricane_pike_range")],
 
     [M.BOT_IS_CASTING] = NUM[env.BOT_DATA.is_casting],
 

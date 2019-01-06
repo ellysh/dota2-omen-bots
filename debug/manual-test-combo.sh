@@ -19,5 +19,14 @@ xdotool key 'Return'
 xdotool type 'dota_bot_give_item item_flask'
 xdotool key 'Return'
 
+xdotool type 'dota_bot_give_item item_flask'
+xdotool key 'Return'
+
+xdotool type 'dota_bot_give_item item_flask'
+xdotool key 'Return'
+
 xdotool type 'dota_bot_give_item item_blink'
+xdotool key 'Return'
+
+xdotool type 'dota_bot_give_gold 2000'
 xdotool key 'Return'

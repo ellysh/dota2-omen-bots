@@ -5,6 +5,7 @@ manage_attack_anim;cancel_attack;cancel_attack;;
 item_hp_recovery;heal_faerie_fire;heal_faerie_fire;;
 ;;;;
 close_fight;use_pike;use_pike;;
+;attack_enemy_hero_with_pike;attack_enemy_hero_with_pike;;
 ;kill_enemy_hero;kill_enemy_hero;;
 ;;;;
 pursuit_enemy_hero;attack_enemy_hero;attack_enemy_hero;;
