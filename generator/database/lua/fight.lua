@@ -83,6 +83,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "move_enemy_hero_with_force_staff",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "move_enemy_hero_with_force_staff"},
+
+        },
+      },
+      {
         move = "move_enemy_hero",
         wait_condition = "nil",
         cancel_condition = "nil",
