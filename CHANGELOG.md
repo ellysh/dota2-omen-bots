@@ -1,4 +1,6 @@
-* version dr-1.1
+* version 1.1-dr
+  - Implement the blink + gust combo.
+  - Implement moves for using pike and force staff.
   - Change the hero to Drow Ranger.
   - Apply Drow Ranger specific constants.
   - Remove SF specific objectives and moves.
