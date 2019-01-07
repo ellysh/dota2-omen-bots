@@ -48,6 +48,7 @@ function M.pre_use_pike()
     [gs.EH_HAS_HP_FOR_PIKE] = 0.3,
     [gs.EH_IN_PIKE_RANGE] = 0.3,
     [gs.BOT_CASTABLE_PIKE] = 0.4,
+    [gs.IS_NIGHT] = -1,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)
