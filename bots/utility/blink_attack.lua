@@ -39,7 +39,7 @@ end
 function M.blink()
   env.BOT:Action_UseAbilityOnLocation(
     algorithms.GetItem(env.BOT_DATA, "item_blink"),
-    env.ENEMY_HERO_DATA.location)
+    env.BLINK_TARGET_LOCATION)
 end
 
 ---------------------------------

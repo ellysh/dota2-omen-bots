@@ -64,6 +64,7 @@ M.COURIER_DATA = {}
 M.FROST_ARROWS_ABILITY = {}
 M.GUST_ABILITY = {}
 M.PRECISION_AURA_ABILITY = {}
+M.BLINK_TARGET_LOCATION = {}
 
 local function GetClosestCreep(radius, get_function, direction)
   local creeps = get_function(
@@ -223,6 +224,14 @@ local function InvalidateEnemyHeroData()
   return false
 end
 
+local function GetBlinkLocationOffest()
+  if GetOpposingTeam() == TEAM_RADIANT then
+    return -constants.BLINK_LOCATION_OFFSET
+  else
+    return constants.BLINK_LOCATION_OFFSET
+  end
+end
+
 ---------------------------------
 
 function M.UpdateVariables()
@@ -255,6 +264,11 @@ function M.UpdateVariables()
     M.ENEMY_HERO_DISTANCE = functions.GetUnitDistance(
                               M.BOT_DATA,
                               M.ENEMY_HERO_DATA)
+
+    M.BLINK_TARGET_LOCATION = Vector(
+      M.ENEMY_HERO_DATA.location.x + GetBlinkLocationOffest(),
+      M.ENEMY_HERO_DATA.location.y + GetBlinkLocationOffest(),
+      10)
   end
 
   M.IS_BOT_LOW_HP = IsUnitRelativeLowHp(M.BOT_DATA, M.ENEMY_HERO_DATA)

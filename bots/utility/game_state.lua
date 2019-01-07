@@ -617,7 +617,8 @@ function M.UpdateState()
           <= constants.UNITS_IN_SAME_LOCATION_DISTANCE]
 
     M.GAME_STATE[M.EH_IN_BLINK_RANGE] =
-      NUM[env.ENEMY_HERO_DISTANCE <= constants.BLINK_CAST_RANGE]
+      NUM[(env.ENEMY_HERO_DISTANCE + constants.BLINK_LOCATION_OFFSET)
+           <= constants.BLINK_CAST_RANGE]
   end
 
   if hist.LAST_SEEN_EH_DATA ~= nil
