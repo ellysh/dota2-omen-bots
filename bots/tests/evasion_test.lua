@@ -403,4 +403,152 @@ function test_pre_use_gust_7_fails()
   luaunit.assertFalse(evasion.pre_use_gust())
 end
 
+---------------------------------
+
+function test_pre_evade_enemy_hero_with_force_staff_1_succeed()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_hero_with_force_staff())
+end
+
+function test_pre_evade_enemy_hero_with_force_staff_1_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_force_staff())
+end
+
+function test_pre_evade_enemy_hero_with_force_staff_2_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 0,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_force_staff())
+end
+
+function test_pre_evade_enemy_hero_with_force_staff_3_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 0,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_force_staff())
+end
+
+function test_pre_evade_enemy_hero_with_force_staff_4_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_force_staff())
+end
+
+function test_pre_evade_enemy_hero_with_force_staff_5_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_FORCE_STAFF] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_force_staff())
+end
+
+---------------------------------
+
+function test_pre_evade_enemy_hero_with_pike_1_succeed()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_hero_with_pike())
+end
+
+function test_pre_evade_enemy_hero_with_pike_1_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_pike())
+end
+
+function test_pre_evade_enemy_hero_with_pike_2_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 0,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_pike())
+end
+
+function test_pre_evade_enemy_hero_with_pike_3_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 0,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_pike())
+end
+
+function test_pre_evade_enemy_hero_with_pike_4_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_pike())
+end
+
+function test_pre_evade_enemy_hero_with_pike_5_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_CASTABLE_PIKE] = 1,
+    [gs.BOT_IS_FACING_SAFE_SPOT] = 1,
+    [gs.BOT_HAS_FROST_ARROWS_MODIFIER] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_with_pike())
+end
+
 os.exit(luaunit.LuaUnit.run())
