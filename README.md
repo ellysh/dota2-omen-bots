@@ -1,4 +1,4 @@
-# Dota 2 OMEN Bots 0.1 version
+# Dota 2 OMEN Bots 1.1-dr version
 
 *This project is still in a developing stage.*
 
