@@ -92,6 +92,7 @@ M.BOT_HAS_LEVEL_FOR_NUKES = 61
 M.BOT_IS_INACTIVE = 62
 M.BOT_CASTABLE_BLINK = 63
 M.BOT_HAS_HP_FOR_NUKE = 64
+M.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL = 65
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -475,6 +476,10 @@ function M.UpdateState()
     [M.BOT_HAS_HP_FOR_NUKE] =
       NUM[(2 * algorithms.GetTotalIncomingDamage(env.BOT_DATA))
           <= env.BOT_DATA.health],
+
+    [M.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] =
+      NUM[constants.BOT_DAMAGE_FOR_AGGRO_CONTROL
+          <= env.BOT_DATA.attack_damage],
   }
 
   if hist.LAST_SOMA.move ~= nil then

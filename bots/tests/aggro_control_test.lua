@@ -11,7 +11,7 @@ local luaunit = require("luaunit")
 
 function test_pre_aggro_last_hit_1_succeed()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
@@ -26,7 +26,7 @@ end
 
 function test_pre_aggro_last_hit_1_fails()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 0,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 0,
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
@@ -41,7 +41,7 @@ end
 
 function test_pre_aggro_last_hit_2_fails()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 1,
     [gs.EH_PRESENT] = 0,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
@@ -56,7 +56,7 @@ end
 
 function test_pre_aggro_last_hit_3_fails()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 0,
     [gs.EC_AGGRO_COOLDOWN] = 0,
@@ -71,7 +71,7 @@ end
 
 function test_pre_aggro_last_hit_4_fails()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
@@ -86,7 +86,7 @@ end
 
 function test_pre_aggro_last_hit_5_fails()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 1,
@@ -101,7 +101,7 @@ end
 
 function test_pre_aggro_last_hit_6_fails()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
@@ -116,7 +116,7 @@ end
 
 function test_pre_aggro_last_hit_7_fails()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
@@ -131,7 +131,7 @@ end
 
 function test_pre_aggro_last_hit_8_fails()
   aggro_control.test_SetGameState({
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 1,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 1,
     [gs.EH_PRESENT] = 1,
     [gs.EH_IS_VISIBLE] = 1,
     [gs.EC_AGGRO_COOLDOWN] = 0,
