@@ -22,7 +22,7 @@ end
 
 function M.pre_aggro_last_hit()
   local weights = {
-    [gs.EC_PRE_LAST_HIT_PRESENT] = 0.2,
+    [gs.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] = 0.2,
     [gs.EH_PRESENT] = 0.2,
     [gs.EH_IS_VISIBLE] = 0.2,
     [gs.EC_AGGRO_COOLDOWN] = -1,
