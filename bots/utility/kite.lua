@@ -46,6 +46,7 @@ function M.pre_attack_enemy_tower()
     [gs.AC_FRONT_PRESENT] = 0.3,
     [gs.BOT_HAS_LEVEL_FOR_AGRESSION] = 0.2,
     [gs.ET_ATTACK_AC] = 0.2,
+    [gs.BOT_IN_ET_MIN_DISTANCE] = -1,
   }
 
   local weights_2 = {
