@@ -41,6 +41,30 @@ end
 function test_pre_kill_enemy_hero_1_succeed()
   close_fight.test_SetGameState({
     [gs.EH_HAS_LESS_HTD] = 1,
+    [gs.BOT_ATTACK_EH] = 0,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+  })
+
+  luaunit.assertTrue(close_fight.pre_kill_enemy_hero())
+end
+
+function test_pre_kill_enemy_hero_2_succeed()
+  close_fight.test_SetGameState({
+    [gs.EH_HAS_LESS_HTD] = 1,
+    [gs.BOT_ATTACK_EH] = 1,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+  })
+
+  luaunit.assertTrue(close_fight.pre_kill_enemy_hero())
+end
+
+function test_pre_kill_enemy_hero_3_succeed()
+  close_fight.test_SetGameState({
+    [gs.EH_HAS_LESS_HTD] = 1,
+    [gs.BOT_ATTACK_EH] = 1,
+    [gs.BOT_IS_LOW_HP] = 1,
     [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
@@ -50,6 +74,8 @@ end
 function test_pre_kill_enemy_hero_1_fails()
   close_fight.test_SetGameState({
     [gs.EH_HAS_LESS_HTD] = 0,
+    [gs.BOT_ATTACK_EH] = 0,
+    [gs.BOT_IS_LOW_HP] = 0,
     [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
   })
 
@@ -59,6 +85,30 @@ end
 function test_pre_kill_enemy_hero_2_fails()
   close_fight.test_SetGameState({
     [gs.EH_HAS_LESS_HTD] = 1,
+    [gs.BOT_ATTACK_EH] = 0,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 1,
+  })
+
+  luaunit.assertFalse(close_fight.pre_kill_enemy_hero())
+end
+
+function test_pre_kill_enemy_hero_3_fails()
+  close_fight.test_SetGameState({
+    [gs.EH_HAS_LESS_HTD] = 0,
+    [gs.BOT_ATTACK_EH] = 1,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 0,
+  })
+
+  luaunit.assertFalse(close_fight.pre_kill_enemy_hero())
+end
+
+function test_pre_kill_enemy_hero_4_fails()
+  close_fight.test_SetGameState({
+    [gs.EH_HAS_LESS_HTD] = 1,
+    [gs.BOT_ATTACK_EH] = 0,
+    [gs.BOT_IS_LOW_HP] = 1,
     [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = 1,
   })
 

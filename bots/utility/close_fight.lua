@@ -31,6 +31,8 @@ end
 function M.pre_kill_enemy_hero()
   local weights = {
     [gs.EH_HAS_LESS_HTD] = 1,
+    [gs.BOT_ATTACK_EH] = 0.5,
+    [gs.BOT_IS_LOW_HP] = -0.5,
     [gs.EH_NOT_IN_BOT_ATTACK_RANGE] = -1,
   }
 
