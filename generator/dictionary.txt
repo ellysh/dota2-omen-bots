@@ -125,6 +125,7 @@ swap_flask_to_backpack
 swap_items
 swap_mango_for_recovery
 swap_mango_to_backpack
+swap_ward_for_using
 tp_base
 tp_mid_tower
 TRUE

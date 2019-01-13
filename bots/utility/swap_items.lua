@@ -19,6 +19,9 @@ local gs = require(
 local hist = require(
   GetScriptDirectory() .."/utility/history")
 
+local warding = require(
+  GetScriptDirectory() .."/utility/warding")
+
 local M = {}
 
 ---------------------------------
@@ -64,6 +67,25 @@ function M.swap_mango_for_recovery()
   local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
 
   env.BOT:ActionImmediate_SwapItems(mango_slot, 0)
+
+  hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
+
+  action_timing.SetNextActionDelay(0.05)
+end
+
+---------------------------------
+
+function M.pre_swap_ward_for_using()
+  local ward_slot = env.BOT:FindItemSlot("item_ward_observer")
+
+  return env.BOT:GetItemSlotType(ward_slot) == ITEM_SLOT_TYPE_BACKPACK
+         and warding.pre_plant_ward()
+end
+
+function M.swap_ward_for_using()
+  local ward_slot = env.BOT:FindItemSlot("item_ward_observer")
+
+  env.BOT:ActionImmediate_SwapItems(ward_slot, 0)
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 

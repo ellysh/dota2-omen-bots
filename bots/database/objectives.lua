@@ -1000,6 +1000,15 @@ M.OBJECTIVES = {
         },
       },
       {
+        move = "swap_ward_for_using",
+        wait_condition = "nil",
+        cancel_condition = "nil",
+        actions = {
+          {action = "swap_ward_for_using"},
+
+        },
+      },
+      {
         move = "swap_flask_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",

@@ -14,6 +14,7 @@ prepare_for_match;buy_starting_items;buy_starting_items;;
 ;;;;
 swap_items;put_item_in_inventory;put_item_in_inventory;;
 ;swap_mango_for_recovery;swap_mango_for_recovery;;
+;swap_ward_for_using;swap_ward_for_using;;
 ;swap_flask_to_backpack;swap_flask_to_backpack;;
 ;swap_mango_to_backpack;swap_mango_to_backpack;;
 ;;;;
