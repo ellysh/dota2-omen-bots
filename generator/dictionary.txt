@@ -120,8 +120,8 @@ stop
 stop_attack
 stop_attack_and_move
 stop_turn
+swap_flask_for_recovery
 swap_flask_to_backpack
-swap_flask_wraith_band
 swap_items
 swap_mango_wraith_band
 swap_raindrop_mango

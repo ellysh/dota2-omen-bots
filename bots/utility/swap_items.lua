@@ -34,20 +34,17 @@ end
 
 ---------------------------------
 
-function M.pre_swap_flask_wraith_band()
+function M.pre_swap_flask_for_recovery()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
   return env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_BACKPACK
-         and env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_MAIN
-         and gs.GAME_STATE[gs.BOT_HP_RATE] < 0.5
+         and env.IS_BOT_LOW_HP
 end
 
-function M.swap_flask_wraith_band()
+function M.swap_flask_for_recovery()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
-  env.BOT:ActionImmediate_SwapItems(flask_slot, wb_slot)
+  env.BOT:ActionImmediate_SwapItems(flask_slot, 0)
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 

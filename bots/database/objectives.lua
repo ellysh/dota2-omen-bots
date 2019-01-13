@@ -523,38 +523,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_flask_wraith_band",
+        move = "swap_flask_for_recovery",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_flask_wraith_band"},
-
-        },
-      },
-      {
-        move = "swap_mango_wraith_band",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "swap_mango_wraith_band"},
-
-        },
-      },
-      {
-        move = "swap_flask_to_backpack",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "swap_flask_to_backpack"},
-
-        },
-      },
-      {
-        move = "swap_raindrop_mango",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "swap_raindrop_mango"},
+          {action = "swap_flask_for_recovery"},
 
         },
       },
@@ -1023,15 +996,6 @@ M.OBJECTIVES = {
         cancel_condition = "nil",
         actions = {
           {action = "put_item_in_inventory"},
-
-        },
-      },
-      {
-        move = "swap_flask_wraith_band",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "swap_flask_wraith_band"},
 
         },
       },
