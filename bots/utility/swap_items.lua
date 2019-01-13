@@ -53,20 +53,17 @@ end
 
 ---------------------------------
 
-function M.pre_swap_mango_wraith_band()
+function M.pre_swap_mango_for_recovery()
   local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
   return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_BACKPACK
-         and env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_MAIN
-         and gs.GAME_STATE[gs.BOT_MP_RATE] < 0.5
+         and gs.GAME_STATE[gs.BOT_IS_LOW_MP] == 1
 end
 
-function M.swap_mango_wraith_band()
+function M.swap_mango_for_recovery()
   local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
-  env.BOT:ActionImmediate_SwapItems(mango_slot, wb_slot)
+  env.BOT:ActionImmediate_SwapItems(mango_slot, 0)
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 

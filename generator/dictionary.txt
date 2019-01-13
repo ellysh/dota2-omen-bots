@@ -123,7 +123,7 @@ stop_turn
 swap_flask_for_recovery
 swap_flask_to_backpack
 swap_items
-swap_mango_wraith_band
+swap_mango_for_recovery
 swap_raindrop_mango
 tp_base
 tp_mid_tower

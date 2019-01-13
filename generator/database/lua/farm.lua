@@ -135,11 +135,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_mango_wraith_band",
+        move = "swap_mango_for_recovery",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_mango_wraith_band"},
+          {action = "swap_mango_for_recovery"},
 
         },
       },
