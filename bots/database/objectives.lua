@@ -982,15 +982,6 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/swap_items"),
     moves = {
       {
-        move = "put_wraith_band_in_backpack",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "put_wraith_band_in_backpack"},
-
-        },
-      },
-      {
         move = "put_item_in_inventory",
         wait_condition = "nil",
         cancel_condition = "nil",
