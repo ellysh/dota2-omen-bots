@@ -153,11 +153,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_raindrop_mango",
+        move = "swap_mango_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_raindrop_mango"},
+          {action = "swap_mango_to_backpack"},
 
         },
       },

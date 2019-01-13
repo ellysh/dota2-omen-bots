@@ -72,27 +72,6 @@ end
 
 ---------------------------------
 
-function M.pre_swap_raindrop_mango()
-  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local raindrop_slot = env.BOT:FindItemSlot("item_infused_raindrop")
-
-  return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_MAIN
-         and env.BOT:GetItemSlotType(raindrop_slot)
-             == ITEM_SLOT_TYPE_BACKPACK
-         and 0.5 < gs.GAME_STATE[gs.BOT_MP_RATE]
-end
-
-function M.swap_raindrop_mango()
-  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local raindrop_slot = env.BOT:FindItemSlot("item_infused_raindrop")
-
-  env.BOT:ActionImmediate_SwapItems(mango_slot, raindrop_slot)
-
-  action_timing.SetNextActionDelay(0.05)
-end
-
----------------------------------
-
 local function DoesCourierHaveFlask()
   return env.COURIER_DATA ~= nil
          and algorithms.IsItemPresent(env.COURIER_DATA, "item_flask")
@@ -176,7 +155,6 @@ function M.pre_swap_flask_to_backpack()
 
   return backpack_slot ~= nil
          and env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_MAIN
-         and 0.5 < gs.GAME_STATE[gs.BOT_HP_RATE]
 end
 
 function M.swap_flask_to_backpack()
@@ -184,6 +162,28 @@ function M.swap_flask_to_backpack()
   local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
 
   env.BOT:ActionImmediate_SwapItems(flask_slot, backpack_slot)
+
+  hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
+
+  action_timing.SetNextActionDelay(0.05)
+end
+
+---------------------------------
+
+function M.pre_swap_mango_to_backpack()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
+
+  return backpack_slot ~= nil
+         and env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_MAIN
+         and gs.GAME_STATE[gs.BOT_IS_LOW_MP] == 0
+end
+
+function M.swap_mango_to_backpack()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
+
+  env.BOT:ActionImmediate_SwapItems(mango_slot, backpack_slot)
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 

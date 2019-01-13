@@ -16,7 +16,7 @@ swap_items;put_wraith_band_in_backpack;put_wraith_band_in_backpack;;
 ;put_item_in_inventory;put_item_in_inventory;;
 ;swap_mango_for_recovery;swap_mango_for_recovery;;
 ;swap_flask_to_backpack;swap_flask_to_backpack;;
-;swap_raindrop_mango;swap_raindrop_mango;;
+;swap_mango_to_backpack;swap_mango_to_backpack;;
 ;;;;
 item_hp_recovery;heal_faerie_fire;heal_faerie_fire;;
 ;;;;
