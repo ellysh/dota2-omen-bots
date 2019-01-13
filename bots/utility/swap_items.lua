@@ -79,10 +79,14 @@ local function DoesCourierHaveFlask()
              <= constants.COURIER_NEAR_BOT_DISTANCE
 end
 
-local function GetFullSlotInBackpack(unit_data)
+local function GetFullSlotInBackpack(unit_data, ignore_items)
   for i = constants.BACKPACK_START_INDEX, constants.BACKPACK_END_INDEX do
     local item = unit_data.handle:GetItemInSlot(i)
-    if item ~= nil  then
+    if item ~= nil
+       and not functions.IsElementInList(
+                 ignore_items,
+                 item:GetName(),
+                 false) then
       return i
     end
   end
@@ -102,14 +106,14 @@ local function GetEmptySlotInInventory(unit_data)
 end
 
 function M.pre_put_item_in_inventory()
-  return ((nil ~= GetFullSlotInBackpack(env.BOT_DATA))
+  return ((nil ~= GetFullSlotInBackpack(env.BOT_DATA, {}))
           and (nil ~= GetEmptySlotInInventory(env.BOT_DATA)))
           and not DoesCourierHaveFlask()
 end
 
 function M.put_item_in_inventory()
   env.BOT:ActionImmediate_SwapItems(
-    GetFullSlotInBackpack(env.BOT_DATA),
+    GetFullSlotInBackpack(env.BOT_DATA, {}),
     GetEmptySlotInInventory(env.BOT_DATA))
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
@@ -152,9 +156,13 @@ end
 
 ---------------------------------
 
+local FLASK_AND_MANGO_LIST = {"item_flask", "item_enchanted_mango"}
+
 function M.pre_swap_flask_to_backpack()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
-  local backpack_slot = GetFullSlotInBackpack(env.BOT_DATA)
+  local backpack_slot = GetFullSlotInBackpack(
+                          env.BOT_DATA,
+                          FLASK_AND_MANGO_LIST)
 
   return backpack_slot ~= nil
          and env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_MAIN
@@ -162,7 +170,9 @@ end
 
 function M.swap_flask_to_backpack()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
-  local backpack_slot = GetFullSlotInBackpack(env.BOT_DATA)
+  local backpack_slot = GetFullSlotInBackpack(
+                          env.BOT_DATA,
+                          FLASK_AND_MANGO_LIST)
 
   env.BOT:ActionImmediate_SwapItems(flask_slot, backpack_slot)
 
@@ -175,7 +185,9 @@ end
 
 function M.pre_swap_mango_to_backpack()
   local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local backpack_slot = GetFullSlotInBackpack(env.BOT_DATA)
+  local backpack_slot = GetFullSlotInBackpack(
+                          env.BOT_DATA,
+                          FLASK_AND_MANGO_LIST)
 
   return backpack_slot ~= nil
          and env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_MAIN
@@ -184,7 +196,9 @@ end
 
 function M.swap_mango_to_backpack()
   local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local backpack_slot = GetFullSlotInBackpack(env.BOT_DATA)
+  local backpack_slot = GetFullSlotInBackpack(
+                          env.BOT_DATA,
+                          FLASK_AND_MANGO_LIST)
 
   env.BOT:ActionImmediate_SwapItems(mango_slot, backpack_slot)
 
