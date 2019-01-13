@@ -22,7 +22,6 @@ end
 
 function M.pre_attack_enemy_hero()
   local weights = {
-    [gs.BOT_ATTACK_EH] = -1,
     [gs.EC_BACK_PRESENT] = -1,
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.EH_IN_REAR_SPOT] = -1,
