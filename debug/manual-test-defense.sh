@@ -22,7 +22,7 @@ xdotool key 'Return'
 xdotool type 'dota_create_item item_hood_of_defiance'
 xdotool key 'Return'
 
-xdotool type 'dota_create_item item_silver_edge'
+xdotool type 'dota_create_item item_blink'
 xdotool key 'Return'
 
 xdotool type 'dota_hero_level 15'
