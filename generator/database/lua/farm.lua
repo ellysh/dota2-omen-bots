@@ -65,15 +65,6 @@ M.OBJECTIVES = {
     module = require(GetScriptDirectory() .."/utility/swap_items"),
     moves = {
       {
-        move = "put_wraith_band_in_backpack",
-        wait_condition = "nil",
-        cancel_condition = "nil",
-        actions = {
-          {action = "put_wraith_band_in_backpack"},
-
-        },
-      },
-      {
         move = "put_item_in_inventory",
         wait_condition = "nil",
         cancel_condition = "nil",
@@ -83,20 +74,20 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_flask_wraith_band",
+        move = "swap_mango_for_recovery",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_flask_wraith_band"},
+          {action = "swap_mango_for_recovery"},
 
         },
       },
       {
-        move = "swap_mango_wraith_band",
+        move = "swap_ward_for_using",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_mango_wraith_band"},
+          {action = "swap_ward_for_using"},
 
         },
       },
@@ -110,11 +101,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "swap_raindrop_mango",
+        move = "swap_mango_to_backpack",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "swap_raindrop_mango"},
+          {action = "swap_mango_to_backpack"},
 
         },
       },

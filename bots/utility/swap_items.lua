@@ -19,6 +19,9 @@ local gs = require(
 local hist = require(
   GetScriptDirectory() .."/utility/history")
 
+local warding = require(
+  GetScriptDirectory() .."/utility/warding")
+
 local M = {}
 
 ---------------------------------
@@ -34,20 +37,17 @@ end
 
 ---------------------------------
 
-function M.pre_swap_flask_wraith_band()
+function M.pre_swap_flask_for_recovery()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
   return env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_BACKPACK
-         and env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_MAIN
-         and gs.GAME_STATE[gs.BOT_HP_RATE] < 0.5
+         and env.IS_BOT_LOW_HP
 end
 
-function M.swap_flask_wraith_band()
+function M.swap_flask_for_recovery()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
-  env.BOT:ActionImmediate_SwapItems(flask_slot, wb_slot)
+  env.BOT:ActionImmediate_SwapItems(flask_slot, 0)
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 
@@ -56,20 +56,17 @@ end
 
 ---------------------------------
 
-function M.pre_swap_mango_wraith_band()
+function M.pre_swap_mango_for_recovery()
   local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
   return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_BACKPACK
-         and env.BOT:GetItemSlotType(wb_slot) == ITEM_SLOT_TYPE_MAIN
-         and gs.GAME_STATE[gs.BOT_MP_RATE] < 0.5
+         and gs.GAME_STATE[gs.BOT_IS_LOW_MP] == 1
 end
 
-function M.swap_mango_wraith_band()
+function M.swap_mango_for_recovery()
   local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local wb_slot = env.BOT:FindItemSlot("item_wraith_band")
 
-  env.BOT:ActionImmediate_SwapItems(mango_slot, wb_slot)
+  env.BOT:ActionImmediate_SwapItems(mango_slot, 0)
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 
@@ -78,21 +75,19 @@ end
 
 ---------------------------------
 
-function M.pre_swap_raindrop_mango()
-  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local raindrop_slot = env.BOT:FindItemSlot("item_infused_raindrop")
+function M.pre_swap_ward_for_using()
+  local ward_slot = env.BOT:FindItemSlot("item_ward_observer")
 
-  return env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_MAIN
-         and env.BOT:GetItemSlotType(raindrop_slot)
-             == ITEM_SLOT_TYPE_BACKPACK
-         and 0.5 < gs.GAME_STATE[gs.BOT_MP_RATE]
+  return env.BOT:GetItemSlotType(ward_slot) == ITEM_SLOT_TYPE_BACKPACK
+         and warding.pre_plant_ward()
 end
 
-function M.swap_raindrop_mango()
-  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
-  local raindrop_slot = env.BOT:FindItemSlot("item_infused_raindrop")
+function M.swap_ward_for_using()
+  local ward_slot = env.BOT:FindItemSlot("item_ward_observer")
 
-  env.BOT:ActionImmediate_SwapItems(mango_slot, raindrop_slot)
+  env.BOT:ActionImmediate_SwapItems(ward_slot, 0)
+
+  hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 
   action_timing.SetNextActionDelay(0.05)
 end
@@ -106,9 +101,14 @@ local function DoesCourierHaveFlask()
              <= constants.COURIER_NEAR_BOT_DISTANCE
 end
 
-local function GetFullSlotInBackpack(unit_data)
+local function GetFullSlotInBackpack(unit_data, ignore_items)
   for i = constants.BACKPACK_START_INDEX, constants.BACKPACK_END_INDEX do
-    if nil ~= env.BOT:GetItemInSlot(i) then
+    local item = unit_data.handle:GetItemInSlot(i)
+    if item ~= nil
+       and not functions.IsElementInList(
+                 ignore_items,
+                 item:GetName(),
+                 false) then
       return i
     end
   end
@@ -118,7 +118,8 @@ end
 
 local function GetEmptySlotInInventory(unit_data)
   for i = constants.INVENTORY_START_INDEX, constants.INVENTORY_END_INDEX do
-    if nil == env.BOT:GetItemInSlot(i) then
+    local item = unit_data.handle:GetItemInSlot(i)
+    if item == nil then
       return i
     end
   end
@@ -127,14 +128,14 @@ local function GetEmptySlotInInventory(unit_data)
 end
 
 function M.pre_put_item_in_inventory()
-  return ((nil ~= GetFullSlotInBackpack(env.BOT_DATA))
+  return ((nil ~= GetFullSlotInBackpack(env.BOT_DATA, {}))
           and (nil ~= GetEmptySlotInInventory(env.BOT_DATA)))
           and not DoesCourierHaveFlask()
 end
 
 function M.put_item_in_inventory()
   env.BOT:ActionImmediate_SwapItems(
-    GetFullSlotInBackpack(env.BOT_DATA),
+    GetFullSlotInBackpack(env.BOT_DATA, {}),
     GetEmptySlotInInventory(env.BOT_DATA))
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
@@ -146,7 +147,8 @@ end
 
 local function GetEmptySlotInBackpack(unit_data)
   for i = constants.BACKPACK_START_INDEX, constants.BACKPACK_END_INDEX do
-    if nil == env.BOT:GetItemInSlot(i) then
+    local item = unit_data.handle:GetItemInSlot(i)
+    if item == nil then
       return i
     end
   end
@@ -176,20 +178,51 @@ end
 
 ---------------------------------
 
+local FLASK_AND_MANGO_LIST = {"item_flask", "item_enchanted_mango"}
+
 function M.pre_swap_flask_to_backpack()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
-  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
+  local backpack_slot = GetFullSlotInBackpack(
+                          env.BOT_DATA,
+                          FLASK_AND_MANGO_LIST)
 
   return backpack_slot ~= nil
          and env.BOT:GetItemSlotType(flask_slot) == ITEM_SLOT_TYPE_MAIN
-         and 0.5 < gs.GAME_STATE[gs.BOT_HP_RATE]
 end
 
 function M.swap_flask_to_backpack()
   local flask_slot = env.BOT:FindItemSlot("item_flask")
-  local backpack_slot = algorithms.GetFullBackpackSlot(env.BOT_DATA)
+  local backpack_slot = GetFullSlotInBackpack(
+                          env.BOT_DATA,
+                          FLASK_AND_MANGO_LIST)
 
   env.BOT:ActionImmediate_SwapItems(flask_slot, backpack_slot)
+
+  hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
+
+  action_timing.SetNextActionDelay(0.05)
+end
+
+---------------------------------
+
+function M.pre_swap_mango_to_backpack()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local backpack_slot = GetFullSlotInBackpack(
+                          env.BOT_DATA,
+                          FLASK_AND_MANGO_LIST)
+
+  return backpack_slot ~= nil
+         and env.BOT:GetItemSlotType(mango_slot) == ITEM_SLOT_TYPE_MAIN
+         and gs.GAME_STATE[gs.BOT_IS_LOW_MP] == 0
+end
+
+function M.swap_mango_to_backpack()
+  local mango_slot = env.BOT:FindItemSlot("item_enchanted_mango")
+  local backpack_slot = GetFullSlotInBackpack(
+                          env.BOT_DATA,
+                          FLASK_AND_MANGO_LIST)
+
+  env.BOT:ActionImmediate_SwapItems(mango_slot, backpack_slot)
 
   hist.SWAP_BACKPACK_TIMESTAMP = env.CURRENT_GAME_TIME
 
