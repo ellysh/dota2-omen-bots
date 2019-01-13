@@ -15,11 +15,12 @@ The idea of the bot is deciding on the required action on several levels. The fi
 There are steps to start playing with the bot:
 
 1. Create a lobby.
-2. Choose the "1v1 Solo Mid" game mode.
-3. Choose the OMEN bots for both sides.
-4. Start a game.
-5. Pick Shadow Fiend.
-6. Wait until bots do not pick their heroes after you.
+2. Choose the "Local Host" server location.
+3. Choose the "1v1 Solo Mid" game mode.
+4. Choose the OMEN bots for both sides.
+5. Start a game.
+6. Pick Shadow Fiend.
+7. Wait until bots do not pick their heroes after you.
 
 You can play with OMEN Bots in the "All pick" mode. In this case, Shadow Shaman bot buys a courier for you. You should stop "All pick" game when any side does two kills or mid Tier 1 Tower is destroyed.
 
