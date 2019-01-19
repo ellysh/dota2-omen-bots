@@ -1220,8 +1220,8 @@ M.OBJECTIVES = {
       },
       {
         move = "move_start_position",
-        wait_condition = "nil",
-        cancel_condition = "nil",
+        wait_condition = "wait_move_start_position",
+        cancel_condition = "cancel_move_start_position",
         actions = {
           {action = "move_start_position"},
 

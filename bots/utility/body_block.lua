@@ -41,10 +41,18 @@ function M.pre_move_start_position()
   return gs.EvaluateFrom(1, gs.GAME_STATE, weights)
 end
 
-function M.move_start_position()
-  env.BOT:Action_MoveDirectly(env.BODY_BLOCK_SPOT)
+function M.pre_wait_move_start_position()
+  return M.pre_move_start_position()
+end
 
-  action_timing.SetNextActionDelay(0.1)
+function M.pre_cancel_move_start_position()
+  return not M.pre_move_start_position()
+end
+
+function M.move_start_position()
+  env.BOT:Action_ClearActions(true)
+
+  env.BOT:Action_MovePath(env.BODY_BLOCK_SPOT_WAYPOINTS)
 end
 
 ---------------------------------

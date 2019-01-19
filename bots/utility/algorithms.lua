@@ -383,12 +383,18 @@ function M.IsEnemyBlockSpot(unit_data, enemy_units, spot)
                                    target_data.location,
                                    spot)
 
+    local target_attack_range = M.GetAttackRange(
+                                  target_data,
+                                  unit_data,
+                                  true)
+
+    if not target_data.is_tower then
+      target_attack_range = target_attack_range
+                            + constants.MAX_SAFE_INC_DISTANCE
+    end
+
     return target_spot_distance
-           <= (M.GetAttackRange(
-                 target_data,
-                 unit_data,
-                 true)
-               + constants.MAX_SAFE_INC_DISTANCE)
+           <= target_attack_range
 
            or (target_data.is_hero
                and target_spot_distance

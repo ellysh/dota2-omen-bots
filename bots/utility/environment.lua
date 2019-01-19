@@ -57,6 +57,7 @@ M.IS_FOCUSED_BY_TOWER = false
 M.IS_BASE_RECOVERY = false
 M.TURN_TARGET_DATA = {}
 M.BODY_BLOCK_SPOT = {}
+M.BODY_BLOCK_SPOT_WAYPOINTS = {}
 M.ENEMY_UNITS_DATA = {}
 M.ALLY_WARD_DATA = {}
 M.CURRENT_GAME_TIME = 0
@@ -375,6 +376,13 @@ function M.UpdateVariables()
                               M.ENEMY_UNITS_DATA)
   end
 
+  M.BODY_BLOCK_SPOT = GetBodyBlockSpot()
+
+  M.BODY_BLOCK_SPOT_WAYPOINTS = algorithms.GetSpotWaypoints(
+                                  M.BOT_DATA,
+                                  M.BODY_BLOCK_SPOT,
+                                  M.ENEMY_UNITS_DATA)
+
   M.FARM_SPOT = algorithms.GetFarmSpot(M.BOT_DATA,
                                        M.ENEMY_UNITS_DATA)
 
@@ -400,8 +408,6 @@ function M.UpdateVariables()
                        and M.FOUNTAIN_DISTANCE <= constants.BASE_RADIUS
 
   M.TURN_TARGET_DATA = M.PRE_LAST_HIT_ANY_CREEP
-
-  M.BODY_BLOCK_SPOT = GetBodyBlockSpot()
 
   M.ENEMY_CREEP_ATTACKING_TOWER = GetCreepAttackingTower(
                                     M.ALLY_TOWER_DATA)

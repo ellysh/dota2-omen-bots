@@ -41,6 +41,7 @@ cancel_increase_creeps_distance_aggro
 cancel_move_base
 cancel_move_safe
 cancel_move_safe_recovery
+cancel_move_start_position
 cancel_turn
 close_fight
 decrease_creeps_distance_aggro
@@ -115,4 +116,5 @@ wait_evade_enemy_tower
 wait_evade_invisible_enemy_hero
 wait_move_base
 wait_move_safe_recovery
+wait_move_start_position
 warding
