@@ -372,6 +372,7 @@ end
 function test_pre_cancel_move_safe_spot_1_succeed()
   moves.test_SetGameState({
     [gs.BOT_NEXT_WAYPOINT_BLOCKED] = 1,
+    [gs.BOT_SAFE_SPOT_IS_FOUNTAIN] = 0,
     [gs.BOT_LAST_WAYPOINT_REACHED] = 0,
     [gs.SAFE_SPOT_HAS_CHANGED] = 0,
   })
@@ -382,6 +383,7 @@ end
 function test_pre_cancel_move_safe_spot_2_succeed()
   moves.test_SetGameState({
     [gs.BOT_NEXT_WAYPOINT_BLOCKED] = 0,
+    [gs.BOT_SAFE_SPOT_IS_FOUNTAIN] = 1,
     [gs.BOT_LAST_WAYPOINT_REACHED] = 1,
     [gs.SAFE_SPOT_HAS_CHANGED] = 0,
   })
@@ -392,6 +394,7 @@ end
 function test_pre_cancel_move_safe_spot_3_succeed()
   moves.test_SetGameState({
     [gs.BOT_NEXT_WAYPOINT_BLOCKED] = 0,
+    [gs.BOT_SAFE_SPOT_IS_FOUNTAIN] = 1,
     [gs.BOT_LAST_WAYPOINT_REACHED] = 0,
     [gs.SAFE_SPOT_HAS_CHANGED] = 1,
   })
@@ -402,6 +405,18 @@ end
 function test_pre_cancel_move_safe_spot_1_fails()
   moves.test_SetGameState({
     [gs.BOT_NEXT_WAYPOINT_BLOCKED] = 0,
+    [gs.BOT_SAFE_SPOT_IS_FOUNTAIN] = 0,
+    [gs.BOT_LAST_WAYPOINT_REACHED] = 0,
+    [gs.SAFE_SPOT_HAS_CHANGED] = 0,
+  })
+
+  luaunit.assertFalse(moves.pre_cancel_move_safe_spot())
+end
+
+function test_pre_cancel_move_safe_spot_2_fails()
+  moves.test_SetGameState({
+    [gs.BOT_NEXT_WAYPOINT_BLOCKED] = 1,
+    [gs.BOT_SAFE_SPOT_IS_FOUNTAIN] = 1,
     [gs.BOT_LAST_WAYPOINT_REACHED] = 0,
     [gs.SAFE_SPOT_HAS_CHANGED] = 0,
   })
