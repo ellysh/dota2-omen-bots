@@ -3,7 +3,7 @@ manage_attack_anim;cancel_attack;cancel_attack;;
 ;wait_attack;wait_attack;;
 ;;;;
 evasion;move_safe_recovery;move_safe_spot;wait_move_safe_recovery;cancel_move_safe_recovery
-;evade_enemy_hero;move_safe_spot;wait_evade_enemy_hero;cancel_evade_enemy_hero
+;evade_enemy_hero_low_hp;move_safe_spot;wait_evade_enemy_hero_low_hp;cancel_evade_enemy_hero_low_hp
 ;;;;
 push_lane;destroy_enemy_tower;destroy_enemy_tower;;
 ;;;;

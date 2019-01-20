@@ -32,7 +32,7 @@ nuke_enemy_hero;turn_near_shadowraze;turn_via_attack;wait_turn_near_shadowraze;c
 ;requiem;requiem;;
 ;;;;
 evasion;move_safe_recovery;move_safe_spot;wait_move_safe_recovery;cancel_move_safe_recovery
-;evade_enemy_hero;move_safe_spot;wait_evade_enemy_hero;cancel_evade_enemy_hero
+;evade_enemy_hero_low_hp;move_safe_spot;wait_evade_enemy_hero_low_hp;cancel_evade_enemy_hero_low_hp
 ;evade_enemy_tower;move_safe_spot;wait_evade_enemy_tower;cancel_evade_enemy_tower
 ;evade_invisible_enemy_hero;move_safe_spot;wait_evade_invisible_enemy_hero;cancel_evade_invisible_enemy_hero
 ;;;;
