@@ -33,6 +33,7 @@ cancel_attack
 cancel_decrease_creeps_distance_aggro
 cancel_decrease_creeps_distance_base
 cancel_evade_enemy_creeps
+cancel_evade_enemy_hero
 cancel_evade_enemy_hero_low_hp
 cancel_evade_enemy_tower
 cancel_evade_invisible_enemy_hero
@@ -52,6 +53,7 @@ destroy_enemy_tower
 do_buyback
 do_glyph
 evade_enemy_creeps
+evade_enemy_hero
 evade_enemy_hero_low_hp
 evade_enemy_hero_with_force_staff
 evade_enemy_hero_with_pike
@@ -111,6 +113,7 @@ use_pike
 use_precision_aura
 wait_attack
 wait_evade_enemy_creeps
+wait_evade_enemy_hero
 wait_evade_enemy_hero_low_hp
 wait_evade_enemy_tower
 wait_evade_invisible_enemy_hero

@@ -263,6 +263,22 @@ M.OBJECTIVES = {
   },
 
   {
+    objective = "evasion",
+    module = require(GetScriptDirectory() .."/utility/evasion"),
+    moves = {
+      {
+        move = "evade_enemy_hero",
+        wait_condition = "wait_evade_enemy_hero",
+        cancel_condition = "cancel_evade_enemy_hero",
+        actions = {
+          {action = "move_safe_spot"},
+
+        },
+      },
+    },
+  },
+
+  {
     objective = "push_lane",
     module = require(GetScriptDirectory() .."/utility/push_lane"),
     moves = {
