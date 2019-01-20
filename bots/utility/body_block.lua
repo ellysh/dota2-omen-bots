@@ -36,6 +36,7 @@ function M.pre_move_start_position()
   local weights = {
     [gs.AC_FRONT_PRESENT] = -1,
     [gs.BOT_IN_BODY_BLOCK_SPOT] = -1,
+    [gs.EH_BLOCKS_BODY_BLOCK_SPOT] = -1,
   }
 
   return gs.EvaluateFrom(1, gs.GAME_STATE, weights)

@@ -138,6 +138,7 @@ M.EH_HAS_CYCLONE_MODIFIER = 138
 M.BOT_IN_EH_LOCATION = 139
 M.EH_IN_BLINK_RANGE = 140
 M.EH_CYCLONE_TIMING_READY = 141
+M.EH_BLOCKS_BODY_BLOCK_SPOT = 142
 
 -- ALLY_TOWER state
 M.AT_PRESENT = 200
@@ -692,6 +693,12 @@ function M.UpdateState()
                 "modifier_eul_cyclone"))
             <= constants.NEVERMORE_REQUIEM_CAST_TIME]
     end
+
+    M.GAME_STATE[M.EH_BLOCKS_BODY_BLOCK_SPOT] =
+      NUM[algorithms.IsEnemyBlockSpot(
+            env.BOT_DATA,
+            {env.ENEMY_HERO_DATA},
+            env.BODY_BLOCK_SPOT)]
   end
 
   if hist.LAST_SEEN_EH_DATA ~= nil
