@@ -74,6 +74,29 @@ end
 
 ---------------------------------
 
+function M.pre_evade_enemy_hero()
+  local weights = {
+    [gs.BOT_IS_LOW_HP] = -1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = -1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0.5,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0.5,
+    [gs.EC_IN_AGGRO_RADIUS] = 0.5,
+  }
+
+  return gs.Evaluate(gs.GAME_STATE, weights)
+end
+
+function M.pre_wait_evade_enemy_hero()
+  return M.pre_evade_enemy_hero()
+end
+
+function M.pre_cancel_evade_enemy_hero()
+  return not M.pre_evade_enemy_hero()
+         or moves.pre_cancel_move_safe_spot()
+end
+
+---------------------------------
+
 function M.pre_evade_invisible_enemy_hero()
   local weights = {
     [gs.BOT_IS_LOW_HP] = 0.5,
