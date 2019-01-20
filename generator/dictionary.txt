@@ -47,6 +47,7 @@ cancel_move_base
 cancel_move_enemy_creep
 cancel_move_safe
 cancel_move_safe_recovery
+cancel_move_start_position
 cancel_near_shadowraze
 cancel_turn
 cancel_turn_far_shadowraze
@@ -154,5 +155,6 @@ wait_move_base
 wait_move_enemy_creep
 wait_move_safe
 wait_move_safe_recovery
+wait_move_start_position
 wait_turn_near_shadowraze
 warding

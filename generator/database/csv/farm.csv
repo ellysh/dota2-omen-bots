@@ -70,7 +70,7 @@ warding;plant_ward;plant_ward;;
 ;;;;
 body_block;move_and_block;move_and_block;;
 ;;stop_attack_and_move;;
-;move_start_position;move_start_position;;
+;move_start_position;move_start_position;wait_move_start_position;cancel_move_start_position
 ;turn_enemy_fountain;turn_enemy_fountain;;
 ;;stop_turn;;
 ;;;;
