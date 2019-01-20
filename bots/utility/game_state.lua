@@ -93,6 +93,7 @@ M.BOT_IS_INACTIVE = 62
 M.BOT_CASTABLE_BLINK = 63
 M.BOT_HAS_HP_FOR_NUKE = 64
 M.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL = 65
+M.BOT_SAFE_SPOT_IS_FOUNTAIN = 66
 
 -- ENEMY_HERO state
 M.EH_PRESENT = 100
@@ -480,6 +481,9 @@ function M.UpdateState()
     [M.BOT_HAS_DAMAGE_FOR_AGGRO_CONTROL] =
       NUM[constants.BOT_DAMAGE_FOR_AGGRO_CONTROL
           <= env.BOT_DATA.attack_damage],
+
+    [M.BOT_SAFE_SPOT_IS_FOUNTAIN] =
+      NUM[functions.AreTablesEqual(env.SAFE_SPOT, env.FOUNTAIN_SPOT)],
   }
 
   if hist.LAST_SOMA.move ~= nil then
