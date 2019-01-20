@@ -1,3 +1,8 @@
+* version 1.2-dr
+  - Fix bugs with fighting with the enemy hero on low HP.
+  - Rework the inventory management.
+  - Fix bugs with moving to the safe spot and start position for body blocking.
+
 * version 1.1-dr
   - Implement the blink + gust combo.
   - Implement moves for using pike and force staff.
