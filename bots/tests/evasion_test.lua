@@ -123,10 +123,63 @@ end
 
 ---------------------------------
 
-function test_pre_evade_enemy_hero_1_succeed()
+function test_pre_evade_enemy_hero_low_hp_1_succeed()
   evasion.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 1,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_hero_low_hp())
+end
+
+function test_pre_evade_enemy_hero_low_hp_1_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_low_hp())
+end
+
+function test_pre_evade_enemy_hero_low_hp_2_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_low_hp())
+end
+
+function test_pre_evade_enemy_hero_low_hp_3_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero_low_hp())
+end
+
+---------------------------------
+
+function test_pre_evade_enemy_hero_1_succeed()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertTrue(evasion.pre_evade_enemy_hero())
+end
+
+function test_pre_evade_enemy_hero_2_succeed()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
   })
 
   luaunit.assertTrue(evasion.pre_evade_enemy_hero())
@@ -136,6 +189,9 @@ function test_pre_evade_enemy_hero_1_fails()
   evasion.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
   })
 
   luaunit.assertFalse(evasion.pre_evade_enemy_hero())
@@ -143,8 +199,11 @@ end
 
 function test_pre_evade_enemy_hero_2_fails()
   evasion.test_SetGameState({
-    [gs.BOT_IS_LOW_HP] = 1,
-    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+    [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 0,
   })
 
   luaunit.assertFalse(evasion.pre_evade_enemy_hero())
@@ -153,7 +212,34 @@ end
 function test_pre_evade_enemy_hero_3_fails()
   evasion.test_SetGameState({
     [gs.BOT_IS_LOW_HP] = 0,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 0,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 1,
+    [gs.EC_IN_AGGRO_RADIUS] = 0,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero())
+end
+
+function test_pre_evade_enemy_hero_4_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 1,
+    [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 0,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
+  })
+
+  luaunit.assertFalse(evasion.pre_evade_enemy_hero())
+end
+
+function test_pre_evade_enemy_hero_5_fails()
+  evasion.test_SetGameState({
+    [gs.BOT_IS_LOW_HP] = 0,
     [gs.BOT_IN_SAFE_DISTANCE_FROM_EH] = 1,
+    [gs.BOT_IS_FOCUSED_BY_ENEMY_HERO] = 1,
+    [gs.BOT_IS_FOCUSED_BY_UNKNOWN_UNIT] = 0,
+    [gs.EC_IN_AGGRO_RADIUS] = 1,
   })
 
   luaunit.assertFalse(evasion.pre_evade_enemy_hero())
