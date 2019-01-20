@@ -13,6 +13,7 @@ function test_pre_move_start_position_1_succeed()
   body_block.test_SetGameState({
     [gs.AC_FRONT_PRESENT] = 0,
     [gs.BOT_IN_BODY_BLOCK_SPOT] = 0,
+    [gs.EH_BLOCKS_BODY_BLOCK_SPOT] = 0,
   })
 
   luaunit.assertTrue(body_block.pre_move_start_position())
@@ -22,6 +23,7 @@ function test_pre_move_start_position_1_fails()
   body_block.test_SetGameState({
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.BOT_IN_BODY_BLOCK_SPOT] = 0,
+    [gs.EH_BLOCKS_BODY_BLOCK_SPOT] = 0,
   })
 
   luaunit.assertFalse(body_block.pre_move_start_position())
@@ -31,6 +33,7 @@ function test_pre_move_start_position_2_fails()
   body_block.test_SetGameState({
     [gs.AC_FRONT_PRESENT] = 0,
     [gs.BOT_IN_BODY_BLOCK_SPOT] = 1,
+    [gs.EH_BLOCKS_BODY_BLOCK_SPOT] = 0,
   })
 
   luaunit.assertFalse(body_block.pre_move_start_position())
@@ -40,6 +43,17 @@ function test_pre_move_start_position_3_fails()
   body_block.test_SetGameState({
     [gs.AC_FRONT_PRESENT] = 1,
     [gs.BOT_IN_BODY_BLOCK_SPOT] = 1,
+    [gs.EH_BLOCKS_BODY_BLOCK_SPOT] = 0,
+  })
+
+  luaunit.assertFalse(body_block.pre_move_start_position())
+end
+
+function test_pre_move_start_position_4_fails()
+  body_block.test_SetGameState({
+    [gs.AC_FRONT_PRESENT] = 0,
+    [gs.BOT_IN_BODY_BLOCK_SPOT] = 0,
+    [gs.EH_BLOCKS_BODY_BLOCK_SPOT] = 1,
   })
 
   luaunit.assertFalse(body_block.pre_move_start_position())

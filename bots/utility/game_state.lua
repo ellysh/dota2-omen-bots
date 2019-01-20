@@ -112,7 +112,7 @@ M.BOT_IN_EH_MIN_DISTANCE = 115
 M.EH_IS_FLASK_HEALING = 116
 M.EH_IN_PIKE_RANGE = 117
 M.EH_HAS_HP_FOR_BLINK = 118
---M.EH_IN_FAR_SHADOWRAZE_RANGE = 119
+M.EH_BLOCKS_BODY_BLOCK_SPOT = 119
 M.BOT_IS_FACING_EH = 120
 M.EH_IS_CASTING = 121
 --M.EH_IS_CASTING_NEAR_SHADOWRAZE = 122
@@ -582,6 +582,12 @@ function M.UpdateState()
             env.ENEMY_HERO_DATA.health,
             env.ENEMY_HERO_DATA.max_health)
           <= constants.UNIT_HIGH_HEALTH_LEVEL]
+
+    M.GAME_STATE[M.EH_BLOCKS_BODY_BLOCK_SPOT] =
+      NUM[algorithms.IsEnemyBlockSpot(
+            env.BOT_DATA,
+            {env.ENEMY_HERO_DATA},
+            env.BODY_BLOCK_SPOT)]
 
     M.GAME_STATE[M.BOT_IS_FACING_EH] =
       NUM[functions.IsFacingLocation(
