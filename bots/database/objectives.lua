@@ -521,9 +521,9 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_enemy_hero",
-        wait_condition = "wait_evade_enemy_hero",
-        cancel_condition = "cancel_evade_enemy_hero",
+        move = "evade_enemy_hero_low_hp",
+        wait_condition = "wait_evade_enemy_hero_low_hp",
+        cancel_condition = "cancel_evade_enemy_hero_low_hp",
         actions = {
           {action = "move_safe_spot"},
 
@@ -621,9 +621,9 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_enemy_hero",
-        wait_condition = "wait_evade_enemy_hero",
-        cancel_condition = "cancel_evade_enemy_hero",
+        move = "evade_enemy_hero_low_hp",
+        wait_condition = "wait_evade_enemy_hero_low_hp",
+        cancel_condition = "cancel_evade_enemy_hero_low_hp",
         actions = {
           {action = "move_safe_spot"},
 
@@ -912,9 +912,9 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "evade_enemy_hero",
-        wait_condition = "wait_evade_enemy_hero",
-        cancel_condition = "cancel_evade_enemy_hero",
+        move = "evade_enemy_hero_low_hp",
+        wait_condition = "wait_evade_enemy_hero_low_hp",
+        cancel_condition = "cancel_evade_enemy_hero_low_hp",
         actions = {
           {action = "move_safe_spot"},
 
