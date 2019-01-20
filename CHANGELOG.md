@@ -1,3 +1,8 @@
+* version 1.2-sf
+  - Fix bugs with fighting with the enemy hero on low HP.
+  - Rework the inventory management.
+  - Fix bugs with moving to the safe spot and start position for body blocking.
+
 * version 1.0
   - Implement the blink + eul's + requiem combo.
   - Implement the eul's + requiem combo.
