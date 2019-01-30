@@ -1,6 +1,6 @@
 local M = {}
 
-M.BOTS_VERSION = "1.2.x-dr"
+M.BOTS_VERSION = "1.3-dr"
 
 M.INVENTORY_START_INDEX = 0
 M.INVENTORY_END_INDEX = 5

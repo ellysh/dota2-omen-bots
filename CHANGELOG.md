@@ -1,3 +1,6 @@
+* version 1.3-dr
+  - Fix the recipe for PT. Now it requires gloves instead of blades.
+
 * version 1.2-dr
   - Fix bugs with fighting with the enemy hero on low HP.
   - Rework the inventory management.
