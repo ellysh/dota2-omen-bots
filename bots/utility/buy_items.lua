@@ -163,15 +163,15 @@ end
 
 ---------------------------------
 
-function M.pre_buy_blades_of_attack()
-  return pre_buy_item("item_blades_of_attack")
+function M.pre_buy_gloves()
+  return pre_buy_item("item_gloves")
          and algorithms.DoesBotOrCourierHaveItem("item_boots_of_elves")
          and not algorithms.DoesBotOrCourierHaveItem(
-                   "item_power_treads")
+                   "item_gloves")
 end
 
-function M.buy_blades_of_attack()
-  algorithms.BuyItem("item_blades_of_attack")
+function M.buy_gloves()
+  algorithms.BuyItem("item_gloves")
 end
 
 ---------------------------------
