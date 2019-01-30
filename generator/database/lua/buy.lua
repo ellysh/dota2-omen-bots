@@ -71,11 +71,11 @@ M.OBJECTIVES = {
         },
       },
       {
-        move = "buy_blades_of_attack",
+        move = "buy_gloves",
         wait_condition = "nil",
         cancel_condition = "nil",
         actions = {
-          {action = "buy_blades_of_attack"},
+          {action = "buy_gloves"},
 
         },
       },
