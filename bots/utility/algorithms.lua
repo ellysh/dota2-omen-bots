@@ -223,6 +223,14 @@ function M.BuyItem(item_name)
   action_timing.SetNextActionDelay(0.05)
 end
 
+function M.BuyItemByCourier(item_name)
+  local courier = GetCourier(0)
+
+  courier:ActionImmediate_PurchaseItem(item_name)
+
+  action_timing.SetNextActionDelay(0.05)
+end
+
 function M.GetAllyTowerDistance(unit_data)
   return functions.GetDistance(
            unit_data.location,

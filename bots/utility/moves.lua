@@ -121,6 +121,7 @@ function M.pre_deliver_items()
   local weights = {
     [gs.BOT_STASH_FULL] = 0.5,
     [gs.COURIER_ON_BASE] = 0.5,
+    [gs.COURIER_IN_SECRET_SHOP] = 0.5,
   }
 
   return gs.Evaluate(gs.GAME_STATE, weights)

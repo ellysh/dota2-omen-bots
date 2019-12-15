@@ -196,6 +196,7 @@ M.EC_IN_MELEE_ATTACK_RANGE = 435
 -- Courier state
 M.COURIER_ON_BASE = 600
 M.COURIER_IS_AVAILABLE = 601
+M.COURIER_IN_SECRET_SHOP = 602
 
 -- Wards state
 M.AW_PRESENT = 700
@@ -927,7 +928,13 @@ function M.UpdateState()
     M.GAME_STATE[M.COURIER_ON_BASE] =
       NUM[map.IsUnitInSpot(env.COURIER_DATA, map.GetAllySpot("fountain"))]
 
-    M.GAME_STATE[M.COURIER_IS_AVAILABLE] = NUM[GetCourier(0) ~= nil]
+    local courier = GetCourier(0)
+
+    M.GAME_STATE[M.COURIER_IS_AVAILABLE] = NUM[courier ~= nil]
+
+    M.GAME_STATE[M.COURIER_IN_SECRET_SHOP] =
+      NUM[courier:DistanceFromSecretShop() < 100]
+
   end
 
   -- Wards state

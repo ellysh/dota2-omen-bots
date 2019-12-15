@@ -207,7 +207,17 @@ function M.pre_buy_void_stone()
 end
 
 function M.buy_void_stone()
-  algorithms.BuyItem("item_void_stone")
+  if gs.GAME_STATE[gs.COURIER_IN_SECRET_SHOP] == 0
+     and gs.GAME_STATE[gs.COURIER_ON_BASE] == 1 then
+
+    local courier = GetCourier(0)
+
+    env.BOT:ActionImmediate_Courier(
+      courier,
+      COURIER_ACTION_SECRET_SHOP)
+  else
+    algorithms.BuyItemByCourier("item_void_stone")
+  end
 end
 
 ---------------------------------
