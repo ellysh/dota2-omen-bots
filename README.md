@@ -1,4 +1,4 @@
-# Dota 2 OMEN Bots 1.3-sf version
+# Dota 2 OMEN Bots 1.4-sf version
 
 *This project is still in a developing stage.*
 

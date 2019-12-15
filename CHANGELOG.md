@@ -1,3 +1,8 @@
+* version 1.4-sf
+  - Fix the backpack size.
+  - Fix the fountain spot in the database.
+  - Add the algorithm for sending the courier to the secret shop.
+
 * version 1.3-sf
   - Fix the recipe for PT. Now it requires gloves instead of blades.
 
