@@ -927,7 +927,7 @@ function M.UpdateState()
     M.GAME_STATE[M.COURIER_ON_BASE] =
       NUM[map.IsUnitInSpot(env.COURIER_DATA, map.GetAllySpot("fountain"))]
 
-    M.GAME_STATE[M.COURIER_IS_AVAILABLE] = NUM[IsCourierAvailable()]
+    M.GAME_STATE[M.COURIER_IS_AVAILABLE] = NUM[GetCourier(0) ~= nil]
   end
 
   -- Wards state
